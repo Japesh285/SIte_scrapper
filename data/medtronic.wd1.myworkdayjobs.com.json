@@ -1,0 +1,68 @@
+{
+  "domain": "medtronic.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "scraped_at": "2026-04-03T11:56:40.339595+00:00",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "title": "",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+      "location": "",
+      "experience": "",
+      "salary": "",
+      "job_summary": "",
+      "remote_type": "unknown",
+      "posted_on": "",
+      "error": ""
+    },
+    {
+      "title": "",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+      "location": "",
+      "experience": "",
+      "salary": "",
+      "job_summary": "",
+      "remote_type": "unknown",
+      "posted_on": "",
+      "error": ""
+    },
+    {
+      "title": "",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+      "location": "",
+      "experience": "",
+      "salary": "",
+      "job_summary": "",
+      "remote_type": "unknown",
+      "posted_on": "",
+      "error": ""
+    },
+    {
+      "title": "",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Tijuana-Baja-California-Mexico/Analista-Financiero--12-meses-_R62248-1",
+      "location": "",
+      "experience": "",
+      "salary": "",
+      "job_summary": "",
+      "remote_type": "unknown",
+      "posted_on": "",
+      "error": ""
+    },
+    {
+      "title": "",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Heerlen-Limburg-Netherlands/Senior-Tax-Accountant-Lawyer_R62182-1",
+      "location": "",
+      "experience": "",
+      "salary": "",
+      "job_summary": "",
+      "remote_type": "unknown",
+      "posted_on": "",
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "domain": "jobs.dell.com",
+  "site_type": "DOM_BROWSER",
+  "scraped_at": "2026-04-03T11:57:16.099111+00:00",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "title": "Software Senior Principal Engineer - EIS Modernization - KAAS",
+      "company_name": "",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-senior-principal-engineer-eis-modernization-kaas/375/93522118480",
+      "location": "Bengaluru, India",
+      "experience": "Experience - 12+",
+      "salary": "pays off.",
+      "job_summary": "Bangalore, India Software Senior Principal Engineer - EIS Modernization - KAAS Apply Now Save Job",
+      "remote_type": "remote",
+      "posted_on": "30 April",
+      "error": ""
+    },
+    {
+      "title": "Software Senior Engineer(C,C++, Firmware,, BMC, IPMI,AI , ML, GenAI)",
+      "company_name": "",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-senior-engineer-c-c-firmware-bmc-ipmi-ai-ml-genai/375/93519723456",
+      "location": "Bengaluru, India",
+      "experience": "year-",
+      "salary": "pays off.",
+      "job_summary": "Bangalore, India Software Senior Engineer(C,C++, Firmware,, BMC, IPMI,AI , ML, GenAI) Apply Now Save Job",
+      "remote_type": "remote",
+      "posted_on": "30 May",
+      "error": ""
+    },
+    {
+      "title": "Inside Sales Account Executive 2",
+      "company_name": "",
+      "job_link": "https://jobs.dell.com/en/job/gurgaon/inside-sales-account-executive-2/375/93493729040",
+      "location": "Gurgaon, India",
+      "experience": "year-",
+      "salary": "pays off.",
+      "job_summary": "Gurgaon, India Inside Sales Account Executive 2 Apply Now Save Job",
+      "remote_type": "remote",
+      "posted_on": "25 May",
+      "error": ""
+    },
+    {
+      "title": "Software Senior Engineer",
+      "company_name": "",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-senior-engineer/375/93455875904",
+      "location": "Bengaluru, India",
+      "experience": "year-",
+      "salary": "pays off.",
+      "job_summary": "Bangalore, India Software Senior Engineer Apply Now Save Job",
+      "remote_type": "remote",
+      "posted_on": "28 February",
+      "error": ""
+    },
+    {
+      "title": "Consultant,Project Management",
+      "company_name": "",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/consultant-project-management/375/93455875136",
+      "location": "Bengaluru, India",
+      "experience": "year-",
+      "salary": "pays off.",
+      "job_summary": "Bangalore, India Consultant,Project Management Apply Now Save Job",
+      "remote_type": "remote",
+      "posted_on": "15-April",
+      "error": ""
+    }
+  ]
+}
