@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+
+# Database
+*.db
+*.sqlite3
+
+# Environment
+.env
+
+# Raw JSON output
+raw_json/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
