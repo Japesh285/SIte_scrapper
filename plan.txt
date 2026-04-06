@@ -1,0 +1,86 @@
+Adaptive Job Scraper — System Functionality Report
+====================================================
+
+Overview
+--------
+A FastAPI-based web scraper that adaptively detects and extracts job listings
+from company career pages using multiple detection strategies and scraping techniques.
+
+Architecture
+------------
+FastAPI App (main.py)
+  ├── API Routes (routes.py)
+  ├── Orchestrator (orchestrator.py)
+  ├── Detectors (6 strategies)
+  ├── Scrapers (4 implementations)
+  ├── AI Classifier (ai_classifier.py)
+  └── Database (SQLite via SQLAlchemy async)
+
+Core Workflow
+-------------
+1. Input: A career page URL is submitted via POST /scrape
+2. Detection Phase: The system runs 6 parallel detectors to identify the site type:
+   - Workday API — Detects Workday ATS, extracts API endpoints from HTML, paginates via POST requests
+   - Greenhouse API — Resolves Greenhouse board slugs, calls boards-api.greenhouse.io
+   - Simple API — Discovers JSON job endpoints from browser XHR URLs or common paths
+   - DOM Browser — Uses Playwright to render JS-heavy pages, extracts job links from DOM
+   - DOM Load More — Detects and clicks "Load More" buttons via Playwright
+   - DOM Infinite Scroll — Detects scroll-based loading, simulates scrolling
+
+3. Browser Probe (fallback): If no detector matches initially, launches a headless browser to:
+   - Intercept network requests for JSON/API URLs
+   - Collect DOM signals (pagination controls, scrollable containers, job anchor counts)
+   - Re-run detectors with discovered URLs
+
+4. Classification: An AI classifier (OpenAI GPT-4.1-mini) selects the best strategy
+   based on detection results. Falls back to heuristic ranking if no API key or
+   classification fails.
+
+5. Scraping: The selected scraper extracts job listings (title, location, URL).
+
+6. Storage:
+   - Jobs saved to SQLite (jobs.db) with Site and Job tables
+   - Raw JSON saved to raw_json/<domain>/scrape_result_<timestamp>.json
+
+API Endpoints
+-------------
+POST /scrape               — Scrape a single URL
+POST /scrape-hardcoded     — Bulk scrape 4 predefined URLs (Medtronic, Dell, Standard Chartered)
+POST /scrape-all           — Scrape all sites from the database
+POST /scrape-hardcoded-details — Scrape hardcoded URLs + visit each job URL to extract detailed
+                                  info (title, company, skills, salary, etc.) via Playwright
+GET /test-scrape           — Run lightweight test scrape (5 jobs per domain limit)
+GET /                      — Health check
+
+Database Schema
+---------------
+sites table: id, domain, type, confidence
+jobs table: id, site_id (FK), title, location, url, raw_json (JSON column)
+
+Key Components
+--------------
+Module                        | Responsibility
+----------------------------- | --------------------------------------------------------
+orchestrator.py              | Coordinates detection → classification → scraping → saving
+ai_classifier.py             | Uses OpenAI API to pick the best scraping strategy;
+                              | has heuristic fallback
+scrapers/dom_browser.py      | Playwright-based DOM scraping with pagination
+                              | (paged, load-more, infinite-scroll modes)
+detectors/workday.py         | Workday API detection and job extraction with pagination
+detectors/greenhouse.py      | Greenhouse board slug resolution and API fetching
+detectors/simple_api.py      | Validates candidate JSON endpoints with scoring system
+detectors/browser.py         | Browser network inspection + DOM signal collection
+job_detail_scraper.py        | Extracts detailed job info (skills, experience, education,
+                              | salary, remote type) using regex + DOM selectors
+raw_json_saver.py            | Saves scrape results to raw_json/ directory
+xlsx_to_db.py                | Standalone script that reads Companies_List.xlsx, auto-detects
+                              | columns, and populates the sites table
+
+Tech Stack
+----------
+- Framework: FastAPI (async)
+- HTTP Client: httpx (async)
+- Browser Automation: Playwright (Chromium)
+- Database: SQLite with aiosqlite + SQLAlchemy ORM
+- AI: OpenAI GPT-4.1-mini (with heuristic fallback)
+- Data Ingestion: Pandas (Excel → DB via xlsx_to_db.py)

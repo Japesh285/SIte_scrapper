@@ -10,7 +10,7 @@ from app.db.database import get_session
 from app.db.models import Site
 from app.services.orchestrator import orchestrate_scrape
 from app.services.raw_json_saver import RAW_JSON_DIR
-from app.services.job_detail_scraper import scrape_job_details
+from app.job_detail_engine.orchestrator import extract_job_details
 from app.services.test_scrape import run_test_scrape
 from app.core.logger import logger
 
@@ -58,6 +58,7 @@ class JobDetailResponse(BaseModel):
     additional_sections: list = []
     about_us: str = ""
     Scrap_json: dict = {}
+    ai_usage: dict = {}
 
 
 @router.post("/scrape", response_model=ScrapeResponse)
@@ -69,6 +70,254 @@ async def scrape(request: ScrapeRequest, session: AsyncSession = Depends(get_ses
         confidence=result["confidence"],
         jobs_found=result["jobs_found"],
         status=result["status"],
+    )
+
+
+class JobDetailResult(BaseModel):
+    id: str = ""
+    title: str = ""
+    company_name: str = ""
+    job_link: str = ""
+    experience: str = ""
+    locations: list = []
+    educational_qualifications: str = ""
+    required_skill_set: list = []
+    remote_type: str = ""
+    posted_on: str = ""
+    job_id: str = ""
+    salary: str = ""
+    is_active: bool = True
+    first_seen: str = ""
+    last_seen: str = ""
+    additional_sections: list = []
+    Scrap_json: dict = {}
+    ai_usage: dict = {}
+
+
+class ScrapeDetailsResponse(BaseModel):
+    domain: str
+    site_type: str
+    listing_jobs_found: int
+    listing_status: str
+    jobs_count: int
+    jobs: list[JobDetailResult]
+
+
+@router.post("/scrape-details", response_model=ScrapeDetailsResponse)
+async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends(get_session)):
+    """Scrape a single site for job listings, then extract details using strategy-locked approach."""
+    normalized_url = normalize_site_url(request.url)
+    domain = get_domain(normalized_url)
+    logger.info(f"[ScrapeDetails] Starting: {domain}")
+
+    # Step 1: Get listing URLs via orchestrator (includes strategy lock)
+    scrape_result = await orchestrate_scrape(normalized_url, session)
+    site_type = scrape_result["type"]
+    strategy = scrape_result.get("strategy", "dom")
+    api_url = scrape_result.get("api_url", "")
+    logger.info(f"[ScrapeDetails] {domain} -> {site_type}, strategy={strategy}, jobs={scrape_result['jobs_found']}")
+
+    # Step 2: Read jobs from latest saved JSON (with raw API data if API strategy)
+    domain_dir = RAW_JSON_DIR / domain
+    if not domain_dir.exists():
+        return ScrapeDetailsResponse(
+            domain=domain,
+            site_type=site_type,
+            listing_jobs_found=scrape_result["jobs_found"],
+            listing_status=scrape_result["status"],
+            jobs_count=0,
+            jobs=[],
+        )
+
+    files = sorted(domain_dir.glob("scrape_result_*.json"), key=lambda f: f.stat().st_mtime, reverse=True)
+    if not files:
+        return ScrapeDetailsResponse(
+            domain=domain,
+            site_type=site_type,
+            listing_jobs_found=0,
+            listing_status=scrape_result["status"],
+            jobs_count=0,
+            jobs=[],
+        )
+
+    with open(files[0], "r", encoding="utf-8") as f:
+        data = json.load(f)
+        jobs_raw = data.get("jobs", [])
+
+    # Cap to 5 jobs for this endpoint
+    jobs_raw = jobs_raw[:5]
+
+    logger.info(f"[ScrapeDetails] {domain} collected {len(jobs_raw)} jobs for detail extraction")
+    logger.info("[DETAIL STRATEGY] strategy=%s for %s", strategy, domain)
+
+    # Step 3: Extract details using strategy-locked approach
+    jobs_detail = []
+    total_ai_tokens = 0
+
+    if strategy == "api":
+        # ── API STRATEGY: Extract details from raw API data, NO HTML ──
+        from app.services.detail_extractor import extract_job_details as extract_api_details
+
+        for i, job_data in enumerate(jobs_raw):
+            job_url = job_data.get("url", "")
+            logger.info(f"[ScrapeDetails] {domain} API detail extraction job {i+1}/{len(jobs_raw)}")
+            logger.info("[DETAIL STRATEGY] Using API for job_id=%s", job_data.get("_raw_api", {}).get("externalPath", "unknown"))
+            if site_type == "WORKDAY_API":
+                logger.info("[WORKDAY API] Using base_url=%s", api_url)
+
+            try:
+                detail = await extract_api_details(
+                    strategy="api",
+                    job=job_data,
+                    site_type=site_type,
+                    api_url=api_url,
+                    base_url=normalized_url,
+                )
+            except Exception as exc:
+                logger.error(f"[ScrapeDetails] API detail failed for {job_url}: {exc}")
+                # Failsafe: return partial data, DO NOT fallback to HTML
+                detail = {
+                    "title": job_data.get("title", ""),
+                    "location": job_data.get("location", ""),
+                    "url": job_url,
+                    "job_id": "",
+                    "description": "",
+                    "skills": [],
+                    "experience": "",
+                    "education": "",
+                    "posted_on": "",
+                    "employment_type": "",
+                    "salary": "",
+                    "company_name": "",
+                    "remote_type": "",
+                    "qualifications": [],
+                    "additional_sections": [],
+                }
+
+            job_entry = JobDetailResult(
+                id=str(detail.get("job_id") or job_url.split("/")[-1]),
+                title=str(detail.get("title") or ""),
+                company_name=str(detail.get("company_name") or ""),
+                job_link=job_url,
+                experience=str(detail.get("experience") or ""),
+                locations=[detail["location"]] if isinstance(detail.get("location"), str) and detail.get("location") else (detail.get("location") or []),
+                educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
+                required_skill_set=detail.get("skills", detail.get("required_skills", [])),
+                remote_type=str(detail.get("remote_type") or ""),
+                posted_on=str(detail.get("posted_on") or ""),
+                job_id=str(detail.get("job_id") or ""),
+                salary=str(detail.get("salary") or ""),
+                is_active=True,
+                first_seen="",
+                last_seen="",
+                additional_sections=detail.get("additional_sections") or [],
+                Scrap_json={
+                    "url": job_url,
+                    "strategy": "api",
+                    "site_type": site_type,
+                    "department": detail.get("department", ""),
+                    "qualifications": detail.get("qualifications", []),
+                },
+                ai_usage=detail.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+            )
+            jobs_detail.append(job_entry)
+
+    else:
+        # ── DOM STRATEGY: Use Playwright + existing detail engine ──
+        from playwright.async_api import async_playwright
+        async with async_playwright() as playwright:
+            browser = await playwright.chromium.launch(headless=False)
+
+            for i, job_data in enumerate(jobs_raw):
+                job_url = job_data.get("url", "")
+                logger.info(f"[ScrapeDetails] {domain} DOM scraping job {i+1}/{len(jobs_raw)}: {job_url}")
+                page = await browser.new_page()
+                try:
+                    await page.goto(job_url, wait_until="domcontentloaded", timeout=30000)
+                    await page.wait_for_timeout(3000)
+                    html = await page.content()
+                    logger.info(f"[Engine] Calling extract_job_details (force_ai=True) for {job_url}")
+                    detail = await extract_job_details(html, force_ai=True)
+                    meta = detail.pop("_meta", {})
+                    ai_usage = detail.pop("ai_usage", {})
+                    total_ai_tokens += ai_usage.get("total_tokens", 0)
+                    logger.info(
+                        f"[Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "
+                        f"parser={meta.get('parser_used','?')}, "
+                        f"score={meta.get('confidence',0)}, "
+                        f"ai_used={meta.get('ai_used', False)}, "
+                        f"ai_forced={meta.get('ai_forced', False)}, "
+                        f"skills={len(detail.get('skills',[]))}, "
+                        f"ai_tokens={ai_usage.get('total_tokens', 0)}"
+                    )
+                except Exception as exc:
+                    logger.error(f"[ScrapeDetails] Failed for {job_url}: {exc}")
+                    meta = {}
+                    ai_usage = {}
+                    detail = {}
+                finally:
+                    await page.close()
+
+                job_entry = JobDetailResult(
+                    id=str(detail.get("job_id") or job_url.split("/")[-1]),
+                    title=str(detail.get("title") or ""),
+                    company_name=str(detail.get("company_name") or ""),
+                    job_link=job_url,
+                    experience=str(detail.get("experience") or ""),
+                    locations=detail.get("location") or [],
+                    educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
+                    required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
+                    remote_type=str(detail.get("remote_type") or ""),
+                    posted_on=str(detail.get("posted_on") or ""),
+                    job_id=str(detail.get("job_id") or ""),
+                    salary=str(detail.get("salary") or ""),
+                    is_active=True,
+                    first_seen="",
+                    last_seen="",
+                    additional_sections=detail.get("additional_sections") or [],
+                    Scrap_json={
+                        "url": job_url,
+                        "strategy": "dom",
+                        "parser_used": str(meta.get("parser_used", "")),
+                        "confidence": meta.get("confidence", 0),
+                        "ai_forced": meta.get("ai_forced", False),
+                        "preferred_skills": detail.get("preferred_skills") or [],
+                        "tools_and_technologies": detail.get("tools_and_technologies") or [],
+                        "certifications": detail.get("certifications") or [],
+                        "soft_skills": detail.get("soft_skills") or [],
+                        "inferred_skills": detail.get("inferred_skills") or [],
+                        "benefits": detail.get("benefits") or [],
+                    },
+                    ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                )
+                jobs_detail.append(job_entry)
+
+            await browser.close()
+
+    logger.info(
+        f"[ScrapeDetails] {domain} complete → {len(jobs_detail)} jobs detailed, "
+        f"strategy={strategy}, total AI tokens={total_ai_tokens}"
+    )
+
+    # Step 4: Save full JSON output to job-details/{domain}/
+    from app.job_detail_engine.utils.json_saver import save_job_details
+    saved_path = save_job_details(
+        jobs=[j.model_dump() for j in jobs_detail],
+        domain=domain,
+        site_type=site_type,
+        listing_jobs_found=scrape_result["jobs_found"],
+        listing_status=scrape_result["status"],
+    )
+    if saved_path:
+        logger.info(f"[ScrapeDetails] Full JSON saved → {saved_path}")
+
+    return ScrapeDetailsResponse(
+        domain=domain,
+        site_type=site_type,
+        listing_jobs_found=scrape_result["jobs_found"],
+        listing_status=scrape_result["status"],
+        jobs_count=len(jobs_detail),
+        jobs=jobs_detail,
     )
 
 
@@ -175,14 +424,10 @@ async def scrape_all_sites(session: AsyncSession = Depends(get_session)):
 
 @router.post("/scrape-hardcoded-details")
 async def scrape_hardcoded_job_details():
-    """Scrape hardcoded URLs, then visit each job URL to extract detailed info - all in one go."""
+    """Scrape hardcoded URLs, then extract details using strategy-locked approach."""
     from app.db.database import async_session
-    from app.scrapers.dom_browser import scrape_dom_browser
-    from app.detectors import detect_workday, detect_greenhouse, detect_simple_api, detect_dom_browser
-    from app.detectors.workday import fetch_workday_jobs
-    from app.detectors.greenhouse import fetch_greenhouse_jobs, resolve_greenhouse_slug
-    from app.detectors.simple_api import fetch_simple_api_jobs
-    import httpx
+    from app.services.orchestrator import orchestrate_scrape
+    from app.services.raw_json_saver import RAW_JSON_DIR
 
     result = {"sites": []}
 
@@ -193,17 +438,22 @@ async def scrape_hardcoded_job_details():
 
         job_urls = []
         site_type = "UNKNOWN"
+        strategy = "dom"
+        api_url = ""
+        jobs_raw_list = []
 
-        # Step 1: Scrape the job listing page
+        # Step 1: Scrape the job listing page to get job URLs + strategy
         try:
             async with async_session() as session:
                 scrape_result = await orchestrate_scrape(normalized_url, session)
                 site_type = scrape_result["type"]
-                logger.info(f"[DetailScraper] {domain} -> {site_type}, jobs={scrape_result['jobs_found']}")
+                strategy = scrape_result.get("strategy", "dom")
+                api_url = scrape_result.get("api_url", "")
+                logger.info(f"[DetailScraper] {domain} -> {site_type}, strategy={strategy}, jobs={scrape_result['jobs_found']}")
         except Exception as e:
             logger.warning(f"[DetailScraper] Orchestrate failed for {url}: {e}")
 
-        # Step 2: Collect job URLs from the latest saved JSON
+        # Step 2: Collect jobs from the latest saved JSON
         domain_dir = RAW_JSON_DIR / domain
         if domain_dir.exists():
             files = sorted(domain_dir.glob("scrape_result_*.json"), key=lambda f: f.stat().st_mtime, reverse=True)
@@ -211,314 +461,151 @@ async def scrape_hardcoded_job_details():
                 with open(files[0], "r", encoding="utf-8") as f:
                     data = json.load(f)
                     site_type = data.get("site_type", site_type)
-                    job_urls = [job.get("url", "") for job in data.get("jobs", []) if job.get("url")]
-                    logger.info(f"[DetailScraper] {domain} collected {len(job_urls)} job URLs")
+                    jobs_raw_list = data.get("jobs", [])
+                    job_urls = [job.get("url", "") for job in jobs_raw_list if job.get("url")]
+                    logger.info(f"[DetailScraper] {domain} collected {len(jobs_raw_list)} jobs, strategy={strategy}")
 
-        # Step 3: Visit each job URL with headless=False and extract details
+        # Step 3: Extract details using strategy-locked approach
         site_entry = {
             "domain": domain,
             "site_type": site_type,
+            "strategy": strategy,
             "jobs_count": 0,
-            "jobs": []
+            "jobs": [],
         }
 
-        if job_urls:
+        if strategy == "api" and jobs_raw_list:
+            # ── API STRATEGY: Use raw API data, NO HTML scraping ──
+            from app.services.detail_extractor import extract_job_details as extract_api_details
+
+            logger.info("[DETAIL STRATEGY] Using API for %s", domain)
+            if site_type == "WORKDAY_API":
+                logger.info("[WORKDAY API] Using base_url=%s", api_url)
+
+            for i, job_data in enumerate(jobs_raw_list):
+                job_url = job_data.get("url", "")
+                logger.info("[DETAIL STRATEGY] Using API for job_id=%s", job_data.get("_raw_api", {}).get("externalPath", "unknown"))
+                try:
+                    detail = await extract_api_details(
+                        strategy="api",
+                        job=job_data,
+                        site_type=site_type,
+                        api_url=api_url,
+                        base_url=normalized_url,
+                    )
+                except Exception as exc:
+                    logger.error(f"[DetailScraper] API detail failed for {job_url}: {exc}")
+                    detail = {
+                        "id": job_url.split("/")[-1] if job_url else "",
+                        "title": job_data.get("title", ""),
+                        "company_name": "",
+                        "job_link": job_url,
+                        "experience": "",
+                        "locations": [job_data["location"]] if isinstance(job_data.get("location"), str) and job_data.get("location") else (job_data.get("location") if isinstance(job_data.get("location"), list) else []),
+                        "educational_qualifications": "",
+                        "required_skill_set": [],
+                        "remote_type": "",
+                        "posted_on": "",
+                        "job_id": "",
+                        "salary": "",
+                        "is_active": True,
+                        "additional_sections": [],
+                        "Scrap_json": {"url": job_url, "error": "api_detail_failed"},
+                    }
+                # Normalize location field to always be a list
+                loc = detail.get("location", "")
+                if isinstance(loc, str) and loc:
+                    detail["locations"] = [loc]
+                elif isinstance(loc, list):
+                    detail["locations"] = loc
+                else:
+                    detail["locations"] = []
+                detail.pop("location", None)
+                site_entry["jobs"].append(detail)
+
+        elif job_urls:
+            # ── DOM STRATEGY: Use Playwright ──
             try:
                 from playwright.async_api import async_playwright
                 async with async_playwright() as playwright:
                     browser = await playwright.chromium.launch(headless=False)
-                    page = await browser.new_page()
 
                     for i, job_url in enumerate(job_urls):
-                        logger.info(f"[DetailScraper] {domain} scraping job {i+1}/{len(job_urls)}: {job_url}")
-                        detail = await _scrape_job_detail_with_page(page, job_url)
-                        detail["id"] = detail.get("job_id", "") or job_url.split("/")[-1]
+                        logger.info(f"[DetailScraper] {domain} DOM scraping job {i+1}/{len(job_urls)}: {job_url}")
+                        logger.info("[DETAIL STRATEGY] Using DOM for job_url=%s", job_url)
+                        page = await browser.new_page()
+                        try:
+                            await page.goto(job_url, wait_until="domcontentloaded", timeout=30000)
+                            await page.wait_for_timeout(3000)
+                            html = await page.content()
+                            logger.info(f"[Engine] Calling extract_job_details for {job_url}")
+                            detail = await extract_job_details(html)
+                            meta = detail.pop("_meta", {})
+                            logger.info(
+                                f"[Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "
+                                f"parser={meta.get('parser_used','?')}, "
+                                f"score={meta.get('confidence',0)}, "
+                                f"ai={meta.get('ai_used',False)}, "
+                                f"skills={len(detail.get('skills',[]))}"
+                            )
+                            detail["id"] = detail.get("job_id", "") or job_url.split("/")[-1]
+                            detail["job_link"] = job_url
+                        except Exception as exc:
+                            logger.error(f"[DetailScraper] Failed for {job_url}: {exc}")
+                            detail = {
+                                "id": job_url.split("/")[-1],
+                                "title": "",
+                                "company_name": "",
+                                "job_link": job_url,
+                                "experience": "",
+                                "locations": [],
+                                "educational_qualifications": "",
+                                "required_skill_set": [],
+                                "remote_type": "unknown",
+                                "posted_on": "",
+                                "job_id": "",
+                                "salary": "",
+                                "is_active": True,
+                                "job_summary": "",
+                                "key_responsibilities": [],
+                                "additional_sections": [],
+                                "about_us": "",
+                                "Scrap_json": {"url": job_url, "error": "scrape_failed"},
+                            }
+                        finally:
+                            await page.close()
                         site_entry["jobs"].append(detail)
 
                     await browser.close()
             except Exception as e:
                 logger.error(f"[DetailScraper] Browser error for {domain}: {e}")
-                # Fallback: create empty entries
                 for job_url in job_urls:
-                    site_entry["jobs"].append(_empty_job_detail(job_url))
+                    site_entry["jobs"].append({
+                        "id": job_url.split("/")[-1],
+                        "title": "",
+                        "company_name": "",
+                        "job_link": job_url,
+                        "experience": "",
+                        "locations": [],
+                        "educational_qualifications": "",
+                        "required_skill_set": [],
+                        "remote_type": "unknown",
+                        "posted_on": "",
+                        "job_id": "",
+                        "salary": "",
+                        "is_active": True,
+                        "job_summary": "",
+                        "key_responsibilities": [],
+                        "additional_sections": [],
+                        "about_us": "",
+                        "Scrap_json": {"url": job_url, "error": "scrape_failed"},
+                    })
 
         site_entry["jobs_count"] = len(site_entry["jobs"])
         result["sites"].append(site_entry)
-        logger.info(f"[DetailScraper] {domain} done -> {site_entry['jobs_count']} jobs detailed")
+        logger.info(f"[DetailScraper] {domain} done -> {site_entry['jobs_count']} jobs detailed, strategy={strategy}")
 
     return result
-
-
-async def _scrape_job_detail_with_page(page, job_url: str) -> dict:
-    """Scrape a single job page using an existing browser page (headless=False)."""
-    try:
-        await page.goto(job_url, wait_until="domcontentloaded", timeout=30000)
-        await page.wait_for_timeout(3000)
-
-        html = await page.content()
-        text = await page.inner_text("body")
-
-        title = await _extract_title(page, text)
-        company_name = await _extract_company(page, text)
-        locations = await _extract_locations(page, text)
-        experience = await _extract_experience(text)
-        educational_qualifications = await _extract_education(text)
-        required_skills = await _extract_skills(text)
-        job_summary = await _extract_summary(text)
-        responsibilities = await _extract_responsibilities(text)
-        posted_on = await _extract_posted_date(text)
-        job_id = await _extract_job_id(job_url, text)
-        salary = await _extract_salary(text)
-        remote_type = await _extract_remote_type(text)
-        about_us = await _extract_about_us(text)
-
-        return {
-            "title": title,
-            "company_name": company_name,
-            "job_link": job_url,
-            "experience": experience,
-            "locations": locations,
-            "educational_qualifications": educational_qualifications,
-            "required_skill_set": required_skills,
-            "remote_type": remote_type,
-            "posted_on": posted_on,
-            "job_id": job_id,
-            "salary": salary,
-            "is_active": True,
-            "first_seen": datetime.now(timezone.utc).isoformat(),
-            "last_seen": datetime.now(timezone.utc).isoformat(),
-            "job_summary": job_summary,
-            "key_responsibilities": responsibilities,
-            "additional_sections": [],
-            "about_us": about_us,
-            "Scrap_json": {"url": job_url, "html_snippet": html[:2000]},
-        }
-    except Exception as exc:
-        logger.error(f"[JobDetail] Error scraping {job_url}: {exc}")
-        return _empty_job_detail(job_url)
-
-
-def _empty_job_detail(job_url: str) -> dict:
-    return {
-        "title": "",
-        "company_name": "",
-        "job_link": job_url,
-        "experience": "",
-        "locations": [],
-        "educational_qualifications": "",
-        "required_skill_set": [],
-        "remote_type": "unknown",
-        "posted_on": "",
-        "job_id": "",
-        "salary": "",
-        "is_active": True,
-        "first_seen": datetime.now(timezone.utc).isoformat(),
-        "last_seen": datetime.now(timezone.utc).isoformat(),
-        "job_summary": "",
-        "key_responsibilities": [],
-        "additional_sections": [],
-        "about_us": "",
-        "Scrap_json": {"url": job_url, "error": "scrape_failed"},
-    }
-
-
-# --- Extraction helpers (same as job_detail_scraper but page-based) ---
-import re
-from datetime import datetime, timezone
-
-async def _extract_title(page, text: str) -> str:
-    try:
-        title_el = await page.query_selector("h1")
-        if title_el:
-            title = (await title_el.inner_text()).strip()
-            if title:
-                return title
-    except Exception:
-        pass
-    lines = [line.strip() for line in text.split("\n") if line.strip()]
-    return lines[0] if lines else ""
-
-
-async def _extract_company(page, text: str) -> str:
-    try:
-        for selector in [
-            '[data-testid="company-name"]',
-            ".company-name",
-            ".company",
-            '[itemprop="hiringOrganization"]',
-        ]:
-            el = await page.query_selector(selector)
-            if el:
-                name = (await el.inner_text()).strip()
-                if name:
-                    return name
-    except Exception:
-        pass
-    company_patterns = [
-        r"at\s+([A-Z][A-Za-z\s&]+?)(?:\n|$)",
-        r"([A-Z][A-Za-z\s&]+?)\sis\s+looking",
-    ]
-    for pattern in company_patterns:
-        match = re.search(pattern, text)
-        if match:
-            return match.group(1).strip()
-    return ""
-
-
-async def _extract_locations(page, text: str) -> list[str]:
-    try:
-        for selector in [
-            '[data-testid="location"]',
-            ".location",
-            '[itemprop="jobLocation"]',
-            ".job-location",
-        ]:
-            el = await page.query_selector(selector)
-            if el:
-                loc = (await el.inner_text()).strip()
-                if loc:
-                    return [loc]
-    except Exception:
-        pass
-    loc_patterns = [
-        r"Location[:\s]*([^\n]+)",
-        r"([A-Za-z\s]+,\s*[A-Za-z\s]+)",
-    ]
-    for pattern in loc_patterns:
-        match = re.search(pattern, text)
-        if match:
-            return [match.group(1).strip()]
-    return []
-
-
-async def _extract_experience(text: str) -> str:
-    exp_patterns = [
-        r"(?:experience|years?|yrs?)\s*[:\-]?\s*([\d+\-]+\s*(?:to?\s*)?[\d+]*\s*(?:years?)?)",
-        r"(\d+\+?)\s*\+?\s*(?:years?|yrs?)",
-        r"(\d+\s*[-–to]+\s*\d+)\s*(?:years?|yrs?)",
-    ]
-    for pattern in exp_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(0).strip()
-    return ""
-
-
-async def _extract_education(text: str) -> str:
-    edu_patterns = [
-        r"(?:education|qualification|degree|bachelor|master|phd)\s*[:\-]?\s*([^\n]{5,200})",
-        r"(B\.?S\.?|B\.?Tech|B\.?E\.?|M\.?S\.?|M\.?Tech|M\.?E\.?|MBA|Ph\.?D\.?)[^\n]{0,100}",
-    ]
-    for pattern in edu_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(0).strip()
-    return ""
-
-
-async def _extract_skills(text: str) -> list[str]:
-    skills = set()
-    common_skills = [
-        "Python", "Java", "JavaScript", "TypeScript", "Go", "Golang", "Rust", "C++", "C#",
-        "React", "Angular", "Vue", "Node.js", "Django", "Flask", "Spring", "FastAPI",
-        "SQL", "NoSQL", "PostgreSQL", "MongoDB", "Redis", "MySQL",
-        "AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "Ansible",
-        "Machine Learning", "Deep Learning", "NLP", "Computer Vision",
-        "Agile", "Scrum", "CI/CD", "DevOps", "Microservices",
-        "REST API", "GraphQL", "gRPC", "Kafka", "RabbitMQ",
-        "Git", "Linux", "Bash", "Shell Scripting",
-    ]
-    for skill in common_skills:
-        if re.search(rf"\b{re.escape(skill)}\b", text, re.IGNORECASE):
-            skills.add(skill)
-    return sorted(skills)
-
-
-async def _extract_summary(text: str) -> str:
-    summary_patterns = [
-        r"(?:about\s+the\s+role|job\s+summary|overview|description)\s*[:\-]?\s*([\s\S]{100,1000})(?=\n\s*\n\s*[A-Z])",
-        r"(?:we['']re\s+(?:looking|seeking|hiring))[^\n]{0,500}",
-    ]
-    for pattern in summary_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(1).strip()
-    return ""
-
-
-async def _extract_responsibilities(text: str) -> list[str]:
-    resp_patterns = [
-        r"(?:responsibilities?|what\s+you['']ll\s+do|key\s+responsibilities?)\s*[:\-]?\s*([\s\S]{100,2000})(?=\n\s*\n\s*[A-Z])",
-    ]
-    for pattern in resp_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            section = match.group(1).strip()
-            items = [item.strip("•\-\* ").strip() for item in re.split(r"\n\s*[\n•\-\*]", section) if item.strip()]
-            return items[:20]
-    return []
-
-
-async def _extract_posted_date(text: str) -> str:
-    date_patterns = [
-        r"(?:posted|posted\s+on|date)\s*[:\-]?\s*([\d/\-\.]+\s*[A-Za-z]*)",
-        r"(\d{1,2}[/\-\.\s]\d{1,2}[/\-\.\s]\d{2,4})",
-        r"(\d{4}[/\-\.\s]\d{1,2}[/\-\.\s]\d{1,2})",
-    ]
-    for pattern in date_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(1).strip()
-    return ""
-
-
-async def _extract_job_id(job_url: str, text: str) -> str:
-    url_id_patterns = [
-        r"/(\d{6,})$",
-        r"/(\d{6,})/",
-        r"req[_\-]?id\s*[:=]?\s*([A-Za-z0-9\-]+)",
-    ]
-    for pattern in url_id_patterns:
-        match = re.search(pattern, job_url, re.IGNORECASE)
-        if match:
-            return match.group(1)
-    return ""
-
-
-async def _extract_salary(text: str) -> str:
-    salary_patterns = [
-        r"(?:salary|compensation|pay|ctc|package)\s*[:\-]?\s*([^\n]{5,100})",
-        r"(\$|₹|EUR|USD|INR)[\d,\s\-]+(?:per\s+year|per\s+month|annum|annually)?",
-    ]
-    for pattern in salary_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(0).strip()
-    return ""
-
-
-async def _extract_remote_type(text: str) -> str:
-    remote_patterns = [
-        r"(remote|work\s+from\s+home|wfh|hybrid|on-site|onsite|in-office)",
-    ]
-    for pattern in remote_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(1).strip().lower()
-    return "unknown"
-
-
-async def _extract_about_us(text: str) -> str:
-    about_patterns = [
-        r"(?:about\s+us|about\s+the\s+company|who\s+we\s+are|our\s+company)\s*[:\-]?\s*([\s\S]{100,1000})(?=\n\s*\n\s*[A-Z])",
-        r"(?:we\s+are|we['']re)\s+([^\n]{50,500})",
-    ]
-    for pattern in about_patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return match.group(1).strip()
-    return ""
-
 
 @router.get("/test-scrape")
 async def test_scrape():

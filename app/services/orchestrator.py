@@ -27,7 +27,7 @@ from app.core.logger import logger
 
 
 async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
-    """Main orchestration flow: detect, classify, scrape, save."""
+    """Main orchestration flow: detect, classify, lock strategy, scrape, save."""
     normalized_url = normalize_site_url(url)
     domain = get_domain(normalized_url)
     logger.info(f"Testing: {domain}")
@@ -205,6 +205,12 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     site_type = classification["type"]
     confidence = classification["confidence"]
 
+    # ── STRATEGY LOCKING ──────────────────────────────────────────
+    # If selected source contains "API" → strategy = "api", else "dom"
+    selected_source = site_type  # e.g. WORKDAY_API, SIMPLE_API, DOM_BROWSER
+    strategy = "api" if "API" in selected_source else "dom"
+    logger.info("[STRATEGY LOCK] site_type=%s → strategy=%s", site_type, strategy)
+
     logger.info(f"Selected -> {site_type} ({confidence})")
 
     result = await session.execute(select(Site).where(Site.domain == url))
@@ -231,37 +237,61 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             "confidence": confidence,
             "jobs_found": 0,
             "status": "skipped",
+            "strategy": strategy,
         }
 
+    # ── Scrape with strategy guard ────────────────────────────────
+    # API sites: preserve full API response data in each job dict
+    # DOM sites: normal scraping, HTML detail extraction later
     async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
         if site_type == "WORKDAY_API":
-            _, jobs = await fetch_workday_jobs(
+            api_url, jobs = await fetch_workday_jobs(
                 normalized_url,
                 client=client,
                 html=page_html,
                 discovered_urls=discovered_urls,
             )
+            # For API sites: attach raw API data to each job for detail extraction
+            logger.info("[BLOCK HTML SCRAPING] strategy=api for %s", domain)
         elif site_type == "GREENHOUSE_API":
             jobs = await scrape_greenhouse(normalized_url, client=client)
+            logger.info("[BLOCK HTML SCRAPING] strategy=api for %s", domain)
         elif site_type == "SIMPLE_API":
             jobs, selected_api_url, selected_api_score = await fetch_simple_api_jobs(
                 normalized_url,
                 client=client,
                 discovered_urls=discovered_urls,
             )
+            api_url = selected_api_url or ""
             logger.info(
                 "Simple API selected for scraping -> url=%s score=%s",
                 selected_api_url or "",
                 selected_api_score,
             )
+            logger.info("[BLOCK HTML SCRAPING] strategy=api for %s", domain)
         elif site_type == "DOM_BROWSER":
             jobs = await scrape_dom_browser(normalized_url)
+            api_url = ""
         elif site_type == "DOM_LOAD_MORE":
             jobs = await scrape_dom_load_more(normalized_url)
+            api_url = ""
         elif site_type == "DOM_INFINITE_SCROLL":
             jobs = await scrape_dom_infinite_scroll(normalized_url)
+            api_url = ""
         else:
             jobs = []
+            api_url = ""
+
+    # ── For API sites: enrich jobs with full raw API data ─────────
+    # This ensures detail extraction can use the complete API response
+    # without needing to fetch HTML pages
+    if strategy == "api" and site_type == "WORKDAY_API":
+        # Re-fetch with raw data preservation
+        jobs = await _fetch_workday_with_raw_data(
+            normalized_url, client=None, html=page_html,
+            discovered_urls=discovered_urls, api_url=api_url,
+        )
+        logger.info("[WORKDAY API] Enriched %d jobs with raw API data", len(jobs))
 
     saved_count = 0
     for job_data in jobs:
@@ -300,6 +330,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         metadata = {
             "url": normalized_url,
             "confidence": confidence,
+            "strategy": strategy,
+            "api_url": api_url if strategy == "api" else "",
             "detection_results": payload["tests"],
         }
         saved_path = save_scrape_result(jobs, domain, site_type, metadata)
@@ -312,4 +344,91 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         "confidence": confidence,
         "jobs_found": len(jobs),
         "status": "success" if jobs else "failed",
+        "strategy": strategy,
+        "api_url": api_url if strategy == "api" else "",
     }
+
+
+# ---------------------------------------------------------------------------
+# Workday: fetch with raw API data preserved for detail extraction
+# ---------------------------------------------------------------------------
+
+async def _fetch_workday_with_raw_data(
+    url: str,
+    client: httpx.AsyncClient | None = None,
+    html: str | None = None,
+    discovered_urls: list[str] | None = None,
+    api_url: str = "",
+) -> list[dict]:
+    """Fetch Workday jobs preserving full API response for each job."""
+    from urllib.parse import urlparse
+    from app.detectors.workday import (
+        _build_workday_applied_facets,
+        _normalize_workday_job,
+    )
+
+    if not api_url:
+        # Fall back to standard fetch
+        _, jobs = await fetch_workday_jobs(url, client=client, html=html, discovered_urls=discovered_urls)
+        return jobs
+
+    close_client = client is None
+    if close_client:
+        client = httpx.AsyncClient(timeout=20, follow_redirects=True)
+
+    try:
+        parsed = urlparse(url)
+        tenant = parsed.netloc.split(".")[0]
+        site = next((part for part in parsed.path.split("/") if part), "")
+        if not tenant or not site:
+            return []
+
+        applied_facets = _build_workday_applied_facets(url)
+        jobs: list[dict] = []
+        seen_urls: set[str] = set()
+        offset = 0
+        limit = 20
+
+        while True:
+            response = await client.post(
+                api_url,
+                json={
+                    "limit": limit,
+                    "offset": offset,
+                    "searchText": "",
+                    "appliedFacets": applied_facets,
+                },
+                headers={
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+            )
+            response.raise_for_status()
+            payload = response.json()
+            postings = payload.get("jobPostings") or []
+            if not postings:
+                break
+
+            added = 0
+            for posting in postings:
+                normalized = _normalize_workday_job(posting, tenant, site)
+                if not normalized:
+                    continue
+                job_url = normalized["url"].lower()
+                if job_url in seen_urls:
+                    continue
+                seen_urls.add(job_url)
+
+                # Attach full raw API response for detail extraction
+                normalized["_raw_api"] = posting
+                jobs.append(normalized)
+                added += 1
+
+            if added == 0:
+                break
+            offset += limit
+
+        return jobs
+    finally:
+        if close_client:
+            await client.aclose()

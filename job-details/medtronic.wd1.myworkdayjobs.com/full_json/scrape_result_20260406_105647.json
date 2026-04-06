@@ -1,0 +1,241 @@
+{
+  "domain": "medtronic.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 36,
+  "listing_status": "success",
+  "saved_at": "2026-04-06T10:56:47.178832",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "_R63248-2",
+      "title": "Senior Quality Engineer",
+      "company_name": "IN2 COV - COV Engineering Services PL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Senior-Quality-Engineer_R63248-2",
+      "experience": "6-8 years of quality engineering experience or equivalence and overall 8-12 years of experience",
+      "locations": [
+        "IND-TS Hyderabad Nanakramguda, India"
+      ],
+      "educational_qualifications": "B E or B. Tech in Mechanical/Biomedical Engineering",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-06",
+      "job_id": "_R63248-2",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Nanakramguda, Hyderabad, India"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Today"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Senior-Quality-Engineer_R63248-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "ASQ CQE",
+          "CQA",
+          "CSQE",
+          "CRE",
+          "ISO 9001 Auditor",
+          "ISO 13485 Auditor",
+          "Lean Six Sigma Green/Black Belt"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 1846,
+        "output_tokens": 255,
+        "total_tokens": 2101
+      }
+    },
+    {
+      "id": "_R63244-1",
+      "title": "Quality Engineer II",
+      "company_name": "IN2 COV - COV Engineering Services PL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Quality-Engineer-II_R63244-1",
+      "experience": "Minimum 4-8 years of quality engineering experience",
+      "locations": [
+        "IND-TS Hyderabad Nanakramguda, India"
+      ],
+      "educational_qualifications": "B E or B. Tech in Mechanical/Biomedical Engineering",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-06",
+      "job_id": "_R63244-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Nanakramguda, Hyderabad, India"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Today"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Quality-Engineer-II_R63244-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "ASQ CQE",
+          "CQA",
+          "CSQE",
+          "CRE",
+          "ISO 9001 Auditor",
+          "ISO 13485 Auditor",
+          "Lean Six Sigma Green/Black Belt"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 1818,
+        "output_tokens": 253,
+        "total_tokens": 2071
+      }
+    },
+    {
+      "id": "_R60129-1",
+      "title": "Engineering Manager",
+      "company_name": "IN2 COV - COV Engineering Services PL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Engineering-Manager_R60129-1",
+      "experience": "15+ years quality assurance or regulatory experience in medical or pharmaceutical industry. Minimum 5 years of people leadership experience",
+      "locations": [
+        "IND-TS Hyderabad Nanakramguda, India"
+      ],
+      "educational_qualifications": "Bachelor degree; Engineering or Science degrees preferred",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-03",
+      "job_id": "_R60129-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Nanakramguda, Hyderabad, India"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 3 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Engineering-Manager_R60129-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 2140,
+        "output_tokens": 209,
+        "total_tokens": 2349
+      }
+    },
+    {
+      "id": "_R46392-2",
+      "title": "Lead AI/Data Science Engineer",
+      "company_name": "IN2 COV - COV Engineering Services PL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Lead-AI-Data-Science-Engineer_R46392-2",
+      "experience": "10+ years in data science or AI, 6+ years in computer vision",
+      "locations": [
+        "IND-TS Hyderabad Nanakramguda, India"
+      ],
+      "educational_qualifications": "B.Tech / Masters / Ph.D. in Computer Science, Biomedical Engineering, Electrical Engineering, or related field",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-03",
+      "job_id": "_R46392-2",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Nanakramguda, Hyderabad, India"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 3 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/Lead-AI-Data-Science-Engineer_R46392-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "Leadership in complex projects",
+          "Experience with large-scale image datasets",
+          "Knowledge of FDA/CE requirements"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 1904,
+        "output_tokens": 259,
+        "total_tokens": 2163
+      }
+    },
+    {
+      "id": "_R61966-1",
+      "title": "AI/Data Science Engineer II",
+      "company_name": "IN2 COV - COV Engineering Services PL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/AI-Data-Science-Engineer-II_R61966-1",
+      "experience": "3+ years",
+      "locations": [
+        "IND-TS Hyderabad Nanakramguda, India"
+      ],
+      "educational_qualifications": "Bachelor’s degree",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "_R61966-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Nanakramguda, Hyderabad, India"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 4 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Nanakramguda-Hyderabad-India/AI-Data-Science-Engineer-II_R61966-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "Experience in data engineering",
+          "Knowledge of cloud platforms",
+          "Proficiency in scripting languages",
+          "Experience with big data processing",
+          "Understanding of data privacy standards"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 2003,
+        "output_tokens": 281,
+        "total_tokens": 2284
+      }
+    }
+  ]
+}
