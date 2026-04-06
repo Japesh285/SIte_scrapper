@@ -265,7 +265,8 @@ async def _workday_html_detail(
 
         # ── Pass HTML to AI detail engine (same as DOM mode) ──
         from app.job_detail_engine.orchestrator import extract_job_details
-        ai_detail = await extract_job_details(html, force_ai=True)
+        # Pass site_type to enable Workday full context mode
+        ai_detail = await extract_job_details(html, force_ai=True, site_type="WORKDAY_API")
         ai_detail.pop("_meta", None)
         ai_usage = ai_detail.pop("ai_usage", {})
 
