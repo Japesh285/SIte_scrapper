@@ -11,7 +11,6 @@ _IRRELEVANT_SECTIONS = [
     "about us", "who we are", "our company", "company description",
     "equal employment", "eeo", "equal opportunity",
     "diversity", "inclusion",
-    "benefits", "perks", "why work with us", "why join us",
     "privacy", "cookie", "terms of use", "terms and conditions",
     "disclaimer", "legal notice", "accessibility",
     "contact us", "careers page", "back to top",
@@ -21,8 +20,17 @@ _IRRELEVANT_SECTIONS = [
 _MAX_TEXT_CHARS = 4800  # ~1200 tokens
 
 
-def clean_html(html: str) -> str:
+def clean_html(html: str, truncate: bool = True) -> str:
     """Remove script/style tags, strip HTML, normalise whitespace.
+
+    Parameters
+    ----------
+    html : str
+        Raw HTML content to clean.
+    truncate : bool
+        When True (default), truncates text to _MAX_TEXT_CHARS (4800).
+        When False, returns full cleaned text without truncation.
+        Set to False for WORKDAY_API full context mode.
 
     Returns clean plain text suitable for AI or regex parsing.
     """
@@ -56,8 +64,8 @@ def clean_html(html: str) -> str:
     text = re.sub(r"\n{3,}", "\n\n", text)
     text = text.strip()
 
-    # Truncate to target <1200 tokens (~4800 chars)
-    if len(text) > _MAX_TEXT_CHARS:
+    # Truncate to target <1200 tokens (~4800 chars) ONLY if truncate=True
+    if truncate and len(text) > _MAX_TEXT_CHARS:
         text = text[:_MAX_TEXT_CHARS]
         # Trim to last complete line
         last_nl = text.rfind("\n")

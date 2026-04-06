@@ -18,7 +18,7 @@ from app.job_detail_engine.utils.normalizer import normalize_job_data
 from app.core.logger import logger
 
 
-async def extract_job_details(html: str, force_ai: bool = False) -> dict:
+async def extract_job_details(html: str, force_ai: bool = False, site_type: str = "") -> dict:
     """Extract structured job data from raw HTML.
 
     Parameters
@@ -28,6 +28,9 @@ async def extract_job_details(html: str, force_ai: bool = False) -> dict:
     force_ai : bool
         When True, AI is always called as an enrichment layer regardless
         of parser confidence.  Defaults to False (AI only on low score).
+    site_type : str
+        Site type classification (e.g. "WORKDAY_API", "GREENHOUSE_API").
+        Used to enable special handling for specific site types.
 
     Returns
     -------
@@ -58,7 +61,13 @@ async def extract_job_details(html: str, force_ai: bool = False) -> dict:
     if should_call_ai:
         logger.info("[Engine] AI enrichment forced=%s, score=%d — calling AI", force_ai, conf)
         clean_text = clean_html(html)
-        ai_result = await extract_with_ai(clean_text, result)
+        
+        # For WORKDAY_API: use full context mode (no filtering)
+        if site_type == "WORKDAY_API":
+            ai_result = await extract_with_ai_workday_full(clean_text, result)
+        else:
+            ai_result = await extract_with_ai(clean_text, result)
+        
         if ai_result:
             job_id = result.get("job_id", "unknown")
             logger.info("[AI] Enrichment applied for job_id=%s", job_id)
