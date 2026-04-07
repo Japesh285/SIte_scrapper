@@ -507,14 +507,23 @@ def _build_additional_sections(raw: dict) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# DOM detail extraction (uses Playwright — for DOM strategy only)
+# DOM detail extraction — INTERACTIVE_DOM max extraction (for DOM strategy)
 # ---------------------------------------------------------------------------
 
 async def _extract_dom_details(job: dict) -> dict:
-    """Fetch job detail page via Playwright and extract content.
+    """Fetch job detail page via Playwright with MAX extraction.
 
-    This is ONLY used when strategy == "dom".
+    Forces INTERACTIVE_DOM for ALL non-API flows:
+    - Full page load with networkidle
+    - Multiple scroll rounds to trigger lazy loading
+    - Expand hidden sections (more/expand/show/read buttons)
+    - Wait for DOM growth before capturing HTML
+    - Send FULL content to AI via prepare_ai_payload
     """
+    from urllib.parse import urlparse
+    from app.job_detail_engine.utils.cleaner import prepare_ai_payload
+    from app.job_detail_engine.orchestrator import extract_job_details
+
     job_url = job.get("url", "")
     if not job_url:
         logger.warning("[DETAIL STRATEGY] No URL for DOM extraction")
@@ -537,21 +546,92 @@ async def _extract_dom_details(job: dict) -> dict:
             "additional_sections": [],
         }
 
-    logger.info("[DETAIL STRATEGY] Using DOM for job_url=%s", job_url)
+    logger.info("[DETAIL STRATEGY] INTERACTIVE_DOM for job_url=%s", job_url)
+
+    # Extract domain from job URL for payload saving
+    try:
+        parsed = urlparse(job_url)
+        domain = parsed.netloc
+    except Exception:
+        domain = ""
 
     try:
         from playwright.async_api import async_playwright
-        async with async_playwright() as playwright:
-            browser = await playwright.chromium.launch(headless=True)
-            page = await browser.new_page()
-            try:
-                await page.goto(job_url, wait_until="domcontentloaded", timeout=30000)
-                await page.wait_for_timeout(3000)
-                html = await page.content()
+    except ImportError:
+        logger.error("[DETAIL STRATEGY] Playwright not available")
+        return _dom_fallback(job)
 
-                # Pass to the existing detail engine
-                from app.job_detail_engine.orchestrator import extract_job_details
-                detail = await extract_job_details(html, force_ai=True)
+    try:
+        async with async_playwright() as playwright:
+            browser = await playwright.chromium.launch(
+                headless=True,
+                args=[
+                    "--no-sandbox",
+                    "--disable-setuid-sandbox",
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu",
+                ],
+            )
+            context = await browser.new_context(
+                user_agent=(
+                    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                ),
+                viewport={"width": 1920, "height": 1080},
+                ignore_https_errors=True,
+            )
+            page = await context.new_page()
+            try:
+                # ── Max extraction: scroll, expand, wait for growth ──
+                await page.goto(job_url, timeout=60000)
+                try:
+                    await page.wait_for_load_state("networkidle")
+                except Exception:
+                    logger.warning("[DETAIL] networkidle timeout for %s", job_url)
+                await page.wait_for_timeout(2000)
+
+                # Scroll to trigger lazy loading
+                for _ in range(5):
+                    await page.mouse.wheel(0, 3000)
+                    await page.wait_for_timeout(1000)
+
+                # Expand hidden sections
+                try:
+                    buttons = await page.query_selector_all("button")
+                    for btn in buttons:
+                        try:
+                            text = (await btn.inner_text() or "").lower()
+                            if any(k in text for k in ["more", "expand", "show", "read"]):
+                                await btn.click()
+                                await page.wait_for_timeout(500)
+                        except Exception:
+                            continue
+                except Exception as exc:
+                    logger.warning("[DETAIL] Button expansion failed: %s", exc)
+
+                # Wait for DOM growth
+                prev_len = 0
+                for _ in range(5):
+                    html_snapshot = await page.content()
+                    curr_len = len(html_snapshot)
+                    if curr_len > prev_len * 1.2:
+                        prev_len = curr_len
+                        await page.wait_for_timeout(1000)
+                    else:
+                        break
+
+                html = await page.content()
+                logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
+
+                # ── Prepare AI payload — ONLY remove script/style/noscript ──
+                payload = prepare_ai_payload(html)
+                logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+
+                if len(payload) < 2000:
+                    logger.warning("[WEAK DETAIL PAGE] url=%s length=%d", job_url, len(payload))
+
+                # ── Send to AI for extraction ──
+                detail = await extract_job_details(payload, force_ai=True, domain=domain)
                 detail.pop("_meta", None)
                 detail.pop("ai_usage", None)
 
@@ -578,9 +658,6 @@ async def _extract_dom_details(job: dict) -> dict:
             finally:
                 await page.close()
                 await browser.close()
-    except ImportError:
-        logger.error("[DETAIL STRATEGY] Playwright not available for DOM extraction")
-        return _dom_fallback(job)
     except Exception as exc:
         logger.error("[DETAIL STRATEGY] DOM extraction failed for %s: %s", job_url, exc)
         return _dom_fallback(job)

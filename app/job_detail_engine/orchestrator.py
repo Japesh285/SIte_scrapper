@@ -12,13 +12,13 @@ from app.job_detail_engine.parsers.json_ld import parse_json_ld
 from app.job_detail_engine.parsers.html_basic import parse_html_basic
 from app.job_detail_engine.scoring.confidence import score
 from app.job_detail_engine.ai.extractor import extract_with_ai
-from app.job_detail_engine.utils.cleaner import clean_html
+from app.job_detail_engine.utils.cleaner import prepare_ai_payload
 from app.job_detail_engine.utils.normalizer import normalize_job_data
 
 from app.core.logger import logger
 
 
-async def extract_job_details(html: str, force_ai: bool = False, site_type: str = "") -> dict:
+async def extract_job_details(html: str, force_ai: bool = False, site_type: str = "", domain: str = "") -> dict:
     """Extract structured job data from raw HTML.
 
     Parameters
@@ -31,6 +31,8 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
     site_type : str
         Site type classification (e.g. "WORKDAY_API", "GREENHOUSE_API").
         Used to enable special handling for specific site types.
+    domain : str
+        Site domain (e.g. "www.ibm.com"). Used for saving AI input payloads.
 
     Returns
     -------
@@ -60,14 +62,22 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
     should_call_ai = force_ai or conf < 4
     if should_call_ai:
         logger.info("[Engine] AI enrichment forced=%s, score=%d — calling AI", force_ai, conf)
-        clean_text = clean_html(html)
-        
-        # For WORKDAY_API: use full context mode (no filtering)
+
+        # ── DOM / INTERACTIVE_DOM path: use prepare_ai_payload ──
+        # ONLY removes script/style/noscript, preserves ALL content
+        payload = prepare_ai_payload(html)
+        logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+
+        # Save the exact payload sent to AI
+        if domain:
+            from app.services.ai_payload_saver import save_ai_payload
+            save_ai_payload(payload, domain)
+
         if site_type == "WORKDAY_API":
-            ai_result = await extract_with_ai_workday_full(clean_text, result)
+            ai_result = await extract_with_ai_workday_full(payload, result)
         else:
-            ai_result = await extract_with_ai(clean_text, result)
-        
+            ai_result = await extract_with_ai(payload, result)
+
         if ai_result:
             job_id = result.get("job_id", "unknown")
             logger.info("[AI] Enrichment applied for job_id=%s", job_id)

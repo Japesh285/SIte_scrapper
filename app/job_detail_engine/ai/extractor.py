@@ -102,10 +102,10 @@ _EMPTY_FIELDS = {
 
 
 async def extract_with_ai(text: str, known_fields: dict) -> dict:
-    """Call the LLM to extract structured job data with minimal tokens.
+    """Call the LLM to extract structured job data with FULL context.
 
-    Uses content filtering (micro-RAG) to reduce token usage by sending
-    only relevant job sections to the AI instead of full page text.
+    NO chunking, NO truncation, NO content filtering.
+    Sends the complete cleaned text to the AI to maximize extraction quality.
 
     Parameters
     ----------
@@ -123,19 +123,12 @@ async def extract_with_ai(text: str, known_fields: dict) -> dict:
         logger.warning("[AI] No OPENAI_API_KEY — skipping AI extraction")
         return _empty_result()
 
-    # ── Content filtering (micro-RAG) ──────────────────────────────
-    filtered = filter_content_for_ai(
-        text,
-        chunk_size=600,
-        max_chunks=4,
-        max_total_chars=3600,
-    )
-
-    # Build AI input from filtered content
-    ai_input = _build_ai_input(filtered, known_fields)
+    # ── NO content filtering — send full text ──────────────────────
+    # If text is too small (< 500 chars), caller should send full HTML instead
+    ai_input = _build_ai_input_full(text, known_fields)
 
     try:
-        async with httpx.AsyncClient(timeout=90) as client:
+        async with httpx.AsyncClient(timeout=120) as client:
             resp = await client.post(
                 "https://api.openai.com/v1/chat/completions",
                 headers={
@@ -166,17 +159,17 @@ async def extract_with_ai(text: str, known_fields: dict) -> dict:
         ai_usage = _extract_token_usage(payload, ai_input)
         result["ai_usage"] = ai_usage
         result["content_filter_stats"] = {
-            "original_text_length": filtered["original_text_length"],
-            "filtered_text_length": filtered["filtered_text_length"],
-            "number_of_chunks_selected": filtered["number_of_chunks_selected"],
+            "original_text_length": len(text),
+            "filtered_text_length": len(text),
+            "number_of_chunks_selected": 0,
+            "filtering_applied": False,
         }
         logger.info(
-            "[AI] Tokens used — input=%d, output=%d, total=%d (filtered from %d chars, %d chunks)",
+            "[AI] Tokens used — input=%d, output=%d, total=%d (full text, NO filtering, %d chars)",
             ai_usage["input_tokens"],
             ai_usage["output_tokens"],
             ai_usage["total_tokens"],
-            filtered["original_text_length"],
-            filtered["number_of_chunks_selected"],
+            len(text),
         )
         # ──────────────────────────────────────────────────────
 
@@ -278,6 +271,28 @@ async def extract_with_ai_workday_full(text: str, known_fields: dict) -> dict:
     except Exception as exc:
         logger.error("[AI] Workday FULL context extraction failed: %s", exc)
         return _empty_result()
+
+
+def _build_ai_input_full(full_text: str, known_fields: dict) -> str:
+    """Build AI input with FULL text — NO filtering, NO chunking.
+
+    Sends the complete cleaned job posting to maximize extraction quality.
+    """
+    already_found = {k: v for k, v in known_fields.items() if v}
+    hint = (
+        f"Already confirmed (use these as-is, do NOT contradict):\n"
+        f"{json.dumps(already_found, indent=2, default=str)}\n\n" if already_found else ""
+    )
+
+    user_prompt = (
+        f"{hint}"
+        f"----------------------------------\n\n"
+        f"INPUT (FULL job posting - NO FILTERING APPLIED):\n{full_text}\n\n"
+        f"----------------------------------\n\n"
+        f"OUTPUT:"
+    )
+
+    return user_prompt
 
 
 def _build_ai_input(filtered: dict, known_fields: dict) -> str:

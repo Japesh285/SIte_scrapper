@@ -9,6 +9,9 @@ from app.detectors import (
     detect_workday,
     detect_greenhouse,
     detect_simple_api,
+    detect_dynamic_api,
+    detect_interactive_dom,
+    run_browser_probe,
     inspect_browser_network,
 )
 from app.core.site_utils import get_domain, normalize_site_url
@@ -21,6 +24,8 @@ from app.scrapers.dom_browser import (
     scrape_dom_load_more,
 )
 from app.scrapers.greenhouse import scrape_greenhouse
+from app.scrapers.dynamic_api import scrape_dynamic_api
+from app.scrapers.interactive_dom import scrape_interactive_dom
 from app.services.raw_json_saver import save_scrape_result
 from app.db.models import Site, Job
 from app.core.logger import logger
@@ -106,6 +111,11 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 dom_infinite_scroll_result,
             )
         ):
+            # ── UNIFIED BROWSER PROBE ────────────────────────────────
+            # Single browser session: network interception + interaction
+            probe_result = await run_browser_probe(normalized_url)
+
+            # Also run legacy probe for backward compatibility with existing detectors
             browser_probe = await inspect_browser_network(normalized_url)
             discovered_urls = sorted(
                 {
@@ -122,6 +132,14 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 f"Browser probe -> available={browser_probe.get('available')} "
                 f"urls={len(discovered_urls)} errors={browser_probe.get('errors', [])}"
             )
+
+            # ── DYNAMIC_API detection ────────────────────────────────
+            dynamic_api_result = detect_dynamic_api(probe_result)
+            logger.info(f"Dynamic API -> {dynamic_api_result}")
+
+            # ── INTERACTIVE_DOM detection ────────────────────────────
+            interactive_dom_result = detect_interactive_dom(probe_result)
+            logger.info(f"Interactive DOM -> {interactive_dom_result}")
 
             workday_result = await detect_workday(
                 normalized_url,
@@ -183,6 +201,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             "workday": workday_result,
             "greenhouse": greenhouse_result,
             "simple_api": simple_api_result,
+            "dynamic_api": dynamic_api_result if "dynamic_api_result" in dir() else {},
+            "interactive_dom": interactive_dom_result if "interactive_dom_result" in dir() else {},
             "dom_browser": dom_browser_result,
             "dom_load_more": dom_load_more_result,
             "dom_infinite_scroll": dom_infinite_scroll_result,
@@ -278,6 +298,14 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         elif site_type == "DOM_INFINITE_SCROLL":
             jobs = await scrape_dom_infinite_scroll(normalized_url)
             api_url = ""
+        elif site_type == "DYNAMIC_API":
+            jobs = await scrape_dynamic_api(normalized_url)
+            api_url = ""
+            logger.info("[DYNAMIC_API] Scraped %d jobs from dynamic API", len(jobs))
+        elif site_type == "INTERACTIVE_DOM":
+            jobs = await scrape_interactive_dom(normalized_url)
+            api_url = ""
+            logger.info("[INTERACTIVE_DOM] Scraped %d jobs via interaction", len(jobs))
         else:
             jobs = []
             api_url = ""
