@@ -3,7 +3,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from pydantic import BaseModel
 import json
+import re
+import httpx
 from pathlib import Path
+from urllib.parse import urlparse, urlunparse
 
 from app.core.site_utils import normalize_site_url, get_domain
 from app.db.database import get_session
@@ -13,6 +16,134 @@ from app.services.raw_json_saver import RAW_JSON_DIR
 from app.job_detail_engine.orchestrator import extract_job_details
 from app.services.test_scrape import run_test_scrape
 from app.core.logger import logger
+
+# ── Job URL validation ─────────────────────────────────────────────
+
+# URL suffixes/patterns that are NEVER job detail pages
+_JOB_REJECT_SUFFIXES = [
+    "/career-search",
+    "/career_search",
+    "/career-journeys",
+    "/page/",
+    "/job-alert",
+    "/saved-jobs",
+    "/apply-form",
+]
+
+# Content/marketing path prefixes — reject if URL starts with these
+_CONTENT_PATH_PREFIXES = [
+    "/why-",
+    "/about",
+    "/learning",
+    "/projects",
+    "/contact",
+    "/our-team",
+    "/testimonials",
+    "/events",
+    "/blog",
+    "/news",
+    "/insights",
+    "/resources",
+    "/webinars",
+    "/key-projects",
+    "/benefits",
+    "/culture",
+    "/perks",
+    "/how-we-hire",
+    "/eeo",
+]
+
+# Navigation pages that should be rejected even under /careers/
+_CAREERS_NAVIGATION = [
+    "/careers/",          # index page only (checked separately)
+    "/careers/why-",
+    "/careers/key-projects",
+    "/careers/benefits",
+    "/careers/culture",
+    "/careers/how-we-hire",
+    "/careers/learning",
+]
+
+# Patterns that indicate a REAL job detail page
+_JOB_ACCEPT_SIGNALS = [
+    "/job/",           # /jobs/python-dev-123/
+    "/jobs/",          # /jobs/detail/123
+    "/position/",
+    "/opening/",
+    "/requisition/",
+    "/vacancy/",
+    "jobid",
+    "job_id",
+    "jobId",
+    "reqid",
+    "req_id",
+    "reqId",
+]
+
+# Regex for job IDs in URLs (e.g. IRC291384, REQ-123, JOB-001)
+_JOB_ID_PATTERN = re.compile(r"(?:IRC|REQ|JOB|POS)[\d-]+|/[\w-]*\d{4,}[\w-]*/?$", re.IGNORECASE)
+
+
+def is_valid_job_url(url: str) -> bool:
+    """Strict validation: reject navigation/content pages, accept only job detail links.
+
+    Rules:
+    - Reject known non-job suffix patterns
+    - Reject content/marketing path prefixes
+    - Accept if URL has job ID pattern or job-related path segment
+    - Reject index pages like /careers/ (single-segment paths)
+    """
+    if not url:
+        return False
+
+    lowered = url.lower()
+    parsed = urlparse(url)
+    path = parsed.path.rstrip("/")
+    path_parts = [p for p in path.strip("/").split("/") if p]
+
+    # Hard reject: known non-job suffix patterns
+    for pattern in _JOB_REJECT_SUFFIXES:
+        if pattern in lowered:
+            return False
+
+    # Hard reject: content/marketing path prefixes (anywhere in path)
+    for prefix in _CONTENT_PATH_PREFIXES:
+        if prefix in lowered:
+            return False
+
+    # Reject /careers/ navigation sub-pages
+    for nav_path in _CAREERS_NAVIGATION:
+        if nav_path in lowered:
+            # But allow /careers/<job-slug>/ — check if it has a job ID
+            if nav_path == "/careers/" and len(path_parts) >= 2:
+                # Could be /careers/python-genai-irc291384/ — check for job ID
+                if _JOB_ID_PATTERN.search(url):
+                    return True
+                # If no job ID but deep path, still might be valid
+                if len(path_parts) >= 3:
+                    return True
+            return False
+
+    # Accept: URL has a job-related path segment
+    for signal in _JOB_ACCEPT_SIGNALS:
+        if signal in lowered:
+            return True
+
+    # Accept: URL contains a job ID pattern
+    if _JOB_ID_PATTERN.search(url):
+        return True
+
+    # Reject: path is too short (likely an index page)
+    if len(path_parts) <= 1:
+        return False
+
+    # Fallback: require at least "job" or "career" in the URL
+    if "job" in lowered or "career" in lowered:
+        # But only if path is deep enough to be a detail page
+        if len(path_parts) >= 2:
+            return True
+
+    return False
 
 router = APIRouter()
 
@@ -223,74 +354,207 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
             jobs_detail.append(job_entry)
 
     else:
-        # ── DOM STRATEGY: Force INTERACTIVE_DOM for ALL non-API flows ──
-        # No strategy selection — always max-extract every detail page
-        from playwright.async_api import async_playwright
-        from app.job_detail_engine.utils.cleaner import prepare_ai_payload
+        # ── DOM STRATEGY: Use standard detail extraction (NO browser) ──
+        # Only interactive_dom if explicitly selected by pipeline
+        from app.job_detail_engine.orchestrator import extract_job_details as extract_dom_details
 
-        async with async_playwright() as playwright:
-            browser = await playwright.chromium.launch(headless=True)
+        if site_type == "INTERACTIVE_DOM":
+            # Interactive DOM was explicitly selected — use browser
+            from playwright.async_api import async_playwright
+            from app.job_detail_engine.utils.cleaner import prepare_ai_payload
 
-            for i, job_data in enumerate(jobs_raw):
-                job_url = job_data.get("url", "")
-                logger.info(f"[ScrapeDetails] {domain} INTERACTIVE_DOM job {i+1}/{len(jobs_raw)}: {job_url}")
-                page = await browser.new_page()
-                meta = {}
-                ai_usage = {}
-                detail = {}
-                try:
-                    # ── Max extraction: scroll, expand, wait for growth ──
-                    await page.goto(job_url, timeout=60000)
+            async with async_playwright() as playwright:
+                browser = await playwright.chromium.launch(headless=True)
+
+                for i, job_data in enumerate(jobs_raw):
+                    job_url = job_data.get("url", "")
+                    logger.info(f"[ScrapeDetails] {domain} INTERACTIVE_DOM job {i+1}/{len(jobs_raw)}: {job_url}")
+                    page = await browser.new_page()
+                    meta = {}
+                    ai_usage = {}
+                    detail = {}
                     try:
-                        await page.wait_for_load_state("networkidle")
-                    except Exception:
-                        logger.warning("[DETAIL] networkidle timeout for %s", job_url)
-                    await page.wait_for_timeout(2000)
+                        # ── Max extraction: scroll, expand, wait for growth ──
+                        await page.goto(job_url, timeout=60000)
+                        try:
+                            await page.wait_for_load_state("networkidle")
+                        except Exception:
+                            logger.warning("[DETAIL] networkidle timeout for %s", job_url)
+                        await page.wait_for_timeout(2000)
 
-                    # Scroll to trigger lazy loading
-                    for _ in range(5):
-                        await page.mouse.wheel(0, 3000)
-                        await page.wait_for_timeout(1000)
-
-                    # Expand hidden sections
-                    try:
-                        buttons = await page.query_selector_all("button")
-                        for btn in buttons:
-                            try:
-                                text = (await btn.inner_text() or "").lower()
-                                if any(k in text for k in ["more", "expand", "show", "read"]):
-                                    await btn.click()
-                                    await page.wait_for_timeout(500)
-                            except Exception:
-                                continue
-                    except Exception as exc:
-                        logger.warning("[DETAIL] Button expansion failed: %s", exc)
-
-                    # Wait for DOM growth
-                    prev_len = 0
-                    for _ in range(5):
-                        html_snapshot = await page.content()
-                        curr_len = len(html_snapshot)
-                        if curr_len > prev_len * 1.2:
-                            prev_len = curr_len
+                        # Scroll to trigger lazy loading
+                        for _ in range(5):
+                            await page.mouse.wheel(0, 3000)
                             await page.wait_for_timeout(1000)
-                        else:
-                            break
 
-                    html = await page.content()
-                    logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
+                        # Expand hidden sections
+                        try:
+                            buttons = await page.query_selector_all("button")
+                            for btn in buttons:
+                                try:
+                                    text = (await btn.inner_text() or "").lower()
+                                    if any(k in text for k in ["more", "expand", "show", "read"]):
+                                        await btn.click()
+                                        await page.wait_for_timeout(500)
+                                except Exception:
+                                    continue
+                        except Exception as exc:
+                            logger.warning("[DETAIL] Button expansion failed: %s", exc)
 
-                    # ── Prepare AI payload — ONLY remove script/style/noscript ──
-                    payload = prepare_ai_payload(html)
-                    logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+                        # Wait for DOM growth
+                        prev_len = 0
+                        for _ in range(5):
+                            html_snapshot = await page.content()
+                            curr_len = len(html_snapshot)
+                            if curr_len > prev_len * 1.2:
+                                prev_len = curr_len
+                                await page.wait_for_timeout(1000)
+                            else:
+                                break
 
-                    if len(payload) < 2000:
-                        logger.warning("[WEAK DETAIL PAGE] url=%s length=%d", job_url, len(payload))
+                        html = await page.content()
+                        logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
 
-                    # ── Send to AI for extraction ──
-                    detail = await extract_job_details(payload, force_ai=True, domain=domain)
+                        # ── Prepare AI payload — ONLY remove script/style/noscript ──
+                        payload = prepare_ai_payload(html)
+                        logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+
+                        if len(payload) < 2000:
+                            logger.warning("[WEAK DETAIL PAGE] url=%s length=%d", job_url, len(payload))
+
+                        # ── Send to AI for extraction ──
+                        detail = await extract_dom_details(payload, force_ai=True, domain=domain)
+                        meta = detail.pop("_meta", {})
+                        ai_usage = detail.pop("ai_usage", {})
+                        total_ai_tokens += ai_usage.get("total_tokens", 0)
+                        logger.info(
+                            f"[Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "
+                            f"parser={meta.get('parser_used','?')}, "
+                            f"score={meta.get('confidence',0)}, "
+                            f"ai_used={meta.get('ai_used', False)}, "
+                            f"ai_forced={meta.get('ai_forced', False)}, "
+                            f"skills={len(detail.get('skills',[]))}, "
+                            f"ai_tokens={ai_usage.get('total_tokens', 0)}"
+                        )
+                    except Exception as exc:
+                        logger.error(f"[ScrapeDetails] Failed for {job_url}: {exc}")
+                        meta = {}
+                        ai_usage = {}
+                        detail = {}
+                    finally:
+                        await page.close()
+
+                    job_entry = JobDetailResult(
+                        id=str(detail.get("job_id") or job_url.split("/")[-1]),
+                        title=str(detail.get("title") or ""),
+                        company_name=str(detail.get("company_name") or ""),
+                        job_link=job_url,
+                        experience=str(detail.get("experience") or ""),
+                        locations=detail.get("location") or [],
+                        educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
+                        required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
+                        remote_type=str(detail.get("remote_type") or ""),
+                        posted_on=str(detail.get("posted_on") or ""),
+                        job_id=str(detail.get("job_id") or ""),
+                        salary=str(detail.get("salary") or ""),
+                        is_active=True,
+                        first_seen="",
+                        last_seen="",
+                        additional_sections=detail.get("additional_sections") or [],
+                        Scrap_json={
+                            "url": job_url,
+                            "strategy": "INTERACTIVE_DOM",
+                            "parser_used": str(meta.get("parser_used", "")),
+                            "confidence": meta.get("confidence", 0),
+                            "ai_forced": meta.get("ai_forced", False),
+                            "preferred_skills": detail.get("preferred_skills") or [],
+                            "tools_and_technologies": detail.get("tools_and_technologies") or [],
+                            "certifications": detail.get("certifications") or [],
+                            "soft_skills": detail.get("soft_skills") or [],
+                            "inferred_skills": detail.get("inferred_skills") or [],
+                            "benefits": detail.get("benefits") or [],
+                        },
+                        ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                    )
+                    jobs_detail.append(job_entry)
+
+                await browser.close()
+        else:
+            # ── Standard DOM strategy: no browser needed ──
+            # Deduplicate and normalize URLs before processing
+            from urllib.parse import urlparse, urlunparse, parse_qs
+
+            seen_detail_urls: set[str] = set()
+            normalized_jobs: list[dict] = []
+            for job_data in jobs_raw:
+                job_url = job_data.get("url", "")
+                if not job_url:
+                    continue
+                # Normalize: strip query params, trailing slash
+                parsed = urlparse(job_url)
+                normalized_path = parsed.path.rstrip("/")
+                clean_url = urlunparse((parsed.scheme, parsed.netloc, normalized_path, "", "", ""))
+                if clean_url in seen_detail_urls:
+                    logger.info("[DEDUP] Skipping duplicate: %s", job_url)
+                    continue
+                seen_detail_urls.add(clean_url)
+                normalized_jobs.append({**job_data, "_clean_url": clean_url})
+
+            for i, job_data in enumerate(normalized_jobs):
+                job_url = job_data.get("url", "")
+                clean_url = job_data.get("_clean_url", job_url)
+
+                # ── Strict URL filtering ──
+                lowered = job_url.lower()
+                reject_parts = [
+                    "/careers/", "/career-search", "/why-", "/about",
+                    "/learning", "/projects", "/contact", "/our-team",
+                    "/testimonials", "/events", "/blog", "/news",
+                    "/insights", "/resources", "/webinars",
+                ]
+                if any(p in lowered for p in reject_parts):
+                    logger.info("[FILTER] Rejected non-job URL: %s", job_url)
+                    continue
+
+                logger.info(f"[ScrapeDetails] {domain} DOM detail extraction job {i+1}/{len(normalized_jobs)}: {job_url}")
+
+                # Fetch the detail page HTML via httpx
+                try:
+                    async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
+                        resp = await client.get(job_url)
+                        resp.raise_for_status()
+                        html = resp.text
+                except Exception as exc:
+                    logger.error(f"[ScrapeDetails] Failed to fetch {job_url}: {exc}")
+                    continue
+
+                # ── Page quality filter ──
+                html_len = len(html)
+                if html_len < 1500:
+                    logger.info("[SKIP AI] Weak page: %s (length=%d < 1500)", job_url, html_len)
+                    continue
+
+                # Check for title
+                import re
+                title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
+                page_title = title_match.group(1).strip() if title_match else ""
+                if not page_title:
+                    logger.info("[SKIP AI] Weak page: %s (no title)", job_url)
+                    continue
+
+                try:
+                    detail = await extract_dom_details(html, force_ai=True, domain=domain)
                     meta = detail.pop("_meta", {})
                     ai_usage = detail.pop("ai_usage", {})
+
+                    # ── Score-based AI skip ──
+                    conf_score = meta.get("confidence", 0)
+                    if conf_score < 3:
+                        logger.info("[SKIP AI] Low confidence score=%d for %s", conf_score, job_url)
+                        # Still keep the job if parser extracted a title
+                        if not detail.get("title"):
+                            continue
+
                     total_ai_tokens += ai_usage.get("total_tokens", 0)
                     logger.info(
                         f"[Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "
@@ -302,12 +566,8 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                         f"ai_tokens={ai_usage.get('total_tokens', 0)}"
                     )
                 except Exception as exc:
-                    logger.error(f"[ScrapeDetails] Failed for {job_url}: {exc}")
-                    meta = {}
-                    ai_usage = {}
-                    detail = {}
-                finally:
-                    await page.close()
+                    logger.error(f"[ScrapeDetails] Detail extraction failed for {job_url}: {exc}")
+                    continue
 
                 job_entry = JobDetailResult(
                     id=str(detail.get("job_id") or job_url.split("/")[-1]),
@@ -328,7 +588,7 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                     additional_sections=detail.get("additional_sections") or [],
                     Scrap_json={
                         "url": job_url,
-                        "strategy": "INTERACTIVE_DOM",
+                        "strategy": "dom",
                         "parser_used": str(meta.get("parser_used", "")),
                         "confidence": meta.get("confidence", 0),
                         "ai_forced": meta.get("ai_forced", False),
@@ -342,8 +602,6 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                     ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
                 )
                 jobs_detail.append(job_entry)
-
-            await browser.close()
 
     logger.info(
         f"[ScrapeDetails] {domain} complete → {len(jobs_detail)} jobs detailed, "

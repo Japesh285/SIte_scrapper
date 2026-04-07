@@ -1,0 +1,1530 @@
+
+
+
+
+
+
+
+
+
+
+Software Principal Engineer(C,C  , Firmware,BMC,IPMI,Redfish,AI, ML,GenAI) at Dell Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Join Talent Network
+
+
+
+
+
+
+
+
+
+
+
+
+Saved Jobs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        Language
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+English
+
+
+
+
+
+
+
+
+
+
+Español
+
+
+
+
+
+
+
+
+
+
+Deutsch
+
+
+
+
+
+
+
+
+
+
+Português
+
+
+
+
+
+
+
+
+
+
+日本語
+
+
+
+
+
+
+
+
+
+
+简体中文
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+My Application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Life at Dell
+                        
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+Life at Dell
+
+
+How We Work and Lead
+
+
+Global Benefits
+
+
+
+
+
+
+
+
+You and Dell
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+You and Dell
+
+
+How We Hire
+
+
+FAQs
+
+
+Growing Your Career
+
+
+
+
+
+
+
+
+Students
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+Students
+
+
+Internships
+
+
+Graduates
+
+
+
+
+
+
+
+
+Our Opportunities
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+Our Opportunities
+
+
+Software Engineering
+
+
+Global Sales
+
+
+Data & Analytics
+
+
+
+
+
+
+Our Locations
+
+
+Our Stories
+
+
+
+
+
+
+
+
+
+
+Saved Jobs
+
+
+
+
+
+
+My Application
+
+
+
+
+
+
+Current Page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search Jobs
+
+
+
+
+
+
+Keyword(s)
+
+
+
+
+
+
+
+
+Location
+
+
+
+
+
+
+When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.
+
+
+
+
+Search Jobs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bangalore, India           
+
+
+Software Principal Engineer(C,C++, Firmware,BMC,IPMI,Redfish,AI, ML,GenAI)
+
+
+
+
+
+
+
+
+
+
+Apply Now
+
+
+Save Job
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Software Principal Engineer
+The Software Engineering team delivers next-generation application enhancements and new products for a changing world. Working at the cutting edge, we design and develop software for platforms, peripherals, applications and diagnostics — all with the most advanced technologies, tools, software engineering methodologies and the collaboration of internal and external partners.
+Join us to do the best work of your career and make a profound social impact as a 
+Software Principal Engineer 
+on 
+our Firmware Engineering
+ Team in 
+Bangalore
+, India
+What you’ll achieve
+As a Software Principal Engineer, you will be responsible for delivering the features end to end by collaborating with dependent teams. You will leverage the latest AI tools like Windsurf, copilot, Devin etc to accelerate the delivery of the features by maintaining the quality. You will work with firmware engineering team who works on cutting edge technologies on Embedded firmware development project
+. 
+You will:
+You will own architecture and delivery for next‑generation out‑of‑band manageability, while incubating and productizing AI capabilities from intelligent telemetry and predictive maintenance to LLM‑assisted diagnostics and automated runbooks optimized for BMC resource constraints.
+You will also institutionalize AI‑assisted and AI‑enabled development practices using Windsurf, and Claude Code to elevate engineering velocity, quality, security etc.
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+9- 14 years of experience in platform/firmware/embedded systems with deep BMC/ embedded systems & Redfish/IPMI experience. 3 to 4+ years building AI/ML (incl. GenAI) solutions in production with measurable impact. Extensive usage of AI models and proven record in showcasing the transformation results.
+Proven end‑to‑end model development and fine‑tuning for performance/memory on constrained embedded platforms. Hands‑on with ML stack and ML/DL frameworks (PyTorch/TensorFlow) and vector databases/RAG pipelines. Firmware security depth (PKI, secure boot, attestation, SBOM).
+Proficiency in C/C++ (embedded) and Python, Angular, Reactjs; Resful API’s design & development, Go development experience is an added advantage
+Strong grounding in ML/DL/NLP (Transformers, CNNs, RNNs/LSTMs), embeddings, retrieval, and prompt engineering and Specification Driven Development.
+Develop frameworks for multi-agent collaboration, agent simulation, and emergent behavior. Optimize agent performance through reinforcement learning, retrieval-augmented generation (RAG), and fine-tuning.
+Collaborate with cross-functional teams including ML researchers, software engineers, and product managers and ensure scalability, reliability, and security of agentic systems in production environments.
+Desirable Requirements
+Bachelor’s in CS/CE/EE or related; Master’s preferred.
+Who we are
+We believe that each of us has the power to make an impact. That’s why we put our team members at the center of everything we do. If you’re looking for an opportunity to grow your career with some of the best minds and most advanced tech in the industry, we’re looking for you.
+Dell Technologies is a unique family of businesses that helps individuals and organizations transform how they work, live and play. Join us to build a future that works for everyone because Progress Takes All of Us.
+Application closing date: 30 May 2026
+Dell Technologies is committed to the principle of equal employment opportunity for all employees and to providing employees with a work environment free of discrimination and harassment. Read the full Equal Employment Opportunity Policy 
+here
+ (opens in new window)
+.
+#NJP
+Job ID:
+R288301
+
+
+Request an Accommodation
+
+
+
+
+Resources
+
+
+
+
+Privacy Notice
+
+
+Email Scam Alert
+
+
+Equal Opportunity Employer
+
+
+Sign Up For Job Alerts
+
+
+
+
+
+
+Apply Now
+
+
+Save Job
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Share This Job
+
+
+
+
+X
+
+
+Facebook
+
+
+LinkedIn
+
+
+Email
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tips for a Successful Interview
+
+
+There’s a lot for us to talk about. And don’t forget that this is your chance to interview Dell, too.
+
+
+Learn More
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Frequently Asked Questions
+
+
+To help you understand our application process, we are providing a list of the most common questions.
+
+
+Learn More
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign Up for Job Alerts
+
+
+Sign up, stay connected and get opportunities that match your skills sent right to your inbox.
+
+
+Sign Up
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Why Work Here
+
+
+Global Benefits
+
+
+
+
+
+
+
+
+
+
+Comprehensive Healthcare Programs
+
+
+
+
+
+
+
+
+Award Winning Financial Wellness Tools and Resources
+
+
+
+
+
+
+
+
+Generous Leave of Absence for New Parents and Caregivers
+
+
+
+
+
+
+
+
+Industry Leading Wellness Platform
+
+
+
+
+
+
+
+
+Employee Assistance Program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jobs For You
+
+
+
+
+
+
+Jobs For You
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Principal Engineer-GoLang,Kubernetes
+
+
+Bengaluru, India
+
+
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Engineer C OR C++ OR JAVA with Linux and distributed systems
+
+
+Multiple Locations
+
+
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Principal Engineer(C, C++, Linux, Filesystems, Biometrics))
+
+
+Multiple Locations
+
+
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Senior Engineer
+
+
+Bengaluru, India
+
+
+
+
+
+
+
+
+
+
+
+
+Recently Viewed Jobs
+
+
+
+
+
+
+No recently viewed jobs. 
+View All Opportunities
+
+
+
+
+
+
+Saved Jobs
+
+
+
+
+
+
+No saved jobs. 
+View All Opportunities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Be The First To See New Opportunities
+
+
+Join Our Talent Network
+
+
+Sign up, stay connected and get opportunities that match your skills sent right to your inbox.
+
+
+
+
+
+
+*Denotes required field
+
+
+First Name
+Last Name
+Email Address
+*
+Mobile Phone:
+Career Level
+Student
+Entry Level
+Professional
+Management
+Executive
+Upload Resume/CV (Must be under 1MB)
+Remove
+Interested In
+Job Category
+*
+Select a Job Category
+Accounting
+Brazil Digital
+Business Support
+Corporate Development
+Cybersecurity
+Data Science & Analytics
+Dell Digital
+Digital
+Engineering
+Finance
+Global Operations, Supply Chain
+Global Services
+Human Resources
+Information Technology
+Inside Sales
+Internships
+Legal
+Manufacturing
+Marketing
+Next Gen
+Outside Sales
+Pre Sales
+Product Services
+Product Specialist
+Professional Services
+Program Management
+R&D
+Recent Graduate
+Sales
+Sales Operations
+Services
+Software Engineer
+SRO
+Systems Engineer
+Talent Acquisition
+Tech Support
+Location
+*
+When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.
+Select a job category from the list of options. Search for a location and select one from the list of suggestions. Finally, click “Add” to create your job alert.
+Add
+Engineering, Bengaluru, Karnataka, India
+Remove
+Software Engineer, Bengaluru, Karnataka, India
+Remove
+Systems Engineer, Bengaluru, Karnataka, India
+Remove
+ 
+
+
+Confirm Email
+
+
+
+
+
+
+
+
+By submitting your information, you acknowledge that you have read our 
+ privacy policy
+ and consent to receive email and/or SMS messaging communication from Dell Technologies. For users located in the People’s Republic of China: According to the regulations of the People's Republic of China on the protection of personal information, we need your authorization for Dell Technologies to transfer your personal data to Dell Technologies’ global talent database. The authorized personal information will be used for recruitment purposes only. Please read the 
+ Dell China Privacy Statement
+ carefully.
+
+
+[default form message]
+
+
+
+    			Sign Up
+    		
+
+
+
+
+
+
+
+
+Open Form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Our Offerings
+
+
+
+
+
+
+APEX
+
+
+Products
+
+
+Solutions
+
+
+Services
+
+
+Deals
+
+
+
+
+
+
+
+
+
+
+Our Company
+
+
+
+
+
+
+Who We Are
+
+
+Dell Technologies Capital
+
+
+Investors
+
+
+Newsroom
+
+
+Perspectives
+
+
+Recycling
+
+
+ESG & Impact
+
+
+
+
+
+
+
+
+
+
+Our Partners
+
+
+
+
+
+
+Find a Partner
+
+
+Find a Reseller
+
+
+OEM Solutions
+
+
+Partner Program
+
+
+
+
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Dell Learning Center
+
+
+Glossary
+
+
+Privacy Center
+
+
+Resource Library
+
+
+Trial Software Downloads
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dell.com 
+
+
+
+
+
+
+Dell Technologies
+
+
+
+
+
+
+Dell Premier
+
+
+
+
+
+
+Dell Financial Services
+
+
+
+
+
+
+
+
+Join the 
+#LifeAtDell
+ conversation
+
+
+
+
+Twitter
+
+
+Facebook
+
+
+LinkedIn
+
+
+Instagram
+
+
+YouTube
+
+
+Indeed
+
+
+
+
+
+
+
+
+
+
+© 2026 Dell Inc.
+
+
+Sitemap
+
+
+Ads & Emails
+
+
+Cookie Consent
+
+
+Cookie Management
+
+
+Privacy Statement
+
+
+Equal Opportunity Employer
+
+
+Dell’s Diversity & Equal Employment Opportunity Policy
+
+
+Accessibility
+
+
+Recruitment Fraud Alert
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+Loading ...  
+
+
+
+
+We use cookies and other tracking technologies to support navigation, to improve our products and services, to support our marketing activities and to provide content from third parties.To manage your preferences, select "Manage Settings" or choose "Accept" to consent to the use of Cookies.
+Accept
+Manage Settings

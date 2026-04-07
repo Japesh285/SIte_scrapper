@@ -1,0 +1,210 @@
+{
+  "domain": "www.wellsfargojobs.com",
+  "site_type": "INTERACTIVE_DOM",
+  "listing_jobs_found": 32,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T07:11:29.845925",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "",
+      "title": "Attention Required! | Cloudflare",
+      "company_name": "",
+      "job_link": "https://www.wellsfargojobs.com/en/early-careers/",
+      "experience": "",
+      "locations": [
+        "Sorry, you have been blocked\n\n\nYou are unable t"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "94.64.234",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.wellsfargojobs.com/en/early-careers/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 466,
+        "output_tokens": 113,
+        "total_tokens": 579
+      }
+    },
+    {
+      "id": "",
+      "title": "Attention Required! | Cloudflare",
+      "company_name": "",
+      "job_link": "https://www.wellsfargojobs.com/en/early-careers/",
+      "experience": "",
+      "locations": [
+        "Sorry, you have been blocked\n\n\nYou are unable t"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "94.64.234",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.wellsfargojobs.com/en/early-careers/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 465,
+        "output_tokens": 120,
+        "total_tokens": 585
+      }
+    },
+    {
+      "id": "",
+      "title": "Attention Required! | Cloudflare",
+      "company_name": "",
+      "job_link": "https://www.wellsfargojobs.com/en/early-careers/undergraduate-programs/",
+      "experience": "",
+      "locations": [
+        "Sorry, you have been blocked\n\n\nYou are unable t"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "94.64.234",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.wellsfargojobs.com/en/early-careers/undergraduate-programs/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 463,
+        "output_tokens": 103,
+        "total_tokens": 566
+      }
+    },
+    {
+      "id": "9e873772fac618be",
+      "title": "Attention Required! | Cloudflare",
+      "company_name": "",
+      "job_link": "https://www.wellsfargojobs.com/en/early-careers/graduate-programs/",
+      "experience": "",
+      "locations": [
+        "Sorry, you have been blocked\n\n\nYou are unable t"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "94.64.234",
+      "job_id": "9e873772fac618be",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.wellsfargojobs.com/en/early-careers/graduate-programs/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 462,
+        "output_tokens": 111,
+        "total_tokens": 573
+      }
+    },
+    {
+      "id": "",
+      "title": "Attention Required! | Cloudflare",
+      "company_name": "",
+      "job_link": "https://www.wellsfargojobs.com/en/early-careers/application-process/",
+      "experience": "",
+      "locations": [
+        "Sorry, you have been blocked\n\n\nYou are unable t"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "94.64.234",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.wellsfargojobs.com/en/early-careers/application-process/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 464,
+        "output_tokens": 130,
+        "total_tokens": 594
+      }
+    }
+  ]
+}

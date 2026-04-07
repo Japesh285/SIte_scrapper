@@ -1,0 +1,259 @@
+{
+  "domain": "jobs.dell.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 116,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T08:33:09.585264",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "R289645",
+      "title": "Corporate Governance Associate at Dell Careers",
+      "company_name": "Dell Careers",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/corporate-governance-associate/375/93606109312",
+      "experience": "5 years",
+      "locations": [
+        "Touch device users, explore by touch or with swipe gestures"
+      ],
+      "educational_qualifications": "['ICSI qualified']",
+      "required_skill_set": [
+        "ICSI qualified",
+        "entity management",
+        "corporate governance",
+        "board support",
+        "legislation monitoring",
+        "intercompany consolidations",
+        "corporate restructurings",
+        "legislation compliance",
+        "database management",
+        "communication skills"
+      ],
+      "remote_type": "",
+      "posted_on": "30 April",
+      "job_id": "R289645",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/corporate-governance-associate/375/93606109312",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2115,
+        "output_tokens": 185,
+        "total_tokens": 2300
+      }
+    },
+    {
+      "id": "R288301",
+      "title": "Software Principal Engineer(C,C  , Firmware,BMC,IPMI,Redfish,AI, ML,GenAI) at Dell Careers",
+      "company_name": "Dell Careers",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-principal-engineer-c-c-firmware-bmc-ipmi-redfish-ai-ml-genai/375/93539305552",
+      "experience": "14 years",
+      "locations": [
+        "C,C"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Angular",
+        "Go",
+        "Golang",
+        "Java",
+        "Kubernetes",
+        "Linux",
+        "NLP",
+        "Python"
+      ],
+      "remote_type": "",
+      "posted_on": "30 May",
+      "job_id": "R288301",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/software-principal-engineer-c-c-firmware-bmc-ipmi-redfish-ai-ml-genai/375/93539305552",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 5,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2308,
+        "output_tokens": 278,
+        "total_tokens": 2586
+      }
+    },
+    {
+      "id": "R286326",
+      "title": "Principal Infrastructure Engineer – VMware NSX & PowerFlex at Dell Careers",
+      "company_name": "Dell Careers",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/principal-infrastructure-engineer-vmware-nsx-and-powerflex/375/93532235344",
+      "experience": "8–12 years",
+      "locations": [
+        "Touch device users, explore by touch or with swipe gestures"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Dell PowerFlex",
+        "VMware NSX‑T",
+        "ESXi",
+        "vCenter",
+        "vSAN",
+        "Dell PowerEdge servers",
+        "VLANs",
+        "VXLAN",
+        "TCP/IP",
+        "LACP",
+        "high‑availability designs"
+      ],
+      "remote_type": "",
+      "posted_on": "30-April",
+      "job_id": "R286326",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/principal-infrastructure-engineer-vmware-nsx-and-powerflex/375/93532235344",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 5,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2419,
+        "output_tokens": 287,
+        "total_tokens": 2706
+      }
+    },
+    {
+      "id": "R287911",
+      "title": "Software Senior Principal Engineer - EIS Modernization - KAAS at Dell Careers",
+      "company_name": "Dell Careers",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-senior-principal-engineer-eis-modernization-kaas/375/93522118480",
+      "experience": "12+",
+      "locations": [
+        "Touch device users, explore by touch or with swipe gestures"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Kubernetes",
+        "OpenShift",
+        "GitOps",
+        "ArgoCD",
+        "Helm",
+        "Kustomize",
+        "Bash",
+        "Python",
+        "Infrastructure-as-Code",
+        "Monitoring",
+        "Logging",
+        "Alerting"
+      ],
+      "remote_type": "",
+      "posted_on": "30 April",
+      "job_id": "R287911",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/software-senior-principal-engineer-eis-modernization-kaas/375/93522118480",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 5,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2609,
+        "output_tokens": 207,
+        "total_tokens": 2816
+      }
+    },
+    {
+      "id": "R288299",
+      "title": "Software Senior Engineer(C,C  , Firmware,, BMC, IPMI,AI , ML, GenAI) at Dell Careers",
+      "company_name": "Dell Careers",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-senior-engineer-c-c-firmware-bmc-ipmi-ai-ml-genai/375/93519723456",
+      "experience": "8 years",
+      "locations": [
+        "C,C"
+      ],
+      "educational_qualifications": "Bachelor’s in CS/CE/EE or related; Master’s preferred",
+      "required_skill_set": [
+        "C",
+        "C++",
+        "Firmware",
+        "BMC",
+        "IPMI",
+        "AI",
+        "ML",
+        "GenAI",
+        "PyTorch",
+        "TensorFlow",
+        "Angular",
+        "Reactjs",
+        "Go"
+      ],
+      "remote_type": "",
+      "posted_on": "30 May",
+      "job_id": "R288299",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/software-senior-engineer-c-c-firmware-bmc-ipmi-ai-ml-genai/375/93519723456",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 5,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2301,
+        "output_tokens": 277,
+        "total_tokens": 2578
+      }
+    }
+  ]
+}

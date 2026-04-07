@@ -92,9 +92,7 @@ def _heuristic_classify(data: dict) -> dict:
     tests = data.get("tests", {})
     browser_probe = data.get("browser_probe", {})
 
-    # ── DYNAMIC_API from browser probe ──────────────────────────────
     dynamic_api = tests.get("dynamic_api", {})
-    dynamic_api_score = dynamic_api.get("best_score", 0)
 
     # ── INTERACTIVE_DOM from browser probe ──────────────────────────
     interactive_dom = tests.get("interactive_dom", {})
@@ -111,11 +109,15 @@ def _heuristic_classify(data: dict) -> dict:
         ("DOM_BROWSER", tests.get("dom_browser", {})),
     ]
 
-    # For DYNAMIC_API: use best_score >= 5 as the matching criterion
-    # For INTERACTIVE_DOM: use the matched flag from the detector
+    # For DYNAMIC_API: support both formats
+    #   New async: {"api_usable": bool, "score": int, ...}
+    #   Legacy probe: {"best_score": int, "api_usable": bool, ...}
+    dynamic_api_score = dynamic_api.get("score", dynamic_api.get("best_score", 0))
+    dynamic_api_usable = dynamic_api.get("api_usable", False)
+
     def _is_viable(site_type: str, result: dict) -> bool:
         if site_type == "DYNAMIC_API":
-            return dynamic_api_score >= 5
+            return dynamic_api_usable and dynamic_api_score >= 5
         if site_type == "INTERACTIVE_DOM":
             return interactive_dom_matched
         return result.get("matched") and result.get("api_usable")

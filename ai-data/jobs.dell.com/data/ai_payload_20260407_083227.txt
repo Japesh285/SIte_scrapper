@@ -1,0 +1,1559 @@
+
+
+
+
+
+
+
+
+
+
+Principal Infrastructure Engineer – VMware NSX & PowerFlex at Dell Careers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Join Talent Network
+
+
+
+
+
+
+
+
+
+
+
+
+Saved Jobs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        Language
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+English
+
+
+
+
+
+
+
+
+
+
+Español
+
+
+
+
+
+
+
+
+
+
+Deutsch
+
+
+
+
+
+
+
+
+
+
+Português
+
+
+
+
+
+
+
+
+
+
+日本語
+
+
+
+
+
+
+
+
+
+
+简体中文
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+My Application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Life at Dell
+                        
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+Life at Dell
+
+
+How We Work and Lead
+
+
+Global Benefits
+
+
+
+
+
+
+
+
+You and Dell
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+You and Dell
+
+
+How We Hire
+
+
+FAQs
+
+
+Growing Your Career
+
+
+
+
+
+
+
+
+Students
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+Students
+
+
+Internships
+
+
+Graduates
+
+
+
+
+
+
+
+
+Our Opportunities
+
+
+
+
+
+
+
+
+
+
+ Back 
+
+
+
+
+
+
+Our Opportunities
+
+
+Software Engineering
+
+
+Global Sales
+
+
+Data & Analytics
+
+
+
+
+
+
+Our Locations
+
+
+Our Stories
+
+
+
+
+
+
+
+
+
+
+Saved Jobs
+
+
+
+
+
+
+My Application
+
+
+
+
+
+
+Current Page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Search Jobs
+
+
+
+
+
+
+Keyword(s)
+
+
+
+
+
+
+
+
+Location
+
+
+
+
+
+
+When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.
+
+
+
+
+Search Jobs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bangalore, India           
+
+
+Principal Infrastructure Engineer – VMware NSX & PowerFlex
+
+
+
+
+
+
+
+
+
+
+Apply Now
+
+
+Save Job
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Principal Engineer, Infrastructure Services (I8)
+Dell Technologies customers rely on our products and services to drive progress. We take the services we deliver extremely seriously—ensuring our technology solutions help customers achieve their business priorities, overcome challenges, and scale for the future.
+Infrastructure Services plays a critical role in designing, deploying, and operating secure, resilient, and high‑performance platforms. As trusted technical advisors, we partner closely with customers and internal teams to deliver enterprise‑grade, software‑defined infrastructure and drive continuous improvement across environments.
+Join us as a 
+Principal Engineer, Infrastructure Services (I8)
+ in our 
+Infrastructure Services team in Bangalore
+ to do the best work of your career and make a profound social impact.
+What you’ll achieve
+As a 
+Principal Infrastructure Engineer
+, you will provide world‑class technical expertise by designing, deploying, and operating complex, software‑defined infrastructure platforms. You will act as a technical leader, contributing to architecture decisions, mentoring engineers, and collaborating with cross‑functional stakeholders across networking, security, storage, and application teams.
+You will play a key role in ensuring platform stability, scalability, and performance while driving technical excellence and operational best practices.
+You will:
+Design, deploy, and operate Dell PowerFlex infrastructure
+, integrating compute, storage, and software‑defined networking for enterprise environments.
+Architect and support VMware NSX‑T (mandatory)
+ for network virtualization, micro‑segmentation, and security across VMware and PowerFlex platforms.
+Administer and optimize the VMware stack
+ (vSphere, vCenter, and vSAN where applicable) to ensure high availability, performance, and scalability.
+Build and manage infrastructure on Dell PowerEdge servers
+, including provisioning, lifecycle management, and advanced L3/L4 incident troubleshooting.
+Provide technical leadership
+ by driving architecture reviews, documentation (HLD/LLD, SOPs), cross‑team collaboration, and mentoring engineers.
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Strong hands‑on experience with Dell PowerFlex
+ including deployment, scaling, lifecycle management, SDS/SDC architecture, fault domains, performance tuning, and integration with VMware workloads.
+Mandatory expertise in VMware NSX‑T
+, covering architecture, logical switching and routing, micro‑segmentation, distributed firewall policies, load balancing, and advanced NSX networking and security troubleshooting.
+Deep expertise in the VMware stack
+, including ESXi and vCenter administration, VM lifecycle management, clustering, HA/DRS, and performance monitoring and optimization.
+Hands‑on experience with Dell PowerEdge servers
+, including server provisioning, BIOS/firmware, RAID and NIC configuration, and hardware troubleshooting.
+Strong foundation in physical and virtual data‑center networking (mandatory)
+, including VLANs, VXLAN, TCP/IP, MTU/jumbo frames, LACP, high‑availability designs, and collaboration with network teams on ToR switches, cabling, optics, and connectivity troubleshooting.
+8–12 years of enterprise infrastructure experience
+, supporting large‑scale data centers with demonstrated exposure to solution design, architecture, or technical lead roles.
+Desirable Requirements
+Exposure to 
+modern HCI and cloud‑native platforms
+, including 
+Red Hat OpenShift
+ (on‑prem or hybrid) and 
+Nutanix HCI
+ (AOS, Prism, AHV – hands‑on or conceptual).
+Who we are
+We believe that each of us has the power to make an impact. That’s why we put our team members at the center of everything we do. If you’re looking for an opportunity to grow your career with some of the best minds and the most advanced technology in the industry, we’re looking for you.
+Dell Technologies is a unique family of businesses that helps individuals and organizations transform how they work, live, and play. Join us to build a future that works for everyone—because 
+Progress Takes All of Us
+.
+Application closing date: 
+30-April-26
+Dell Technologies is committed to the principle of equal employment opportunity for all employees and to providing employees with a work environment free of discrimination and harassment. Read the full Equal Employment Opportunity Policy 
+here
+ (opens in new window)
+.
+Job ID:
+R286326
+
+
+Request an Accommodation
+
+
+
+
+Resources
+
+
+
+
+Privacy Notice
+
+
+Email Scam Alert
+
+
+Equal Opportunity Employer
+
+
+Sign Up For Job Alerts
+
+
+
+
+
+
+Apply Now
+
+
+Save Job
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Share This Job
+
+
+
+
+X
+
+
+Facebook
+
+
+LinkedIn
+
+
+Email
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tips for a Successful Interview
+
+
+There’s a lot for us to talk about. And don’t forget that this is your chance to interview Dell, too.
+
+
+Learn More
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Frequently Asked Questions
+
+
+To help you understand our application process, we are providing a list of the most common questions.
+
+
+Learn More
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign Up for Job Alerts
+
+
+Sign up, stay connected and get opportunities that match your skills sent right to your inbox.
+
+
+Sign Up
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Why Work Here
+
+
+Global Benefits
+
+
+
+
+
+
+
+
+
+
+Comprehensive Healthcare Programs
+
+
+
+
+
+
+
+
+Award Winning Financial Wellness Tools and Resources
+
+
+
+
+
+
+
+
+Generous Leave of Absence for New Parents and Caregivers
+
+
+
+
+
+
+
+
+Industry Leading Wellness Platform
+
+
+
+
+
+
+
+
+Employee Assistance Program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jobs For You
+
+
+
+
+
+
+Jobs For You
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Principal Engineer-GoLang,Kubernetes
+
+
+Bengaluru, India
+
+
+
+
+
+
+
+
+
+
+Data Science & Analytics
+
+
+Advisor, Data Science
+
+
+Bengaluru, India
+
+
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Engineer C OR C++ OR JAVA with Linux and distributed systems
+
+
+Multiple Locations
+
+
+
+
+
+
+
+
+
+
+Engineering Research & Development
+
+
+Software Principal Engineer(C, C++, Linux, Filesystems, Biometrics))
+
+
+Multiple Locations
+
+
+
+
+
+
+
+
+
+
+
+
+Recently Viewed Jobs
+
+
+
+
+
+
+No recently viewed jobs. 
+View All Opportunities
+
+
+
+
+
+
+Saved Jobs
+
+
+
+
+
+
+No saved jobs. 
+View All Opportunities
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Be The First To See New Opportunities
+
+
+Join Our Talent Network
+
+
+Sign up, stay connected and get opportunities that match your skills sent right to your inbox.
+
+
+
+
+
+
+*Denotes required field
+
+
+First Name
+Last Name
+Email Address
+*
+Mobile Phone:
+Career Level
+Student
+Entry Level
+Professional
+Management
+Executive
+Upload Resume/CV (Must be under 1MB)
+Remove
+Interested In
+Job Category
+*
+Select a Job Category
+Accounting
+Brazil Digital
+Business Support
+Corporate Development
+Cybersecurity
+Data Science & Analytics
+Dell Digital
+Digital
+Engineering
+Finance
+Global Operations, Supply Chain
+Global Services
+Human Resources
+Information Technology
+Inside Sales
+Internships
+Legal
+Manufacturing
+Marketing
+Next Gen
+Outside Sales
+Pre Sales
+Product Services
+Product Specialist
+Professional Services
+Program Management
+R&D
+Recent Graduate
+Sales
+Sales Operations
+Services
+Software Engineer
+SRO
+Systems Engineer
+Talent Acquisition
+Tech Support
+Location
+*
+When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.
+Select a job category from the list of options. Search for a location and select one from the list of suggestions. Finally, click “Add” to create your job alert.
+Add
+Professional Services, Bengaluru, Karnataka, India
+Remove
+Engineering, Bengaluru, Karnataka, India
+Remove
+Services, Bengaluru, Karnataka, India
+Remove
+Global Services, Bengaluru, Karnataka, India
+Remove
+Software Engineer, Bengaluru, Karnataka, India
+Remove
+Systems Engineer, Bengaluru, Karnataka, India
+Remove
+ 
+
+
+Confirm Email
+
+
+
+
+
+
+
+
+By submitting your information, you acknowledge that you have read our 
+ privacy policy
+ and consent to receive email and/or SMS messaging communication from Dell Technologies. For users located in the People’s Republic of China: According to the regulations of the People's Republic of China on the protection of personal information, we need your authorization for Dell Technologies to transfer your personal data to Dell Technologies’ global talent database. The authorized personal information will be used for recruitment purposes only. Please read the 
+ Dell China Privacy Statement
+ carefully.
+
+
+[default form message]
+
+
+
+    			Sign Up
+    		
+
+
+
+
+
+
+
+
+Open Form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Our Offerings
+
+
+
+
+
+
+APEX
+
+
+Products
+
+
+Solutions
+
+
+Services
+
+
+Deals
+
+
+
+
+
+
+
+
+
+
+Our Company
+
+
+
+
+
+
+Who We Are
+
+
+Dell Technologies Capital
+
+
+Investors
+
+
+Newsroom
+
+
+Perspectives
+
+
+Recycling
+
+
+ESG & Impact
+
+
+
+
+
+
+
+
+
+
+Our Partners
+
+
+
+
+
+
+Find a Partner
+
+
+Find a Reseller
+
+
+OEM Solutions
+
+
+Partner Program
+
+
+
+
+
+
+
+
+
+
+Resources
+
+
+
+
+
+
+Dell Learning Center
+
+
+Glossary
+
+
+Privacy Center
+
+
+Resource Library
+
+
+Trial Software Downloads
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dell.com 
+
+
+
+
+
+
+Dell Technologies
+
+
+
+
+
+
+Dell Premier
+
+
+
+
+
+
+Dell Financial Services
+
+
+
+
+
+
+
+
+Join the 
+#LifeAtDell
+ conversation
+
+
+
+
+Twitter
+
+
+Facebook
+
+
+LinkedIn
+
+
+Instagram
+
+
+YouTube
+
+
+Indeed
+
+
+
+
+
+
+
+
+
+
+© 2026 Dell Inc.
+
+
+Sitemap
+
+
+Ads & Emails
+
+
+Cookie Consent
+
+
+Cookie Management
+
+
+Privacy Statement
+
+
+Equal Opportunity Employer
+
+
+Dell’s Diversity & Equal Employment Opportunity Policy
+
+
+Accessibility
+
+
+Recruitment Fraud Alert
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+Loading ...  
+
+
+
+
+We use cookies and other tracking technologies to support navigation, to improve our products and services, to support our marketing activities and to provide content from third parties.To manage your preferences, select "Manage Settings" or choose "Accept" to consent to the use of Cookies.
+Accept
+Manage Settings

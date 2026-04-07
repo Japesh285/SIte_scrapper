@@ -75,6 +75,39 @@ BAD_URL_PARTS = (
     "/eeo",
     ".pdf",
 )
+# Strict reject patterns for detail URLs — these are NEVER job pages
+DETAIL_REJECT_PARTS = (
+    "/careers/",
+    "/career-search",
+    "/why-",
+    "/about",
+    "/learning",
+    "/projects",
+    "/contact",
+    "/our-team",
+    "/testimonials",
+    "/events",
+    "/blog",
+    "/news",
+    "/insights",
+    "/resources",
+    "/webinars",
+)
+# Accept signals — URL must contain at least one of these
+JOB_ACCEPT_PARTS = (
+    "/job/",
+    "/jobs/",
+    "/position/",
+    "/opening/",
+    "/requisition/",
+    "/vacancy/",
+    "/career/",
+    "/careers/",
+    "jobid",
+    "reqid",
+    "job-id",
+    "req-id",
+)
 
 
 async def scrape_dom_browser(url: str, max_pages: int = MAX_BROWSER_PAGES) -> list[dict]:
@@ -97,6 +130,7 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
     collected: list[dict] = []
     seen: set[str] = set()
     no_growth_rounds = 0
+    used_relaxed_selectors = False
 
     try:
         async with async_playwright() as playwright:
@@ -107,7 +141,7 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
             await page.wait_for_timeout(2500)
 
             for round_index in range(max_pages):
-                extracted = await _extract_jobs_from_page(page, url)
+                extracted = await _extract_jobs_from_page(page, url, relaxed=used_relaxed_selectors)
                 new_count = 0
                 for job in extracted:
                     key = (job.get("url") or f"{job.get('title', '')}|{job.get('location', '')}").lower()
@@ -117,7 +151,7 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
                     collected.append(job)
                     new_count += 1
 
-                logger.info("[DOM:%s] Round %s extracted=%s new=%s total=%s", mode, round_index + 1, len(extracted), new_count, len(collected))
+                logger.info("[DOM:%s] Round %s extracted=%s new=%s total=%s relaxed=%s", mode, round_index + 1, len(extracted), new_count, len(collected), used_relaxed_selectors)
 
                 if new_count == 0:
                     no_growth_rounds += 1
@@ -145,90 +179,172 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
         logger.error(f"[DOM:{mode}] Browser scrape error: {exc}")
         return []
 
+    # ── RETRY with relaxed selectors if detection found jobs but extraction returned 0 ──
+    if not collected and len(seen) > 10:
+        # This shouldn't happen, but if we previously extracted many jobs that all
+        # got filtered out, retry with relaxed selectors
+        logger.info("[DOM RETRY] Previously found jobs but all filtered — retrying with relaxed selectors")
+        # Re-run extraction with relaxed mode
+        try:
+            async with async_playwright() as playwright:
+                browser = await playwright.chromium.launch(headless=True)
+                page = await browser.new_page()
+                await page.goto(url, wait_until="domcontentloaded", timeout=30000)
+                await page.wait_for_timeout(2500)
+                logger.info("[DOM RETRY] Using relaxed selectors")
+                for round_index in range(max_pages):
+                    extracted = await _extract_jobs_from_page(page, url, relaxed=True)
+                    for job in extracted:
+                        key = (job.get("url") or f"{job.get('title', '')}|{job.get('location', '')}").lower()
+                        if key not in seen:
+                            seen.add(key)
+                            collected.append(job)
+                    progressed = await _advance_dom_results(page, mode)
+                    if not progressed:
+                        break
+                    await page.wait_for_timeout(1500)
+                await browser.close()
+        except Exception as exc:
+            logger.error(f"[DOM RETRY] Failed: {exc}")
+
     return collected
 
 
-async def _extract_jobs_from_page(page, base_url: str) -> list[dict]:
-    data = await page.evaluate(
-        """
-        () => {
-          const visible = (el) => {
-            if (!el) return false;
-            const style = window.getComputedStyle(el);
-            const rect = el.getBoundingClientRect();
-            return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
-          };
+async def _extract_jobs_from_page(page, base_url: str, relaxed: bool = False) -> list[dict]:
+    """Extract job links from the current page.
 
-            const results = [];
-            const anchors = Array.from(document.querySelectorAll("a[href]"));
-            for (const anchor of anchors) {
+    Parameters
+    ----------
+    page : Playwright page
+    base_url : str
+    relaxed : bool
+        If True, use broader selectors that match more links (fallback mode).
+    """
+    if relaxed:
+        data = await page.evaluate(
+            """
+            () => {
+              const visible = (el) => {
+                if (!el) return false;
+                const style = window.getComputedStyle(el);
+                const rect = el.getBoundingClientRect();
+                return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+              };
+
+              const results = [];
+              const anchors = Array.from(document.querySelectorAll("a[href]"));
+              for (const anchor of anchors) {
                 if (!visible(anchor)) continue;
                 const href = anchor.getAttribute("href") || "";
+                const hrefLower = href.toLowerCase();
+                // Relaxed: match any href containing job/career/position keywords
+                if (!["job", "career", "position", "opening", "req", "vacancy"].some(t => hrefLower.includes(t))) continue;
                 const text = (anchor.innerText || anchor.textContent || "").trim();
-            if (!href || !text) continue;
-            const haystack = `${href} ${text}`.toLowerCase();
-            if (!["job", "career", "position", "opening", "requisition", "vacancy"].some(token => haystack.includes(token))) continue;
+                if (!text) continue;
 
-            const hrefLower = href.toLowerCase();
-            const isLikelyJobUrl =
-              hrefLower.includes("/job/") ||
-              hrefLower.includes("/job-detail/") ||
-              hrefLower.includes("/jobs/detail") ||
-              hrefLower.includes("/position/") ||
-              hrefLower.includes("/opening/") ||
-              hrefLower.includes("/requisition/");
-
-            const isBadUrl =
-              hrefLower.includes("/saved-jobs") ||
-              hrefLower.includes("/job-cart") ||
-              hrefLower.includes("/profile/") ||
-              hrefLower.includes("/login") ||
-              hrefLower.includes("/privacy") ||
-              hrefLower.includes("/legal") ||
-              hrefLower.includes("/cookies") ||
-              hrefLower.includes("/job-alert") ||
-              hrefLower.includes("/join-community") ||
-              hrefLower.includes("/apply-form/") ||
-              hrefLower.includes("/accessibility") ||
-              hrefLower.includes("/benefits") ||
-              hrefLower.includes("/culture") ||
-              hrefLower.includes("/how-we-hire") ||
-              hrefLower.includes("/eeo") ||
-              hrefLower.endsWith(".pdf");
-
-            let location = "";
-            let title = text;
-            const card = anchor.closest("article, li, div");
-            if (card) {
-              const cardText = (card.innerText || card.textContent || "").trim().split("\\n").map(part => part.trim()).filter(Boolean);
-              if (["apply now", "view details"].includes(text.toLowerCase())) {
-                const replacement = cardText.find(part => {
-                  const lower = part.toLowerCase();
-                  if (!part || part.trim().length < 6) return false;
-                  if (lower === text.toLowerCase()) return false;
-                  if (lower.includes("apply now") || lower.includes("view details")) return false;
-                  if (lower.includes("saved jobs") || lower.includes("talent community")) return false;
-                  return true;
-                });
-                if (replacement) title = replacement;
-              }
-              for (const part of cardText.slice(1, 8)) {
-                const lower = part.toLowerCase();
-                if (lower.length > 2 && !lower.includes("apply") && !lower.includes("save job") && !lower.includes("share")) {
-                  if (/[a-z]/i.test(part) && (part.includes(",") || lower.includes("remote") || lower.includes("india") || lower.includes("united") || lower.includes("hyderabad") || lower.includes("bangalore"))) {
-                    location = part;
-                    break;
+                let location = "";
+                let title = text;
+                const card = anchor.closest("article, li, div");
+                if (card) {
+                  const cardText = (card.innerText || card.textContent || "").trim().split("\\n").map(p => p.trim()).filter(Boolean);
+                  for (const part of cardText) {
+                    const lower = part.toLowerCase();
+                    if (lower.length > 2 && !lower.includes("apply") && !lower.includes("save") && !lower.includes("share")) {
+                      if (/[a-z]/i.test(part) && (part.includes(",") || lower.includes("remote") || lower.includes("india") || lower.includes("united") || lower.includes("hyderabad") || lower.includes("bangalore"))) {
+                        location = part;
+                        if (!title || title.length < 5) title = part;
+                        break;
+                      }
+                    }
                   }
                 }
+                results.push({ title, url: href, location });
               }
+              return results;
             }
+            """
+        )
+    else:
+        data = await page.evaluate(
+            """
+            () => {
+              const visible = (el) => {
+                if (!el) return false;
+                const style = window.getComputedStyle(el);
+                const rect = el.getBoundingClientRect();
+                return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+              };
 
-            results.push({ title, url: href, location, isLikelyJobUrl, isBadUrl });
-          }
-          return results;
-        }
-        """
-    )
+                const results = [];
+                const anchors = Array.from(document.querySelectorAll("a[href]"));
+                for (const anchor of anchors) {
+                    if (!visible(anchor)) continue;
+                    const href = anchor.getAttribute("href") || "";
+                    const text = (anchor.innerText || anchor.textContent || "").trim();
+                if (!href || !text) continue;
+                const haystack = `${href} ${text}`.toLowerCase();
+                if (!["job", "career", "position", "opening", "requisition", "vacancy"].some(token => haystack.includes(token))) continue;
+
+                const hrefLower = href.toLowerCase();
+                const isLikelyJobUrl =
+                  hrefLower.includes("/job/") ||
+                  hrefLower.includes("/job-detail/") ||
+                  hrefLower.includes("/jobs/detail") ||
+                  hrefLower.includes("/position/") ||
+                  hrefLower.includes("/opening/") ||
+                  hrefLower.includes("/requisition/");
+
+                const isBadUrl =
+                  hrefLower.includes("/saved-jobs") ||
+                  hrefLower.includes("/job-cart") ||
+                  hrefLower.includes("/profile/") ||
+                  hrefLower.includes("/login") ||
+                  hrefLower.includes("/privacy") ||
+                  hrefLower.includes("/legal") ||
+                  hrefLower.includes("/cookies") ||
+                  hrefLower.includes("/job-alert") ||
+                  hrefLower.includes("/join-community") ||
+                  hrefLower.includes("/apply-form/") ||
+                  hrefLower.includes("/accessibility") ||
+                  hrefLower.includes("/benefits") ||
+                  hrefLower.includes("/culture") ||
+                  hrefLower.includes("/how-we-hire") ||
+                  hrefLower.includes("/eeo") ||
+                  hrefLower.endsWith(".pdf");
+
+                let location = "";
+                let title = text;
+                const card = anchor.closest("article, li, div");
+                if (card) {
+                  const cardText = (card.innerText || card.textContent || "").trim().split("\\n").map(part => part.trim()).filter(Boolean);
+                  if (["apply now", "view details"].includes(text.toLowerCase())) {
+                    const replacement = cardText.find(part => {
+                      const lower = part.toLowerCase();
+                      if (!part || part.trim().length < 6) return false;
+                      if (lower === text.toLowerCase()) return false;
+                      if (lower.includes("apply now") || lower.includes("view details")) return false;
+                      if (lower.includes("saved jobs") || lower.includes("talent community")) return false;
+                      return true;
+                    });
+                    if (replacement) title = replacement;
+                  }
+                  for (const part of cardText.slice(1, 8)) {
+                    const lower = part.toLowerCase();
+                    if (lower.length > 2 && !lower.includes("apply") && !lower.includes("save job") && !lower.includes("share")) {
+                      if (/[a-z]/i.test(part) && (part.includes(",") || lower.includes("remote") || lower.includes("india") || lower.includes("united") || lower.includes("hyderabad") || lower.includes("bangalore"))) {
+                        location = part;
+                        break;
+                      }
+                    }
+                  }
+                }
+
+                results.push({ title, url: href, location, isLikelyJobUrl, isBadUrl });
+              }
+              return results;
+            }
+            """
+        )
 
     jobs: list[dict] = []
     for item in data:
@@ -244,12 +360,30 @@ async def _extract_jobs_from_page(page, base_url: str) -> list[dict]:
         if any(part in lower_title for part in GENERIC_TITLE_PARTS):
             continue
         lower_href = href.lower()
-        if any(part in lower_href for part in BAD_URL_PARTS):
+
+        # ── Strict detail URL rejection ──
+        if any(part in lower_href for part in DETAIL_REJECT_PARTS):
+            logger.info("[FILTER] Rejected non-job URL: %s", href)
             continue
-        if item.get("isBadUrl"):
-            continue
-        if not item.get("isLikelyJobUrl") and not str(item.get("location", "")).strip():
-            continue
+
+        if not relaxed:
+            if any(part in lower_href for part in BAD_URL_PARTS):
+                continue
+            if item.get("isBadUrl"):
+                continue
+            if not item.get("isLikelyJobUrl") and not str(item.get("location", "")).strip():
+                continue
+        else:
+            # Relaxed mode: still reject obvious bad URLs
+            if any(part in lower_href for part in BAD_URL_PARTS):
+                continue
+            if any(part in lower_href for part in DETAIL_REJECT_PARTS):
+                logger.info("[FILTER] Rejected non-job URL (relaxed): %s", href)
+                continue
+            # In relaxed mode, require at least some job signal in the URL
+            if not any(p in lower_href for p in ("job", "career", "position", "opening", "req", "vacancy")):
+                continue
+
         jobs.append(
             {
                 "title": title,

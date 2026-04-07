@@ -1,0 +1,246 @@
+{
+  "domain": "jobs.standardchartered.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 72,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T09:45:33.843505",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "45111",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Relationship-Manager-SME-BWC/45111-en_GB",
+      "experience": "5 years",
+      "locations": [
+        "Delhi, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Client relationship management",
+        "Business development",
+        "Financial modelling",
+        "Financial statement analysis",
+        "Creditworthiness assessment",
+        "Trade, cash, lending, FX",
+        "Knowledge of SME banking regulations",
+        "Operational procedures",
+        "Market environment understanding",
+        "Communication and presentation"
+      ],
+      "remote_type": "",
+      "posted_on": "07/01/2026",
+      "job_id": "45111",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Relationship-Manager-SME-BWC/45111-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2703,
+        "output_tokens": 228,
+        "total_tokens": 2931
+      }
+    },
+    {
+      "id": "49358",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Director%2C-WRB-Model-Development/49358-en_GB",
+      "experience": "10 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelors / Advanced degree in Statistics, Mathematics, Economics, Engineering, MBA",
+      "required_skill_set": [
+        "Credit Risk Scorecards",
+        "Credit Risk Strategy",
+        "Statistical Modeling",
+        "Data Analysis",
+        "Team Management",
+        "Regulatory Compliance",
+        "Stakeholder Communication",
+        "Data Programming",
+        "Risk Analytics"
+      ],
+      "remote_type": "",
+      "posted_on": "02/03/2026",
+      "job_id": "49358",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Director%2C-WRB-Model-Development/49358-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3034,
+        "output_tokens": 229,
+        "total_tokens": 3263
+      }
+    },
+    {
+      "id": "21777",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Product-Owner/21777-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Bachelors or Masters in Business or relevant degree",
+      "required_skill_set": [
+        "Agile",
+        "SQL",
+        "Product Owner Certification"
+      ],
+      "remote_type": "hybrid",
+      "posted_on": "01/08/2025",
+      "job_id": "21777",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Product-Owner/21777-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2926,
+        "output_tokens": 162,
+        "total_tokens": 3088
+      }
+    },
+    {
+      "id": "48579",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/T24-Product-Development/48579-en_GB",
+      "experience": "5 to 15+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Java",
+        "JavaScript",
+        "Linux",
+        "SQL",
+        "TAFJ",
+        "Application Server",
+        "Oracle",
+        "Web Services",
+        "API architecture",
+        "Cloud hosting",
+        "Security concepts",
+        "Cryptography",
+        "Single Sign On",
+        "JMS",
+        "Integration"
+      ],
+      "remote_type": "hybrid",
+      "posted_on": "05/03/2026",
+      "job_id": "48579",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/T24-Product-Development/48579-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3130,
+        "output_tokens": 268,
+        "total_tokens": 3398
+      }
+    },
+    {
+      "id": "38371",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Sr_-Assoc%2C-Prod-Specialist-T24%2C-WRB-Tech/38371-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "M.C.A, BE., M.Sc.",
+      "required_skill_set": [
+        "Java",
+        "JavaScript",
+        "Linux",
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "09/09/2025",
+      "job_id": "38371",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Sr_-Assoc%2C-Prod-Specialist-T24%2C-WRB-Tech/38371-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3277,
+        "output_tokens": 258,
+        "total_tokens": 3535
+      }
+    }
+  ]
+}

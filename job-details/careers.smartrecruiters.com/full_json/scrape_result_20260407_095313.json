@@ -1,0 +1,200 @@
+{
+  "domain": "careers.smartrecruiters.com",
+  "site_type": "INTERACTIVE_DOM",
+  "listing_jobs_found": 17,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T09:53:13.087113",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "",
+      "title": "smartrecruiters.com",
+      "company_name": "",
+      "job_link": "https://www.smartrecruiters.com/product/career-website/",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.smartrecruiters.com/product/career-website/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 2,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 647,
+        "output_tokens": 82,
+        "total_tokens": 729
+      }
+    },
+    {
+      "id": "",
+      "title": "Global Careers | Bosch Global",
+      "company_name": "Bosch Research",
+      "job_link": "https://www.bosch.com/careers/",
+      "experience": "100 years",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Go",
+        "Machine Learning"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.bosch.com/careers/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3774,
+        "output_tokens": 89,
+        "total_tokens": 3863
+      }
+    },
+    {
+      "id": "Bosch-HomeComfort?search=India#st-openings",
+      "title": "Careers at Bosch-HomeComfort",
+      "company_name": "Bosch",
+      "job_link": "https://careers.smartrecruiters.com/Bosch-HomeComfort?search=India#st-openings",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Go"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.smartrecruiters.com/Bosch-HomeComfort?search=India#st-openings",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 3,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 524,
+        "output_tokens": 89,
+        "total_tokens": 613
+      }
+    },
+    {
+      "id": "",
+      "title": "Global Careers | Bosch Global",
+      "company_name": "Bosch Research",
+      "job_link": "https://www.bosch.com/careers/",
+      "experience": "100 years",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Go",
+        "Machine Learning"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://www.bosch.com/careers/",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3774,
+        "output_tokens": 89,
+        "total_tokens": 3863
+      }
+    },
+    {
+      "id": "Bosch-HomeComfort?search=India#st-footer",
+      "title": "Careers at Bosch-HomeComfort",
+      "company_name": "Bosch",
+      "job_link": "https://careers.smartrecruiters.com/Bosch-HomeComfort?search=India#st-footer",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Go"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.smartrecruiters.com/Bosch-HomeComfort?search=India#st-footer",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 3,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 524,
+        "output_tokens": 93,
+        "total_tokens": 617
+      }
+    }
+  ]
+}

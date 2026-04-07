@@ -1,0 +1,239 @@
+{
+  "domain": "careers.unitedhealthgroup.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 105,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T08:53:51.170029",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "2338949",
+      "title": "Senior Manager Systems Management - ITSM at UnitedHealth Group",
+      "company_name": "UnitedHealth Group",
+      "job_link": "https://careers.unitedhealthgroup.com/job/bengaluru/senior-manager-systems-management-itsm/34088/93671805120",
+      "experience": "",
+      "locations": [
+        "Bengaluru, Karnataka"
+      ],
+      "educational_qualifications": "[\"Bachelor's degree or equivalent work experience\", 'ITIL Foundations V3 or V4', 'Proficiency with ServiceNow']",
+      "required_skill_set": [
+        "Go"
+      ],
+      "remote_type": "",
+      "posted_on": "04/07/2026",
+      "job_id": "2338949",
+      "salary": "Pay Transparency Nondiscrimination Provision (PDF)",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.unitedhealthgroup.com/job/bengaluru/senior-manager-systems-management-itsm/34088/93671805120",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3689,
+        "output_tokens": 172,
+        "total_tokens": 3861
+      }
+    },
+    {
+      "id": "2344802",
+      "title": "Architect at UnitedHealth Group",
+      "company_name": "UnitedHealth Group",
+      "job_link": "https://careers.unitedhealthgroup.com/job/metro-manila/architect/34088/93671805104",
+      "experience": "10+ years",
+      "locations": [
+        "Quezon City, Eastern Manila District, Metro Manila",
+        "Davao City, Davao (Region XI)",
+        "Makati, National Capital Region",
+        "Cebu City, Central Visayas",
+        "Muntinlupa City, National Capital Region"
+      ],
+      "educational_qualifications": "[\"Bachelor's degree in Computer Science, Information Technology, or related field\", '10+ years Citrix experience', 'Experience in network architecture, design, and implementation', 'Experience with VPN tunneling and secure remote access', 'Hands-on AWS cloud experience', 'Knowledge of Citrix NetScaler and Zscaler', 'Network security principles', 'Firewall management', 'PowerShell scripting', 'Terraform automation', 'Certifications (e.g., CCNP, CCDP, AWS Certified Solutions Architect, Citrix Certified Professional)']",
+      "required_skill_set": [
+        "AWS",
+        "Azure",
+        "Go",
+        "Terraform"
+      ],
+      "remote_type": "",
+      "posted_on": "04/07/2026",
+      "job_id": "2344802",
+      "salary": "Pay Transparency Nondiscrimination Provision (PDF)",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.unitedhealthgroup.com/job/metro-manila/architect/34088/93671805104",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3631,
+        "output_tokens": 312,
+        "total_tokens": 3943
+      }
+    },
+    {
+      "id": "2352066",
+      "title": "Architecture Analyst at UnitedHealth Group",
+      "company_name": "UnitedHealth Group",
+      "job_link": "https://careers.unitedhealthgroup.com/job/bengaluru/architecture-analyst/34088/93671805088",
+      "experience": "7+ years",
+      "locations": [
+        "Bengaluru, Karnataka"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "AWS",
+        "Azure",
+        "Bash",
+        "Docker",
+        "Go",
+        "Kafka",
+        "Kubernetes",
+        "Linux",
+        "Python",
+        "Shell Scripting"
+      ],
+      "remote_type": "",
+      "posted_on": "04/07/2026",
+      "job_id": "2352066",
+      "salary": "Pay Transparency Nondiscrimination Provision (PDF)",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.unitedhealthgroup.com/job/bengaluru/architecture-analyst/34088/93671805088",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3352,
+        "output_tokens": 209,
+        "total_tokens": 3561
+      }
+    },
+    {
+      "id": "2348586",
+      "title": "Data Engineering Analyst - Python, Scala, Spark at UnitedHealth Group",
+      "company_name": "UnitedHealth Group",
+      "job_link": "https://careers.unitedhealthgroup.com/job/hyderabad/data-engineering-analyst-python-scala-spark/34088/93671805072",
+      "experience": "1 year",
+      "locations": [
+        "Python, Scala"
+      ],
+      "educational_qualifications": "Bachelor's or Master's degree in Computer Science, Information Technology, or equivalent",
+      "required_skill_set": [
+        "Python",
+        "Scala",
+        "Spark",
+        "Azure Data Lake",
+        "Azure Databricks",
+        "Azure Data Factory",
+        "Azure Key Vault",
+        "Apache Airflow",
+        "Snowflake",
+        "Shell scripting",
+        "SQL",
+        "CI/CD",
+        "Jenkins",
+        "GitHub Actions"
+      ],
+      "remote_type": "",
+      "posted_on": "04/07/2026",
+      "job_id": "2348586",
+      "salary": "Pay Transparency Nondiscrimination Provision (PDF)",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.unitedhealthgroup.com/job/hyderabad/data-engineering-analyst-python-scala-spark/34088/93671805072",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3605,
+        "output_tokens": 370,
+        "total_tokens": 3975
+      }
+    },
+    {
+      "id": "2348780",
+      "title": "I O Engineering Consultant at UnitedHealth Group",
+      "company_name": "UnitedHealth Group",
+      "job_link": "https://careers.unitedhealthgroup.com/job/noida/i-o-engineering-consultant/34088/93671805056",
+      "experience": "5+ years",
+      "locations": [
+        "Noida, Uttar Pradesh"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Go"
+      ],
+      "remote_type": "",
+      "posted_on": "04/07/2026",
+      "job_id": "2348780",
+      "salary": "Pay Transparency Nondiscrimination Provision (PDF)",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.unitedhealthgroup.com/job/noida/i-o-engineering-consultant/34088/93671805056",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3832,
+        "output_tokens": 144,
+        "total_tokens": 3976
+      }
+    }
+  ]
+}
