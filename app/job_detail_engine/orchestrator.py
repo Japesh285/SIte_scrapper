@@ -11,7 +11,7 @@ Pipeline:
 from app.job_detail_engine.parsers.json_ld import parse_json_ld
 from app.job_detail_engine.parsers.html_basic import parse_html_basic
 from app.job_detail_engine.scoring.confidence import score
-from app.job_detail_engine.ai.extractor import extract_with_ai
+from app.job_detail_engine.ai.extractor import extract_with_ai, extract_with_ai_workday_full
 from app.job_detail_engine.utils.cleaner import prepare_ai_payload
 from app.job_detail_engine.utils.normalizer import normalize_job_data
 
@@ -74,7 +74,10 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
             save_ai_payload(payload, domain)
 
         if site_type == "WORKDAY_API":
+            if not callable(extract_with_ai_workday_full):
+                raise RuntimeError("extract_with_ai_workday_full is not callable")
             ai_result = await extract_with_ai_workday_full(payload, result)
+            logger.info("[WORKDAY AI] extract_with_ai_workday_full executed successfully")
         else:
             ai_result = await extract_with_ai(payload, result)
 

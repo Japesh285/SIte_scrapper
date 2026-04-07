@@ -266,7 +266,7 @@ async def _workday_html_detail(
         # ── Pass HTML to AI detail engine (same as DOM mode) ──
         from app.job_detail_engine.orchestrator import extract_job_details
         # Pass site_type to enable Workday full context mode
-        ai_detail = await extract_job_details(html, force_ai=True, site_type="WORKDAY_API")
+        ai_detail = await extract_job_details(html, force_ai=True, site_type="WORKDAY_API", domain=domain)
         ai_detail.pop("_meta", None)
         ai_usage = ai_detail.pop("ai_usage", {})
 
@@ -291,7 +291,8 @@ async def _workday_html_detail(
         logger.warning("[WorkdayFix] HTTP fetch failed for %s: %s", normalized_url, exc)
         result = await _workday_html_detail_fallback(job, base_url, result)
     except Exception as exc:
-        logger.warning("[WorkdayFix] HTML/AI parse failed for %s: %s", normalized_url, exc)
+        logger.error("[FATAL] Workday AI failed: %s", str(exc))
+        raise
 
     return result
 

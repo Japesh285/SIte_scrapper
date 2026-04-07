@@ -216,7 +216,9 @@ async def extract_with_ai_workday_full(text: str, known_fields: dict) -> dict:
 
     # Build AI input with FULL text (no filtering)
     ai_input = _build_ai_input_workday_full(text, known_fields)
+    logger.info("[AI CALL] payload_length=%d", len(ai_input))
 
+    # ── Call AI API ──
     try:
         async with httpx.AsyncClient(timeout=180) as client:  # Longer timeout for larger input
             resp = await client.post(
@@ -238,39 +240,53 @@ async def extract_with_ai_workday_full(text: str, known_fields: dict) -> dict:
             resp.raise_for_status()
             payload = resp.json()
             content = payload["choices"][0]["message"]["content"].strip()
+    except Exception as exc:
+        logger.error("[AI CALL ERROR] %s", str(exc))
+        return _empty_result()
 
+    # ── Log raw AI response ──
+    logger.info("[AI RAW RESPONSE] %s", str(content)[:1000])
+
+    # ── Parse response ──
+    try:
         # Strip possible markdown fences
         if content.startswith("```"):
             content = content.strip("`").split("\n", 1)[-1].rsplit("```", 1)[0]
 
         result = json.loads(content)
-
-        # ── Token tracking ─────────────────────────────────────
-        ai_usage = _extract_token_usage(payload, ai_input)
-        result["ai_usage"] = ai_usage
-        result["workday_full_context_stats"] = {
-            "original_text_length": len(text),
-            "filtering_applied": False,
-        }
-        logger.info(
-            "[AI] Workday FULL context — Tokens used: input=%d, output=%d, total=%d (from %d chars, NO filtering)",
-            ai_usage["input_tokens"],
-            ai_usage["output_tokens"],
-            ai_usage["total_tokens"],
-            len(text),
-        )
-        # ──────────────────────────────────────────────────────
-
-        # Enforce empty large fields
-        result.update(_EMPTY_FIELDS)
-
-        field_count = sum(1 for v in result.values() if v not in (None, "", []))
-        logger.info("[AI] Workday FULL context extraction — fields filled: %d/%d", field_count, len(_AI_FIELDS))
-        return result
-
-    except Exception as exc:
-        logger.error("[AI] Workday FULL context extraction failed: %s", exc)
+    except Exception as e:
+        logger.error("[AI PARSE ERROR] %s", str(e))
+        logger.error("[AI RESPONSE FULL] %s", content)
         return _empty_result()
+
+    # ── Token tracking ─────────────────────────────────────
+    try:
+        ai_usage = _extract_token_usage(payload, ai_input)
+    except Exception as exc:
+        logger.error("[AI TOKEN USAGE ERROR] %s", str(exc))
+        ai_usage = {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}
+
+    result["ai_usage"] = ai_usage
+    result["workday_full_context_stats"] = {
+        "original_text_length": len(text),
+        "filtering_applied": False,
+    }
+    logger.info(
+        "[AI] Workday FULL context — Tokens used: input=%d, output=%d, total=%d (from %d chars, NO filtering)",
+        ai_usage["input_tokens"],
+        ai_usage["output_tokens"],
+        ai_usage["total_tokens"],
+        len(text),
+    )
+    # ──────────────────────────────────────────────────────
+
+    # Enforce empty large fields
+    result.update(_EMPTY_FIELDS)
+
+    field_count = sum(1 for v in result.values() if v not in (None, "", []))
+    logger.info("[AI] Workday FULL context extraction — fields filled: %d/%d", field_count, len(_AI_FIELDS))
+    logger.info("[AI USAGE FINAL] %s", ai_usage)
+    return result
 
 
 def _build_ai_input_full(full_text: str, known_fields: dict) -> str:

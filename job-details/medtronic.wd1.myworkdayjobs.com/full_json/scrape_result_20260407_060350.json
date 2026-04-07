@@ -1,0 +1,215 @@
+{
+  "domain": "medtronic.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 21,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T06:03:50.868840",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "_R63512-1",
+      "title": "Senior Financial Analyst",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst_R63512-1",
+      "experience": "",
+      "locations": [
+        "Mounds View, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R63512-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Mounds View, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Today"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst_R63512-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R63496-1",
+      "title": "Senior Financial Analyst",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Senior-Financial-Analyst---Kim-B_R63496-1",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R63496-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Minneapolis, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Yesterday"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Senior-Financial-Analyst---Kim-B_R63496-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R63409-1",
+      "title": "Finance Analyst",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R63409-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Minneapolis, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 4 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R62042-2",
+      "title": "Financial Systems Analyst",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R62042-2",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Minneapolis, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 4 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R62450-1",
+      "title": "Senior Financial Analyst - Coronary",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+      "experience": "",
+      "locations": [
+        "Mounds View, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R62450-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Mounds View, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 5 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}
