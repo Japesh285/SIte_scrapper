@@ -223,21 +223,72 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
             jobs_detail.append(job_entry)
 
     else:
-        # ── DOM STRATEGY: Use Playwright + existing detail engine ──
+        # ── DOM STRATEGY: Force INTERACTIVE_DOM for ALL non-API flows ──
+        # No strategy selection — always max-extract every detail page
         from playwright.async_api import async_playwright
+        from app.job_detail_engine.utils.cleaner import prepare_ai_payload
+
         async with async_playwright() as playwright:
-            browser = await playwright.chromium.launch(headless=False)
+            browser = await playwright.chromium.launch(headless=True)
 
             for i, job_data in enumerate(jobs_raw):
                 job_url = job_data.get("url", "")
-                logger.info(f"[ScrapeDetails] {domain} DOM scraping job {i+1}/{len(jobs_raw)}: {job_url}")
+                logger.info(f"[ScrapeDetails] {domain} INTERACTIVE_DOM job {i+1}/{len(jobs_raw)}: {job_url}")
                 page = await browser.new_page()
+                meta = {}
+                ai_usage = {}
+                detail = {}
                 try:
-                    await page.goto(job_url, wait_until="domcontentloaded", timeout=30000)
-                    await page.wait_for_timeout(3000)
+                    # ── Max extraction: scroll, expand, wait for growth ──
+                    await page.goto(job_url, timeout=60000)
+                    try:
+                        await page.wait_for_load_state("networkidle")
+                    except Exception:
+                        logger.warning("[DETAIL] networkidle timeout for %s", job_url)
+                    await page.wait_for_timeout(2000)
+
+                    # Scroll to trigger lazy loading
+                    for _ in range(5):
+                        await page.mouse.wheel(0, 3000)
+                        await page.wait_for_timeout(1000)
+
+                    # Expand hidden sections
+                    try:
+                        buttons = await page.query_selector_all("button")
+                        for btn in buttons:
+                            try:
+                                text = (await btn.inner_text() or "").lower()
+                                if any(k in text for k in ["more", "expand", "show", "read"]):
+                                    await btn.click()
+                                    await page.wait_for_timeout(500)
+                            except Exception:
+                                continue
+                    except Exception as exc:
+                        logger.warning("[DETAIL] Button expansion failed: %s", exc)
+
+                    # Wait for DOM growth
+                    prev_len = 0
+                    for _ in range(5):
+                        html_snapshot = await page.content()
+                        curr_len = len(html_snapshot)
+                        if curr_len > prev_len * 1.2:
+                            prev_len = curr_len
+                            await page.wait_for_timeout(1000)
+                        else:
+                            break
+
                     html = await page.content()
-                    logger.info(f"[Engine] Calling extract_job_details (force_ai=True) for {job_url}")
-                    detail = await extract_job_details(html, force_ai=True)
+                    logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
+
+                    # ── Prepare AI payload — ONLY remove script/style/noscript ──
+                    payload = prepare_ai_payload(html)
+                    logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+
+                    if len(payload) < 2000:
+                        logger.warning("[WEAK DETAIL PAGE] url=%s length=%d", job_url, len(payload))
+
+                    # ── Send to AI for extraction ──
+                    detail = await extract_job_details(payload, force_ai=True, domain=domain)
                     meta = detail.pop("_meta", {})
                     ai_usage = detail.pop("ai_usage", {})
                     total_ai_tokens += ai_usage.get("total_tokens", 0)
@@ -277,7 +328,7 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                     additional_sections=detail.get("additional_sections") or [],
                     Scrap_json={
                         "url": job_url,
-                        "strategy": "dom",
+                        "strategy": "INTERACTIVE_DOM",
                         "parser_used": str(meta.get("parser_used", "")),
                         "confidence": meta.get("confidence", 0),
                         "ai_forced": meta.get("ai_forced", False),
@@ -524,22 +575,63 @@ async def scrape_hardcoded_job_details():
                 site_entry["jobs"].append(detail)
 
         elif job_urls:
-            # ── DOM STRATEGY: Use Playwright ──
+            # ── DOM STRATEGY: Force INTERACTIVE_DOM — max extraction ──
             try:
                 from playwright.async_api import async_playwright
+                from app.job_detail_engine.utils.cleaner import prepare_ai_payload
+
                 async with async_playwright() as playwright:
-                    browser = await playwright.chromium.launch(headless=False)
+                    browser = await playwright.chromium.launch(headless=True)
 
                     for i, job_url in enumerate(job_urls):
-                        logger.info(f"[DetailScraper] {domain} DOM scraping job {i+1}/{len(job_urls)}: {job_url}")
-                        logger.info("[DETAIL STRATEGY] Using DOM for job_url=%s", job_url)
+                        logger.info(f"[DetailScraper] {domain} INTERACTIVE_DOM job {i+1}/{len(job_urls)}: {job_url}")
                         page = await browser.new_page()
                         try:
-                            await page.goto(job_url, wait_until="domcontentloaded", timeout=30000)
-                            await page.wait_for_timeout(3000)
+                            # ── Max extraction ──
+                            await page.goto(job_url, timeout=60000)
+                            try:
+                                await page.wait_for_load_state("networkidle")
+                            except Exception:
+                                pass
+                            await page.wait_for_timeout(2000)
+
+                            for _ in range(5):
+                                await page.mouse.wheel(0, 3000)
+                                await page.wait_for_timeout(1000)
+
+                            try:
+                                buttons = await page.query_selector_all("button")
+                                for btn in buttons:
+                                    try:
+                                        text = (await btn.inner_text() or "").lower()
+                                        if any(k in text for k in ["more", "expand", "show", "read"]):
+                                            await btn.click()
+                                            await page.wait_for_timeout(500)
+                                    except Exception:
+                                        continue
+                            except Exception:
+                                pass
+
+                            prev_len = 0
+                            for _ in range(5):
+                                html_snapshot = await page.content()
+                                curr_len = len(html_snapshot)
+                                if curr_len > prev_len * 1.2:
+                                    prev_len = curr_len
+                                    await page.wait_for_timeout(1000)
+                                else:
+                                    break
+
                             html = await page.content()
-                            logger.info(f"[Engine] Calling extract_job_details for {job_url}")
-                            detail = await extract_job_details(html)
+                            logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
+
+                            payload = prepare_ai_payload(html)
+                            logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+
+                            if len(payload) < 2000:
+                                logger.warning("[WEAK DETAIL PAGE] url=%s length=%d", job_url, len(payload))
+
+                            detail = await extract_job_details(payload, force_ai=True, domain=domain)
                             meta = detail.pop("_meta", {})
                             logger.info(
                                 f"[Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "

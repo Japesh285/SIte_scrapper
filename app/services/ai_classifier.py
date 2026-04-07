@@ -6,14 +6,14 @@ from app.core.logger import logger
 SYSTEM_PROMPT = """You are selecting the best scraping strategy.
 
 Choose ONE:
-WORKDAY_API, GREENHOUSE_API, SIMPLE_API, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
+WORKDAY_API, GREENHOUSE_API, DYNAMIC_API, SIMPLE_API, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
 
 Rules:
 - Prefer matched = true
 - Prefer higher jobs_found
 - Prefer api_usable = true
 - Priority:
-  WORKDAY_API > GREENHOUSE_API > SIMPLE_API > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
+  WORKDAY_API > GREENHOUSE_API > DYNAMIC_API > SIMPLE_API > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
 - If none match → UNKNOWN
 - Do not guess
 
@@ -23,7 +23,9 @@ Return JSON:
 ALLOWED_TYPES = {
     "WORKDAY_API",
     "GREENHOUSE_API",
+    "DYNAMIC_API",
     "SIMPLE_API",
+    "INTERACTIVE_DOM",
     "DOM_LOAD_MORE",
     "DOM_INFINITE_SCROLL",
     "DOM_BROWSER",
@@ -82,32 +84,58 @@ async def classify_site(data: dict) -> dict:
 
 
 def _heuristic_classify(data: dict) -> dict:
-    """Fallback heuristic classification without AI."""
+    """Fallback heuristic classification without AI.
+
+    Priority:
+        WORKDAY_API > GREENHOUSE_API > DYNAMIC_API > SIMPLE_API > INTERACTIVE_DOM > DOM
+    """
     tests = data.get("tests", {})
+    browser_probe = data.get("browser_probe", {})
+
+    # ── DYNAMIC_API from browser probe ──────────────────────────────
+    dynamic_api = tests.get("dynamic_api", {})
+    dynamic_api_score = dynamic_api.get("best_score", 0)
+
+    # ── INTERACTIVE_DOM from browser probe ──────────────────────────
+    interactive_dom = tests.get("interactive_dom", {})
+    interactive_dom_matched = interactive_dom.get("matched", False)
 
     ranked_tests = [
         ("WORKDAY_API", tests.get("workday", {})),
         ("GREENHOUSE_API", tests.get("greenhouse", {})),
+        ("DYNAMIC_API", dynamic_api),
         ("SIMPLE_API", tests.get("simple_api", {})),
+        ("INTERACTIVE_DOM", interactive_dom),
         ("DOM_LOAD_MORE", tests.get("dom_load_more", {})),
         ("DOM_INFINITE_SCROLL", tests.get("dom_infinite_scroll", {})),
         ("DOM_BROWSER", tests.get("dom_browser", {})),
     ]
 
+    # For DYNAMIC_API: use best_score >= 5 as the matching criterion
+    # For INTERACTIVE_DOM: use the matched flag from the detector
+    def _is_viable(site_type: str, result: dict) -> bool:
+        if site_type == "DYNAMIC_API":
+            return dynamic_api_score >= 5
+        if site_type == "INTERACTIVE_DOM":
+            return interactive_dom_matched
+        return result.get("matched") and result.get("api_usable")
+
     viable_tests = [
         (site_type, result)
         for site_type, result in ranked_tests
-        if result.get("matched") and result.get("api_usable")
+        if _is_viable(site_type, result)
     ]
 
     if viable_tests:
         priority = {
-            "WORKDAY_API": 6,
-            "GREENHOUSE_API": 5,
+            "WORKDAY_API": 7,
+            "GREENHOUSE_API": 6,
+            "DYNAMIC_API": 5,
             "SIMPLE_API": 4,
-            "DOM_LOAD_MORE": 3,
-            "DOM_INFINITE_SCROLL": 2,
-            "DOM_BROWSER": 1,
+            "INTERACTIVE_DOM": 3,
+            "DOM_LOAD_MORE": 2,
+            "DOM_INFINITE_SCROLL": 1,
+            "DOM_BROWSER": 0,
         }
         site_type, result = max(
             viable_tests,

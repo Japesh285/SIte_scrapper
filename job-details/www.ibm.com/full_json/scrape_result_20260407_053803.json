@@ -1,0 +1,240 @@
+{
+  "domain": "www.ibm.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 134,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T05:38:03.630113",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "80942",
+      "title": "Industry Consultant-Consulting Services - 80942 - IBM",
+      "company_name": "IBM",
+      "job_link": "https://careers.ibm.com/careers/JobDetail?jobId=80942&source=WEB_Search_INDIA",
+      "experience": "5",
+      "locations": [
+        "Consulting Services\n                \n\n\n\n\n\n\nHyderabad, Telangana"
+      ],
+      "educational_qualifications": "Bachelor's Degree",
+      "required_skill_set": [
+        "Electronics product engineering",
+        "Semiconductor assembly and test",
+        "OSAT operations",
+        "Design validation",
+        "Foundry fabrication",
+        "Semiconductor MES systems",
+        "Communication skills"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "80942",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.ibm.com/careers/JobDetail?jobId=80942&source=WEB_Search_INDIA",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2176,
+        "output_tokens": 224,
+        "total_tokens": 2400
+      }
+    },
+    {
+      "id": "84249",
+      "title": "Quality Engineer-Test Management - 84249 - IBM",
+      "company_name": "IBM",
+      "job_link": "https://careers.ibm.com/careers/JobDetail?jobId=84249&source=WEB_Search_INDIA",
+      "experience": "4-12",
+      "locations": [
+        "Test Management\n                \n\n\n\n\n\n\nPune, Maharashtra"
+      ],
+      "educational_qualifications": "Bachelor's Degree",
+      "required_skill_set": [
+        "Agile",
+        "Work Soft",
+        "TOSCA",
+        "Microfocus ALM",
+        "ADO",
+        "QTEST",
+        "JIRA"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "84249",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.ibm.com/careers/JobDetail?jobId=84249&source=WEB_Search_INDIA",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 5,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2161,
+        "output_tokens": 190,
+        "total_tokens": 2351
+      }
+    },
+    {
+      "id": "85207",
+      "title": "Data Engineer-Data Platforms-Google - 85207 - IBM",
+      "company_name": "IBM",
+      "job_link": "https://careers.ibm.com/careers/JobDetail?jobId=85207&source=WEB_Search_INDIA",
+      "experience": "",
+      "locations": [
+        "Google\n                \n\n\n\n\n\n\nHyderabad, Telangana"
+      ],
+      "educational_qualifications": "Bachelor's Degree",
+      "required_skill_set": [
+        "AWS",
+        "Azure",
+        "Docker",
+        "Java",
+        "Kafka",
+        "Kubernetes",
+        "MySQL",
+        "React",
+        "SQL",
+        "Spring"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "85207",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.ibm.com/careers/JobDetail?jobId=85207&source=WEB_Search_INDIA",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 4,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2146,
+        "output_tokens": 170,
+        "total_tokens": 2316
+      }
+    },
+    {
+      "id": "82917",
+      "title": "Quality Engineer-FullStack - 82917 - IBM",
+      "company_name": "IBM",
+      "job_link": "https://careers.ibm.com/careers/JobDetail?jobId=82917&source=WEB_Search_INDIA",
+      "experience": "5-8 years",
+      "locations": [
+        "FullStack\n                \n\n\n\n\n\n\nChennai, Tamil Nadu"
+      ],
+      "educational_qualifications": "Bachelor's Degree",
+      "required_skill_set": [
+        "Java",
+        "JavaScript",
+        "NoSQL",
+        "SOAP UI",
+        "CA Lisa",
+        "Para soft",
+        "Rest Assured",
+        "WebSphere MQ",
+        "IBM Integration Bus",
+        "API Test automation"
+      ],
+      "remote_type": "hybrid",
+      "posted_on": "",
+      "job_id": "82917",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.ibm.com/careers/JobDetail?jobId=82917&source=WEB_Search_INDIA",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 5,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2158,
+        "output_tokens": 205,
+        "total_tokens": 2363
+      }
+    },
+    {
+      "id": "83737",
+      "title": "Package Consultant-SAP HANA Analytics - 83737 - IBM",
+      "company_name": "IBM",
+      "job_link": "https://careers.ibm.com/careers/JobDetail?jobId=83737&source=WEB_Search_INDIA",
+      "experience": "4 - 9",
+      "locations": [
+        "SAP HANA Analytics\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+      ],
+      "educational_qualifications": "Bachelor's Degree",
+      "required_skill_set": [
+        "Go"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "83737",
+      "salary": "Package Consultant-SAP HANA Analytics - 83737 - IBM",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.ibm.com/careers/JobDetail?jobId=83737&source=WEB_Search_INDIA",
+        "strategy": "INTERACTIVE_DOM",
+        "parser_used": "html_basic",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2133,
+        "output_tokens": 171,
+        "total_tokens": 2304
+      }
+    }
+  ]
+}
