@@ -1,0 +1,265 @@
+{
+  "domain": "medtronic.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 21,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T06:12:24.131713",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "R63512-1",
+      "title": "Senior Financial Analyst",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst_R63512-1",
+      "experience": "4+ years in Finance and/or Accounting (2+ years with an advanced degree)",
+      "locations": [
+        "USA-MN Mounds View Central, United States of America"
+      ],
+      "educational_qualifications": "Bachelor's Degree",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-06",
+      "job_id": "R63512-1",
+      "salary": "$85,600.00 - $128,400.00",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Mounds View, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Today"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst_R63512-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "4+ years in finance or accounting",
+          "Experience with financial systems",
+          "Strong communication skills",
+          "Attention to detail",
+          "Problem-solving skills",
+          "Ability to work under pressure",
+          "Teamwork ability",
+          "Analytical skills",
+          "Prior experience in a global organization",
+          "MBA/CPA/CMA (nice to have)"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 5774,
+        "output_tokens": 359,
+        "total_tokens": 6133
+      }
+    },
+    {
+      "id": "R63496-1",
+      "title": "Senior Financial Analyst",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Senior-Financial-Analyst---Kim-B_R63496-1",
+      "experience": "Minimum of 4 years of relevant experience, or advanced degree with a minimum of 2 years relevant experience",
+      "locations": [
+        "USA-MN OHQ Corporate, United States of America"
+      ],
+      "educational_qualifications": "Bachelor’s degree required",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-05",
+      "job_id": "R63496-1",
+      "salary": "$85,600.00 - $128,400.00",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Minneapolis, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Yesterday"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Senior-Financial-Analyst---Kim-B_R63496-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "Experience with SAP",
+          "Experience with OneStream",
+          "Strong analytical skills",
+          "Critical thinking skills",
+          "Ability to identify key trends",
+          "Experience in large, complex organizations",
+          "Exposure to Operations or accounting for Operations",
+          "Proficient in Microsoft Office suite",
+          "Ability to develop solutions",
+          "Innovative problem-solving"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 5484,
+        "output_tokens": 464,
+        "total_tokens": 5948
+      }
+    },
+    {
+      "id": "R63409-1",
+      "title": "Finance Analyst",
+      "company_name": "MDU Medtronic USA Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+      "experience": "2+ years in finance or accounting",
+      "locations": [
+        "USA-MN Mounds View Central, United States of America"
+      ],
+      "educational_qualifications": "Bachelor's degree",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "R63409-1",
+      "salary": "$68,800.00 - $103,200.00",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Minneapolis, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 4 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "2+ years experience in finance or accounting",
+          "Experience with financial systems and planning tools",
+          "Strong analytical skills",
+          "Experience with forecasting, budgeting, or capital processes",
+          "Exposure to month-end close, P&L reporting, or cost analysis",
+          "Experience using Power BI or financial reporting systems"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 6000,
+        "output_tokens": 439,
+        "total_tokens": 6439
+      }
+    },
+    {
+      "id": "R62042-2",
+      "title": "Financial Systems Analyst",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+      "experience": "2+ years in finance or working with ERP systems",
+      "locations": [
+        "USA-MN OHQ Corporate, United States of America"
+      ],
+      "educational_qualifications": "Bachelor’s degree",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "R62042-2",
+      "salary": "$73,600.00 - $110,400.00",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Minneapolis, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 4 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "Bachelor’s degree in finance, accounting, computer science, or related field",
+          "Experience with ERP systems such as SAP",
+          "Experience with AI-powered tools (such as Copilot)",
+          "Exposure to OneStream or similar EPM platforms",
+          "Continuous improvement or Lean Six Sigma experience",
+          "Strong knowledge of accounting principles",
+          "Financial reporting experience",
+          "Skilled in data analysis and presenting findings",
+          "Excellent analytical and communication skills",
+          "Ability to work collaboratively",
+          "Understanding of Medtronic financial systems and processes"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 5376,
+        "output_tokens": 425,
+        "total_tokens": 5801
+      }
+    },
+    {
+      "id": "R62450-1",
+      "title": "Senior Financial Analyst - Coronary",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+      "experience": "4+ years of Finance or Accounting experience (or 2+ years with an advanced degree)",
+      "locations": [
+        "USA-MN Mounds View South, United States of America"
+      ],
+      "educational_qualifications": "Bachelor's degree plus 4+ years of Finance or Accounting experience (or 2+ years with an advanced degree)",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-01",
+      "job_id": "R62450-1",
+      "salary": "$85,600.00 - $128,400.00",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "Mounds View, Minnesota, United States of America"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 5 Days Ago"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": [
+          "Bachelor’s degree in Finance, Accounting, Economics, or related field",
+          "MBA or advanced degree preferred",
+          "U.S. work authorization or unrestricted work permit",
+          "Experience with financial modeling and forecasting",
+          "Ability to manage multiple priorities",
+          "Excellent communication and collaboration skills",
+          "Experience supporting strategic initiatives",
+          "Proficiency in financial analysis tools"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 5230,
+        "output_tokens": 394,
+        "total_tokens": 5624
+      }
+    }
+  ]
+}
