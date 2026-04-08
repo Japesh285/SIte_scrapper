@@ -1,156 +1,234 @@
-import re
-import json
 import asyncio
-import httpx
-from urllib.parse import urlparse
+import json
+import logging
+import os
+from typing import Any, Dict, List, Optional
 
-# 🔧 ================= CONFIG =================
-CAREERS_URL = "https://aig.wd1.myworkdayjobs.com/aig"
-MAX_JOBS = 20
-OUTPUT_FILE = "workday_jobs.json"
-# ============================================
+import pandas as pd
+import aiofiles
+from openai import AsyncOpenAI
+from dotenv import load_dotenv
+from bs4 import BeautifulSoup
 
+# =========================
+# LOAD ENV
+# =========================
+load_dotenv()
 
-def parse_workday_url(url: str):
-    """Extract tenant, server, and site from Workday URL"""
-    pattern = r"https://([^.]+)\.(wd\d+)\.myworkdayjobs\.com/(?:[a-z]{2}-[A-Z]{2}/)?([^/?]+)"
-    match = re.match(pattern, url)
+API_KEY = os.getenv("OPENAI_API_KEY")
 
-    if not match:
-        raise ValueError(f"❌ Could not parse Workday URL: {url}")
+if not API_KEY:
+    raise ValueError("❌ OPENAI_API_KEY not found in .env")
 
-    tenant, server, site = match.groups()
+# =========================
+# CONFIG
+# =========================
+INPUT_FILE = "/home/hp_jp/ai_scrapper/raw_json/aig.wd1.myworkdayjobs.com/scrape_result_20260408_082622.json"
+OUTPUT_JSON = "parsed_jobs.json"
+OUTPUT_XLSX = "aig.parsed_jobs.xlsx"
 
-    return {
-        "tenant": tenant,
-        "server": server,
-        "site": site,
-        "base": f"https://{tenant}.{server}.myworkdayjobs.com"
-    }
+DEBUG_PROMPTS = "debug_prompts.jsonl"
+DEBUG_OUTPUT = "debug_llm_output.jsonl"
 
+MODEL = "gpt-4.1-nano"
 
-def normalize_external_path(path: str) -> str:
-    """🔥 CRITICAL FIX for your current bug"""
-    if not path:
-        return ""
+CONCURRENT_REQUESTS = 5
+REQUEST_DELAY = 0.3
+MAX_DESCRIPTION_LENGTH = 4000
 
-    path = path.strip()
-    path = path.lstrip("/")  # remove leading /
+# =========================
+# LOGGING
+# =========================
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
 
-    if path.startswith("job/"):
-        path = path[len("job/"):]
+# =========================
+# CLIENT
+# =========================
+client = AsyncOpenAI(api_key=API_KEY)
 
-    return path
+# =========================
+# UTIL: CLEAN HTML
+# =========================
+def clean_html(html: str) -> str:
+    return BeautifulSoup(html or "", "html.parser").get_text(" ", strip=True)
 
-
-async def fetch_listings(client, config):
-    """Fetch job listings"""
-    url = f"{config['base']}/wday/cxs/{config['tenant']}/{config['site']}/jobs"
-
-    print(f"🚀 Listings API: {url}")
-
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0",
-        "Referer": f"{config['base']}/en-US/{config['site']}",
-        "Origin": config["base"]
-    }
-
-    payload = {
-        "limit": MAX_JOBS,
-        "offset": 0,
-        "appliedFacets": {},
-        "searchText": ""
-    }
-
-    res = await client.post(url, json=payload, headers=headers)
-    res.raise_for_status()
-
-    data = res.json()
-    jobs = data.get("jobPostings", [])
-
-    print(f"📦 Fetched {len(jobs)} jobs")
-
-    return jobs
-
-
-async def fetch_job_detail(client, config, external_path):
-    """Fetch job detail using correct API"""
-    clean_path = normalize_external_path(external_path)
-
-    url = f"{config['base']}/wday/cxs/{config['tenant']}/{config['site']}/job/{clean_path}"
-
-    print(f"🔎 Fetching: {url}")
-
-    headers = {
-        "Accept": "application/json",
-        "User-Agent": "Mozilla/5.0",
-        "Referer": f"{config['base']}/en-US/{config['site']}"
-    }
-
+# =========================
+# UTIL: SAFE JSON
+# =========================
+def safe_json_load(text: str) -> Optional[Dict]:
     try:
-        res = await client.get(url, headers=headers)
-        res.raise_for_status()
-        return res.json()
-    except Exception as e:
-        print(f"⚠️ Failed: {e}")
+        return json.loads(text)
+    except:
         return None
 
+# =========================
+# DEBUG LOGGER
+# =========================
+async def write_jsonl(file: str, data: Dict):
+    async with aiofiles.open(file, "a", encoding="utf-8") as f:
+        await f.write(json.dumps(data, ensure_ascii=False) + "\n")
 
-def extract_job(listing, detail):
-    """Combine listing + detail into clean structure"""
-    job = {
-        "title": listing.get("title"),
-        "location": listing.get("locationsText"),
-        "posted_date": listing.get("postedOn"),
-        "external_path": listing.get("externalPath"),
-        "detail_url": None,
-        "description": "",
-        "_raw_listing": listing,
-        "_raw_detail": detail
+# =========================
+# PROMPT
+# =========================
+SYSTEM_PROMPT = """
+You are a strict JSON generator.
+
+Return ONLY valid JSON.
+No markdown. No explanation.
+
+Schema:
+{
+  "id": string,
+  "title": string,
+  "company_name": string,
+  "job_link": string,
+  "experience": string,
+  "locations": [string],
+  "educational_qualifications": string,
+  "required_skill_set": [string],
+  "remote_type": string,
+  "posted_on": string,
+  "job_id": string,
+  "salary": string,
+  "is_active": boolean,
+  "first_seen": string,
+  "last_seen": string,
+  "additional_sections": [
+    {
+      "section_title": string,
+      "content": string
+    }
+  ],
+  "Scrap_json": object
+}
+"""
+
+def build_prompt(job: Dict[str, Any]) -> str:
+    cleaned_description = clean_html(job.get("description", ""))[:MAX_DESCRIPTION_LENGTH]
+
+    payload = {
+        "title": job.get("title"),
+        "location": job.get("location"),
+        "url": job.get("url"),
+        "description": cleaned_description,
+        "raw_api": job.get("_raw_api"),
+        "jobPostingInfo": job.get("_raw_detail", {}).get("jobPostingInfo"),
+        "hiringOrganization": job.get("_raw_detail", {}).get("hiringOrganization"),
     }
 
-    if detail:
-        job_info = detail.get("jobPostingInfo", {})
+    return f"""
+Extract structured job data.
 
-        job["description"] = job_info.get("jobDescription", "")
-        job["detail_url"] = job_info.get("externalUrl")
+Rules:
+- Fill all fields
+- Clean + infer where needed
+- Use "" or [] if missing
+- DO NOT output anything except JSON
 
-    return job
+Job Data:
+{json.dumps(payload, ensure_ascii=False)}
+"""
 
+# =========================
+# PROCESS ONE JOB
+# =========================
+async def process_job(job: Dict, semaphore: asyncio.Semaphore) -> Optional[Dict]:
+    async with semaphore:
+        try:
+            prompt = build_prompt(job)
 
+            # Save prompt
+            await write_jsonl(DEBUG_PROMPTS, {
+                "job_title": job.get("title"),
+                "prompt": prompt
+            })
+
+            # Retry logic
+            for attempt in range(3):
+                try:
+                    response = await client.chat.completions.create(
+                        model=MODEL,
+                        messages=[
+                            {"role": "system", "content": SYSTEM_PROMPT},
+                            {"role": "user", "content": prompt},
+                        ],
+                        temperature=0
+                    )
+
+                    raw_output = response.choices[0].message.content
+
+                    # Save raw output
+                    await write_jsonl(DEBUG_OUTPUT, {
+                        "job_title": job.get("title"),
+                        "response": raw_output
+                    })
+
+                    parsed = safe_json_load(raw_output)
+
+                    if not parsed:
+                        raise ValueError("Invalid JSON")
+
+                    # Add token usage
+                    usage = response.usage
+                    parsed["ai_usage"] = {
+                        "input_tokens": usage.prompt_tokens,
+                        "output_tokens": usage.completion_tokens,
+                        "total_tokens": usage.total_tokens
+                    }
+
+                    logging.info(f"✅ {job.get('title')}")
+                    await asyncio.sleep(REQUEST_DELAY)
+
+                    return parsed
+
+                except Exception as e:
+                    logging.warning(f"Retry {attempt+1} failed: {job.get('title')} | {e}")
+                    await asyncio.sleep(1)
+
+            logging.error(f"❌ Failed after retries: {job.get('title')}")
+            return None
+
+        except Exception as e:
+            logging.error(f"🔥 Error: {job.get('title')} | {e}")
+            return None
+
+# =========================
+# MAIN
+# =========================
 async def main():
-    print(f"🚀 Scraping: {CAREERS_URL}")
+    # Load input
+    with open(INPUT_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    config = parse_workday_url(CAREERS_URL)
+    jobs: List[Dict] = data.get("jobs", [])
+    logging.info(f"Total jobs: {len(jobs)}")
 
-    print(f"🔧 Parsed Config: {config}")
+    semaphore = asyncio.Semaphore(CONCURRENT_REQUESTS)
 
-    results = []
+    tasks = [process_job(job, semaphore) for job in jobs]
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        listings = await fetch_listings(client, config)
+    results = await asyncio.gather(*tasks)
 
-        for i, job in enumerate(listings[:MAX_JOBS], 1):
-            external_path = job.get("externalPath")
+    parsed_jobs = [r for r in results if r]
 
-            if not external_path:
-                continue
+    logging.info(f"Parsed jobs: {len(parsed_jobs)}")
 
-            detail = await fetch_job_detail(client, config, external_path)
+    # Save JSON
+    with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
+        json.dump(parsed_jobs, f, indent=2, ensure_ascii=False)
 
-            combined = extract_job(job, detail)
-            results.append(combined)
+    # Save Excel
+    df = pd.json_normalize(parsed_jobs)
+    df.to_excel(OUTPUT_XLSX, index=False)
 
-            print(f"✅ [{i}] {combined['title']} | Desc length: {len(combined['description'])}")
+    logging.info("🎉 Pipeline complete")
 
-    # 💾 Save JSON
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
-
-    print(f"\n💾 Saved {len(results)} jobs → {OUTPUT_FILE}")
-
-
+# =========================
+# RUN
+# =========================
 if __name__ == "__main__":
     asyncio.run(main())
