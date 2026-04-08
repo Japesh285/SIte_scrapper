@@ -2,8 +2,9 @@ import httpx
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.detectors.workday import (
-    _parse_workday_config_from_api_url,
-    _fetch_workday_job_detail,
+    parse_workday_config,
+    fetch_workday_job_detail,
+    normalize_external_path,
 )
 
 from app.detectors import (
@@ -587,6 +588,8 @@ async def _fetch_workday_with_raw_data(
     from app.detectors.workday import (
         _build_workday_applied_facets,
         _normalize_workday_job,
+        fetch_workday_job_detail,
+        parse_workday_config,
     )
     from app.core.logger import logger
 
@@ -614,7 +617,7 @@ async def _fetch_workday_with_raw_data(
         offset = 0
         limit = 20
 
-        config = _parse_workday_config_from_api_url(api_url)
+        config = parse_workday_config(api_url)
 
         while True:
             try:
@@ -631,10 +634,21 @@ async def _fetch_workday_with_raw_data(
                         "Accept": "application/json",
                     },
                 )
-                response.raise_for_status()
+
+                # Validate status code
+                if response.status_code != 200:
+                    logger.warning("[WORKDAY] Listing fetch failed status=%d", response.status_code)
+                    break
+
+                # Validate content-type before .json()
+                content_type = response.headers.get("content-type", "")
+                if "application/json" not in content_type:
+                    logger.warning("[WORKDAY] Non-JSON response (content-type=%s)", content_type)
+                    break
+
                 payload = response.json()
-            except Exception as e:
-                logger.exception("[WORKDAY] listings API failed: %s", e)
+            except (ValueError, httpx.HTTPError) as e:
+                logger.warning("[WORKDAY] listings API failed: %s", e)
                 break
 
             postings = payload.get("jobPostings") or []
@@ -657,11 +671,11 @@ async def _fetch_workday_with_raw_data(
                     # ✅ attach raw listing
                     normalized["_raw_api"] = posting
 
-                    # ── DETAIL FETCH ───────────────────────
+                    # ── DETAIL FETCH via API ONLY ──────────────────
                     detail = None
                     if config:
                         try:
-                            detail = await _fetch_workday_job_detail(
+                            detail = await fetch_workday_job_detail(
                                 client,
                                 config,
                                 posting.get("externalPath", ""),

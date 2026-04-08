@@ -4,37 +4,20 @@ Rules:
 - If strategy == "api" → extract details from API response, NO HTML scraping
 - If strategy == "dom" → use Playwright to fetch job detail pages
 - NEVER mix API listing with DOM detail scraping
+- WORKDAY_API: use ONLY Workday detail API endpoint, no HTML scraping
 """
 
 import httpx
 from pathlib import Path
 
 from app.core.logger import logger
+from app.detectors.workday import (
+    fetch_workday_job_detail,
+    normalize_external_path,
+    parse_workday_config,
+)
 
 WORKDAY_HTML_DIR = Path("raw_html") / "workday"
-
-
-def _save_workday_html(html: str, job_id: str, domain: str) -> str | None:
-    """Save raw Workday HTML to disk for debugging/analysis."""
-    try:
-        from datetime import datetime
-
-        domain_dir = WORKDAY_HTML_DIR / domain
-        domain_dir.mkdir(parents=True, exist_ok=True)
-
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        safe_id = job_id.replace("/", "_").replace("\\", "_") if job_id else "unknown"
-        filename = f"{safe_id}_{timestamp}.html"
-        file_path = domain_dir / filename
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(html)
-
-        logger.info("[WorkdayHTML] Saved to %s (%d bytes)", file_path, len(html))
-        return str(file_path)
-    except Exception as exc:
-        logger.warning("[WorkdayHTML] Failed to save HTML: %s", exc)
-        return None
 
 
 # ---------------------------------------------------------------------------
@@ -118,6 +101,10 @@ async def _extract_api_details(
         "additional_sections": [],
     }
 
+    # ── Workday: use detail API endpoint ONLY ────────────────────
+    if site_type == "WORKDAY_API":
+        return await _workday_api_detail(job, api_url, base_url, client, result)
+
     # ── Try to use raw API data already attached to job ────────────
     raw = job.get("_raw_api")
     if raw and isinstance(raw, dict):
@@ -125,15 +112,7 @@ async def _extract_api_details(
             "[DETAIL STRATEGY] Using API for job_id=%s (from raw listing data)",
             raw.get("externalPath") or raw.get("id") or raw.get("reqId") or "unknown",
         )
-        # Workday: also fetch HTML page (raw API lacks full description)
-        if site_type == "WORKDAY_API":
-            result = _enrich_from_raw_api(result, raw, site_type)
-            return await _workday_html_detail(job, base_url, client, result)
         return _enrich_from_raw_api(result, raw, site_type)
-
-    # ── Workday: fetch public HTML page (API detail endpoint broken)
-    if site_type == "WORKDAY_API":
-        return await _workday_html_detail(job, base_url, client, result)
 
     # ── Greenhouse: call detail API ───────────────────────────────
     if site_type == "GREENHOUSE_API":
@@ -150,201 +129,86 @@ async def _extract_api_details(
     return result
 
 
-# ── Workday HTML detail (public URL, no API) ──────────────────────
+# ── Workday API detail — clean, no HTML ──────────────────────────────
 
-def _normalize_workday_url(job_url: str) -> str:
-    """Normalize Workday job URL to working public HTML format.
-
-    Broken:  .../job/job/Location/Title_R123
-    Working: .../job/Title_R123
-    """
-    import re
-    from urllib.parse import urlparse, urlunparse
-
-    parsed = urlparse(job_url)
-    path = parsed.path
-
-    # Pattern 1: /job/job/Location/Title_R123 → /job/Title_R123
-    path = re.sub(r"(/job)/job/[^/]+/([^/]+)$", r"\1/\2", path)
-
-    # Pattern 2: duplicate /job/ segments
-    path = re.sub(r"(/job){2,}/", r"\1/", path)
-
-    # Ensure /en-US/ locale is present (required for Workday HTML pages)
-    if "/en-US/" not in path:
-        # Insert after career site name
-        # Pattern: /{site}/job/... → /{site}/en-US/job/...
-        parts = path.strip("/").split("/")
-        if len(parts) >= 3:
-            # parts[0] = site, parts[1] = job, ...
-            if parts[1] == "job":
-                path = "/" + parts[0] + "/en-US/" + "/".join(parts[1:])
-
-    normalized = urlunparse((parsed.scheme, parsed.netloc, path, "", "", ""))
-    return normalized
-
-
-def _extract_job_id_from_workday_url(url: str) -> str:
-    """Extract job ID (slug) from Workday URL.
-
-    e.g. AI-Data-Science-Engineer-II_R61966-1 → R61966-1
-    """
-    import re
-    # Look for the final slug pattern: something like _R\d+ or _\d+
-    match = re.search(r"_([A-Za-z]?[\d]+[-\w]*)$", url.rstrip("/"))
-    if match:
-        return match.group(0)  # Include the underscore
-    # Fallback: last path segment
-    return url.rstrip("/").split("/")[-1]
-
-
-async def _workday_html_detail(
+async def _workday_api_detail(
     job: dict,
+    api_url: str,
     base_url: str,
     client: httpx.AsyncClient | None,
     result: dict,
 ) -> dict:
-    """Fetch Workday job detail from public HTML page (no API endpoint)."""
-    import re
-    from bs4 import BeautifulSoup
+    """Fetch Workday job detail via API ONLY. No HTML, no DOM fallback."""
+    external_path = job.get("external_path") or job.get("_raw_api", {}).get("externalPath", "")
 
-    job_url = job.get("url", "")
-    if not job_url:
-        logger.warning("[WorkdayFix] No URL for job %s", job.get("title", "unknown"))
-        return result
+    # If we already have raw detail data, use it
+    raw_detail = job.get("_raw_detail")
+    if raw_detail and isinstance(raw_detail, dict):
+        logger.info("[WORKDAY API] Using cached detail for externalPath=%s", external_path)
+        return _enrich_from_workday_detail(result, raw_detail)
 
-    # Normalize the URL
-    normalized_url = _normalize_workday_url(job_url)
-    job_id = _extract_job_id_from_workday_url(job_url)
-
-    logger.info("[WorkdayFix] Using normalized URL: %s", normalized_url)
-    logger.info("[DETAIL STRATEGY] Using DOM for job_id=%s", job_id)
-
-    result["job_id"] = job_id
-    result["title"] = result.get("title") or job.get("title", "")
-    result["location"] = result.get("location") or job.get("location", "")
-
-    # Extract domain for saving path
-    domain = base_url
-    if "://" in base_url:
-        domain = base_url.split("://", 1)[1].split("/")[0]
-
-    try:
-        close_client = client is None
-        if close_client:
-            client = httpx.AsyncClient(timeout=30, follow_redirects=True)
-
-        # Fetch with browser-like headers to avoid bot detection
-        headers = {
-            "User-Agent": (
-                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            ),
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.5",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Connection": "keep-alive",
-            "Upgrade-Insecure-Requests": "1",
-        }
-        response = await client.get(normalized_url, headers=headers)
-        response.raise_for_status()
-        html = response.text
-
-        # Save raw HTML for debugging/analysis
-        _save_workday_html(html, job_id, domain)
-
-        # Check for "Sign In" page — if found, URL normalization failed
-        if "Sign In" in html and "sign-in" in html.lower():
-            logger.warning("[WorkdayFix] Got sign-in page for %s", normalized_url)
-            if close_client:
-                await client.aclose()
+    # Parse config from API URL
+    config = parse_workday_config(api_url)
+    if not config:
+        # Try to parse from base_url as fallback
+        if api_url:
+            config = parse_workday_config(api_url)
+        if not config:
+            logger.warning("[WORKDAY API] Cannot parse config from api_url=%s", api_url)
+            # Return what we have from listing
+            raw_listing = job.get("_raw_api")
+            if raw_listing and isinstance(raw_listing, dict):
+                return _enrich_from_raw_api(result, raw_listing, "WORKDAY_API")
             return result
 
+    close_client = client is None
+    if close_client:
+        client = httpx.AsyncClient(timeout=30, follow_redirects=True)
+
+    try:
+        detail = await fetch_workday_job_detail(client, config, external_path)
+        if detail:
+            return _enrich_from_workday_detail(result, detail)
+        else:
+            logger.warning("[WORKDAY API] Detail fetch returned None for %s", external_path)
+    except Exception as exc:
+        logger.error("[WORKDAY API] Detail fetch error: %s", exc)
+    finally:
         if close_client:
             await client.aclose()
 
-        # ── Pass HTML to AI detail engine (same as DOM mode) ──
-        from app.job_detail_engine.orchestrator import extract_job_details
-        # Pass site_type to enable Workday full context mode
-        ai_detail = await extract_job_details(html, force_ai=True, site_type="WORKDAY_API", domain=domain)
-        ai_detail.pop("_meta", None)
-        ai_usage = ai_detail.pop("ai_usage", {})
-
-        # Merge: AI result takes priority, listing data fills gaps
-        for key in ("title", "description", "experience", "education", "salary",
-                     "posted_on", "employment_type", "company_name", "remote_type",
-                     "qualifications", "skills", "required_skills", "additional_sections"):
-            if ai_detail.get(key):
-                result[key] = ai_detail[key]
-
-        result["job_id"] = ai_detail.get("job_id") or result.get("job_id")
-        result["location"] = ai_detail.get("location") or result.get("location")
-
-        # Attach AI usage so the route can log it
-        result["ai_usage"] = ai_usage
-        logger.info("[AI] Workday tokens — input=%d, output=%d, total=%d",
-                    ai_usage.get("input_tokens", 0),
-                    ai_usage.get("output_tokens", 0),
-                    ai_usage.get("total_tokens", 0))
-
-    except httpx.HTTPError as exc:
-        logger.warning("[WorkdayFix] HTTP fetch failed for %s: %s", normalized_url, exc)
-        result = await _workday_html_detail_fallback(job, base_url, result)
-    except Exception as exc:
-        logger.error("[FATAL] Workday AI failed: %s", str(exc))
-        raise
-
+    # Fallback: return listing data + any raw API data we have
+    raw_listing = job.get("_raw_api")
+    if raw_listing and isinstance(raw_listing, dict):
+        return _enrich_from_raw_api(result, raw_listing, "WORKDAY_API")
     return result
 
 
-async def _workday_html_detail_fallback(
-    job: dict,
-    base_url: str,
-    result: dict,
-) -> dict:
-    """Fallback URL format for Workday jobs."""
-    from urllib.parse import urlparse
+def _enrich_from_workday_detail(result: dict, detail: dict) -> dict:
+    """Enrich result from Workday detail API JSON response."""
+    job_info = detail.get("jobPostingInfo", {})
 
-    job_url = job.get("url", "")
-    parsed = urlparse(job_url)
-    path_parts = [p for p in parsed.path.split("/") if p]
+    result["title"] = job_info.get("title") or result.get("title", "")
+    result["location"] = job_info.get("location") or result.get("location", "")
+    result["description"] = job_info.get("jobDescription", "")
+    result["job_id"] = job_info.get("jobReqId") or job_info.get("jobPostingId") or result.get("job_id", "")
+    result["posted_on"] = job_info.get("postedOn") or job_info.get("startDate", "")
+    result["employment_type"] = job_info.get("timeType", "")
+    result["company_name"] = detail.get("hiringOrganization", {}).get("name", "")
 
-    if len(path_parts) >= 3:
-        # Alternative: /{site}/job/{location}/{slug}
-        site = path_parts[0]
-        # Try with location in path
-        alt_url = f"{parsed.scheme}://{parsed.netloc}/{site}/job/{'/'.join(path_parts[1:])}"
-        logger.info("[WorkdayFix] Trying fallback URL: %s", alt_url)
+    # Location enrichment from requisition
+    req_location = job_info.get("jobRequisitionLocation", {})
+    if req_location and not result.get("location"):
+        desc = req_location.get("descriptor", "")
+        if desc:
+            result["location"] = desc
 
-    # Return listing data as-is if fallback also fails
+    # Country
+    country = job_info.get("country", {})
+    if country and not result.get("location"):
+        result["location"] = country.get("descriptor", "")
+
     return result
-
-
-def _extract_workday_description(soup) -> str:
-    """Extract job description text from Workday page."""
-    import re
-
-    # Try data-automation tags first
-    desc_el = soup.find({"data-automation": re.compile(r"job.*description", re.I)})
-    if desc_el:
-        text = desc_el.get_text(separator="\n", strip=True)
-        if text and len(text) > 50:
-            return text
-
-    # Try finding the largest text block in the main content area
-    main = soup.find("main") or soup.find("article") or soup.find("div", {"role": "main"})
-    if main:
-        paragraphs = main.find_all("p")
-        if paragraphs:
-            text = "\n".join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
-            if len(text) > 100:
-                return text
-
-    # Fallback: get all text (cleaned)
-    text = soup.get_text(separator="\n", strip=True)
-    # Remove very short lines (likely navigation/menu items)
-    lines = [line for line in text.split("\n") if len(line.strip()) > 10]
-    return "\n".join(lines[:100])  # Cap to avoid huge strings
 
 
 # ── Greenhouse API detail ──────────────────────────────────────────

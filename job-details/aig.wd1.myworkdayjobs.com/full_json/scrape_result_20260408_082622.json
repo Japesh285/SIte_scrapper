@@ -1,0 +1,170 @@
+{
+  "domain": "aig.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 598,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T08:26:22.340532",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "JR2601392",
+      "title": "Head of Compliance, Singapore",
+      "company_name": "AIG Asia Pacific Insurance Pte. Ltd.",
+      "job_link": "https://aig.wd1.myworkdayjobs.com/job/Singapore/Head-of-Compliance--Singapore_JR2601392",
+      "experience": "",
+      "locations": [
+        "Singapore"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "JR2601392",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://aig.wd1.myworkdayjobs.com/job/Singapore/Head-of-Compliance--Singapore_JR2601392",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "JR2601097",
+      "title": "Singapore Counsel",
+      "company_name": "AIG APAC Holdings Pte Ltd",
+      "job_link": "https://aig.wd1.myworkdayjobs.com/job/Singapore/Singapore-Counsel_JR2601097",
+      "experience": "",
+      "locations": [
+        "Singapore"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "JR2601097",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://aig.wd1.myworkdayjobs.com/job/Singapore/Singapore-Counsel_JR2601097",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "JR2601281",
+      "title": "Technical Assistant, Specialty",
+      "company_name": "Talbot Risk Services Pte Ltd (TU2)",
+      "job_link": "https://aig.wd1.myworkdayjobs.com/job/Singapore/Technical-Assistant--Specialty_JR2601281",
+      "experience": "",
+      "locations": [
+        "Singapore"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "JR2601281",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://aig.wd1.myworkdayjobs.com/job/Singapore/Technical-Assistant--Specialty_JR2601281",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "JR2502100",
+      "title": "SDN Enterprise Engineer",
+      "company_name": "AIG GLOBAL OPERATIONS, INC.",
+      "job_link": "https://aig.wd1.myworkdayjobs.com/job/200-South-College-Street-Charlotte-NC-USA/SDN-Enterprise-Engineer_JR2502100",
+      "experience": "",
+      "locations": [
+        "200 South College Street, Charlotte, NC, USA"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "JR2502100",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://aig.wd1.myworkdayjobs.com/job/200-South-College-Street-Charlotte-NC-USA/SDN-Enterprise-Engineer_JR2502100",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "JR2504494",
+      "title": "Broker Director",
+      "company_name": "AIG Europe S.A. (U.K. Branch) & American International Group UK Ltd",
+      "job_link": "https://aig.wd1.myworkdayjobs.com/job/London/Broker-Relationship-Manager_JR2504494",
+      "experience": "",
+      "locations": [
+        "London"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "JR2504494",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://aig.wd1.myworkdayjobs.com/job/London/Broker-Relationship-Manager_JR2504494",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}

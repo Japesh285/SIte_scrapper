@@ -1,0 +1,170 @@
+{
+  "domain": "medtronic.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 24,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T09:03:58.902925",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "R62395",
+      "title": "Associate Accountant",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Associate-Accountant_R62395-2",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R62395",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Associate-Accountant_R62395-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R60670",
+      "title": "Principal Financial Analyst",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Lafayette-Colorado-United-States-of-America/Principal-Financial-Analyst_R60670-1",
+      "experience": "",
+      "locations": [
+        "Lafayette, Colorado, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R60670",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Lafayette-Colorado-United-States-of-America/Principal-Financial-Analyst_R60670-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63614",
+      "title": "Sr Credit Services Rep",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Sr-Credit-Services-Rep_R63614",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R63614",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Sr-Credit-Services-Rep_R63614",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R60775",
+      "title": "FP&A Consultant",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/FP-A-Consultant_R60775-1",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R60775",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/FP-A-Consultant_R60775-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63624",
+      "title": "Assoc Credit Services Rep",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Assoc-Credit-Services-Rep_R63624-2",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R63624",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Assoc-Credit-Services-Rep_R63624-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}
