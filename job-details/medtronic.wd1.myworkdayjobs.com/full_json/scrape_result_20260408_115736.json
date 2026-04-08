@@ -1,0 +1,778 @@
+{
+  "domain": "medtronic.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 24,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T11:57:36.445721",
+  "jobs_count": 24,
+  "jobs": [
+    {
+      "id": "R62395",
+      "title": "Associate Accountant",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Associate-Accountant_R62395-2",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R62395",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Associate-Accountant_R62395-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R60670",
+      "title": "Principal Financial Analyst",
+      "company_name": "",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Lafayette-Colorado-United-States-of-America/Principal-Financial-Analyst_R60670-1",
+      "experience": "",
+      "locations": [
+        "Lafayette, Colorado, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R60670",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Lafayette-Colorado-United-States-of-America/Principal-Financial-Analyst_R60670-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63614",
+      "title": "Sr Credit Services Rep",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Sr-Credit-Services-Rep_R63614",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R63614",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Sr-Credit-Services-Rep_R63614",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R60775",
+      "title": "FP&A Consultant",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/FP-A-Consultant_R60775-1",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R60775",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/FP-A-Consultant_R60775-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63624",
+      "title": "Assoc Credit Services Rep",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Assoc-Credit-Services-Rep_R63624-2",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R63624",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Assoc-Credit-Services-Rep_R63624-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63512",
+      "title": "Senior Financial Analyst",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst_R63512-1",
+      "experience": "",
+      "locations": [
+        "Mounds View, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 2 Days Ago",
+      "job_id": "R63512",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst_R63512-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63496",
+      "title": "Senior Financial Analyst",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/Senior-Financial-Analyst---Kim-B_R63496-1",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 3 Days Ago",
+      "job_id": "R63496",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/Senior-Financial-Analyst---Kim-B_R63496-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R63409",
+      "title": "Finance Analyst",
+      "company_name": "MDU Medtronic USA Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R63409",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/Finance-Analyst_R63409-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R62042",
+      "title": "Financial Systems Analyst",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+      "experience": "",
+      "locations": [
+        "Minneapolis, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R62042",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Minneapolis-Minnesota-United-States-of-America/Financial-Systems-Analyst_R62042-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R62450",
+      "title": "Senior Financial Analyst - Coronary",
+      "company_name": "MED Medtronic Inc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+      "experience": "",
+      "locations": [
+        "Mounds View, Minnesota, United States of America"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 7 Days Ago",
+      "job_id": "R62450",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Mounds-View-Minnesota-United-States-of-America/Senior-Financial-Analyst---Coronary_R62450-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R62248",
+      "title": "Analista Financiero (12 meses)",
+      "company_name": "MEX Tijuana Mexico Manufacturing",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Tijuana-Baja-California-Mexico/Analista-Financiero--12-meses-_R62248-1",
+      "experience": "",
+      "locations": [
+        "Tijuana, Baja California, Mexico"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R62248",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Tijuana-Baja-California-Mexico/Analista-Financiero--12-meses-_R62248-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R62182",
+      "title": "Senior Tax Accountant Lawyer",
+      "company_name": "NLH Medtronic Holding BV",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Heerlen-Limburg-Netherlands/Senior-Tax-Accountant-Lawyer_R62182-1",
+      "experience": "",
+      "locations": [
+        "Heerlen, Limburg, Netherlands"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R62182",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Heerlen-Limburg-Netherlands/Senior-Tax-Accountant-Lawyer_R62182-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R61830",
+      "title": "Accountant External Reporting EMEA",
+      "company_name": "KRK Medtronic BV (NLT)",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Heerlen-Limburg-Netherlands/Accountant-External-Reporting-EMEA_R61830-1",
+      "experience": "",
+      "locations": [
+        "Heerlen, Limburg, Netherlands"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 12 Days Ago",
+      "job_id": "R61830",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Heerlen-Limburg-Netherlands/Accountant-External-Reporting-EMEA_R61830-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R61657",
+      "title": "Accounting Support II",
+      "company_name": "MX4 COV - Mallinckrodt Respiratory Nellc",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Tijuana-Baja-California-Mexico/Accounting-Support-II_R61657-1",
+      "experience": "",
+      "locations": [
+        "Tijuana, Baja California, Mexico"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 14 Days Ago",
+      "job_id": "R61657",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Tijuana-Baja-California-Mexico/Accounting-Support-II_R61657-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R61034",
+      "title": "Comptable senior",
+      "company_name": "FRS Medtronic France SAS",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Paris-le-de-France-France/Senior-Accountant_R61034-1",
+      "experience": "",
+      "locations": [
+        "Paris, Île de France, France"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 14 Days Ago",
+      "job_id": "R61034",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Paris-le-de-France-France/Senior-Accountant_R61034-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R37827",
+      "title": "Business Finance Analyst, Integrated Health Solutions",
+      "company_name": "NGC NGC Medical SRL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Turate-Lombardia-Italy/Integrated-Health-Solutions-Financial-Analyst_R37827-1",
+      "experience": "",
+      "locations": [
+        "Turate, Lombardia, Italy"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 14 Days Ago",
+      "job_id": "R37827",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Turate-Lombardia-Italy/Integrated-Health-Solutions-Financial-Analyst_R37827-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R61831",
+      "title": "Sr Accountant",
+      "company_name": "JPN Japan Distribution",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Tokyo-Tokyo-Japan/Senior-Accountant--Tokyo-_R61831-2",
+      "experience": "",
+      "locations": [
+        "Tokyo, Tokyo, Japan"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 15 Days Ago",
+      "job_id": "R61831",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Tokyo-Tokyo-Japan/Senior-Accountant--Tokyo-_R61831-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R62206",
+      "title": "Credit Services Rep.",
+      "company_name": "COS Medtronic Shared Services Americas S.A.S.",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Credit-Services-Rep_R62206-2",
+      "experience": "",
+      "locations": [
+        "Bogotá, Bogota, Colombia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 20 Days Ago",
+      "job_id": "R62206",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Bogot-Bogota-Colombia/Credit-Services-Rep_R62206-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R61676",
+      "title": "ENWA Assistant Controller",
+      "company_name": "EGT Medtronic Egypt LLC",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Cairo-Cairo-Egypt/ENWA-Assistant-Controller_R61676-1",
+      "experience": "",
+      "locations": [
+        "Cairo, Cairo, Egypt"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 20 Days Ago",
+      "job_id": "R61676",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Cairo-Cairo-Egypt/ENWA-Assistant-Controller_R61676-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R55792",
+      "title": "Principal Accountant  (Internal Control)",
+      "company_name": "SG1 COV - Covidien Private Limited",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Singapore-Singapore-Singapore/Principal-Accountant---Internal-Control-_R55792-2",
+      "experience": "",
+      "locations": [
+        "Singapore, Singapore, Singapore"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 28 Days Ago",
+      "job_id": "R55792",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Singapore-Singapore-Singapore/Principal-Accountant---Internal-Control-_R55792-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R61144",
+      "title": "ANZ Controller",
+      "company_name": "AUS Medtronic Australia",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Macquarie-Park-New-South-Wales-Australia/ANZ-Controller_R61144-2",
+      "experience": "",
+      "locations": [
+        "Macquarie Park, New South Wales, Australia"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 28 Days Ago",
+      "job_id": "R61144",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Macquarie-Park-New-South-Wales-Australia/ANZ-Controller_R61144-2",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R57918",
+      "title": "Financial Planning and Analysis Manager",
+      "company_name": "TUR Medtronic Turkey",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Istanbul-Istanbul-Trkiye/Financial-Planning-and-Analysis-Manager_R57918",
+      "experience": "",
+      "locations": [
+        "Istanbul, Istanbul, Türkiye"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30 Days Ago",
+      "job_id": "R57918",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Istanbul-Istanbul-Trkiye/Financial-Planning-and-Analysis-Manager_R57918",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R55147",
+      "title": "Senior Accountant",
+      "company_name": "NGC NGC Medical SRL",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Turate-Lombardia-Italy/Senior-Accountant_R55147-1",
+      "experience": "",
+      "locations": [
+        "Turate, Lombardia, Italy"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R55147",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Turate-Lombardia-Italy/Senior-Accountant_R55147-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R56464",
+      "title": "Management Accountant",
+      "company_name": "UKG Medtronic UK LTD",
+      "job_link": "https://medtronic.wd1.myworkdayjobs.com/job/Watford-Hertfordshire-United-Kingdom/Management-Accountant_R56464-1",
+      "experience": "",
+      "locations": [
+        "Watford, Hertfordshire, United Kingdom"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R56464",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://medtronic.wd1.myworkdayjobs.com/job/Watford-Hertfordshire-United-Kingdom/Management-Accountant_R56464-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}

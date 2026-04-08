@@ -632,6 +632,526 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
     )
 
 
+# ── Batch scrape multiple sites with POST notifications ──────────
+
+class BatchScrapeRequest(BaseModel):
+    urls: list[str]
+    limit: int = 50
+
+
+class SiteResult(BaseModel):
+    url: str
+    domain: str
+    site_type: str
+    strategy: str
+    jobs_found: int
+    status: str
+    notification_sent: bool
+    notification_endpoint: str = ""
+    notification_response: str = ""
+    error: str = ""
+
+
+class BatchScrapeResponse(BaseModel):
+    total_sites: int
+    successful: int
+    failed: int
+    skipped: int
+    results: list[SiteResult]
+
+
+@router.post("/scrape-details-batch", response_model=BatchScrapeResponse)
+async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSession = Depends(get_session)):
+    """Scrape multiple sites synchronously, extract details, and POST results to port 8001.
+    
+    For WORKDAY_API sites: POST to /process-workday with file_path and limit
+    For other sites: POST to /ingest-json with file_path only
+    
+    Everything runs synchronously - one site at a time.
+    """
+    results = []
+    successful = 0
+    failed = 0
+    skipped = 0
+
+    for url in request.urls:
+        logger.info(f"[BatchScrape] Processing: {url}")
+        
+        site_result = SiteResult(
+            url=url,
+            domain="",
+            site_type="UNKNOWN",
+            strategy="dom",
+            jobs_found=0,
+            status="pending",
+            notification_sent=False,
+        )
+
+        try:
+            # Step 1: Normalize URL and scrape (same as scrape-details)
+            normalized_url = normalize_site_url(url)
+            domain = get_domain(normalized_url)
+            site_result.domain = domain
+            logger.info(f"[BatchScrape] Starting: {domain}")
+
+            # Step 2: Get listing URLs via orchestrator (includes strategy lock)
+            scrape_result = await orchestrate_scrape(normalized_url, session)
+            site_type = scrape_result["type"]
+            strategy = scrape_result.get("strategy", "dom")
+            api_url = scrape_result.get("api_url", "")
+            site_result.site_type = site_type
+            site_result.strategy = strategy
+            site_result.jobs_found = scrape_result["jobs_found"]
+            
+            logger.info(f"[BatchScrape] {domain} -> {site_type}, strategy={strategy}, jobs={scrape_result['jobs_found']}")
+
+            # If no jobs found, skip
+            if scrape_result["jobs_found"] == 0 or scrape_result["status"] == "skipped":
+                site_result.status = "skipped"
+                skipped += 1
+                results.append(site_result)
+                logger.info(f"[BatchScrape] {domain} skipped (no jobs)")
+                continue
+
+            # Step 3: Read jobs from latest saved JSON (with raw API data if API strategy)
+            domain_dir = RAW_JSON_DIR / domain
+            if not domain_dir.exists():
+                site_result.status = "failed"
+                site_result.error = "domain_dir_not_found"
+                failed += 1
+                results.append(site_result)
+                logger.warning(f"[BatchScrape] {domain} directory not found")
+                continue
+
+            files = sorted(domain_dir.glob("scrape_result_*.json"), key=lambda f: f.stat().st_mtime, reverse=True)
+            if not files:
+                site_result.status = "failed"
+                site_result.error = "no_scrape_result_files"
+                failed += 1
+                results.append(site_result)
+                logger.warning(f"[BatchScrape] {domain} no scrape result files")
+                continue
+
+            with open(files[0], "r", encoding="utf-8") as f:
+                data = json.load(f)
+                jobs_raw = data.get("jobs", [])
+
+            logger.info(f"[BatchScrape] {domain} read {len(jobs_raw)} jobs from {files[0].name}")
+
+            # Save raw JSON path for Workday notification (BEFORE detail extraction)
+            raw_json_path = str(files[0].resolve())
+
+            # Cap to limit
+            jobs_raw = jobs_raw[:request.limit]
+
+            logger.info(f"[BatchScrape] {domain} processing {len(jobs_raw)} jobs for detail extraction")
+            logger.info("[BatchScrape] [DETAIL STRATEGY] strategy=%s for %s", strategy, domain)
+
+            # Step 4: Extract details using strategy-locked approach (same logic as scrape-details)
+            jobs_detail = []
+            total_ai_tokens = 0
+
+            if strategy == "api":
+                # ── API STRATEGY: Extract details from raw API data, NO HTML ──
+                from app.services.detail_extractor import extract_job_details as extract_api_details
+
+                for i, job_data in enumerate(jobs_raw):
+                    job_url = job_data.get("url", "")
+                    logger.info(f"[BatchScrape] {domain} API detail extraction job {i+1}/{len(jobs_raw)}")
+                    logger.info("[BatchScrape] [DETAIL STRATEGY] Using API for job_id=%s", job_data.get("_raw_api", {}).get("externalPath", "unknown"))
+                    if site_type == "WORKDAY_API":
+                        logger.info("[BatchScrape] [WORKDAY API] Using base_url=%s", api_url)
+
+                    try:
+                        detail = await extract_api_details(
+                            strategy="api",
+                            job=job_data,
+                            site_type=site_type,
+                            api_url=api_url,
+                            base_url=normalized_url,
+                        )
+                    except Exception as exc:
+                        logger.error(f"[BatchScrape] API detail failed for {job_url}: {exc}")
+                        # Failsafe: return partial data, DO NOT fallback to HTML
+                        detail = {
+                            "title": job_data.get("title", ""),
+                            "location": job_data.get("location", ""),
+                            "url": job_url,
+                            "job_id": "",
+                            "description": "",
+                            "skills": [],
+                            "experience": "",
+                            "education": "",
+                            "posted_on": "",
+                            "employment_type": "",
+                            "salary": "",
+                            "company_name": "",
+                            "remote_type": "",
+                            "qualifications": [],
+                            "additional_sections": [],
+                        }
+
+                    job_entry = JobDetailResult(
+                        id=str(detail.get("job_id") or job_url.split("/")[-1]),
+                        title=str(detail.get("title") or ""),
+                        company_name=str(detail.get("company_name") or ""),
+                        job_link=job_url,
+                        experience=str(detail.get("experience") or ""),
+                        locations=[detail["location"]] if isinstance(detail.get("location"), str) and detail.get("location") else (detail.get("location") or []),
+                        educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
+                        required_skill_set=detail.get("skills", detail.get("required_skills", [])),
+                        remote_type=str(detail.get("remote_type") or ""),
+                        posted_on=str(detail.get("posted_on") or ""),
+                        job_id=str(detail.get("job_id") or ""),
+                        salary=str(detail.get("salary") or ""),
+                        is_active=True,
+                        first_seen="",
+                        last_seen="",
+                        additional_sections=detail.get("additional_sections") or [],
+                        Scrap_json={
+                            "url": job_url,
+                            "strategy": "api",
+                            "site_type": site_type,
+                            "department": detail.get("department", ""),
+                            "qualifications": detail.get("qualifications", []),
+                        },
+                        ai_usage=detail.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                    )
+                    jobs_detail.append(job_entry)
+
+            else:
+                # ── DOM STRATEGY: Use standard detail extraction (NO browser) ──
+                from app.job_detail_engine.orchestrator import extract_job_details as extract_dom_details
+
+                if site_type == "INTERACTIVE_DOM":
+                    # Interactive DOM was explicitly selected — use browser
+                    from playwright.async_api import async_playwright
+                    from app.job_detail_engine.utils.cleaner import prepare_ai_payload
+
+                    async with async_playwright() as playwright:
+                        browser = await playwright.chromium.launch(headless=True)
+
+                        for i, job_data in enumerate(jobs_raw):
+                            job_url = job_data.get("url", "")
+                            logger.info(f"[BatchScrape] {domain} INTERACTIVE_DOM job {i+1}/{len(jobs_raw)}: {job_url}")
+                            page = await browser.new_page()
+                            meta = {}
+                            ai_usage = {}
+                            detail = {}
+                            try:
+                                # ── Max extraction: scroll, expand, wait for growth ──
+                                await page.goto(job_url, timeout=60000)
+                                try:
+                                    await page.wait_for_load_state("networkidle")
+                                except Exception:
+                                    logger.warning("[BatchScrape] [DETAIL] networkidle timeout for %s", job_url)
+                                await page.wait_for_timeout(2000)
+
+                                # Scroll to trigger lazy loading
+                                for _ in range(5):
+                                    await page.mouse.wheel(0, 3000)
+                                    await page.wait_for_timeout(1000)
+
+                                # Expand hidden sections
+                                try:
+                                    buttons = await page.query_selector_all("button")
+                                    for btn in buttons:
+                                        try:
+                                            text = (await btn.inner_text() or "").lower()
+                                            if any(k in text for k in ["more", "expand", "show", "read"]):
+                                                await btn.click()
+                                                await page.wait_for_timeout(500)
+                                        except Exception:
+                                            continue
+                                except Exception as exc:
+                                    logger.warning("[BatchScrape] [DETAIL] Button expansion failed: %s", exc)
+
+                                # Wait for DOM growth
+                                prev_len = 0
+                                for _ in range(5):
+                                    html_snapshot = await page.content()
+                                    curr_len = len(html_snapshot)
+                                    if curr_len > prev_len * 1.2:
+                                        prev_len = curr_len
+                                        await page.wait_for_timeout(1000)
+                                    else:
+                                        break
+
+                                html = await page.content()
+                                logger.info("[BatchScrape] [DETAIL] url=%s html_length=%d", job_url, len(html))
+
+                                # ── Prepare AI payload — ONLY remove script/style/noscript ──
+                                payload = prepare_ai_payload(html)
+                                logger.info("[BatchScrape] [AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
+
+                                if len(payload) < 2000:
+                                    logger.warning("[BatchScrape] [WEAK DETAIL PAGE] url=%s length=%d", job_url, len(payload))
+
+                                # ── Send to AI for extraction ──
+                                detail = await extract_dom_details(payload, force_ai=True, domain=domain)
+                                meta = detail.pop("_meta", {})
+                                ai_usage = detail.pop("ai_usage", {})
+                                total_ai_tokens += ai_usage.get("total_tokens", 0)
+                                logger.info(
+                                    f"[BatchScrape] [Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "
+                                    f"parser={meta.get('parser_used','?')}, "
+                                    f"score={meta.get('confidence',0)}, "
+                                    f"ai_used={meta.get('ai_used', False)}, "
+                                    f"ai_forced={meta.get('ai_forced', False)}, "
+                                    f"skills={len(detail.get('skills',[]))}, "
+                                    f"ai_tokens={ai_usage.get('total_tokens', 0)}"
+                                )
+                            except Exception as exc:
+                                logger.error(f"[BatchScrape] Failed for {job_url}: {exc}")
+                                meta = {}
+                                ai_usage = {}
+                                detail = {}
+                            finally:
+                                await page.close()
+
+                            job_entry = JobDetailResult(
+                                id=str(detail.get("job_id") or job_url.split("/")[-1]),
+                                title=str(detail.get("title") or ""),
+                                company_name=str(detail.get("company_name") or ""),
+                                job_link=job_url,
+                                experience=str(detail.get("experience") or ""),
+                                locations=detail.get("location") or [],
+                                educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
+                                required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
+                                remote_type=str(detail.get("remote_type") or ""),
+                                posted_on=str(detail.get("posted_on") or ""),
+                                job_id=str(detail.get("job_id") or ""),
+                                salary=str(detail.get("salary") or ""),
+                                is_active=True,
+                                first_seen="",
+                                last_seen="",
+                                additional_sections=detail.get("additional_sections") or [],
+                                Scrap_json={
+                                    "url": job_url,
+                                    "strategy": "INTERACTIVE_DOM",
+                                    "parser_used": str(meta.get("parser_used", "")),
+                                    "confidence": meta.get("confidence", 0),
+                                    "ai_forced": meta.get("ai_forced", False),
+                                    "preferred_skills": detail.get("preferred_skills") or [],
+                                    "tools_and_technologies": detail.get("tools_and_technologies") or [],
+                                    "certifications": detail.get("certifications") or [],
+                                    "soft_skills": detail.get("soft_skills") or [],
+                                    "inferred_skills": detail.get("inferred_skills") or [],
+                                    "benefits": detail.get("benefits") or [],
+                                },
+                                ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                            )
+                            jobs_detail.append(job_entry)
+
+                        await browser.close()
+                else:
+                    # ── Standard DOM strategy: no browser needed ──
+                    # Deduplicate and normalize URLs before processing
+                    from urllib.parse import urlparse, urlunparse, parse_qs
+
+                    seen_detail_urls: set[str] = set()
+                    normalized_jobs: list[dict] = []
+                    for job_data in jobs_raw:
+                        job_url = job_data.get("url", "")
+                        if not job_url:
+                            continue
+                        # Normalize: strip query params, trailing slash
+                        parsed = urlparse(job_url)
+                        normalized_path = parsed.path.rstrip("/")
+                        clean_url = urlunparse((parsed.scheme, parsed.netloc, normalized_path, "", "", ""))
+                        if clean_url in seen_detail_urls:
+                            logger.info("[BatchScrape] [DEDUP] Skipping duplicate: %s", job_url)
+                            continue
+                        seen_detail_urls.add(clean_url)
+                        normalized_jobs.append({**job_data, "_clean_url": clean_url})
+
+                    for i, job_data in enumerate(normalized_jobs):
+                        job_url = job_data.get("url", "")
+                        clean_url = job_data.get("_clean_url", job_url)
+
+                        # ── Strict URL filtering ──
+                        lowered = job_url.lower()
+                        reject_parts = [
+                            "/careers/", "/career-search", "/why-", "/about",
+                            "/learning", "/projects", "/contact", "/our-team",
+                            "/testimonials", "/events", "/blog", "/news",
+                            "/insights", "/resources", "/webinars",
+                        ]
+                        if any(p in lowered for p in reject_parts):
+                            logger.info("[BatchScrape] [FILTER] Rejected non-job URL: %s", job_url)
+                            continue
+
+                        logger.info(f"[BatchScrape] {domain} DOM detail extraction job {i+1}/{len(normalized_jobs)}: {job_url}")
+
+                        # Fetch the detail page HTML via httpx
+                        try:
+                            async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
+                                resp = await client.get(job_url)
+                                resp.raise_for_status()
+                                html = resp.text
+                        except Exception as exc:
+                            logger.error(f"[BatchScrape] Failed to fetch {job_url}: {exc}")
+                            continue
+
+                        # ── Page quality filter ──
+                        html_len = len(html)
+                        if html_len < 1500:
+                            logger.info("[BatchScrape] [SKIP AI] Weak page: %s (length=%d < 1500)", job_url, html_len)
+                            continue
+
+                        # Check for title
+                        import re
+                        title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
+                        page_title = title_match.group(1).strip() if title_match else ""
+                        if not page_title:
+                            logger.info("[BatchScrape] [SKIP AI] Weak page: %s (no title)", job_url)
+                            continue
+
+                        try:
+                            detail = await extract_dom_details(html, force_ai=True, domain=domain)
+                            meta = detail.pop("_meta", {})
+                            ai_usage = detail.pop("ai_usage", {})
+
+                            # ── Score-based AI skip ──
+                            conf_score = meta.get("confidence", 0)
+                            if conf_score < 3:
+                                logger.info("[BatchScrape] [SKIP AI] Low confidence score=%d for %s", conf_score, job_url)
+                                # Still keep the job if parser extracted a title
+                                if not detail.get("title"):
+                                    continue
+
+                            total_ai_tokens += ai_usage.get("total_tokens", 0)
+                            logger.info(
+                                f"[BatchScrape] [Engine] {domain} job {i+1} → title={detail.get('title','')!r}, "
+                                f"parser={meta.get('parser_used','?')}, "
+                                f"score={meta.get('confidence',0)}, "
+                                f"ai_used={meta.get('ai_used', False)}, "
+                                f"ai_forced={meta.get('ai_forced', False)}, "
+                                f"skills={len(detail.get('skills',[]))}, "
+                                f"ai_tokens={ai_usage.get('total_tokens', 0)}"
+                            )
+                        except Exception as exc:
+                            logger.error(f"[BatchScrape] Detail extraction failed for {job_url}: {exc}")
+                            continue
+
+                        job_entry = JobDetailResult(
+                            id=str(detail.get("job_id") or job_url.split("/")[-1]),
+                            title=str(detail.get("title") or ""),
+                            company_name=str(detail.get("company_name") or ""),
+                            job_link=job_url,
+                            experience=str(detail.get("experience") or ""),
+                            locations=detail.get("location") or [],
+                            educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
+                            required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
+                            remote_type=str(detail.get("remote_type") or ""),
+                            posted_on=str(detail.get("posted_on") or ""),
+                            job_id=str(detail.get("job_id") or ""),
+                            salary=str(detail.get("salary") or ""),
+                            is_active=True,
+                            first_seen="",
+                            last_seen="",
+                            additional_sections=detail.get("additional_sections") or [],
+                            Scrap_json={
+                                "url": job_url,
+                                "strategy": "dom",
+                                "parser_used": str(meta.get("parser_used", "")),
+                                "confidence": meta.get("confidence", 0),
+                                "ai_forced": meta.get("ai_forced", False),
+                                "preferred_skills": detail.get("preferred_skills") or [],
+                                "tools_and_technologies": detail.get("tools_and_technologies") or [],
+                                "certifications": detail.get("certifications") or [],
+                                "soft_skills": detail.get("soft_skills") or [],
+                                "inferred_skills": detail.get("inferred_skills") or [],
+                                "benefits": detail.get("benefits") or [],
+                            },
+                            ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                        )
+                        jobs_detail.append(job_entry)
+
+            logger.info(
+                f"[BatchScrape] {domain} complete → {len(jobs_detail)} jobs detailed, "
+                f"strategy={strategy}, total AI tokens={total_ai_tokens}"
+            )
+
+            # Step 5: Save full JSON output to job-details/{domain}/
+            from app.job_detail_engine.utils.json_saver import save_job_details
+            saved_path = save_job_details(
+                jobs=[j.model_dump() for j in jobs_detail],
+                domain=domain,
+                site_type=site_type,
+                listing_jobs_found=scrape_result["jobs_found"],
+                listing_status=scrape_result["status"],
+            )
+            if saved_path:
+                logger.info(f"[BatchScrape] Full JSON saved → {saved_path}")
+
+            # Step 6: Send POST request to port 8001 based on site type
+            notification_sent = False
+            notification_endpoint = ""
+            notification_response = ""
+
+            try:
+                if site_type == "WORKDAY_API":
+                    # Workday: POST to /process-workday with RAW JSON path
+                    notification_endpoint = "http://localhost:8001/process-workday"
+                    payload = {
+                        "file_path": raw_json_path,
+                        "limit": request.limit,
+                    }
+                    logger.info(f"[BatchScrape] {domain} Sending POST to {notification_endpoint} with file_path={raw_json_path}, limit={request.limit}")
+
+                    async with httpx.AsyncClient(timeout=300) as notify_client:
+                        response = await notify_client.post(notification_endpoint, json=payload)
+                        notification_response = f"status={response.status_code} body={response.text[:500]}"
+                        logger.info(f"[BatchScrape] {domain} Response: {notification_response}")
+
+                    notification_sent = True
+
+                else:
+                    # Other sites: POST to /ingest-json with detail JSON path
+                    notification_endpoint = "http://localhost:8001/ingest-json"
+                    payload = {
+                        "file_path": saved_path,
+                    }
+                    logger.info(f"[BatchScrape] {domain} Sending POST to {notification_endpoint}")
+
+                    async with httpx.AsyncClient(timeout=300) as notify_client:
+                        response = await notify_client.post(notification_endpoint, json=payload)
+                        notification_response = f"status={response.status_code} body={response.text[:500]}"
+                        logger.info(f"[BatchScrape] {domain} Response: {notification_response}")
+
+                    notification_sent = True
+
+            except Exception as exc:
+                logger.error(f"[BatchScrape] {domain} Failed to send notification: {exc}")
+                notification_response = f"error={str(exc)}"
+
+            # Update site result
+            site_result.status = "success"
+            site_result.notification_sent = notification_sent
+            site_result.notification_endpoint = notification_endpoint
+            site_result.notification_response = notification_response
+            successful += 1
+
+        except Exception as exc:
+            logger.error(f"[BatchScrape] Failed for {url}: {exc}")
+            site_result.status = "failed"
+            site_result.error = str(exc)
+            failed += 1
+
+        results.append(site_result)
+
+    logger.info(f"[BatchScrape] Complete → total={len(request.urls)}, success={successful}, failed={failed}, skipped={skipped}")
+
+    return BatchScrapeResponse(
+        total_sites=len(request.urls),
+        successful=successful,
+        failed=failed,
+        skipped=skipped,
+        results=results,
+    )
+
+
 HARD_CODED_URLS = [
     "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers?locationCountry=c4f78be1a8f14da0ab49ce1162348a5e&jobFamilyGroup=2fe8588f35e84eb98ef535f4d738f243",
     "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers?jobFamilyGroup=5d03e9707876432d93848a9e7146e1ad",

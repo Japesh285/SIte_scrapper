@@ -1,0 +1,1186 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Software Developer - 108029 - IBM
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        Skip to content                    
+
+
+
+
+
+
+
+
+
+
+
+
+IBM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                IBM Careers
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                Login
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            < Back to search results
+                        
+
+
+
+
+
+
+
+                    Software Developer
+                
+
+
+
+
+
+
+LOWELL, DURHAM, San Jose, Austin, Texas, North Carolina, Massachusetts, California, United States
+
+
+Professional
+
+
+
+
+
+
+
+
+
+
+
+
+Email
+
+
+
+
+
+
+X
+
+
+
+
+
+
+LinkedIn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Apply now
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                Introduction
+                                            
+
+
+
+                                                                                            Software Developer – IBM InfoSphere Optim
+IBM InfoSphere Optim is an enterprise data management platform that enables organizations to manage data throughout its lifecycle—from creation and usage to archiving, privacy, and retirement. Optim provides capabilities for application data archiving, test data management, data privacy, and governance, and is a critical component of IBM’s data management portfolio.
+As a 
+Software Developer for IBM InfoSphere Optim
+, you will design, develop, and maintain core product components that support scalable, secure, and high‑performance data management solutions. You will work on complex, distributed systems and collaborate closely with engineering, quality, and operations teams to deliver robust features, resolve defects at the source, and continuously improve product quality.
+This role emphasizes 
+hands‑on software development
+, deep technical ownership, and root‑cause‑driven engineering. You will work across operating systems, databases, and deployment models, contributing directly to the evolution of the Optim product line.
+
+
+
+
+
+
+
+
+
+                                                Your role and responsibilities
+                                            
+
+
+
+
+Design, develop, test, and maintain software components for IBM InfoSphere Optim using 
+Java, C, C++, and scripting languages
+.
+Own product features and fixes end‑to‑end, including design, implementation, code reviews, testing, and delivery.
+Analyze and debug complex product issues using logs, traces, dumps, and code‑level debugging to identify root causes and implement permanent fixes.
+Enhance product reliability, performance, and scalability through architectural improvements and code optimization.
+Develop and maintain APIs, utilities, and internal tooling to support Optim functionality and integrations.
+Collaborate with cross‑functional teams (development, QA, DevOps, and operations) to deliver high‑quality releases.
+Improve diagnostics, logging, and tracing to increase observability and simplify troubleshooting.
+Contribute to CI/CD pipelines, build systems, and automated testing frameworks.
+Create and maintain technical documentation, design specifications, and developer guides.
+Mentor junior engineers and contribute to technical knowledge sharing across the team.
+Configure and maintain InfoSphere Optim environments for development, testing, and validation.
+This job can be performed anywhere in the United States
+
+
+
+
+
+
+
+
+
+                                                Required education
+                                            
+
+
+
+                                                                                            High School Diploma/GED
+                                                                                    
+
+
+
+
+
+
+
+                                                Preferred education
+                                            
+
+
+
+                                                                                            Bachelor's Degree
+                                                                                    
+
+
+
+
+
+
+
+                                                Required technical and professional expertise
+                                            
+
+
+
+
+5+ years of hands‑on experience in product development
+ for enterprise software.
+Strong experience developing software using 
+Java, C, C++, or scripting languages
+.
+Solid understanding of the 
+software development lifecycle
+, tools, and best practices.
+Experience developing and debugging applications on 
+Windows, Linux, and UNIX
+ platforms.
+Strong skills in 
+debugging, log analysis, trace interpretation, and root cause analysis
+.
+
+
+
+
+
+
+
+
+
+                                                Preferred technical and professional experience
+                                            
+
+
+
+
+Experience working with 
+database management systems
+ such as DB2, Oracle, or SQL Server.
+Ability to analyze and resolve complex configuration‑ and environment‑related issues.
+Experience working with 
+CI/CD pipelines, IDEs, and large, modular codebases
+.
+Strong analytical and problem‑solving skills.
+Demonstated written and verbal communication skills.
+Hands‑on experience with 
+IBM InfoSphere Optim
+ components, including 
+Archive, Data Privacy, and Test Data Management
+.
+Experience with Optim deployment models across 
+distributed platforms and z/OS
+.
+Knowledge of 
+high‑availability, scalability, and performance tuning
+ for enterprise systems.
+Experience developing or enhancing solutions that meet 
+enterprise‑grade reliability and SLA requirements
+.
+Familiarity with data governance, compliance, and privacy concepts.
+Exposure to large‑scale enterprise data management or middleware platforms.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                ABOUT BUSINESS UNIT
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                            IBM Software infuses core business operations with intelligence—from machine learning to generative AI—to help make organizations more responsive, productive, and resilient. IBM Software helps clients put AI into action now to create real value with trust, speed, and confidence across digital labor, IT automation, application modernization, security, and sustainability. Critical to this is the ability to make use of all data, because AI is only as good as the data that fuels it. In most organizations data is spread across multiple clouds, on premises, in private datacenters, and at the edge. IBM’s AI and data platform scales and accelerates the impact of AI with trusted data, and provides leading capabilities to train, tune and deploy AI across business. IBM’s hybrid cloud platform is one of the most comprehensive and consistent approach to development, security, and operations across hybrid environments—a flexible foundation for leveraging data, wherever it resides, to extend AI deep into a business.
+                                                                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                YOUR LIFE @ IBM
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In a world where technology never stands still, we understand that, dedication to our clients success, innovation that matters, and trust and personal responsibility in all our relationships, lives in what we do as IBMers as we strive to be the catalyst that makes the world work better.
+Being an IBMer means you’ll be able to learn and develop yourself and your career, you’ll be encouraged to be courageous and experiment everyday, all whilst having continuous trust and support in an environment where everyone can thrive whatever their personal or professional background.
+Our IBMers are growth minded, always staying curious, open to feedback and learning new information and skills to constantly transform themselves and our company. They are trusted to provide on-going feedback to help other IBMers grow, as well as collaborate with colleagues keeping in mind a team focused approach to include different perspectives to drive exceptional outcomes for our customers. The courage our IBMers have to make critical decisions everyday is essential to IBM becoming the catalyst for progress, always embracing challenges with resources they have to hand, a can-do attitude and always striving for an outcome focused approach within everything that they do.
+Are you ready to be an IBMer?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                ABOUT IBM
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IBM’s greatest invention is the IBMer. We believe that through the application of intelligence, reason and science, we can improve business, society and the human condition, bringing the power of an open hybrid cloud and AI strategy to life for our clients and partners around the world.
+Restlessly reinventing since 1911, we are not only one of the largest corporate organizations in the world, we’re also one of the biggest technology and consulting employers, with many of the Fortune 500 companies relying on the IBM Cloud to run their business. 
+At IBM, we pride ourselves on being an early adopter of artificial intelligence, quantum computing and blockchain. Now it’s time for you to join us on our journey to being a responsible technology innovator and a force for good in the world.
+
+
+
+
+
+
+
+
+
+
+IBM is proud to be an equal-opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, gender, gender identity or expression, sexual orientation, national origin, genetics, pregnancy, disability, neurodivergence, age, or other characteristics protected by the applicable law. IBM is also committed to compliance with all fair employment practices regarding citizenship and immigration status.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                OTHER RELEVANT JOB DETAILS
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IBM offers a competitive and comprehensive benefits program. Eligible employees may have access to:
+- Healthcare benefits including medical & prescription drug coverage, dental, vision, and mental health & well being
+- Financial programs such as 401(k), cash balance pension plan, the IBM Employee Stock Purchase Plan, financial counseling, life insurance, short & long- term disability coverage, and opportunities for performance based salary incentive programs
+- Generous paid time off including 12 holidays, minimum 56 hours sick time, 120 hours vacation, 12 weeks parental bonding leave in accordance with IBM Policy, and other Paid Care Leave programs. IBM also offers paid family leave benefits to eligible employees where required by applicable law
+- Training and educational resources on our personalized, AI-driven learning platform where IBMers can grow skills and obtain industry-recognized certifications to achieve their career goals
+- Diverse and inclusive employee resource groups, giving & volunteer opportunities, and discounts on retail products, services & experiences
+We consider qualified applicants with criminal histories, consistent with applicable law.
+This position was posted on the date cited in the key job details section and is anticipated to remain posted for 21 days from this date or less if not needed to fill the role.  
+
+
+
+
+
+
+
+
+
+
+IBM will not be providing visa sponsorship for this position now or in the future. Therefore, in order to be considered for this position, you must have the ability to work without a need for current or future visa sponsorship.
+
+
+
+
+
+
+
+
+
+
+The compensation range and benefits for this position are based on a full-time schedule for a full calendar year. The salary will vary depending on your job-related skills, experience and location. Pay increment and frequency of pay will be in accordance with employment classification and applicable laws. For part time roles, your compensation and benefits will be adjusted to reflect your hours. Benefits may be pro-rated for those who start working during the calendar year.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                Job Title
+                                            
+
+
+
+                                                                                            Software Developer
+                                                                                    
+
+
+
+
+
+
+
+                                                Date posted
+                                            
+
+
+
+                                                                                            07-Apr-2026
+                                                                                    
+
+
+
+
+
+
+
+                                                Job ID
+                                            
+
+
+
+                                                                                            108029
+                                                                                    
+
+
+
+
+
+
+
+                                                City / Township / Village
+                                            
+
+
+
+                                                                                            LOWELL, DURHAM, San Jose, Austin
+                                                                                    
+
+
+
+
+
+
+
+                                                State / Province
+                                            
+
+
+
+                                                                                            Texas, North Carolina, Massachusetts, California
+                                                                                    
+
+
+
+
+
+
+
+                                                Country
+                                            
+
+
+
+                                                                                            United States
+                                                                                    
+
+
+
+
+
+
+
+                                                Work arrangement
+                                            
+
+
+
+                                                                                            Hybrid
+                                                                                    
+
+
+
+
+
+
+
+                                                Area of work
+                                            
+
+
+
+                                                                                            Software Engineering
+                                                                                    
+
+
+
+
+
+
+
+                                                Employment type
+                                            
+
+
+
+                                                                                            Regular
+                                                                                    
+
+
+
+
+
+
+
+                                                Contract type
+                                            
+
+
+
+                                                                                            Regular
+                                                                                    
+
+
+
+
+
+
+
+                                                Projected Minimum Salary per year
+                                            
+
+
+
+                                                                                            131,000.00
+                                                                                    
+
+
+
+
+
+
+
+                                                Projected Maximum Salary per year
+                                            
+
+
+
+                                                                                            245,000.00
+                                                                                    
+
+
+
+
+
+
+
+                                                Position type
+                                            
+
+
+
+                                                                                            Professional
+                                                                                    
+
+
+
+
+
+
+
+                                                Travel required
+                                            
+
+
+
+                                                                                            No Travel
+                                                                                    
+
+
+
+
+
+
+
+                                                Company
+                                            
+
+
+
+                                                                                            (0147) International Business Machines Corporation
+                                                                                    
+
+
+
+
+
+
+
+                                                Shift
+                                            
+
+
+
+                                                                                            General (daytime)
+                                                                                    
+
+
+
+
+
+
+
+                                                Is this role a commissionable/sales incentive based position?
+                                            
+
+
+
+                                                                                            No
+                                                                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                Apply now
+                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    < Back to search results
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application Info
+
+
+
+
+
+
+Be aware: Recruitment Scams
+
+
+
+
+
+
+Privacy statement
+
+
+
+
+
+
+
+
+
+
+
+                            Learn more about IBM                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                English
+                                            
+
+
+
+
+
+
+English
+Español
+Français
+Français Canadien
+Português
+Slovenščina
+日本語
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contact IBM
+
+
+
+
+
+
+Privacy
+
+
+
+
+
+
+Terms of use
+
+
+
+
+
+
+Accessibility
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+IBM web domains
+      ibm.com, ibm.org, ibm-zcouncil.com, insights-on-business.com, jazz.net, mobilebusinessinsights.com, promontory.com, proveit.com, ptech.org, s81c.com, securityintelligence.com, skillsbuild.org, softlayer.com, storagecommunity.org, think-exchange.com, thoughtsoncloud.com, alphaevents.webcasts.com, ibm-cloud.github.io, ibmbigdatahub.com, bluemix.net, mybluemix.net, ibm.net, ibmcloud.com, galasa.dev, blueworkslive.com, swiss-quantum.ch, blueworkslive.com, cloudant.com, ibm.ie, ibm.fr, ibm.com.br, ibm.co, ibm.ca, community.watsonanalytics.com, datapower.com, skills.yourlearning.ibm.com, bluewolf.com, carbondesignsystem.com, openliberty.io      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+About cookies on this site
+ 
+Our websites require some cookies to function properly (required). In addition, other cookies may be used with your consent to analyze site usage, improve the user experience and for advertising.
+ 
+For more information, please review your
+                        cookie preferences
+ options. By visiting our website, you agree to our processing of information as described in IBM’s
+privacy statement
+. 
+ 
+To provide a smooth navigation, your cookie preferences will be shared across the IBM web domains listed 
+here
+.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Accept all
+ 
+More options
+ 
+ 
+ 
+ 
+ 
+ 
+Cookie Preferences

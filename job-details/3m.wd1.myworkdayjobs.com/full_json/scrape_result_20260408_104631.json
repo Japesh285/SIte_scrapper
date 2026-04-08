@@ -1,0 +1,1610 @@
+{
+  "domain": "3m.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 79,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T10:46:31.652908",
+  "jobs_count": 50,
+  "jobs": [
+    {
+      "id": "R01157303",
+      "title": "Senior Corporate Auditor",
+      "company_name": "PHL 3M Service Center APAC, Inc.",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/PH-Taguig/Senior-Corporate-Auditor_R01157303",
+      "experience": "",
+      "locations": [
+        "PH, Taguig"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 2 Days Ago",
+      "job_id": "R01157303",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/PH-Taguig/Senior-Corporate-Auditor_R01157303",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162884",
+      "title": "Sr. Cloud Platform Engineer",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Cloud-Platform-Engineer_R01162884-1",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R01162884",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Cloud-Platform-Engineer_R01162884-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163031",
+      "title": "Sr Specialist - Credit Risk",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Specialist---Credit-Risk_R01163031",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R01163031",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Specialist---Credit-Risk_R01163031",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01159887",
+      "title": "Lead Analyst - HR Reporting Technology",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/HR-Reporting-Technology-Analyst_R01159887",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R01159887",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/HR-Reporting-Technology-Analyst_R01159887",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01160772",
+      "title": "Sr. Data Engineer-HANA, Snowflake, SAP BW, ABAP",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Data-Engineer-HANA--Snowflake--SAP-BW--ABAP_R01160772-1",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 7 Days Ago",
+      "job_id": "R01160772",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Data-Engineer-HANA--Snowflake--SAP-BW--ABAP_R01160772-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163018",
+      "title": "Area Sales Executive - Jaipur",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IND-GURGAON/Area-Sales-Executive---Jaipur_R01163018",
+      "experience": "",
+      "locations": [
+        "IND, GURGAON"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R01163018",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IND-GURGAON/Area-Sales-Executive---Jaipur_R01163018",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162903",
+      "title": "Product Marketing Specialist - MedSurg (Bangalore)",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Product-Marketing-Specialist---MedSurg--Bangalore-_R01162903",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R01162903",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Product-Marketing-Specialist---MedSurg--Bangalore-_R01162903",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163240",
+      "title": "Senior Sales Analyst",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Delhi-New-Delhi/Senior-Sales-Analyst_R01163240",
+      "experience": "",
+      "locations": [
+        "IN, Delhi, New Delhi"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 9 Days Ago",
+      "job_id": "R01163240",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Delhi-New-Delhi/Senior-Sales-Analyst_R01163240",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01161387",
+      "title": "Data Architect",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Data-Architect_R01161387-1",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 12 Days Ago",
+      "job_id": "R01161387",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Data-Architect_R01161387-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163231",
+      "title": "Sr. Area Sales Manager - Global Industrial Channel (GIC)",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Delhi-New-Delhi/Sr-Area-Sales-Manager---Global-Industrial-Channel--GIC-_R01163231",
+      "experience": "",
+      "locations": [
+        "IN, Delhi, New Delhi"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 13 Days Ago",
+      "job_id": "R01163231",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Delhi-New-Delhi/Sr-Area-Sales-Manager---Global-Industrial-Channel--GIC-_R01163231",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162929",
+      "title": "Audit Supervisor",
+      "company_name": "PHL 3M Philippines, Inc.",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/PH-TAGUIG/Audit-Supervisor_R01162929",
+      "experience": "",
+      "locations": [
+        "PH, TAGUIG"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 15 Days Ago",
+      "job_id": "R01162929",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/PH-TAGUIG/Audit-Supervisor_R01162929",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01159727",
+      "title": "Sr Specialist Corporate Audit",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Specialist-Corporate-Audit_R01159727",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 16 Days Ago",
+      "job_id": "R01159727",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Specialist-Corporate-Audit_R01159727",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162609",
+      "title": "Sr Specialist - US State Income Tax",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Specialist---US-State-Income-Tax_R01162609",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 16 Days Ago",
+      "job_id": "R01162609",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Sr-Specialist---US-State-Income-Tax_R01162609",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162958",
+      "title": "Insights & Analytics Manager, APAC Marketing Centre",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Insights---Analytics-Manager--APAC-Marketing-Centre_R01162958",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 21 Days Ago",
+      "job_id": "R01162958",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Insights---Analytics-Manager--APAC-Marketing-Centre_R01162958",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162816",
+      "title": "HR Technology Lead - Workday Payroll & Time",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/HR-Technology-Lead---Workday-Payroll---Time_R01162816",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 22 Days Ago",
+      "job_id": "R01162816",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/HR-Technology-Lead---Workday-Payroll---Time_R01162816",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162186",
+      "title": "Area Sales Manager – Personal Safety Division",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Tamil-Nadu-Chennai/Area-Sales-Manager---Personal-Safety-Division_R01162186-1",
+      "experience": "",
+      "locations": [
+        "IN, Tamil Nadu, Chennai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 29 Days Ago",
+      "job_id": "R01162186",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Tamil-Nadu-Chennai/Area-Sales-Manager---Personal-Safety-Division_R01162186-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162619",
+      "title": "Area Sales Manager – Key Accounts | Hospital Segment",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Area-Sales-Manager---Key-Accounts---Hospital-Segment_R01162619",
+      "experience": "",
+      "locations": [
+        "IN, Maharashtra, Mumbai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30 Days Ago",
+      "job_id": "R01162619",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Area-Sales-Manager---Key-Accounts---Hospital-Segment_R01162619",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01161605",
+      "title": "Area Sales Manager - Industrial Adhesives & Tapes | Mumbai or Pune |",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Area-Sales-Manager---Industrial-Adhesives---Tapes_R01161605",
+      "experience": "",
+      "locations": [
+        "IN, Maharashtra, Mumbai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01161605",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Area-Sales-Manager---Industrial-Adhesives---Tapes_R01161605",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01161935",
+      "title": "Area Sales Manager – Emerging Markets",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Area-Sales-Manager---Emerging-Markets_R01161935",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01161935",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Area-Sales-Manager---Emerging-Markets_R01161935",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01160898",
+      "title": "Area Sales Manager - Dental Solutions Business (South)",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Area-Sales-Manager---Dental-Solutions-Business--South-_R01160898",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01160898",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Area-Sales-Manager---Dental-Solutions-Business--South-_R01160898",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01161083",
+      "title": "Salesforce Lead Developer (Bangalore)",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Salesforce-Lead-Developer--Bangalore-_R01161083",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01161083",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Salesforce-Lead-Developer--Bangalore-_R01161083",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01159213",
+      "title": "Area Sales Manager - Electrical Market Division",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Area-Sales-Manager---Electrical-Market-Division_R01159213",
+      "experience": "",
+      "locations": [
+        "IN, Maharashtra, Mumbai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01159213",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Area-Sales-Manager---Electrical-Market-Division_R01159213",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01158926",
+      "title": "APAC Planogram Optimization & Syn Data Specialist",
+      "company_name": "THA 3M Thailand Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/TH-Bangkok/APAC-Planogram-Optimization---Syn-Data-Specialist_R01158926-1",
+      "experience": "",
+      "locations": [
+        "TH, Bangkok"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01158926",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/TH-Bangkok/APAC-Planogram-Optimization---Syn-Data-Specialist_R01158926-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01157312",
+      "title": "Manager - Strategic Initiatives",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Manager---Strategic-Initiatives_R01157312",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01157312",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Manager---Strategic-Initiatives_R01157312",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01157975",
+      "title": "Regional Sales manager - South | Consumer Business Group",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Regional-Sales-manager---South---Consumer-Business-Group_R01157975",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01157975",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Regional-Sales-manager---South---Consumer-Business-Group_R01157975",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01157563",
+      "title": "Category Development Marketer",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Category-Development-Marketer_R01157563",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01157563",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Category-Development-Marketer_R01157563",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01157372",
+      "title": "Shopper Marketer - Ecom",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Shopper-Marketer---Ecom_R01157372",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01157372",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Shopper-Marketer---Ecom_R01157372",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01154945",
+      "title": "Application Development Engineer – Application Development & Automation",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Application-Development-Engineer---Application-Development---Automation_R01154945",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01154945",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Application-Development-Engineer---Application-Development---Automation_R01154945",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01154944",
+      "title": "Application Development Engineer",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Pune/Application-Development-Engineer_R01154944",
+      "experience": "",
+      "locations": [
+        "IN, Pune"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01154944",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Pune/Application-Development-Engineer_R01154944",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01126765",
+      "title": "Area Sales Manager (Emerging Markets)",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Andhra-Pradesh-Hyderabad/Area-Sales-Manager--Emerging-Markets-_R01126765",
+      "experience": "",
+      "locations": [
+        "IN, Andhra Pradesh, Hyderabad"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01126765",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Andhra-Pradesh-Hyderabad/Area-Sales-Manager--Emerging-Markets-_R01126765",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162920",
+      "title": "Senior Sales Analyst",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Tamil-Nadu-Chennai/Senior-Sales-Analyst_R01162920",
+      "experience": "",
+      "locations": [
+        "IN, Tamil Nadu, Chennai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R01162920",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Tamil-Nadu-Chennai/Senior-Sales-Analyst_R01162920",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01160743",
+      "title": "Associate Specialist-FP&A",
+      "company_name": "IND 3M Global Tech Center PVT LTD",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Associate-Specialist-FP-A_R01160743",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 2 Days Ago",
+      "job_id": "R01160743",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-BANGALORE/Associate-Specialist-FP-A_R01160743",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163670",
+      "title": "Analyst - Legal",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Analyst---Legal_R01163670",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 2 Days Ago",
+      "job_id": "R01163670",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Analyst---Legal_R01163670",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163622",
+      "title": "Business Development & Portfolio Leader – Infrastructure Coating Business",
+      "company_name": "IDN P.T. 3M Indonesia",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/ID-Dki-Jakarta-Selatan/Business-Development---Portfolio-Leader---Infrastructure-Coating-Business_R01163622",
+      "experience": "",
+      "locations": [
+        "ID, Dki Jakarta Selatan"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R01163622",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/ID-Dki-Jakarta-Selatan/Business-Development---Portfolio-Leader---Infrastructure-Coating-Business_R01163622",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162285",
+      "title": "Key Account Manager - Abrasives Systems Division - Hyderabad",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Telangana-Secunderabad/Key-Account-Manager---Abrasives-Systems-Division---Hyderabad_R01162285",
+      "experience": "",
+      "locations": [
+        "IN, Telangana, Secunderabad"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 7 Days Ago",
+      "job_id": "R01162285",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Telangana-Secunderabad/Key-Account-Manager---Abrasives-Systems-Division---Hyderabad_R01162285",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162681",
+      "title": "Key Account Manager - NHAI - West",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Key-Account-Manager---NHAI---West_R01162681",
+      "experience": "",
+      "locations": [
+        "IN, Maharashtra, Mumbai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R01162681",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Mumbai/Key-Account-Manager---NHAI---West_R01162681",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163127",
+      "title": "Product Developer - Abrasives Systems Division",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Product-Developer---Abrasives-Systems-Division_R01163127",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R01163127",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Product-Developer---Abrasives-Systems-Division_R01163127",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162887",
+      "title": "Sales Analyst",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Sales-Analyst_R01162887",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 9 Days Ago",
+      "job_id": "R01162887",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Sales-Analyst_R01162887",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163201",
+      "title": "Product Development Engineer",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Product-Development-Engineer_R01163201-1",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 13 Days Ago",
+      "job_id": "R01163201",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Product-Development-Engineer_R01163201-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163237",
+      "title": "Area Channel Sales Manager",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Tamil-Nadu-Chennai/Area-Channel-Sales-Manager_R01163237",
+      "experience": "",
+      "locations": [
+        "IN, Tamil Nadu, Chennai"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 14 Days Ago",
+      "job_id": "R01163237",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Tamil-Nadu-Chennai/Area-Channel-Sales-Manager_R01163237",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163142",
+      "title": "IP Analyst",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Patent-Analyst_R01163142",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 14 Days Ago",
+      "job_id": "R01163142",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Patent-Analyst_R01163142",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01163021",
+      "title": "Process engineer",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Pune/Process-engineer_R01163021",
+      "experience": "",
+      "locations": [
+        "IN, Maharashtra, Pune"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 14 Days Ago",
+      "job_id": "R01163021",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Maharashtra-Pune/Process-engineer_R01163021",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162063",
+      "title": "Sr. Legal Analyst",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Sr-Legal-Analyst_R01162063",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 15 Days Ago",
+      "job_id": "R01162063",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Sr-Legal-Analyst_R01162063",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162023",
+      "title": "Regional Sales & Channel Specialist for Electronics – South & West Zone",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Regional-Sales---Channel-Specialist-for-Electronics---South---West-Zone_R01162023",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 22 Days Ago",
+      "job_id": "R01162023",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Regional-Sales---Channel-Specialist-for-Electronics---South---West-Zone_R01162023",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162671",
+      "title": "Area Sales Manager",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-West-Bengal-Kolkata/Area-Sales-Manager_R01162671",
+      "experience": "",
+      "locations": [
+        "IN, West Bengal, Kolkata"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 22 Days Ago",
+      "job_id": "R01162671",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-West-Bengal-Kolkata/Area-Sales-Manager_R01162671",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162738",
+      "title": "Area Sales Executive | Home Water Solutions",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Gujarat-Ahmedabad/Area-Sales-Executive---Home-Water-Solutions_R01162738",
+      "experience": "",
+      "locations": [
+        "IN, Gujarat, Ahmedabad"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 28 Days Ago",
+      "job_id": "R01162738",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Gujarat-Ahmedabad/Area-Sales-Executive---Home-Water-Solutions_R01162738",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162680",
+      "title": "Key Account Manager - NHAI - NORTH",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IND-GURGAON/Key-Account-Manager---NHAI---NORTH_R01162680",
+      "experience": "",
+      "locations": [
+        "IND, GURGAON"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 28 Days Ago",
+      "job_id": "R01162680",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IND-GURGAON/Key-Account-Manager---NHAI---NORTH_R01162680",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162625",
+      "title": "Total Rewards Leader India",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Total-Rewards-Leader-India_R01162625-1",
+      "experience": "",
+      "locations": [
+        "IN, Bangalore Kar"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30 Days Ago",
+      "job_id": "R01162625",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Bangalore-Kar/Total-Rewards-Leader-India_R01162625-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162059",
+      "title": "Sales/Business Development Manager-Electrical Markets Division",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Delhi-New-Delhi/Sales-Business-Development-Manager-Electrical-Markets-Division_R01162059",
+      "experience": "",
+      "locations": [
+        "IN, Delhi, New Delhi"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01162059",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Delhi-New-Delhi/Sales-Business-Development-Manager-Electrical-Markets-Division_R01162059",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R01162203",
+      "title": "Area Sales Manager - Telangana",
+      "company_name": "IND 3M India Limited",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/job/IN-Andhra-Pradesh-Hyderabad/Area-Sales-Manager---Telangana_R01162203",
+      "experience": "",
+      "locations": [
+        "IN, Andhra Pradesh, Hyderabad"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R01162203",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/job/IN-Andhra-Pradesh-Hyderabad/Area-Sales-Manager---Telangana_R01162203",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}

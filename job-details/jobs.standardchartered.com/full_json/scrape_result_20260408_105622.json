@@ -1,0 +1,2363 @@
+{
+  "domain": "jobs.standardchartered.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 76,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T10:56:22.097152",
+  "jobs_count": 49,
+  "jobs": [
+    {
+      "id": "45062",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Senior-Vice-President/45062-en_GB",
+      "experience": "15+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "CA/ACMA or equivalent",
+      "required_skill_set": [
+        "Project management",
+        "Stakeholder management",
+        "Finance domain knowledge",
+        "SDLC understanding",
+        "Waterfall & agile methodologies",
+        "Communication skills",
+        "Leadership",
+        "Regulatory projects"
+      ],
+      "remote_type": "",
+      "posted_on": "06/02/2026",
+      "job_id": "45062",
+      "salary": "Core bank funding for retirement savings, medical and life insurance, with flexible and voluntary benefits available in some locations",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Senior-Vice-President/45062-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3412,
+        "output_tokens": 199,
+        "total_tokens": 3611
+      }
+    },
+    {
+      "id": "51226",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Senior-Manager-Business-Support%2C-GRS-&amp;-Transformation/51226-en_GB",
+      "experience": "8-10 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor’s / master’s degree in any stream",
+      "required_skill_set": [
+        "MI reporting",
+        "Data analysis",
+        "Financial reports",
+        "Risk data",
+        "Presentation skills",
+        "Communication skills",
+        "Influencing skills",
+        "Dashboard reporting",
+        "Regulatory compliance"
+      ],
+      "remote_type": "",
+      "posted_on": "26/03/2026",
+      "job_id": "51226",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Senior-Manager-Business-Support%2C-GRS-&amp;-Transformation/51226-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3360,
+        "output_tokens": 203,
+        "total_tokens": 3563
+      }
+    },
+    {
+      "id": "51228",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Snr-Manager%2C-Engg-Analyst-HR/51228-en_GB",
+      "experience": "6-8 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "University Degree Qualification",
+      "required_skill_set": [
+        "SuccessFactors",
+        "Azure",
+        "APIs",
+        "Agile",
+        "PowerPoint",
+        "Excel"
+      ],
+      "remote_type": "",
+      "posted_on": "01/04/2026",
+      "job_id": "51228",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Snr-Manager%2C-Engg-Analyst-HR/51228-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3832,
+        "output_tokens": 188,
+        "total_tokens": 4020
+      }
+    },
+    {
+      "id": "45111",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Relationship-Manager-SME-BWC/45111-en_GB",
+      "experience": "5 years",
+      "locations": [
+        "Delhi, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Client relationship management",
+        "Business development",
+        "Financial modelling",
+        "Financial statement analysis",
+        "Creditworthiness assessment",
+        "Trade, cash, lending, FX",
+        "Knowledge of SME banking regulations",
+        "Operational procedures",
+        "Market environment understanding",
+        "Communication and presentation"
+      ],
+      "remote_type": "",
+      "posted_on": "07/01/2026",
+      "job_id": "45111",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Relationship-Manager-SME-BWC/45111-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2703,
+        "output_tokens": 228,
+        "total_tokens": 2931
+      }
+    },
+    {
+      "id": "49216",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Development%2C-Manager/49216-en_GB",
+      "experience": "7-10 Years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "ANY DEGREE",
+      "required_skill_set": [
+        "ReactJS with Redux",
+        "Redux-Saga",
+        "Redux-Thunk",
+        "CSS",
+        "REST",
+        "Node.js",
+        "JavaScript",
+        "Jest",
+        "Git",
+        "Jenkins",
+        "SonarQube",
+        "Linux commands",
+        "HTTP servers"
+      ],
+      "remote_type": "",
+      "posted_on": "06/04/2026",
+      "job_id": "49216",
+      "salary": "package managers",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Development%2C-Manager/49216-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3985,
+        "output_tokens": 238,
+        "total_tokens": 4223
+      }
+    },
+    {
+      "id": "49223",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Senior-Developer/49223-en_GB",
+      "experience": "8+ Years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "['Preferably 8+ years in application development', 'Strong understanding of architecture and design', 'Experience in building scalable solutions', 'Knowledge of DevOps and CI-CD', 'Experience with Agile and Waterfall', 'Application delivery and support skills']",
+      "required_skill_set": [
+        "Java 8 or above",
+        "Spring Framework",
+        "Microservices",
+        "Kubernetes",
+        "SQL",
+        "DevOps",
+        "CI-CD",
+        "JIRA",
+        "GIT",
+        "Jenkins",
+        "JUnit",
+        "Mockito",
+        "REST",
+        "SOAP",
+        "Object-oriented design"
+      ],
+      "remote_type": "",
+      "posted_on": "31/03/2026",
+      "job_id": "49223",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Senior-Developer/49223-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3535,
+        "output_tokens": 318,
+        "total_tokens": 3853
+      }
+    },
+    {
+      "id": "41040",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Audit-Manager-Functions/41040-en_GB",
+      "experience": "5 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Institute of Internal Auditors or equivalent finance qualification",
+      "required_skill_set": [
+        "Python",
+        "SQL",
+        "Power BI",
+        "Tableau",
+        "Excel"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "41040",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Audit-Manager-Functions/41040-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3817,
+        "output_tokens": 159,
+        "total_tokens": 3976
+      }
+    },
+    {
+      "id": "51283",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Vice-President%2C-Sustainability-Reporting/51283-en_GB",
+      "experience": "12+ years+",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Qualified Chartered Accountant or equivalent",
+      "required_skill_set": [
+        "Sustainability reporting",
+        "Regulatory compliance",
+        "IFRS standards",
+        "Climate risk",
+        "Stakeholder communication"
+      ],
+      "remote_type": "",
+      "posted_on": "27/03/2026",
+      "job_id": "51283",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Vice-President%2C-Sustainability-Reporting/51283-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3442,
+        "output_tokens": 166,
+        "total_tokens": 3608
+      }
+    },
+    {
+      "id": "51297",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/GBS-Lead%2C-Bangalore%2C-People-Capability/51297-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor’s or Master’s degree",
+      "required_skill_set": [
+        "Agile"
+      ],
+      "remote_type": "",
+      "posted_on": "02/04/2026",
+      "job_id": "51297",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/GBS-Lead%2C-Bangalore%2C-People-Capability/51297-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3710,
+        "output_tokens": 202,
+        "total_tokens": 3912
+      }
+    },
+    {
+      "id": "51298",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Senior-Analyst%2C-People-Capability-Ops/51298-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "BE (CS,IT,ECS,EEE) or Equivalent",
+      "required_skill_set": [
+        "Certification/ curricula/course creation",
+        "Data Analysis",
+        "LMS understanding",
+        "Prescriptive Rule/assignment/assignment module",
+        "LMS configuration",
+        "Integration of upstream and downstream systems",
+        "Vendor Management",
+        "Client/Stakeholder Management",
+        "LMS tools and programming language"
+      ],
+      "remote_type": "",
+      "posted_on": "24/03/2026",
+      "job_id": "51298",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Senior-Analyst%2C-People-Capability-Ops/51298-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2597,
+        "output_tokens": 232,
+        "total_tokens": 2829
+      }
+    },
+    {
+      "id": "43106",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Strategy-&amp;-Planning-Lead/43106-en_GB",
+      "experience": "minimum 10 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor’s degree (Economics, Management, IT)",
+      "required_skill_set": [
+        "Portfolio Management",
+        "Business Management",
+        "Planning",
+        "Budget Management",
+        "Stakeholder Engagement",
+        "Management Presentations",
+        "People Programs",
+        "Analytical Skills",
+        "Communication Skills",
+        "Influencing Skills",
+        "MS Office (Excel, PowerPoint, Project)"
+      ],
+      "remote_type": "",
+      "posted_on": "09/12/2025",
+      "job_id": "43106",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Strategy-&amp;-Planning-Lead/43106-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2177,
+        "output_tokens": 224,
+        "total_tokens": 2401
+      }
+    },
+    {
+      "id": "47207",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Senior-Officer-%2C-CRC-Documentation/47207-en_GB",
+      "experience": "1-3 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Preferably Commerce Graduate / Postgraduate",
+      "required_skill_set": [
+        "Process Management",
+        "Operational Risk",
+        "Attention to Detail",
+        "Effective Communication"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "47207",
+      "salary": "payments, trade, markets or other) and service-oriented attitude.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Senior-Officer-%2C-CRC-Documentation/47207-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3635,
+        "output_tokens": 178,
+        "total_tokens": 3813
+      }
+    },
+    {
+      "id": "49255",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Development-Engineer/49255-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "['Bachelor’s degree in IT or Computer Science', 'Master’s degree in IT or Computer Science', 'Equivalent work experience']",
+      "required_skill_set": [
+        "Understanding functional requirements",
+        "Designing functionality using use-case diagrams",
+        "Contributing to product design",
+        "Working with project manager",
+        "Reviewing unit test code",
+        "Ensuring code meets standards",
+        "Documenting use cases",
+        "Providing production support"
+      ],
+      "remote_type": "",
+      "posted_on": "24/02/2026",
+      "job_id": "49255",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Development-Engineer/49255-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2612,
+        "output_tokens": 321,
+        "total_tokens": 2933
+      }
+    },
+    {
+      "id": "49257",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Technical-Manager/49257-en_GB",
+      "experience": "10+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Graduate or Master in Engineering",
+      "required_skill_set": [
+        "Java 17",
+        "Spring Boot",
+        "Microservice",
+        "Docker",
+        "Kubernetes",
+        "Database",
+        "Java Messaging",
+        "Manage Conduct",
+        "Business Facilitation",
+        "Manage Risk",
+        "Manage Projects"
+      ],
+      "remote_type": "",
+      "posted_on": "02/03/2026",
+      "job_id": "49257",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Technical-Manager/49257-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3516,
+        "output_tokens": 245,
+        "total_tokens": 3761
+      }
+    },
+    {
+      "id": "49262",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Full-Stack-Developer/49262-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor’s degree/Master’s degree in IT or CS",
+      "required_skill_set": [
+        "Java",
+        "SpringBoot",
+        "React",
+        "HTML",
+        "CSS",
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Angular",
+        "Hibernate",
+        "JPA",
+        "MongoDB",
+        "MySQL",
+        "Oracle"
+      ],
+      "remote_type": "",
+      "posted_on": "06/04/2026",
+      "job_id": "49262",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Full-Stack-Developer/49262-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2881,
+        "output_tokens": 298,
+        "total_tokens": 3179
+      }
+    },
+    {
+      "id": "49263",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Development-Engineer/49263-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor’s degree/Master’s degree in IT or CS",
+      "required_skill_set": [
+        "Java",
+        "SpringBoot",
+        "React",
+        "HTML",
+        "CSS",
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "Python",
+        "PHP",
+        "Hibernate",
+        "JPA",
+        "MongoDB",
+        "Oracle",
+        "Postgres"
+      ],
+      "remote_type": "",
+      "posted_on": "18/02/2026",
+      "job_id": "49263",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Development-Engineer/49263-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2879,
+        "output_tokens": 220,
+        "total_tokens": 3099
+      }
+    },
+    {
+      "id": "49265",
+      "title": "Job Details",
+      "company_name": "You Will Do",
+      "job_link": "https://jobs.standardchartered.com/job/Testing-Lead/49265-en_GB",
+      "experience": "8+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Bachelors degree in computer science or related field",
+      "required_skill_set": [
+        "Java",
+        "Selenium",
+        "Rest Assured",
+        "SQL",
+        "API",
+        "Postman",
+        "Git",
+        "Agile practices"
+      ],
+      "remote_type": "",
+      "posted_on": "18/02/2026",
+      "job_id": "49265",
+      "salary": "Payments, Client onboarding.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Testing-Lead/49265-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3488,
+        "output_tokens": 185,
+        "total_tokens": 3673
+      }
+    },
+    {
+      "id": "49275",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Lead%2C-App-Development/49275-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "B.Tech or Equivalent",
+      "required_skill_set": [
+        "J2EE",
+        "Spring Boot",
+        "React",
+        "Lit frameworks",
+        "OCP",
+        "SKE",
+        "Openshift",
+        "MQ",
+        "JMS",
+        "ActiveMQ",
+        "Solace",
+        "Maven",
+        "Jenkins",
+        "ADO",
+        "Node.js"
+      ],
+      "remote_type": "",
+      "posted_on": "25/03/2026",
+      "job_id": "49275",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Lead%2C-App-Development/49275-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2960,
+        "output_tokens": 274,
+        "total_tokens": 3234
+      }
+    },
+    {
+      "id": "51324",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Director%2C-SC-PrismFX-Sales%2C-India/51324-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "Graduate",
+      "required_skill_set": [
+        "FX Markets",
+        "Cross Border Payments",
+        "Trade Finance",
+        "Stakeholder Management",
+        "Business Communication"
+      ],
+      "remote_type": "",
+      "posted_on": "23/03/2026",
+      "job_id": "51324",
+      "salary": "payment, collections and trade financing transactions and solutioning for their requirements. Illustrat",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Director%2C-SC-PrismFX-Sales%2C-India/51324-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3396,
+        "output_tokens": 171,
+        "total_tokens": 3567
+      }
+    },
+    {
+      "id": "49291",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/GEO%2C-Governance-Effectiveness-Analyst/49291-en_GB",
+      "experience": "6–10 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "['6–10 years in dashboarding, MI, analytics or COO reporting']",
+      "required_skill_set": [
+        "Dashboarding & reporting frameworks",
+        "Business Data Model execution",
+        "Data quality, lineage, validation",
+        "Storytelling & visualisation",
+        "Workflow/data automation"
+      ],
+      "remote_type": "",
+      "posted_on": "16/03/2026",
+      "job_id": "49291",
+      "salary": "Package insights into leadership ready narratives.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/GEO%2C-Governance-Effectiveness-Analyst/49291-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3039,
+        "output_tokens": 183,
+        "total_tokens": 3222
+      }
+    },
+    {
+      "id": "49292",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/GEO%2C-Reporting-&amp;-Insights-Specialist/49292-en_GB",
+      "experience": "6–10 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Dashboarding & reporting frameworks",
+        "Business Data Model execution",
+        "Data quality, lineage, validation",
+        "Storytelling & visualisation",
+        "Workflow/data automation",
+        "BI tools (Power BI, Tableau)"
+      ],
+      "remote_type": "",
+      "posted_on": "17/03/2026",
+      "job_id": "49292",
+      "salary": "Package insights into leadership ready narratives.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/GEO%2C-Reporting-&amp;-Insights-Specialist/49292-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3038,
+        "output_tokens": 185,
+        "total_tokens": 3223
+      }
+    },
+    {
+      "id": "47248",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager/47248-en_GB",
+      "experience": "2 years",
+      "locations": [
+        "Hyderabad, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "client acquisition",
+        "relationship management",
+        "retail banking",
+        "consumer banking products",
+        "communication skills",
+        "interpersonal skills",
+        "teamwork",
+        "local language skills"
+      ],
+      "remote_type": "",
+      "posted_on": "31/03/2026",
+      "job_id": "47248",
+      "salary": "payments, financing, advisory, investments and bancassurance.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager/47248-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2797,
+        "output_tokens": 208,
+        "total_tokens": 3005
+      }
+    },
+    {
+      "id": "51349",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Audit-Manager%2C-Markets-and-FCS-Operations/51349-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Internal Audit",
+        "Data Analytics",
+        "Change Management",
+        "Microsoft Word",
+        "Excel",
+        "PowerPoint"
+      ],
+      "remote_type": "",
+      "posted_on": "24/03/2026",
+      "job_id": "51349",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Audit-Manager%2C-Markets-and-FCS-Operations/51349-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3044,
+        "output_tokens": 149,
+        "total_tokens": 3193
+      }
+    },
+    {
+      "id": "51364",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Audit-Manager-Functions%28India%2C-Malaysia%29/51364-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND,"
+      ],
+      "educational_qualifications": "['Experience in Audit, Governance, Risk', 'Professional Audit or Accounting Certification']",
+      "required_skill_set": [
+        "Data analysis",
+        "Stakeholder engagement",
+        "Audit planning",
+        "Risk assessment",
+        "GIA methodology",
+        "Data insights",
+        "Power BI",
+        "SQL",
+        "Python",
+        "Excel advanced functions"
+      ],
+      "remote_type": "",
+      "posted_on": "30/03/2026",
+      "job_id": "51364",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Audit-Manager-Functions%28India%2C-Malaysia%29/51364-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3960,
+        "output_tokens": 239,
+        "total_tokens": 4199
+      }
+    },
+    {
+      "id": "49333",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Credit-Analyst-Risk-Initiation/49333-en_GB",
+      "experience": "2 to 4 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "UG/PG or Commerce, Mathematic or finance related qualification",
+      "required_skill_set": [
+        "Credit decision experience",
+        "Mortgage underwriting",
+        "Credit card",
+        "Personal loan",
+        "Financial analysis",
+        "KYC and AML policies",
+        "MS Office",
+        "Credit analytical skill"
+      ],
+      "remote_type": "",
+      "posted_on": "13/03/2026",
+      "job_id": "49333",
+      "salary": "payment history, give recommendations on whether it is safe to approve a loan or reduce a credit line",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Credit-Analyst-Risk-Initiation/49333-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3260,
+        "output_tokens": 184,
+        "total_tokens": 3444
+      }
+    },
+    {
+      "id": "51382",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Associate%2C-CIB-Credit-Risk/51382-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Reading financial statements",
+        "Attention to details",
+        "Credit Risk Assessment",
+        "Credit Policies and Process",
+        "Communication skill",
+        "Stakeholder management"
+      ],
+      "remote_type": "",
+      "posted_on": "24/03/2026",
+      "job_id": "51382",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Associate%2C-CIB-Credit-Risk/51382-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3426,
+        "output_tokens": 187,
+        "total_tokens": 3613
+      }
+    },
+    {
+      "id": "51383",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Associate%2C-CIB-Credit-Risk/51383-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "['Relevant degree']",
+      "required_skill_set": [
+        "Financial statement reading",
+        "Credit risk assessment",
+        "Communication skills",
+        "Stakeholder management",
+        "Attention to detail"
+      ],
+      "remote_type": "",
+      "posted_on": "24/03/2026",
+      "job_id": "51383",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Associate%2C-CIB-Credit-Risk/51383-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3425,
+        "output_tokens": 146,
+        "total_tokens": 3571
+      }
+    },
+    {
+      "id": "51384",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/VP%2C-OTCR%2C-3rd-Party-Risk-Mgt-T&amp;O/51384-en_GB",
+      "experience": "8 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Bachelor’s degree in business, engineering, Computer Science, Information Technology, Cybersecurity",
+      "required_skill_set": [
+        "Third-party risk management",
+        "Vendor lifecycle management",
+        "Regulatory landscape knowledge",
+        "Operational risk management",
+        "Risk & Control Self-Assessment",
+        "GRC tools experience",
+        "Cybersecurity risk assessment",
+        "Stakeholder management",
+        "ISO27001, SOC2, NIST frameworks",
+        "English communication skills"
+      ],
+      "remote_type": "",
+      "posted_on": "25/03/2026",
+      "job_id": "51384",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/VP%2C-OTCR%2C-3rd-Party-Risk-Mgt-T&amp;O/51384-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3962,
+        "output_tokens": 301,
+        "total_tokens": 4263
+      }
+    },
+    {
+      "id": "51389",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Sr_-Manager%2C-Development-Finance/51389-en_GB",
+      "experience": "6-10yrs",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor Degree",
+      "required_skill_set": [
+        "Hadoop",
+        "Hive",
+        "Spark",
+        "Scala/Python",
+        "Shell Scripting",
+        "Control-M/Airflow"
+      ],
+      "remote_type": "",
+      "posted_on": "25/03/2026",
+      "job_id": "51389",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Sr_-Manager%2C-Development-Finance/51389-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3228,
+        "output_tokens": 213,
+        "total_tokens": 3441
+      }
+    },
+    {
+      "id": "43203",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Credit-Analyst-Credit-Initiation/43203-en_GB",
+      "experience": "7 yrs",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "MBA/CA qualified",
+      "required_skill_set": [
+        "Financial analysis",
+        "Legal understanding",
+        "MS Excel",
+        "MS Word"
+      ],
+      "remote_type": "",
+      "posted_on": "04/04/2026",
+      "job_id": "43203",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Credit-Analyst-Credit-Initiation/43203-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3458,
+        "output_tokens": 158,
+        "total_tokens": 3616
+      }
+    },
+    {
+      "id": "49353",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Specialist%2C-Settlements/49353-en_GB",
+      "experience": "5-6 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "['5-6 years relevant experience', 'Good system skills', 'Experience with settlement systems']",
+      "required_skill_set": [
+        "Knowledge of Custody operations",
+        "Securities Settlements",
+        "Corporate Actions",
+        "Financial Market Operations",
+        "Agent banking",
+        "Sub Custody operations",
+        "Clearing",
+        "Processing of Settlements",
+        "Reporting of Trade Status",
+        "SWIFT message formatting",
+        "System skills",
+        "Handling systems like Clearstream",
+        "Knowledge of allied products",
+        "Regulatory compliance"
+      ],
+      "remote_type": "",
+      "posted_on": "27/03/2026",
+      "job_id": "49353",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Specialist%2C-Settlements/49353-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3317,
+        "output_tokens": 334,
+        "total_tokens": 3651
+      }
+    },
+    {
+      "id": "51405",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Hadoop-Developer/51405-en_GB",
+      "experience": "10+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Bachelor /master’s degree in computer science or IT/Maths/Statistics/Quantitative/Business",
+      "required_skill_set": [
+        "Hadoop",
+        "HDFS",
+        "Hive",
+        "Spark",
+        "Kafka",
+        "Python",
+        "SQL",
+        "Shell Scripting",
+        "NoSQL",
+        "Java",
+        "Spring",
+        "Elasticsearch",
+        "PySpark",
+        "Oracle"
+      ],
+      "remote_type": "",
+      "posted_on": "30/03/2026",
+      "job_id": "51405",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Hadoop-Developer/51405-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3404,
+        "output_tokens": 280,
+        "total_tokens": 3684
+      }
+    },
+    {
+      "id": "49358",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Director%2C-WRB-Model-Development/49358-en_GB",
+      "experience": "10 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelors / Advanced degree in Statistics, Mathematics, Economics, Engineering, MBA",
+      "required_skill_set": [
+        "Statistical modeling",
+        "Data analysis",
+        "Risk analytics",
+        "Team management",
+        "Stakeholder communication"
+      ],
+      "remote_type": "",
+      "posted_on": "02/03/2026",
+      "job_id": "49358",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Director%2C-WRB-Model-Development/49358-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3034,
+        "output_tokens": 209,
+        "total_tokens": 3243
+      }
+    },
+    {
+      "id": "51411",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Business-Analyst%2C-CLM/51411-en_GB",
+      "experience": "10+ years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "['Business Analysis Certification', 'CBAP', 'Agile Certification', 'Scrum Master']",
+      "required_skill_set": [
+        "Agile",
+        "Azure",
+        "Scrum",
+        "Business Analysis",
+        "Case Management",
+        "Orchestration",
+        "Stakeholder Management",
+        "Microsoft Office",
+        "Confluence",
+        "JIRA"
+      ],
+      "remote_type": "",
+      "posted_on": "31/03/2026",
+      "job_id": "51411",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Business-Analyst%2C-CLM/51411-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3492,
+        "output_tokens": 248,
+        "total_tokens": 3740
+      }
+    },
+    {
+      "id": "49370",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Associate-Director%2C-CIB-Model-Development/49370-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Master’s Degree in Quantitative Discipline",
+      "required_skill_set": [
+        "Statistics",
+        "Proficiency in Python",
+        "Knowledge of Basel/CRR/EBA",
+        "Knowledge of IFRS 9",
+        "Machine learning techniques",
+        "Strong communication skills"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "49370",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Associate-Director%2C-CIB-Model-Development/49370-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3091,
+        "output_tokens": 227,
+        "total_tokens": 3318
+      }
+    },
+    {
+      "id": "51418",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Tech-Lead%2C-Development/51418-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "B.Tech or Equivalent",
+      "required_skill_set": [
+        "Java",
+        "J2EE",
+        "Quarkus",
+        "Kojito frameworks",
+        "BPMN",
+        "JAX-RS",
+        "JAX-WS",
+        "Spring Boot",
+        "REACT",
+        "Lit frameworks",
+        "OCP",
+        "SKE",
+        "Openshift",
+        "MQ",
+        "JMS"
+      ],
+      "remote_type": "",
+      "posted_on": "29/03/2026",
+      "job_id": "51418",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Tech-Lead%2C-Development/51418-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2960,
+        "output_tokens": 270,
+        "total_tokens": 3230
+      }
+    },
+    {
+      "id": "51419",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Tech-Lead%2C-Development/51419-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "B.Tech or Equivalent",
+      "required_skill_set": [
+        "Java",
+        "Node.js",
+        "React",
+        "Spring",
+        "J2EE",
+        "Quarkus",
+        "Kojito",
+        "BPMN",
+        "JAX-RS",
+        "JAX-WS",
+        "Spring Boot",
+        "UI Development",
+        "OCP",
+        "SKE",
+        "Openshift"
+      ],
+      "remote_type": "",
+      "posted_on": "29/03/2026",
+      "job_id": "51419",
+      "salary": "Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Tech-Lead%2C-Development/51419-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2961,
+        "output_tokens": 473,
+        "total_tokens": 3434
+      }
+    },
+    {
+      "id": "51431",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Development-Engineer/51431-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "['Program practice in forums like TopCoder', 'Certification from reputed communities', 'Participation in Hackathons', 'Contribution to open source']",
+      "required_skill_set": [
+        "Java",
+        "Angular",
+        "React",
+        "Microservices",
+        "AI/NLP",
+        "Machine Learning",
+        "Algorithms",
+        "Data Structures",
+        "OOPs",
+        "Agile"
+      ],
+      "remote_type": "",
+      "posted_on": "29/03/2026",
+      "job_id": "51431",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Development-Engineer/51431-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3066,
+        "output_tokens": 235,
+        "total_tokens": 3301
+      }
+    },
+    {
+      "id": "49387",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Lead%2C-Development/49387-en_GB",
+      "experience": "13 yrs",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "['Minimum 13 yrs of experience in Dev role', 'Experience as Dev lead is an advantage', 'Good knowledge in Java, Microservices, Spring Boot']",
+      "required_skill_set": [
+        "Java",
+        "Microservices",
+        "Spring Boot",
+        "Kafka Streams",
+        "REST",
+        "JSON",
+        "Oracle",
+        "PostgresSQL",
+        "Hazelcast",
+        "ELK",
+        "JIRA",
+        "Confluence"
+      ],
+      "remote_type": "Hybrid Working",
+      "posted_on": "18/02/2026",
+      "job_id": "49387",
+      "salary": "PAY, aligning with Business Strategy, ITO Strategy and investment priorities.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Lead%2C-Development/49387-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3184,
+        "output_tokens": 332,
+        "total_tokens": 3516
+      }
+    },
+    {
+      "id": "49388",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Test-Manager/49388-en_GB",
+      "experience": "8 yrs",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "['Minimum 8 yrs of experience in Dev role', 'Experience as Dev lead is an advantage', 'Good knowledge in Java, Microservices, Spring Boot']",
+      "required_skill_set": [
+        "Java",
+        "Selenium",
+        "Microservices",
+        "Spring Boot",
+        "Kafka Streams",
+        "REST",
+        "JSON",
+        "Oracle",
+        "PostgreSQL",
+        "Hazelcast",
+        "ELK",
+        "JIRA",
+        "Confluence"
+      ],
+      "remote_type": "hybrid",
+      "posted_on": "18/02/2026",
+      "job_id": "49388",
+      "salary": "PAY, aligning with Business Strategy, ITO Strategy and investment priorities.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Test-Manager/49388-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3207,
+        "output_tokens": 254,
+        "total_tokens": 3461
+      }
+    },
+    {
+      "id": "49392",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-Credit-Structuring/49392-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "M.B.A, A.C.A",
+      "required_skill_set": [
+        "Credit Admin Framework",
+        "Risk Monitoring",
+        "Credit Risk Analytics",
+        "Credit Reviews",
+        "Regulatory Compliance",
+        "Stakeholder Management"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "49392",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-Credit-Structuring/49392-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2647,
+        "output_tokens": 165,
+        "total_tokens": 2812
+      }
+    },
+    {
+      "id": "51448",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager-Affluent-Relations/51448-en_GB",
+      "experience": "2 to 5 years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "Post Graduate",
+      "required_skill_set": [
+        "Sales experience",
+        "Banking knowledge",
+        "Customer service",
+        "Interpersonal skills",
+        "Regulatory compliance",
+        "Risk management",
+        "Communication skills",
+        "Relationship building",
+        "Management skills",
+        "Target orientation"
+      ],
+      "remote_type": "",
+      "posted_on": "26/03/2026",
+      "job_id": "51448",
+      "salary": "In line with Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager-Affluent-Relations/51448-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3293,
+        "output_tokens": 208,
+        "total_tokens": 3501
+      }
+    },
+    {
+      "id": "51449",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager-Affluent-Relations/51449-en_GB",
+      "experience": "2 to 5 years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "Post Graduate",
+      "required_skill_set": [
+        "Sales experience",
+        "Banking knowledge",
+        "Customer service",
+        "Interpersonal skills",
+        "Regulatory compliance",
+        "Risk management",
+        "Communication skills",
+        "Relationship building",
+        "Management skills",
+        "Target oriented"
+      ],
+      "remote_type": "",
+      "posted_on": "26/03/2026",
+      "job_id": "51449",
+      "salary": "In line with Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager-Affluent-Relations/51449-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3291,
+        "output_tokens": 211,
+        "total_tokens": 3502
+      }
+    },
+    {
+      "id": "51451",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Client-Service-Manager-Distribution-Network/51451-en_GB",
+      "experience": "1-4 years",
+      "locations": [
+        "Kolkata, IND"
+      ],
+      "educational_qualifications": "Graduate/ Post Graduate",
+      "required_skill_set": [
+        "Customer Service",
+        "Complaint Resolution",
+        "Transaction Processing",
+        "Operational Efficiency",
+        "Customer Satisfaction",
+        "KYC/CDD/EDD",
+        "Regulatory Compliance",
+        "Teamwork",
+        "Communication Skills",
+        "Interpersonal Skills",
+        "Risk Management",
+        "Sales Referrals",
+        "Premises Management",
+        "Health and Safety"
+      ],
+      "remote_type": "",
+      "posted_on": "26/03/2026",
+      "job_id": "51451",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Client-Service-Manager-Distribution-Network/51451-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3111,
+        "output_tokens": 249,
+        "total_tokens": 3360
+      }
+    },
+    {
+      "id": "47364",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager-Affluent-Relations/47364-en_GB",
+      "experience": "2 years",
+      "locations": [
+        "Delhi, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "client acquisition",
+        "relationship management",
+        "retail banking",
+        "consumer banking products",
+        "communication skills",
+        "interpersonal skills",
+        "team player",
+        "local language skills"
+      ],
+      "remote_type": "",
+      "posted_on": "31/03/2026",
+      "job_id": "47364",
+      "salary": "payments, financing, advisory, investments and bancassurance.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Sr_-Relationship-Manager-Affluent-Relations/47364-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2804,
+        "output_tokens": 200,
+        "total_tokens": 3004
+      }
+    },
+    {
+      "id": "47373",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Principal-Relationship-Managers/47373-en_GB",
+      "experience": "2 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "client acquisition",
+        "relationship management",
+        "retail banking",
+        "consumer banking products",
+        "communication skills",
+        "interpersonal skills",
+        "team player",
+        "local language skills"
+      ],
+      "remote_type": "",
+      "posted_on": "02/04/2026",
+      "job_id": "47373",
+      "salary": "payments, financing, advisory, investments and bancassurance.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Principal-Relationship-Managers/47373-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2796,
+        "output_tokens": 186,
+        "total_tokens": 2982
+      }
+    },
+    {
+      "id": "52140",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Credit-Approver/52140-en_GB",
+      "experience": "10 Years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "MBA Finance or CA Qualified",
+      "required_skill_set": [
+        "Underwriting Skills",
+        "Stakeholder Management",
+        "Vendor Management",
+        "Negotiation Skills",
+        "Team Management Skills"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "52140",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Credit-Approver/52140-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2728,
+        "output_tokens": 174,
+        "total_tokens": 2902
+      }
+    },
+    {
+      "id": "52160",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Relationship-Manager/52160-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Delhi, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Banking knowledge",
+        "Sales experience",
+        "Communication skills",
+        "Interpersonal skills",
+        "Relationship building",
+        "Quick learner",
+        "Market awareness",
+        "Benchmarking",
+        "Management information",
+        "Flexible work",
+        "Courageous",
+        "Creative",
+        "Responsive",
+        "Trustworthy",
+        "Team engagement"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "52160",
+      "salary": "payments, financing, wealth management and personalised advice. We also support small business clients",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Relationship-Manager/52160-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2755,
+        "output_tokens": 223,
+        "total_tokens": 2978
+      }
+    },
+    {
+      "id": "52161",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Portfolio-Manager-Branch/52161-en_GB",
+      "experience": "5-8 years",
+      "locations": [
+        "Delhi, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Banking knowledge",
+        "Leadership skills",
+        "Strong communication",
+        "Customer orientation",
+        "Sales focus",
+        "IRDA & AMFI certified"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "52161",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Portfolio-Manager-Branch/52161-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3396,
+        "output_tokens": 159,
+        "total_tokens": 3555
+      }
+    }
+  ]
+}
