@@ -277,8 +277,8 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
 
     logger.info(f"[ScrapeDetails] {domain} read {len(jobs_raw)} jobs from {files[0].name}")
 
-    # Cap to 5 jobs for this endpoint
-    jobs_raw = jobs_raw[:5]
+    # Cap to 20 jobs for this endpoint
+    jobs_raw = jobs_raw[:20]
 
     logger.info(f"[ScrapeDetails] {domain} processing {len(jobs_raw)} jobs for detail extraction")
     logger.info("[DETAIL STRATEGY] strategy=%s for %s", strategy, domain)
@@ -959,11 +959,143 @@ async def scrape_hardcoded_job_details():
 
     return result
 
+class ProcessRequest(BaseModel):
+    file_path: str
+    limit: int = 50
+
+
+class ProcessResponse(BaseModel):
+    status: str
+    jobs_processed: int
+    file_path: str
+
+
+@router.post("/process", response_model=ProcessResponse)
+async def process_workday_jobs(request: ProcessRequest, session: AsyncSession = Depends(get_session)):
+    """Process Workday jobs from a saved raw JSON file.
+
+    This endpoint is called by the main scraper after Workday raw data is saved.
+    It reads the JSON file, extracts job details, and saves the results.
+    """
+    import json
+    from app.job_detail_engine.utils.json_saver import save_job_details
+
+    file_path = request.file_path
+    limit = request.limit
+
+    logger.info(f"[Process] Received request to process: {file_path} (limit={limit})")
+
+    # Read the raw JSON file
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        logger.error(f"[Process] Failed to read file {file_path}: {e}")
+        return ProcessResponse(
+            status="error",
+            jobs_processed=0,
+            file_path=file_path,
+        )
+
+    jobs_raw = data.get("jobs", [])
+    domain = data.get("domain", "unknown")
+    site_type = data.get("site_type", "WORKDAY_API")
+
+    # Cap to limit
+    jobs_raw = jobs_raw[:limit]
+
+    logger.info(f"[Process] Processing {len(jobs_raw)} jobs for {domain}")
+
+    # Extract details for each job
+    jobs_detail = []
+    total_ai_tokens = 0
+
+    from app.services.detail_extractor import extract_job_details as extract_api_details
+
+    for i, job_data in enumerate(jobs_raw):
+        job_url = job_data.get("url", "")
+        api_url = data.get("metadata", {}).get("api_url", "")
+
+        try:
+            detail = await extract_api_details(
+                strategy="api",
+                job=job_data,
+                site_type=site_type,
+                api_url=api_url,
+                base_url=data.get("metadata", {}).get("url", ""),
+            )
+        except Exception as exc:
+            logger.error(f"[Process] Detail extraction failed for job {i}: {exc}")
+            detail = {
+                "title": job_data.get("title", ""),
+                "location": job_data.get("location", ""),
+                "url": job_url,
+                "job_id": "",
+                "description": "",
+                "skills": [],
+                "experience": "",
+                "education": "",
+                "posted_on": "",
+                "employment_type": "",
+                "salary": "",
+                "company_name": "",
+                "remote_type": "",
+            }
+
+        job_entry = {
+            "id": str(detail.get("job_id") or job_url.split("/")[-1]),
+            "title": str(detail.get("title") or ""),
+            "company_name": str(detail.get("company_name") or ""),
+            "job_link": job_url,
+            "experience": str(detail.get("experience") or ""),
+            "locations": [detail["location"]] if isinstance(detail.get("location"), str) and detail.get("location") else (detail.get("location") or []),
+            "educational_qualifications": str(detail.get("education") or detail.get("qualifications", [])),
+            "required_skill_set": detail.get("skills", detail.get("required_skills", [])),
+            "remote_type": str(detail.get("remote_type") or ""),
+            "posted_on": str(detail.get("posted_on") or ""),
+            "job_id": str(detail.get("job_id") or ""),
+            "salary": str(detail.get("salary") or ""),
+            "is_active": True,
+            "first_seen": "",
+            "last_seen": "",
+            "additional_sections": detail.get("additional_sections") or [],
+            "Scrap_json": {
+                "url": job_url,
+                "strategy": "api",
+                "site_type": site_type,
+            },
+            "ai_usage": detail.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+        }
+        jobs_detail.append(job_entry)
+        ai_usage = detail.get("ai_usage") or {}
+        total_ai_tokens += ai_usage.get("total_tokens", 0)
+
+    # Save to job-details/{domain}/full_json/
+    saved_path = save_job_details(
+        jobs=jobs_detail,
+        domain=domain,
+        site_type=site_type,
+        listing_jobs_found=len(jobs_raw),
+        listing_status="success",
+    )
+
+    logger.info(
+        f"[Process] Complete → {len(jobs_detail)} jobs processed, "
+        f"total AI tokens={total_ai_tokens}, saved to={saved_path}"
+    )
+
+    return ProcessResponse(
+        status="success",
+        jobs_processed=len(jobs_detail),
+        file_path=file_path,
+    )
+
+
 @router.get("/test-scrape")
 async def test_scrape():
     """Run lightweight test scrape on hardcoded URLs.
 
-    Limits to 5 jobs per domain, saves JSON files to /data/,
+    Limits to 20 jobs per domain, saves JSON files to /data/,
     and returns the total count of jobs scraped.
     """
     result = await run_test_scrape()

@@ -14,7 +14,7 @@ from app.services.orchestrator import orchestrate_scrape
 from app.db.database import async_session
 
 TEST_OUTPUT_DIR = Path("data")
-MAX_JOBS_PER_DOMAIN = 5
+MAX_JOBS_PER_DOMAIN = 20
 REQUEST_DELAY = 1.5  # seconds between requests
 
 
@@ -213,7 +213,7 @@ async def scrape_job_detail(url: str) -> dict:
 
 
 async def run_test_scrape() -> dict:
-    """Run test scrape on hardcoded URLs, limit 5 jobs per domain, save JSON files."""
+    """Run test scrape on hardcoded URLs, limit 20 jobs per domain, save JSON files."""
     from app.api.routes import HARD_CODED_URLS
 
     TEST_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

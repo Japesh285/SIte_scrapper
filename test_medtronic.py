@@ -2,36 +2,31 @@ import asyncio
 import json
 import logging
 import os
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 
 import pandas as pd
 import aiofiles
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from openai import AsyncOpenAI
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 
 # =========================
-# LOAD ENV
+# ENV
 # =========================
 load_dotenv()
 
 API_KEY = os.getenv("OPENAI_API_KEY")
-
 if not API_KEY:
-    raise ValueError("❌ OPENAI_API_KEY not found in .env")
+    raise ValueError("OPENAI_API_KEY missing in .env")
+
+client = AsyncOpenAI(api_key=API_KEY)
 
 # =========================
 # CONFIG
 # =========================
-INPUT_FILE = "/home/hp_jp/ai_scrapper/raw_json/aig.wd1.myworkdayjobs.com/scrape_result_20260408_082622.json"
-OUTPUT_JSON = "parsed_jobs.json"
-OUTPUT_XLSX = "aig.parsed_jobs.xlsx"
-
-DEBUG_PROMPTS = "debug_prompts.jsonl"
-DEBUG_OUTPUT = "debug_llm_output.jsonl"
-
 MODEL = "gpt-4.1-nano"
-
 CONCURRENT_REQUESTS = 5
 REQUEST_DELAY = 0.3
 MAX_DESCRIPTION_LENGTH = 4000
@@ -45,28 +40,29 @@ logging.basicConfig(
 )
 
 # =========================
-# CLIENT
+# FASTAPI
 # =========================
-client = AsyncOpenAI(api_key=API_KEY)
+app = FastAPI(title="Job Processing Worker")
 
 # =========================
-# UTIL: CLEAN HTML
+# REQUEST MODEL
+# =========================
+class JobRequest(BaseModel):
+    file_path: str
+    limit: int = 50  # 👈 default cap
+
+# =========================
+# UTILS
 # =========================
 def clean_html(html: str) -> str:
     return BeautifulSoup(html or "", "html.parser").get_text(" ", strip=True)
 
-# =========================
-# UTIL: SAFE JSON
-# =========================
 def safe_json_load(text: str) -> Optional[Dict]:
     try:
         return json.loads(text)
     except:
         return None
 
-# =========================
-# DEBUG LOGGER
-# =========================
 async def write_jsonl(file: str, data: Dict):
     async with aiofiles.open(file, "a", encoding="utf-8") as f:
         await f.write(json.dumps(data, ensure_ascii=False) + "\n")
@@ -75,10 +71,7 @@ async def write_jsonl(file: str, data: Dict):
 # PROMPT
 # =========================
 SYSTEM_PROMPT = """
-You are a strict JSON generator.
-
-Return ONLY valid JSON.
-No markdown. No explanation.
+Return ONLY valid JSON. No explanation.
 
 Schema:
 {
@@ -97,17 +90,12 @@ Schema:
   "is_active": boolean,
   "first_seen": string,
   "last_seen": string,
-  "additional_sections": [
-    {
-      "section_title": string,
-      "content": string
-    }
-  ],
+  "additional_sections": [],
   "Scrap_json": object
 }
 """
 
-def build_prompt(job: Dict[str, Any]) -> str:
+def build_prompt(job: Dict) -> str:
     cleaned_description = clean_html(job.get("description", ""))[:MAX_DESCRIPTION_LENGTH]
 
     payload = {
@@ -120,41 +108,29 @@ def build_prompt(job: Dict[str, Any]) -> str:
         "hiringOrganization": job.get("_raw_detail", {}).get("hiringOrganization"),
     }
 
-    return f"""
-Extract structured job data.
-
-Rules:
-- Fill all fields
-- Clean + infer where needed
-- Use "" or [] if missing
-- DO NOT output anything except JSON
-
-Job Data:
-{json.dumps(payload, ensure_ascii=False)}
-"""
+    return f"Extract structured job data:\n{json.dumps(payload, ensure_ascii=False)}"
 
 # =========================
 # PROCESS ONE JOB
 # =========================
-async def process_job(job: Dict, semaphore: asyncio.Semaphore) -> Optional[Dict]:
+async def process_job(job: Dict, semaphore: asyncio.Semaphore, debug_dir: str):
     async with semaphore:
         try:
             prompt = build_prompt(job)
 
             # Save prompt
-            await write_jsonl(DEBUG_PROMPTS, {
-                "job_title": job.get("title"),
+            await write_jsonl(f"{debug_dir}/prompts.jsonl", {
+                "title": job.get("title"),
                 "prompt": prompt
             })
 
-            # Retry logic
             for attempt in range(3):
                 try:
                     response = await client.chat.completions.create(
                         model=MODEL,
                         messages=[
                             {"role": "system", "content": SYSTEM_PROMPT},
-                            {"role": "user", "content": prompt},
+                            {"role": "user", "content": prompt}
                         ],
                         temperature=0
                     )
@@ -162,8 +138,8 @@ async def process_job(job: Dict, semaphore: asyncio.Semaphore) -> Optional[Dict]
                     raw_output = response.choices[0].message.content
 
                     # Save raw output
-                    await write_jsonl(DEBUG_OUTPUT, {
-                        "job_title": job.get("title"),
+                    await write_jsonl(f"{debug_dir}/outputs.jsonl", {
+                        "title": job.get("title"),
                         "response": raw_output
                     })
 
@@ -172,7 +148,6 @@ async def process_job(job: Dict, semaphore: asyncio.Semaphore) -> Optional[Dict]
                     if not parsed:
                         raise ValueError("Invalid JSON")
 
-                    # Add token usage
                     usage = response.usage
                     parsed["ai_usage"] = {
                         "input_tokens": usage.prompt_tokens,
@@ -197,38 +172,61 @@ async def process_job(job: Dict, semaphore: asyncio.Semaphore) -> Optional[Dict]
             return None
 
 # =========================
-# MAIN
+# PROCESS FILE
 # =========================
-async def main():
-    # Load input
-    with open(INPUT_FILE, "r", encoding="utf-8") as f:
+async def process_file(file_path: str, limit: int) -> str:
+    if not os.path.exists(file_path):
+        raise FileNotFoundError("File not found")
+
+    with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    jobs: List[Dict] = data.get("jobs", [])
-    logging.info(f"Total jobs: {len(jobs)}")
+    all_jobs = data.get("jobs", [])
+    jobs = all_jobs[:limit]
+
+    logging.info(f"Processing {len(jobs)} out of {len(all_jobs)} jobs")
+
+    site_name = data.get("domain", "default_site")
+
+    # Output dirs
+    output_dir = f"./output/{site_name}"
+    debug_dir = f"{output_dir}/debug"
+
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(debug_dir, exist_ok=True)
 
     semaphore = asyncio.Semaphore(CONCURRENT_REQUESTS)
 
-    tasks = [process_job(job, semaphore) for job in jobs]
-
+    tasks = [process_job(job, semaphore, debug_dir) for job in jobs]
     results = await asyncio.gather(*tasks)
 
     parsed_jobs = [r for r in results if r]
 
-    logging.info(f"Parsed jobs: {len(parsed_jobs)}")
-
     # Save JSON
-    with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
+    json_path = f"{output_dir}/parsed.json"
+    with open(json_path, "w", encoding="utf-8") as f:
         json.dump(parsed_jobs, f, indent=2, ensure_ascii=False)
 
     # Save Excel
+    excel_path = f"{output_dir}/output.xlsx"
     df = pd.json_normalize(parsed_jobs)
-    df.to_excel(OUTPUT_XLSX, index=False)
+    df.to_excel(excel_path, index=False)
 
-    logging.info("🎉 Pipeline complete")
+    return excel_path
 
 # =========================
-# RUN
+# API ENDPOINT
 # =========================
-if __name__ == "__main__":
-    asyncio.run(main())
+@app.post("/process")
+async def process_jobs(req: JobRequest):
+    try:
+        output_path = await process_file(req.file_path, req.limit)
+
+        return {
+            "status": "success",
+            "processed_limit": req.limit,
+            "output_file": output_path
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

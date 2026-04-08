@@ -1,0 +1,255 @@
+{
+  "domain": "jobs.dell.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 124,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T10:04:24.634128",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "R289736",
+      "title": "Python Software Engineer",
+      "company_name": "Org_Subtype_BU026_IT",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/python-software-engineer/375/93680676784",
+      "experience": "2 to 5 years of proficiency in Python 3.x, basic understanding of NLP and experience with designing and building NLP models like Text Classifiers, Recommenders, Conversational Agents",
+      "locations": [
+        "Bangalore, India"
+      ],
+      "educational_qualifications": "Masters degree",
+      "required_skill_set": [
+        "Python 3.x",
+        "NLP",
+        "NLP models",
+        "Embeddings",
+        "Language models",
+        "GenAi frameworks",
+        "FastAPI/Flask/Django",
+        "Relational and Non-relational databases",
+        "LLMOps stack"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-4-7",
+      "job_id": "R289736",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/python-software-engineer/375/93680676784",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 30708,
+        "output_tokens": 221,
+        "total_tokens": 30929
+      }
+    },
+    {
+      "id": "R289645",
+      "title": "Corporate Governance Associate",
+      "company_name": "Org_Subtype_BU004_Legal",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/corporate-governance-associate/375/93606109312",
+      "experience": "ICSI qualified at least 5 years’ experience in a similar role post qualifying",
+      "locations": [
+        "Bangalore, India"
+      ],
+      "educational_qualifications": "ICSI qualified",
+      "required_skill_set": [
+        "Entity management",
+        "Corporate secretarial support",
+        "Board support",
+        "Legislation monitoring",
+        "Stakeholder liaison",
+        "Legal data review",
+        "Compliance management",
+        "Board and shareholder resolutions",
+        "Database management",
+        "Corporate restructuring",
+        "Tax initiatives",
+        "Legislation updates",
+        "Legal advice",
+        "Multinational experience"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-4-5",
+      "job_id": "R289645",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/corporate-governance-associate/375/93606109312",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 31369,
+        "output_tokens": 218,
+        "total_tokens": 31587
+      }
+    },
+    {
+      "id": "R288301",
+      "title": "Software Principal Engineer(C,C++, Firmware,BMC,IPMI,Redfish,AI, ML,GenAI)",
+      "company_name": "Org_Subtype_BU022_Infrastructure_Solutions_Group",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-principal-engineer-c-c-firmware-bmc-ipmi-redfish-ai-ml-genai/375/93539305552",
+      "experience": "9-14 years in platform/firmware/embedded systems; 3-4+ years building AI/ML solutions",
+      "locations": [
+        "Bangalore",
+        "India"
+      ],
+      "educational_qualifications": "Bachelor's in CS/CE/EE or related; Master's preferred",
+      "required_skill_set": [
+        "C/C++ embedded",
+        "Python",
+        "AI/ML frameworks",
+        "Redfish/IPMI",
+        "Firmware security",
+        "API design",
+        "ML/DL frameworks",
+        "Reinforcement learning",
+        "Vector databases",
+        "Multi-agent systems",
+        "Cross-functional collaboration"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-4-3",
+      "job_id": "R288301",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/software-principal-engineer-c-c-firmware-bmc-ipmi-redfish-ai-ml-genai/375/93539305552",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 31139,
+        "output_tokens": 243,
+        "total_tokens": 31382
+      }
+    },
+    {
+      "id": "R286326",
+      "title": "Principal Infrastructure Engineer – VMware NSX & PowerFlex",
+      "company_name": "Org_Subtype_BU023_Global_Services",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/principal-infrastructure-engineer-vmware-nsx-and-powerflex/375/93532235344",
+      "experience": "8–12 years of enterprise infrastructure experience",
+      "locations": [
+        "Bangalore, India"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Dell PowerFlex deployment and scaling",
+        "VMware NSX-T architecture and troubleshooting",
+        "VMware stack administration (ESXi, vCenter)",
+        "Dell PowerEdge server provisioning",
+        "Data-center networking (VLANs, VXLAN, TCP/IP)",
+        "High-availability design",
+        "Solution design and architecture",
+        "Mentoring engineers",
+        "Cross-team collaboration",
+        "Operational best practices"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-4-3",
+      "job_id": "R286326",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/principal-infrastructure-engineer-vmware-nsx-and-powerflex/375/93532235344",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 31456,
+        "output_tokens": 264,
+        "total_tokens": 31720
+      }
+    },
+    {
+      "id": "R287911",
+      "title": "Software Senior Principal Engineer - EIS Modernization - KAAS",
+      "company_name": "Org_Subtype_BU022_Infrastructure_Solutions_Group",
+      "job_link": "https://jobs.dell.com/en/job/bengaluru/software-senior-principal-engineer-eis-modernization-kaas/375/93522118480",
+      "experience": "12+ yrs",
+      "locations": [
+        "Bengaluru, India"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Kubernetes (K8s)/ Red Hat OpenShift",
+        "GitOps (ArgoCD / Declarative Configuration)",
+        "Infrastructure-as-Code (IaC)",
+        "Observability (Monitoring, Logging, Alerting)",
+        "Automation & Scripting (Bash, Python, GitHub Actions)"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-4-3",
+      "job_id": "R287911",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.dell.com/en/job/bengaluru/software-senior-principal-engineer-eis-modernization-kaas/375/93522118480",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 6,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 31776,
+        "output_tokens": 203,
+        "total_tokens": 31979
+      }
+    }
+  ]
+}

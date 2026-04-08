@@ -549,6 +549,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     logger.info(f"Jobs -> {saved_count}")
 
     # Save raw JSON to folder
+    saved_path = None
     if jobs:  # Only save if we found jobs (successful run)
         metadata = {
             "url": normalized_url,
@@ -561,6 +562,10 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         if saved_path:
             logger.info(f"Raw JSON saved to: {saved_path}")
 
+    # ── Workday: Send POST to local FastAPI worker for processing ──
+    if final_site_type == "WORKDAY_API" and saved_path:
+        await _notify_workday_processor(saved_path)
+
     return {
         "domain": domain,
         "type": final_site_type,
@@ -570,6 +575,32 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         "strategy": final_strategy,
         "api_url": api_url if final_strategy == "api" else "",
     }
+
+
+async def _notify_workday_processor(file_path: str) -> None:
+    """Send POST request to local FastAPI worker to process Workday jobs.
+
+    Only sends the file path and limit=50. Does NOT send raw HTML or JSON data.
+    Logs the response and does NOT retry on failure.
+    """
+    import httpx
+
+    url = "http://localhost:8001/process"
+    payload = {
+        "file_path": file_path,
+        "limit": 50,
+    }
+
+    logger.info(f"[WORKDAY NOTIFY] Sending POST to {url} with file_path={file_path}")
+
+    try:
+        async with httpx.AsyncClient(timeout=300) as client:
+            response = await client.post(url, json=payload)
+            logger.info(
+                f"[WORKDAY NOTIFY] Response: status={response.status_code} body={response.text[:500]}"
+            )
+    except Exception as e:
+        logger.warning(f"[WORKDAY NOTIFY] Failed to notify processor: {e}")
 
 
 # ---------------------------------------------------------------------------

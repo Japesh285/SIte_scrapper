@@ -1,0 +1,1008 @@
+{
+  "domain": "jobs.standardchartered.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 79,
+  "listing_status": "success",
+  "saved_at": "2026-04-08T10:15:34.404968",
+  "jobs_count": 20,
+  "jobs": [
+    {
+      "id": "41654",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Business-Analyst/41654-en_GB",
+      "experience": "7-8 years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Bachelor’s degree in engineering, Math, Statistics, Economics, Computer science or related field",
+      "required_skill_set": [
+        "SQL",
+        "Postgres",
+        "Kafka",
+        "Agile",
+        "Python",
+        "Excel"
+      ],
+      "remote_type": "",
+      "posted_on": "29/01/2026",
+      "job_id": "41654",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Business-Analyst/41654-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3275,
+        "output_tokens": 264,
+        "total_tokens": 3539
+      }
+    },
+    {
+      "id": "43704",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43704-en_GB",
+      "experience": "5+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "Bachelor's degree in computer science, Information Technology, or related field",
+      "required_skill_set": [
+        "AWS",
+        "Azure",
+        "GCP",
+        "Python",
+        "Bash",
+        "Ansible",
+        "Docker",
+        "Kubernetes",
+        "Monitoring tools",
+        "Log analysis",
+        "CI/CD practices",
+        "Security best practices",
+        "Troubleshooting skills",
+        "Automation"
+      ],
+      "remote_type": "",
+      "posted_on": "18/02/2026",
+      "job_id": "43704",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43704-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 4524,
+        "output_tokens": 335,
+        "total_tokens": 4859
+      }
+    },
+    {
+      "id": "43705",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43705-en_GB",
+      "experience": "5+ years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Bachelor's degree in computer science, Information Technology, or related field",
+      "required_skill_set": [
+        "AWS",
+        "Azure",
+        "GCP",
+        "Python",
+        "Bash",
+        "Ansible",
+        "Docker",
+        "Kubernetes",
+        "Monitoring tools",
+        "Log management",
+        "CI/CD practices",
+        "Security and compliance",
+        "Troubleshooting",
+        "Networking fundamentals",
+        "Linux/Unix"
+      ],
+      "remote_type": "hybrid",
+      "posted_on": "13/02/2026",
+      "job_id": "43705",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43705-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 4533,
+        "output_tokens": 349,
+        "total_tokens": 4882
+      }
+    },
+    {
+      "id": "51912",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Associate-Director-Relationship-Manager-SME-ME/51912-en_GB",
+      "experience": "4-6 years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "['Experience in banking', 'Lending to SME/Mid Corporates']",
+      "required_skill_set": [
+        "Relationship Management",
+        "Financial Analysis",
+        "Portfolio management"
+      ],
+      "remote_type": "",
+      "posted_on": "07/04/2026",
+      "job_id": "51912",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Associate-Director-Relationship-Manager-SME-ME/51912-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3084,
+        "output_tokens": 159,
+        "total_tokens": 3243
+      }
+    },
+    {
+      "id": "51913",
+      "title": "Job Details",
+      "company_name": "The Engineering Excellence & DevOps team sitting in CCIB organization",
+      "job_link": "https://jobs.standardchartered.com/job/Full-Stack-UI-Developer/51913-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "CI/CD Tools",
+        "Openshift/EKS",
+        "Helm Charts",
+        "Unix Shell Scripts",
+        "JavaScript",
+        "Azure",
+        "AWS",
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "06/04/2026",
+      "job_id": "51913",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Full-Stack-UI-Developer/51913-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2822,
+        "output_tokens": 186,
+        "total_tokens": 3008
+      }
+    },
+    {
+      "id": "51917",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/VP-Ops-Excellence/51917-en_GB",
+      "experience": "12-15+ years",
+      "locations": [
+        "Chennai, IND"
+      ],
+      "educational_qualifications": "MBA, Master's in Finance, or equivalent",
+      "required_skill_set": [
+        "Process improvement",
+        "Lean Six Sigma",
+        "Automation (RPA, AI/ML)",
+        "Process mapping",
+        "Data analytics",
+        "Regulatory compliance",
+        "Stakeholder management",
+        "Change management"
+      ],
+      "remote_type": "",
+      "posted_on": "06/04/2026",
+      "job_id": "51917",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/VP-Ops-Excellence/51917-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3509,
+        "output_tokens": 239,
+        "total_tokens": 3748
+      }
+    },
+    {
+      "id": "49875",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Manager-Process-Management-&amp;-Projects/49875-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Mumbai, IND"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Process improvement",
+        "Complaint management",
+        "Analytical skills",
+        "Interpersonal skills",
+        "Audit handling",
+        "Cross-geography experience",
+        "Communication skills",
+        "Stakeholder management"
+      ],
+      "remote_type": "",
+      "posted_on": "10/03/2026",
+      "job_id": "49875",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Manager-Process-Management-&amp;-Projects/49875-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2930,
+        "output_tokens": 167,
+        "total_tokens": 3097
+      }
+    },
+    {
+      "id": "49909",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49909-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "CSS",
+        "Frontend architecture",
+        "Design patterns",
+        "Code quality",
+        "Security tools",
+        "CI/CD",
+        "API integration",
+        "JSON handling",
+        "Blockchain frameworks",
+        "Cryptography",
+        "DevOps"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49909",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49909-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3687,
+        "output_tokens": 214,
+        "total_tokens": 3901
+      }
+    },
+    {
+      "id": "49910",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49910-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "CI/CD",
+        "Terraform",
+        "Git-ops",
+        "Jenkins",
+        "Linux",
+        "Python",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "Cryptography",
+        "Blockchain frameworks",
+        "Enterprise integration"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49910",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49910-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2833,
+        "output_tokens": 220,
+        "total_tokens": 3053
+      }
+    },
+    {
+      "id": "49911",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49911-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Blockchain frameworks",
+        "Permissioned blockchain",
+        "DLT applications",
+        "Backend development",
+        "Python",
+        "Golang",
+        "Solidity",
+        "RESTful API",
+        "Microservices",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "AWS",
+        "Azure",
+        "Cryptography"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49911",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49911-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3686,
+        "output_tokens": 317,
+        "total_tokens": 4003
+      }
+    },
+    {
+      "id": "49913",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49913-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Blockchain frameworks",
+        "Permissioned blockchain",
+        "DLT applications",
+        "Backend development",
+        "Python",
+        "Golang",
+        "Solidity",
+        "RESTful API",
+        "Microservice architectures",
+        "Containerization",
+        "Kubernetes",
+        "Helm",
+        "AWS EKS",
+        "Azure AKS",
+        "Cryptography"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49913",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49913-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3611,
+        "output_tokens": 251,
+        "total_tokens": 3862
+      }
+    },
+    {
+      "id": "49914",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49914-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Blockchain frameworks",
+        "Permissioned blockchain",
+        "DLT applications",
+        "Backend development",
+        "Python",
+        "Golang",
+        "Solidity",
+        "RESTful API",
+        "Microservice architectures",
+        "Containerization",
+        "Kubernetes",
+        "Helm",
+        "AWS EKS",
+        "Azure AKS",
+        "Cryptography"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49914",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49914-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3611,
+        "output_tokens": 251,
+        "total_tokens": 3862
+      }
+    },
+    {
+      "id": "49923",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49923-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Project Management",
+        "Agile experience",
+        "Clarity PPM",
+        "JIRA",
+        "Ado",
+        "Confluence",
+        "Trello",
+        "MS Office Suite",
+        "Excel",
+        "PowerPoint",
+        "Planner",
+        "Project"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49923",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49923-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3550,
+        "output_tokens": 200,
+        "total_tokens": 3750
+      }
+    },
+    {
+      "id": "49928",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49928-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Blockchain frameworks",
+        "Permissioned blockchain",
+        "DLT applications",
+        "Backend development",
+        "Python",
+        "Golang",
+        "Solidity",
+        "RESTful API",
+        "Microservices",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "Cryptography",
+        "System integration",
+        "Cloud infrastructure"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49928",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49928-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3650,
+        "output_tokens": 260,
+        "total_tokens": 3910
+      }
+    },
+    {
+      "id": "49929",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49929-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Blockchain frameworks",
+        "Python",
+        "Golang",
+        "Solidity",
+        "RESTful API",
+        "Microservice architectures",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "AWS EKS",
+        "Azure AKS",
+        "Cryptography",
+        "Solution design",
+        "Agile methodologies"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49929",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49929-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3628,
+        "output_tokens": 250,
+        "total_tokens": 3878
+      }
+    },
+    {
+      "id": "49931",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49931-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Relevant degree in Computer Science/Technology",
+      "required_skill_set": [
+        "SRE",
+        "Monitoring Tools",
+        "Automation Scripts",
+        "Micro Services",
+        "Kubernetes",
+        "AWS"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49931",
+      "salary": "Pay Charter,",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49931-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3611,
+        "output_tokens": 170,
+        "total_tokens": 3781
+      }
+    },
+    {
+      "id": "49933",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49933-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Project Management",
+        "Agile experience",
+        "Clarity PPM",
+        "JIRA",
+        "Ado",
+        "Confluence",
+        "Trello",
+        "MS Office Suite",
+        "Excel",
+        "Powerpoint",
+        "Planner",
+        "Project"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49933",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49933-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3564,
+        "output_tokens": 234,
+        "total_tokens": 3798
+      }
+    },
+    {
+      "id": "49935",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49935-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Agile",
+        "Scrum",
+        "Requirement analysis",
+        "API design",
+        "Blockchain",
+        "Data management",
+        "Security best practices"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49935",
+      "salary": "payments, account statements, and compliance. Knowledge of API design, implementation, and security bes",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49935-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3792,
+        "output_tokens": 206,
+        "total_tokens": 3998
+      }
+    },
+    {
+      "id": "49938",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49938-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Project Management",
+        "Agile experience",
+        "Clarity PPM",
+        "JIRA",
+        "Ado",
+        "Confluence",
+        "Trello",
+        "MS Office Suite"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49938",
+      "salary": "In line with our Fair Pay Charter",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49938-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3564,
+        "output_tokens": 194,
+        "total_tokens": 3758
+      }
+    },
+    {
+      "id": "49939",
+      "title": "Job Details",
+      "company_name": "Standard Chartered Bank",
+      "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-App-Development/49939-en_GB",
+      "experience": "170 years",
+      "locations": [
+        "Bangalore, IND"
+      ],
+      "educational_qualifications": "Masters or Engineering background",
+      "required_skill_set": [
+        "Python",
+        "Golang",
+        "RESTful API",
+        "Microservice architectures",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "AWS EKS",
+        "Azure AKS",
+        "Cryptography",
+        "Blockchain frameworks"
+      ],
+      "remote_type": "",
+      "posted_on": "18/03/2026",
+      "job_id": "49939",
+      "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-App-Development/49939-en_GB",
+        "strategy": "dom",
+        "parser_used": "html_basic",
+        "confidence": 8,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3611,
+        "output_tokens": 310,
+        "total_tokens": 3921
+      }
+    }
+  ]
+}
