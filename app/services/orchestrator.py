@@ -1,6 +1,10 @@
 import httpx
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.detectors.workday import (
+    _parse_workday_config_from_api_url,
+    _fetch_workday_job_detail,
+)
 
 from app.detectors import (
     detect_dom_browser,
@@ -508,7 +512,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         jobs = await _fetch_workday_with_raw_data(
             normalized_url, client=None, html=page_html,
             discovered_urls=discovered_urls, api_url=api_url,
-        )
+        ) or []
         logger.info("[WORKDAY API] Enriched %d jobs with raw API data", len(jobs))
 
     saved_count = 0
@@ -578,71 +582,122 @@ async def _fetch_workday_with_raw_data(
     discovered_urls: list[str] | None = None,
     api_url: str = "",
 ) -> list[dict]:
-    """Fetch Workday jobs preserving full API response for each job."""
-    from urllib.parse import urlparse
+    """Fetch Workday jobs preserving full API response + detail API enrichment."""
+
     from app.detectors.workday import (
         _build_workday_applied_facets,
         _normalize_workday_job,
     )
+    from app.core.logger import logger
 
+    # ── Fallback to normal fetch ─────────────────────────────
     if not api_url:
-        # Fall back to standard fetch
-        _, jobs = await fetch_workday_jobs(url, client=client, html=html, discovered_urls=discovered_urls)
-        return jobs
+        _, jobs = await fetch_workday_jobs(
+            url,
+            client=client,
+            html=html,
+            discovered_urls=discovered_urls,
+        )
+        return jobs or []
 
     close_client = client is None
     if close_client:
         client = httpx.AsyncClient(timeout=20, follow_redirects=True)
 
     try:
-        source_url = url  # ✅ used for urljoin later
-
+        source_url = url
         applied_facets = _build_workday_applied_facets(url)
+
         jobs: list[dict] = []
         seen_urls: set[str] = set()
+
         offset = 0
         limit = 20
 
+        config = _parse_workday_config_from_api_url(api_url)
+
         while True:
-            response = await client.post(
-                api_url,
-                json={
-                    "limit": limit,
-                    "offset": offset,
-                    "searchText": "",
-                    "appliedFacets": applied_facets,
-                },
-                headers={
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                },
-            )
-            response.raise_for_status()
-            payload = response.json()
+            try:
+                response = await client.post(
+                    api_url,
+                    json={
+                        "limit": limit,
+                        "offset": offset,
+                        "searchText": "",
+                        "appliedFacets": applied_facets,
+                    },
+                    headers={
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                    },
+                )
+                response.raise_for_status()
+                payload = response.json()
+            except Exception as e:
+                logger.exception("[WORKDAY] listings API failed: %s", e)
+                break
+
             postings = payload.get("jobPostings") or []
             if not postings:
                 break
 
             added = 0
-            for posting in postings:
-                normalized = _normalize_workday_job(posting, source_url)
-                if not normalized:
-                    continue
-                job_url = normalized["url"].lower()
-                if job_url in seen_urls:
-                    continue
-                seen_urls.add(job_url)
 
-                # Attach full raw API response for detail extraction
-                normalized["_raw_api"] = posting
-                jobs.append(normalized)
-                added += 1
+            for posting in postings:
+                try:
+                    normalized = _normalize_workday_job(posting, source_url)
+                    if not normalized:
+                        continue
+
+                    job_url = normalized["url"].lower()
+                    if job_url in seen_urls:
+                        continue
+                    seen_urls.add(job_url)
+
+                    # ✅ attach raw listing
+                    normalized["_raw_api"] = posting
+
+                    # ── DETAIL FETCH ───────────────────────
+                    detail = None
+                    if config:
+                        try:
+                            detail = await _fetch_workday_job_detail(
+                                client,
+                                config,
+                                posting.get("externalPath", ""),
+                            )
+                        except Exception as e:
+                            logger.debug("[WORKDAY] detail fetch failed: %s", e)
+
+                    if detail:
+                        job_info = detail.get("jobPostingInfo", {})
+                        normalized["description"] = job_info.get("jobDescription", "")
+                        normalized["detail_url"] = job_info.get("externalUrl")
+                        normalized["_raw_detail"] = detail
+                    else:
+                        normalized["description"] = ""
+                        normalized["detail_url"] = ""
+                        normalized["_raw_detail"] = None
+
+                    jobs.append(normalized)
+                    added += 1
+
+                except Exception as e:
+                    logger.debug("[WORKDAY] job processing failed: %s", e)
+                    continue
 
             if added == 0:
                 break
+
             offset += limit
 
-        return jobs
+        logger.info("[WORKDAY] returning %d enriched jobs", len(jobs))
+        return jobs or []
+
+    except Exception as e:
+        logger.exception("[WORKDAY] fatal error: %s", e)
+        return []
+
     finally:
         if close_client:
             await client.aclose()

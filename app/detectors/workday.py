@@ -4,6 +4,7 @@ from urllib.parse import parse_qs, urljoin, urlparse
 import httpx
 
 from app.core.site_utils import get_origin, normalize_site_url
+from app.core.logger import logger
 
 
 WORKDAY_API_PATTERN = re.compile(r"(https?:)?//[^\"'\s]+/wday/cxs/[^\"'\s]+", re.IGNORECASE)
@@ -162,21 +163,25 @@ async def _fetch_workday_postings(
     limit = 20
 
     while True:
-        response = await client.post(
-            api_url,
-            json={
-                "limit": limit,
-                "offset": offset,
-                "searchText": "",
-                "appliedFacets": applied_facets,
-            },
-            headers={
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-        )
-        response.raise_for_status()
-        payload = response.json()
+        try:
+            response = await client.post(
+                api_url,
+                json={
+                    "limit": limit,
+                    "offset": offset,
+                    "searchText": "",
+                    "appliedFacets": applied_facets,
+                },
+                headers={
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+            )
+            response.raise_for_status()
+            payload = response.json()
+        except Exception as e:
+            logger.error(f"[WORKDAY API] Request failed: {e}")
+            break
         postings = payload.get("jobPostings") or []
         if not postings:
             break
@@ -266,3 +271,100 @@ def _build_workday_applied_facets(url: str) -> dict[str, list[str]]:
             applied_facets[key] = cleaned_values
 
     return applied_facets
+
+
+def _normalize_external_path(path: str) -> str:
+    if not path:
+        return ""
+
+    path = path.strip().lstrip("/")
+
+    if path.startswith("job/"):
+        path = path[len("job/"):]
+
+    return path
+
+
+async def _fetch_workday_job_detail(
+    client: httpx.AsyncClient,
+    config: dict,
+    external_path: str,
+) -> dict | None:
+    clean_path = _normalize_external_path(external_path)
+
+    url = f"{config['base']}/wday/cxs/{config['tenant']}/{config['site']}/job/{clean_path}"
+
+    try:
+        res = await client.get(
+            url,
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "Mozilla/5.0",
+                "Referer": f"{config['base']}/en-US/{config['site']}",
+            },
+        )
+        res.raise_for_status()
+        return res.json()
+    except Exception:
+        return None 
+    
+def _parse_workday_config_from_api_url(api_url: str) -> dict | None:
+    """
+    Extract tenant + site + base from:
+    https://tenant.wdX.myworkdayjobs.com/wday/cxs/tenant/site/jobs
+    """
+    try:
+        parsed = urlparse(api_url)
+        host_parts = parsed.netloc.split(".")
+        tenant = host_parts[0]
+        server = host_parts[1]
+
+        path_parts = [p for p in parsed.path.split("/") if p]
+        # wday / cxs / tenant / site / jobs
+        site = path_parts[3]
+
+        base = f"{parsed.scheme}://{tenant}.{server}.myworkdayjobs.com"
+
+        return {
+            "tenant": tenant,
+            "site": site,
+            "base": base,
+        }
+    except Exception:
+        return None
+
+
+def _normalize_external_path(path: str) -> str:
+    if not path:
+        return ""
+
+    path = path.strip().lstrip("/")
+
+    if path.startswith("job/"):
+        path = path[len("job/"):]
+
+    return path
+
+
+async def _fetch_workday_job_detail(
+    client: httpx.AsyncClient,
+    config: dict,
+    external_path: str,
+) -> dict | None:
+    clean_path = _normalize_external_path(external_path)
+
+    url = f"{config['base']}/wday/cxs/{config['tenant']}/{config['site']}/job/{clean_path}"
+
+    try:
+        res = await client.get(
+            url,
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "Mozilla/5.0",
+                "Referer": f"{config['base']}/en-US/{config['site']}",
+            },
+        )
+        res.raise_for_status()
+        return res.json()
+    except Exception:
+        return None    

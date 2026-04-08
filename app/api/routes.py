@@ -275,10 +275,12 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
         data = json.load(f)
         jobs_raw = data.get("jobs", [])
 
+    logger.info(f"[ScrapeDetails] {domain} read {len(jobs_raw)} jobs from {files[0].name}")
+
     # Cap to 5 jobs for this endpoint
     jobs_raw = jobs_raw[:5]
 
-    logger.info(f"[ScrapeDetails] {domain} collected {len(jobs_raw)} jobs for detail extraction")
+    logger.info(f"[ScrapeDetails] {domain} processing {len(jobs_raw)} jobs for detail extraction")
     logger.info("[DETAIL STRATEGY] strategy=%s for %s", strategy, domain)
 
     # Step 3: Extract details using strategy-locked approach
