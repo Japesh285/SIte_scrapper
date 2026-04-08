@@ -1,0 +1,235 @@
+{
+  "domain": "3m.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 80,
+  "listing_status": "success",
+  "saved_at": "2026-04-07T12:15:46.379787",
+  "jobs_count": 5,
+  "jobs": [
+    {
+      "id": "_R01157303",
+      "title": "Senior Corporate Auditor",
+      "company_name": "",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/PH-Taguig/Senior-Corporate-Auditor_R01157303",
+      "experience": "",
+      "locations": [
+        "3 Locations"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R01157303",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "3 Locations"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted Yesterday"
+        },
+        {
+          "section_title": "remoteType",
+          "content": "On-site"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/PH-Taguig/Senior-Corporate-Auditor_R01157303",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R01162884-1",
+      "title": "Sr. Cloud Platform Engineer",
+      "company_name": "",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/Sr-Cloud-Platform-Engineer_R01162884-1",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R01162884-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "IN, BANGALORE"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 5 Days Ago"
+        },
+        {
+          "section_title": "remoteType",
+          "content": "On-site"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/Sr-Cloud-Platform-Engineer_R01162884-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R01163031",
+      "title": "Sr Specialist - Credit Risk",
+      "company_name": "",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/Sr-Specialist---Credit-Risk_R01163031",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R01163031",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "IN, BANGALORE"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 5 Days Ago"
+        },
+        {
+          "section_title": "remoteType",
+          "content": "On-site"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/Sr-Specialist---Credit-Risk_R01163031",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R01159887",
+      "title": "Lead Analyst - HR Reporting Technology",
+      "company_name": "",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/HR-Reporting-Technology-Analyst_R01159887",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R01159887",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "IN, BANGALORE"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 5 Days Ago"
+        },
+        {
+          "section_title": "remoteType",
+          "content": "On-site"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/HR-Reporting-Technology-Analyst_R01159887",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "_R01160772-1",
+      "title": "Sr. Data Engineer-HANA, Snowflake, SAP BW, ABAP",
+      "company_name": "",
+      "job_link": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/Sr-Data-Engineer-HANA--Snowflake--SAP-BW--ABAP_R01160772-1",
+      "experience": "",
+      "locations": [
+        "IN, BANGALORE"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "_R01160772-1",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "locationsText",
+          "content": "IN, BANGALORE"
+        },
+        {
+          "section_title": "postedOn",
+          "content": "Posted 6 Days Ago"
+        },
+        {
+          "section_title": "remoteType",
+          "content": "On-site"
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://3m.wd1.myworkdayjobs.com/en-US/en-US/job/job/IN-BANGALORE/Sr-Data-Engineer-HANA--Snowflake--SAP-BW--ABAP_R01160772-1",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}

@@ -3,6 +3,5 @@
     "allow": [
       "Bash(python3 *)"
     ]
-  },
-  "$version": 3
+  }
 }

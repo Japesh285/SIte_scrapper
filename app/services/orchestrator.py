@@ -595,11 +595,7 @@ async def _fetch_workday_with_raw_data(
         client = httpx.AsyncClient(timeout=20, follow_redirects=True)
 
     try:
-        parsed = urlparse(url)
-        tenant = parsed.netloc.split(".")[0]
-        site = next((part for part in parsed.path.split("/") if part), "")
-        if not tenant or not site:
-            return []
+        source_url = url  # ✅ used for urljoin later
 
         applied_facets = _build_workday_applied_facets(url)
         jobs: list[dict] = []
@@ -629,7 +625,7 @@ async def _fetch_workday_with_raw_data(
 
             added = 0
             for posting in postings:
-                normalized = _normalize_workday_job(posting, tenant, site)
+                normalized = _normalize_workday_job(posting, source_url)
                 if not normalized:
                     continue
                 job_url = normalized["url"].lower()

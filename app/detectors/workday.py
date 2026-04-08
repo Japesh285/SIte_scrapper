@@ -152,9 +152,7 @@ async def _fetch_workday_postings(
     client: httpx.AsyncClient, source_url: str, api_url: str
 ) -> list[dict]:
     parsed = urlparse(normalize_site_url(source_url))
-    tenant = parsed.netloc.split(".")[0]
-    site = next((part for part in parsed.path.split("/") if part), "")
-    if not tenant or not site:
+    if not parsed.netloc:
         return []
 
     applied_facets = _build_workday_applied_facets(source_url)
@@ -185,7 +183,7 @@ async def _fetch_workday_postings(
 
         added = 0
         for posting in postings:
-            normalized = _normalize_workday_job(posting, tenant, site)
+            normalized = _normalize_workday_job(posting, source_url)
             if not normalized:
                 continue
             job_url = normalized["url"].lower()
@@ -202,20 +200,27 @@ async def _fetch_workday_postings(
     return jobs
 
 
-def _normalize_workday_job(posting: dict, tenant: str, site: str) -> dict | None:
+from urllib.parse import urljoin
+
+def _normalize_workday_job(posting: dict, source_url: str) -> dict | None:
     title = str(posting.get("title") or "").strip()
-    external_path = str(posting.get("externalPath") or "").strip().lstrip("/")
+    external_path = str(posting.get("externalPath") or "").strip()
+
     if not title or not external_path:
         return None
 
-    location = str(posting.get("locationsText") or posting.get("location") or "").strip()
-    job_url = f"https://{tenant}.wd1.myworkdayjobs.com/en-US/{site}/job/{external_path}"
+    location = str(
+        posting.get("locationsText") or posting.get("location") or ""
+    ).strip()
+
+    # ✅ Always build URL using source_url (NOT tenant/site)
+    job_url = urljoin(source_url, external_path)
+
     return {
         "title": title,
         "location": location,
         "url": job_url,
     }
-
 
 def _add_candidate(candidate: str, base_url: str, candidates: list[str], seen: set[str]) -> None:
     normalized_candidate = candidate
