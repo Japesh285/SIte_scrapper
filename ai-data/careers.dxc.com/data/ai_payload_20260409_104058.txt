@@ -1,0 +1,562 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application SAP ABAP WORKFLOW in Hyderabad, Telangana, IN | Software Engineering at DXC Technology
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Skip to content
+
+
+
+
+
+
+
+
+Toggle Navigation
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+Join Our Talent Community
+Saved Jobs  
+(
+)
+
+
+Toggle Navigation
+Careers
+About Us
+About DXC
+Inclusion and Belonging
+Awards and Recognition
+Environmental, Social and Governance
+Insights
+My Applications
+Search Jobs
+Join our Talent Community
+Saved Jobs  
+(
+)
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Job Details
+2026-03-30T05:06:32+00:00
+ 
+
+
+
+
+51564507
+
+
+
+
+
+
+SAP ABAP WORKFLOW
+ 
+ 
+ 
+Job ID:
+ 51564507
+ 
+Category:
+ 
+Software Engineering
+ 
+Employment Type:
+ 
+Full time
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+ 
+Location:
+ Hyderabad, India 
+ 
+ 
+Job Description:
+ 
+ 
+10-12 years experienced SAP Technical Resource with good exposure to S4HANA implementation
+ 
+Developing ABAP solutions as per the design document requirements
+ 
+Working knowledge/Hands on in Workflow is mandatory.
+ 
+Knowledge and understanding of SAP Fiori and S/4 HANA is an added advantage
+ 
+ABAP Webdynpro Model generation (RFC, Web Services), Internal/External Context Mapping, Eventing, Navigation, Adaptive RFC, Custom Comps, Interfaces, Usage, Net Weaver Development Interface (NWDI Tracks, SCs, DCs)
+ 
+Experience in developing ALV reports, Forms, interfaces, enhancements
+ 
+Involvement in project work for various SAP modules
+ 
+Experience in Enterprise portal development
+ 
+Experience in integrating SAP ECC / S/4HANA with Ariba, Success Factors, Concur and SWIFT Bank integration
+ 
+Interacting with the Functional consultants to understand the functional requirements
+ 
+Developing and implementing changes/enhancements using ABAP technology for BAU and small change aligned to SAP standard
+ 
+Participate in complex code reviews and provide feedback
+ 
+Participate with customer business and functional team in design workshops / requirements gathering
+ 
+Work with functional and other teams to understand business requirements and translate into technical specifications and solutions in accordance with client standards and architecture
+ 
+Ability to design and develop EDI standards and EDI/IDOC data mapping
+ 
+Track and fully document change to ensure that issue logs are clearly documented and articulated
+ 
+Perform end user training internal cross training to other team members as necessary
+ 
+Understand user and process requirements and ensure those requirements can be achieved through high quality deliverables within the SAP landscape
+ 
+Design, code and correct large and/or complex programs and program modifications as custom development, or within an existing application
+ 
+Define test cases and run unit tests on developed, or modified system changes
+ 
+ 
+ 
+At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive.
+ 
+ 
+Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf. More information on employment scams is available
+ 
+here
+.
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+Share this job:
+Similar Jobs
+SAP Senior ABAP Consultant
+ 
+  	Hyderabad, Telangana, IN    		  
+Associate Manager ERP Package Applications
+ 
+  	Hyderabad, Telangana, IN    		  
+Join our Talent Community
+Join our Talent Community to get job alerts from DXC Technology delivered to your inbox.
+ 
+Sign up for job alerts
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+Careers
+Home
+Search Jobs
+Join Our Talent Community
+Others
+Customer Stories
+Newsroom
+H-1B LCAs
+Follow us
+Cookies
+Privacy
+Legal
+© Copyright 2026 | DXC Technology Company | All Rights Reserved
+ 
+
+
+×
+Confirmation de la langue
+Nous avons remarqué que la langue de votre navigateur est le français. Souhaitez-vous consulter notre site carrières en français ou continuer en anglais ?
+ 
+Français
+Anglais
+×
+Sprachbestätigung
+Wir haben festgestellt, dass Ihr Browser auf Deutsch eingestellt ist. Möchten Sie unsere Karriereseite auf Deutsch anzeigen oder auf Englisch fortfahren?
+ 
+Deutsch
+Englisch
+×
+Conferma della lingua
+Abbiamo notato che il tuo browser è impostato su italiano. Vuoi visitare il nostro sito delle carriere in italiano o continuare in inglese?
+ 
+Italiano
+Inglese
+×
+言語の確認
+お使いのブラウザは日本語を優先する設定になっています。キャリアサイトを日本語で表示しますか？それとも英語のまま続けますか？
+ 
+日本語
+英語
+×
+Confirmação de idioma
+Percebemos que o seu navegador está configurado para o idioma português. Gostaria de visualizar o nosso site de carreiras em português ou continuar em inglês?
+ 
+Português
+Inglês
+×
+Confirmación de idioma
+Hemos detectado que su navegador está configurado en español. ¿Desea ver nuestro sitio de carreras en español o continuar en inglés?
+ 
+Español
+Inglés
+×
+Xác nhận ngôn ngữ
+Chúng tôi nhận thấy trình duyệt của bạn được đặt ưu tiên cho ngôn ngữ tiếng Việt. Bạn có muốn xem trang nghề nghiệp của chúng tôi bằng tiếng Việt hay tiếp tục bằng tiếng Anh?
+ 
+Tiếng Việt
+Tiếng Anh
+ 
+ 
+
+
+
+
+ 
+
+
+ 
+
+
+Page load link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+Go to Top
+
+
+
+
+
+
+
+
+

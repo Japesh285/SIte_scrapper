@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, BackgroundTasks, Depends
+from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from pydantic import BaseModel
@@ -636,7 +637,6 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
 
 class BatchScrapeRequest(BaseModel):
     urls: list[str]
-    limit: int = 50
 
 
 class SiteResult(BaseModel):
@@ -652,27 +652,29 @@ class SiteResult(BaseModel):
     error: str = ""
 
 
-class BatchScrapeResponse(BaseModel):
-    total_sites: int
-    successful: int
-    failed: int
-    skipped: int
-    results: list[SiteResult]
-
-
-@router.post("/scrape-details-batch", response_model=BatchScrapeResponse)
-async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSession = Depends(get_session)):
-    """Scrape multiple sites synchronously, extract details, and POST results to port 8001.
-    
-    For WORKDAY_API sites: POST to /process-workday with file_path and limit
-    For other sites: POST to /ingest-json with file_path only
-    
-    Everything runs synchronously - one site at a time.
-    """
+@router.post("/scrape-details-batch")
+async def scrape_details_batch(
+    request: BatchScrapeRequest,
+    background_tasks: BackgroundTasks,
+    session: AsyncSession = Depends(get_session),
+):
+    """Scrape all jobs for all URLs, then return the fresh master Excel file."""
     results = []
     successful = 0
     failed = 0
     skipped = 0
+    files_to_cleanup: set[str] = set()
+    project_root = Path(__file__).resolve().parents[2]
+    master_xlsx = project_root / "output" / "master_jobs.xlsx"
+    master_json = project_root / "output" / "master_jobs.json"
+
+    for path in (master_xlsx, master_json):
+        try:
+            if path.exists():
+                path.unlink()
+                logger.info("[BatchScrape] Deleted stale output: %s", path)
+        except Exception as exc:
+            logger.warning("[BatchScrape] Failed deleting stale output %s: %s", path, exc)
 
     for url in request.urls:
         logger.info(f"[BatchScrape] Processing: {url}")
@@ -693,6 +695,48 @@ async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSessio
             domain = get_domain(normalized_url)
             site_result.domain = domain
             logger.info(f"[BatchScrape] Starting: {domain}")
+
+            # SmartRecruiters shortcut for batch flow only:
+            # send directly to the master ingest service and continue to next URL.
+            if "smartrecruiters" in normalized_url.lower():
+                site_result.site_type = "SMARTRECRUITERS"
+                site_result.strategy = "api"
+                notification_endpoint = "http://localhost:8001/process-smartrecruiters"
+                payload = {
+                    "url": normalized_url,
+                }
+                logger.info(f"[BatchScrape] {domain} detected SmartRecruiters → sending directly to {notification_endpoint}")
+
+                try:
+                    async with httpx.AsyncClient(timeout=300) as notify_client:
+                        response = await notify_client.post(notification_endpoint, json=payload)
+                        response_text = response.text[:500]
+                        notification_response = f"status={response.status_code} body={response_text}"
+                        response.raise_for_status()
+                        response_json = response.json()
+                except Exception as exc:
+                    logger.error(f"[BatchScrape] {domain} SmartRecruiters notification failed: {exc}")
+                    site_result.status = "failed"
+                    site_result.notification_sent = False
+                    site_result.notification_endpoint = notification_endpoint
+                    site_result.notification_response = f"error={str(exc)}"
+                    site_result.error = str(exc)
+                    failed += 1
+                    results.append(site_result)
+                    continue
+
+                site_result.jobs_found = int(response_json.get("processed", 0) or 0)
+                json_file = str(response_json.get("json_file") or "").strip()
+                if json_file:
+                    files_to_cleanup.add(json_file)
+                site_result.status = "success"
+                site_result.notification_sent = True
+                site_result.notification_endpoint = notification_endpoint
+                site_result.notification_response = notification_response
+                successful += 1
+                results.append(site_result)
+                logger.info(f"[BatchScrape] {domain} SmartRecruiters complete → processed={site_result.jobs_found}")
+                continue
 
             # Step 2: Get listing URLs via orchestrator (includes strategy lock)
             scrape_result = await orchestrate_scrape(normalized_url, session)
@@ -741,9 +785,6 @@ async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSessio
             # Save raw JSON path for Workday notification (BEFORE detail extraction)
             raw_json_path = str(files[0].resolve())
 
-            # Cap to limit
-            jobs_raw = jobs_raw[:request.limit]
-
             logger.info(f"[BatchScrape] {domain} processing {len(jobs_raw)} jobs for detail extraction")
             logger.info("[BatchScrape] [DETAIL STRATEGY] strategy=%s for %s", strategy, domain)
 
@@ -751,7 +792,35 @@ async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSessio
             jobs_detail = []
             total_ai_tokens = 0
 
-            if strategy == "api":
+            if site_type == "DYNAMIC_API":
+                # ── DYNAMIC_API: Jobs already AI-enriched by scraper, pass through ──
+                logger.info("[BatchScrape] [DYNAMIC_API] Jobs already enriched — passing through")
+                for i, job_data in enumerate(jobs_raw):
+                    job_url = str(job_data.get("job_link") or job_data.get("url", "")).strip()
+                    job_entry = JobDetailResult(
+                        id=str(job_data.get("job_id") or job_data.get("id") or job_url.split("/")[-1]),
+                        title=str(job_data.get("title") or ""),
+                        company_name=str(job_data.get("company_name") or ""),
+                        job_link=job_url,
+                        experience=str(job_data.get("experience") or ""),
+                        locations=job_data.get("locations") if isinstance(job_data.get("locations"), list) else ([job_data.get("locations")] if job_data.get("locations") else []),
+                        educational_qualifications=str(job_data.get("educational_qualifications") or "[]"),
+                        required_skill_set=job_data.get("required_skill_set") or [],
+                        remote_type=str(job_data.get("remote_type") or ""),
+                        posted_on=str(job_data.get("posted_on") or ""),
+                        job_id=str(job_data.get("job_id") or job_data.get("id") or ""),
+                        salary=str(job_data.get("salary") or ""),
+                        is_active=job_data.get("is_active", True),
+                        first_seen=str(job_data.get("first_seen") or ""),
+                        last_seen=str(job_data.get("last_seen") or ""),
+                        additional_sections=job_data.get("additional_sections") or [],
+                        Scrap_json=job_data.get("Scrap_json") or {},
+                        ai_usage=job_data.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                    )
+                    jobs_detail.append(job_entry)
+                    total_ai_tokens += job_entry.ai_usage.get("total_tokens", 0)
+
+            elif strategy == "api":
                 # ── API STRATEGY: Extract details from raw API data, NO HTML ──
                 from app.services.detail_extractor import extract_job_details as extract_api_details
 
@@ -1084,6 +1153,9 @@ async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSessio
             )
             if saved_path:
                 logger.info(f"[BatchScrape] Full JSON saved → {saved_path}")
+                files_to_cleanup.add(str(saved_path))
+            if raw_json_path:
+                files_to_cleanup.add(str(raw_json_path))
 
             # Step 6: Send POST request to port 8001 based on site type
             notification_sent = False
@@ -1096,9 +1168,8 @@ async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSessio
                     notification_endpoint = "http://localhost:8001/process-workday"
                     payload = {
                         "file_path": raw_json_path,
-                        "limit": request.limit,
                     }
-                    logger.info(f"[BatchScrape] {domain} Sending POST to {notification_endpoint} with file_path={raw_json_path}, limit={request.limit}")
+                    logger.info(f"[BatchScrape] {domain} Sending POST to {notification_endpoint} with file_path={raw_json_path}")
 
                     async with httpx.AsyncClient(timeout=300) as notify_client:
                         response = await notify_client.post(notification_endpoint, json=payload)
@@ -1142,13 +1213,51 @@ async def scrape_details_batch(request: BatchScrapeRequest, session: AsyncSessio
         results.append(site_result)
 
     logger.info(f"[BatchScrape] Complete → total={len(request.urls)}, success={successful}, failed={failed}, skipped={skipped}")
+    if not master_xlsx.exists():
+        return {
+            "total_sites": len(request.urls),
+            "successful": successful,
+            "failed": failed,
+            "skipped": skipped,
+            "results": [r.model_dump() for r in results],
+            "error": "master_xlsx_not_created",
+        }
 
-    return BatchScrapeResponse(
-        total_sites=len(request.urls),
-        successful=successful,
-        failed=failed,
-        skipped=skipped,
-        results=results,
+    def _cleanup_batch_outputs(paths: list[str], master_xlsx_path: str, master_json_path: str):
+        for raw_path in paths:
+            try:
+                file_path = Path(raw_path)
+                if file_path.exists():
+                    file_path.unlink()
+            except Exception as exc:
+                logger.warning("[BatchScrape] Cleanup failed for %s: %s", raw_path, exc)
+
+        for raw_path in (master_xlsx_path, master_json_path):
+            try:
+                file_path = Path(raw_path)
+                if file_path.exists():
+                    file_path.unlink()
+            except Exception as exc:
+                logger.warning("[BatchScrape] Cleanup failed for %s: %s", raw_path, exc)
+
+    background_tasks.add_task(
+        _cleanup_batch_outputs,
+        sorted(files_to_cleanup),
+        str(master_xlsx),
+        str(master_json),
+    )
+
+    return FileResponse(
+        path=str(master_xlsx),
+        filename="master_jobs.xlsx",
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        background=background_tasks,
+        headers={
+            "X-Total-Sites": str(len(request.urls)),
+            "X-Successful-Sites": str(successful),
+            "X-Failed-Sites": str(failed),
+            "X-Skipped-Sites": str(skipped),
+        },
     )
 
 

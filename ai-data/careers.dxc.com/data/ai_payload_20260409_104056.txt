@@ -1,0 +1,562 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application SAP Hana FICO Consultant in Bangalore, Karnataka, IN | Software Engineering at DXC Technology
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Skip to content
+
+
+
+
+
+
+
+
+Toggle Navigation
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+Join Our Talent Community
+Saved Jobs  
+(
+)
+
+
+Toggle Navigation
+Careers
+About Us
+About DXC
+Inclusion and Belonging
+Awards and Recognition
+Environmental, Social and Governance
+Insights
+My Applications
+Search Jobs
+Join our Talent Community
+Saved Jobs  
+(
+)
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Job Details
+2026-03-30T05:06:32+00:00
+ 
+
+
+
+
+51571043
+
+
+
+
+
+
+SAP Hana FICO Consultant
+ 
+ 
+ 
+Job ID:
+ 51571043
+ 
+Category:
+ 
+Software Engineering
+ 
+Employment Type:
+ 
+Full time
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+ 
+Location:
+ Bangalore, India 
+ 
+ 
+Job Description:
+ 
+Key Responsibilities
+1. Supply Chain Finance & Accounting
+Lead finance accounting processes across external and internal trading entities.
+Ensure compliance and optimization of intercompany transactions, transfer pricing, and group reporting.
+2. Standard Costing & Product Costing
+Design and configure product costing building blocks.
+Define costing variants, valuation strategies, overhead costing sheets, and template allocations.
+Implement mass costing, parallel processing, and mixed costing functionalities.
+Deliver comprehensive standard costing solutions with multiple versions, reporting, and production version management.
+3. Sales Order Costing
+Manage end-to-end sales order costing processes, including RA (Results Analysis), settlement, and SD/MM/PP integration.
+Design solutions for drop shipment, consignment, configure-to-order, and engineer-to-order processes.
+Implement profit center substitution and multiple valuation approaches for sales order costing.
+4. Production Order Costing
+Configure Make-to-Stock, Discrete, and Repetitive Manufacturing costing processes.
+Implement scrap variance, target costing, and mixed costing functionalities.
+Integrate subcontracting, split valuation, and valuated stock in-transit with costing.
+5. Material Ledger & Actual Costing
+Lead Material Ledger (ML) and Actual Costing implementations.
+Design transfer pricing, dynamic price change, accruals, and deferred account processes.
+Execute ML closing cockpit, including actual cost component split, COGS split, and inventory impact accounting.
+Leverage Fiori CDS views for reporting and develop custom CDS views.
+6. Managerial Accounting & Controlling (CO)
+Drive plan versions, FI/CO integration, parallel accounting, and multiple valuation approaches.
+Implement currency and valuation profiles for legal, group, and profit center reporting.
+7. Profitability Analysis (CO-PA) & SAP PaPM
+Deliver combined COPA, realignment, derivation, and planning solutions.
+Integrate COPA with BI and develop PaPM allocation rules, strategies, and advanced profitability reports.
+Design complex cost analysis reports using PaPM.
+8. Cost Center Accounting
+Lead cost center planning, activity-based planning, and budgeting processes.
+Configure universal allocation, template allocation, and statistical cost center functionality.
+Drive investment measures and profiles.
+9. Cross-Module & Business Process Expertise
+Ensure seamless FI integration with MM, SD, and PP.
+Support EDI processes and digital transformation initiatives.
+Apply technical knowledge in debugging and complex issue analysis.
+Explore automation with APIs, RPA, and digital tools for costing and controlling processes.
+ 
+ 
+At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive.
+ 
+ 
+Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf. More information on employment scams is available
+ 
+here
+.
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+Share this job:
+Similar Jobs
+SAP BASIS HANA
+ 
+  	Bangalore, Karnataka, IN    		  
+Sr Analyst II Software Engineering
+ 
+  	Bangalore, Karnataka, IN    		  
+AWS Devops Terraforms
+ 
+  	Bangalore, Karnataka, IN    		  
+Join our Talent Community
+Join our Talent Community to get job alerts from DXC Technology delivered to your inbox.
+ 
+Sign up for job alerts
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+Careers
+Home
+Search Jobs
+Join Our Talent Community
+Others
+Customer Stories
+Newsroom
+H-1B LCAs
+Follow us
+Cookies
+Privacy
+Legal
+© Copyright 2026 | DXC Technology Company | All Rights Reserved
+ 
+
+
+×
+Confirmation de la langue
+Nous avons remarqué que la langue de votre navigateur est le français. Souhaitez-vous consulter notre site carrières en français ou continuer en anglais ?
+ 
+Français
+Anglais
+×
+Sprachbestätigung
+Wir haben festgestellt, dass Ihr Browser auf Deutsch eingestellt ist. Möchten Sie unsere Karriereseite auf Deutsch anzeigen oder auf Englisch fortfahren?
+ 
+Deutsch
+Englisch
+×
+Conferma della lingua
+Abbiamo notato che il tuo browser è impostato su italiano. Vuoi visitare il nostro sito delle carriere in italiano o continuare in inglese?
+ 
+Italiano
+Inglese
+×
+言語の確認
+お使いのブラウザは日本語を優先する設定になっています。キャリアサイトを日本語で表示しますか？それとも英語のまま続けますか？
+ 
+日本語
+英語
+×
+Confirmação de idioma
+Percebemos que o seu navegador está configurado para o idioma português. Gostaria de visualizar o nosso site de carreiras em português ou continuar em inglês?
+ 
+Português
+Inglês
+×
+Confirmación de idioma
+Hemos detectado que su navegador está configurado en español. ¿Desea ver nuestro sitio de carreras en español o continuar en inglés?
+ 
+Español
+Inglés
+×
+Xác nhận ngôn ngữ
+Chúng tôi nhận thấy trình duyệt của bạn được đặt ưu tiên cho ngôn ngữ tiếng Việt. Bạn có muốn xem trang nghề nghiệp của chúng tôi bằng tiếng Việt hay tiếp tục bằng tiếng Anh?
+ 
+Tiếng Việt
+Tiếng Anh
+ 
+ 
+
+
+
+
+ 
+
+
+ 
+
+
+Page load link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+Go to Top
+
+
+
+
+
+
+
+
+

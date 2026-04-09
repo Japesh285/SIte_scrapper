@@ -1,0 +1,739 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application Devops Engineer in Chennai, Tamil Nadu, IN | Software Engineering at DXC Technology
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Skip to content
+
+
+
+
+
+
+
+
+Toggle Navigation
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+Join Our Talent Community
+Saved Jobs  
+(
+)
+
+
+Toggle Navigation
+Careers
+About Us
+About DXC
+Inclusion and Belonging
+Awards and Recognition
+Environmental, Social and Governance
+Insights
+My Applications
+Search Jobs
+Join our Talent Community
+Saved Jobs  
+(
+)
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Job Details
+2026-03-30T05:06:32+00:00
+ 
+
+
+
+
+51575448
+
+
+
+
+
+
+Devops Engineer
+ 
+ 
+ 
+Job ID:
+ 51575448
+ 
+Category:
+ 
+Software Engineering
+ 
+Employment Type:
+ 
+Full time
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+ 
+Location:
+ Chennai, India 
+ 
+ 
+Job Description:
+ 
+Senior DevOps Engineer – Azure, AKS, Automation & AI Enablement
+ 
+Role Summary
+ 
+We are seeking a highly skilled 
+Senior DevOps Engineer
+ with deep expertise in 
+Azure infrastructure
+, 
+cloud networking
+, and particularly 
+Azure Kubernetes Service (AKS)
+. The ideal candidate will have strong experience in 
+Infrastructure‑as‑Code (IaC)
+ using 
+Terraform
+ and working knowledge of 
+Ansible
+ for configuration management.
+ 
+This role requires someone who is not only technically strong but also 
+forward‑thinking
+, with a mindset to 
+experiment with AI
+, adopt 
+MCPs
+, and use AI-driven automation to improve speed, reliability, and developer productivity across the engineering ecosystem.
+ 
+The candidate must also have proven experience building and optimizing 
+Azure DevOps (ADO) pipelines
+, and familiarity with 
+GitHub Actions
+ is a strong plus.
+ 
+ 
+Key Responsibilities
+ 
+Cloud Infrastructure & AKS
+ 
+ 
+Design, deploy, and maintain 
+Azure infrastructure
+ including VNets, subnets, firewalls, Application Gateways, Private Links, and NSGs.
+ 
+Architect, configure, and optimize 
+AKS clusters
+, including node pools, autoscaling, workload identity, networking models, and cluster governance.
+ 
+Implement secure cluster networking (CNI, Azure CNI overlay, ingress controllers).
+ 
+ 
+Automation & Infrastructure-as-Code
+ 
+ 
+Build and maintain reusable IaC modules using 
+Terraform
+ (preferred) and 
+Ansible
+.
+ 
+Ensure consistent environment provisioning across dev, QA, staging, and production.
+ 
+Implement GitOps-style workflows for deployments and infrastructure state management.
+ 
+ 
+DevOps, CI/CD & Observability
+ 
+ 
+Design, build, and maintain 
+Azure DevOps pipelines
+ for build, deploy, test, and security automation.
+ 
+Contribute to OR lead migration or parallel adoption of 
+GitHub Actions
+ workflows.
+ 
+Enhance observability with tooling such as 
+Azure Monitor, Log Analytics, Prometheus/Grafana
+, and distributed tracing solutions.
+ 
+ 
+AI-Driven Engineering & MCP Automation
+ 
+ 
+Identify opportunities to use 
+AI agents, MCPs, and automation frameworks
+ to accelerate deployments, detect issues earlier, or simplify operational processes.
+ 
+Create AI-based workflows and scripts for faster infrastructure debugging, document generation, or environment provisioning.
+ 
+Encourage and influence a culture of 
+AI-first engineering experimentation
+.
+ 
+ 
+Security, Governance & Compliance
+ 
+ 
+Implement best practices in 
+Azure security
+, including workload identity, RBAC, Key Vault, managed identities, and network isolation.
+ 
+Collaborate with architecture, security, and infra teams to ensure compliance with enterprise standards.
+ 
+ 
+ 
+Required Skills & Experience
+ 
+Core Cloud & Kubernetes Skills
+ 
+ 
+6–10+ years in DevOps, SRE, or cloud engineering roles.
+ 
+Strong knowledge of 
+Azure infrastructure
+ (networking, compute, storage, identity).
+ 
+Deep hands-on experience with 
+AKS cluster architecture, operations, and scaling
+.
+ 
+Proficiency in 
+containerization
+ (Docker), container security, and Kubernetes networking.
+ 
+ 
+Automation & IaC
+ 
+ 
+Strong experience in 
+Terraform
+ for multi-environment IaC.
+ 
+Working knowledge of 
+Ansible
+ for provisioning and configuration.
+ 
+Solid understanding of GitOps principles (Argo CD or Flux is a plus).
+ 
+ 
+CI/CD & Code Repositories
+ 
+ 
+Strong experience building 
+Azure DevOps pipelines
+ (YAML-based preferred).
+ 
+Knowledge of 
+GitHub Actions
+ and workflow optimization.
+ 
+ 
+Scripting & Tooling
+ 
+ 
+Proficiency in 
+PowerShell
+, 
+Bash
+, or 
+Python
+ scripting.
+ 
+Experience with Helm, Kustomize, and Kubernetes package management.
+ 
+ 
+AI Mindset & Continuous Innovation
+ 
+ 
+Curiosity and drive to adopt 
+AI/automation tools
+ to enhance engineering velocity.
+ 
+Ability to create or integrate AI-driven workflows and MCPs.
+ 
+ 
+ 
+Preferred / Nice-to-Have
+ 
+ 
+Experience implementing 
+service mesh
+ (Istio/Linkerd).
+ 
+Exposure to 
+Azure API Management (APIM)
+.
+ 
+Experience with cost optimization and FinOps practices.
+ 
+Previous work with 
+Azure Container Apps
+, Functions, or event-driven architecture.
+ 
+Understanding of SRE principles (SLIs, SLOs, error budgets).
+ 
+ 
+ 
+Candidate Profile
+ 
+This role is ideal for someone who:
+ 
+ 
+Thrives in modern cloud-native environments.
+ 
+Can own end-to-end DevOps engineering for large-scale distributed systems.
+ 
+Has a 
+builder and automator mindset
+, especially using AI tools.
+ 
+Enjoys improving engineering workflows and reducing toil.
+ 
+Stays updated on DevOps, Kubernetes, and AI automation trends.
+ 
+ 
+ 
+At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive.
+ 
+ 
+Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf. More information on employment scams is available
+ 
+here
+.
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+Share this job:
+Similar Jobs
+SAP BASIS HANA
+ 
+  	Bangalore, Karnataka, IN    		  
+Sr Analyst II Software Engineering
+ 
+  	Bangalore, Karnataka, IN    		  
+AWS Devops Terraforms
+ 
+  	Bangalore, Karnataka, IN    		  
+Join our Talent Community
+Join our Talent Community to get job alerts from DXC Technology delivered to your inbox.
+ 
+Sign up for job alerts
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+Careers
+Home
+Search Jobs
+Join Our Talent Community
+Others
+Customer Stories
+Newsroom
+H-1B LCAs
+Follow us
+Cookies
+Privacy
+Legal
+© Copyright 2026 | DXC Technology Company | All Rights Reserved
+ 
+
+
+×
+Confirmation de la langue
+Nous avons remarqué que la langue de votre navigateur est le français. Souhaitez-vous consulter notre site carrières en français ou continuer en anglais ?
+ 
+Français
+Anglais
+×
+Sprachbestätigung
+Wir haben festgestellt, dass Ihr Browser auf Deutsch eingestellt ist. Möchten Sie unsere Karriereseite auf Deutsch anzeigen oder auf Englisch fortfahren?
+ 
+Deutsch
+Englisch
+×
+Conferma della lingua
+Abbiamo notato che il tuo browser è impostato su italiano. Vuoi visitare il nostro sito delle carriere in italiano o continuare in inglese?
+ 
+Italiano
+Inglese
+×
+言語の確認
+お使いのブラウザは日本語を優先する設定になっています。キャリアサイトを日本語で表示しますか？それとも英語のまま続けますか？
+ 
+日本語
+英語
+×
+Confirmação de idioma
+Percebemos que o seu navegador está configurado para o idioma português. Gostaria de visualizar o nosso site de carreiras em português ou continuar em inglês?
+ 
+Português
+Inglês
+×
+Confirmación de idioma
+Hemos detectado que su navegador está configurado en español. ¿Desea ver nuestro sitio de carreras en español o continuar en inglés?
+ 
+Español
+Inglés
+×
+Xác nhận ngôn ngữ
+Chúng tôi nhận thấy trình duyệt của bạn được đặt ưu tiên cho ngôn ngữ tiếng Việt. Bạn có muốn xem trang nghề nghiệp của chúng tôi bằng tiếng Việt hay tiếp tục bằng tiếng Anh?
+ 
+Tiếng Việt
+Tiếng Anh
+ 
+ 
+
+
+
+
+ 
+
+
+ 
+
+
+Page load link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+Go to Top
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2397 @@
+{
+  "domain": "careers.dxc.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 72,
+  "listing_status": "success",
+  "saved_at": "2026-04-09T10:42:12.996228",
+  "jobs_count": 50,
+  "jobs": [
+    {
+      "id": "51540940",
+      "title": "Project Manager",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22665816/project-manager-noida-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 18.0, 'maxValue': 18.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "[\"Master's degree in related field\", 'PMP', 'Scrum Master', 'technical certifications']",
+      "required_skill_set": [
+        "Micro Focus tools",
+        "COBOL",
+        "JCL",
+        "CICS",
+        "DB2 for z/OS",
+        "Assembler",
+        "PL/I",
+        "Rexx",
+        "GDGs",
+        "VSAM",
+        "cloud migration",
+        "conversion projects"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-09",
+      "job_id": "51540940",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22665816/project-manager-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3660,
+        "output_tokens": 264,
+        "total_tokens": 3924
+      }
+    },
+    {
+      "id": "51560865",
+      "title": "Sr Analyst I software Engineering",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23239002/sr-analyst-i-software-engineering-noida-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-09",
+      "job_id": "51560865",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23239002/sr-analyst-i-software-engineering-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2193,
+        "output_tokens": 202,
+        "total_tokens": 2395
+      }
+    },
+    {
+      "id": "51572775",
+      "title": "Analyst I Software Engineering / RR-0346036",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23241916/analyst-i-software-engineering-rr-0346036-indore-in/",
+      "experience": "2+ years of relevant software engineering experience",
+      "locations": [
+        "Indore, Madhya Pradesh, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree in a relevant field",
+      "required_skill_set": [
+        "Proficiency in software languages",
+        "Development methodologies",
+        "Coding and debugging"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-09",
+      "job_id": "51572775",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23241916/analyst-i-software-engineering-rr-0346036-indore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2396,
+        "output_tokens": 194,
+        "total_tokens": 2590
+      }
+    },
+    {
+      "id": "51572521",
+      "title": "SAP Senior ABAP Consultant",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23018651/sap-senior-abap-consultant-hyderabad-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Hyderabad, Telangana, IN"
+      ],
+      "educational_qualifications": "['8+ years in SAP ABAP development', 'Experience with S/4HANA']",
+      "required_skill_set": [
+        "ABAP Objects",
+        "ALV",
+        "Enhancements",
+        "Forms",
+        "BAPIs",
+        "BADIs",
+        "OData",
+        "SAP Gateway",
+        "SAP BTP",
+        "Fiori"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-09",
+      "job_id": "51572521",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23018651/sap-senior-abap-consultant-hyderabad-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2675,
+        "output_tokens": 268,
+        "total_tokens": 2943
+      }
+    },
+    {
+      "id": "51572980",
+      "title": "RR-0332583 Analyst II Software Engineering",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23242077/rr-0332583-analyst-ii-software-engineering-mumbai-in/",
+      "experience": "1+ years",
+      "locations": [
+        "Mumbai, Maharashtra, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree in a relevant field",
+      "required_skill_set": [
+        "Software development",
+        "Coding",
+        "Debugging",
+        "Team collaboration",
+        "Problem-solving"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-09",
+      "job_id": "51572980",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23242077/rr-0332583-analyst-ii-software-engineering-mumbai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2436,
+        "output_tokens": 186,
+        "total_tokens": 2622
+      }
+    },
+    {
+      "id": "51577007",
+      "title": "Sr. Analyst I - Zurich",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23241879/sr-analyst-i-zurich-indore-in/",
+      "experience": "8+ years",
+      "locations": [
+        "Indore, Madhya Pradesh, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Python",
+        "ML",
+        "Gen AI",
+        "NLP",
+        "GitHub",
+        "Azure AI Foundry",
+        "Azure OpenAI GPT",
+        "Agentic Framework",
+        "Kubernetes",
+        "Fine-tuning",
+        "RAG",
+        "Prompt engineering",
+        "Streamlit",
+        "Flask",
+        "SQL"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-09",
+      "job_id": "51577007",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23241879/sr-analyst-i-zurich-indore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2096,
+        "output_tokens": 205,
+        "total_tokens": 2301
+      }
+    },
+    {
+      "id": "51560117",
+      "title": "SAP BASIS HANA",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22666510/sap-basis-hana-bangalore-in/",
+      "experience": "1.0-1000000.0 USD",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP BASIS administration",
+        "HANA database management",
+        "SAP S/4HANA",
+        "Backup and recovery",
+        "Performance tuning",
+        "System monitoring",
+        "Troubleshooting",
+        "SAP support coordination",
+        "Security patches",
+        "Technical documentation"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51560117",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22666510/sap-basis-hana-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2307,
+        "output_tokens": 228,
+        "total_tokens": 2535
+      }
+    },
+    {
+      "id": "51571763",
+      "title": "Analyst III Infrastructure Services",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23236731/analyst-iii-infrastructure-services-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "10+2+3 in any stream",
+      "required_skill_set": [
+        "Good understanding of computer systems",
+        "Ability to diagnose technical issues",
+        "Experience with troubleshooting",
+        "Interpersonal skills",
+        "Problem-solving skills",
+        "Communication skills",
+        "Organization skills",
+        "Teamwork ability"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51571763",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23236731/analyst-iii-infrastructure-services-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3942,
+        "output_tokens": 290,
+        "total_tokens": 4232
+      }
+    },
+    {
+      "id": "51574568",
+      "title": "Sr Analyst II Software Engineering",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23237106/sr-analyst-ii-software-engineering-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "NET/.Net Core Framework",
+        "C#",
+        "Web API",
+        "SQL/PostgreSQL",
+        "JavaScript",
+        "React",
+        "Sagas",
+        "Webpack",
+        "ES6",
+        "Jest",
+        "Enzyme",
+        "development methodologies",
+        "software design",
+        "design patterns",
+        "GitHub"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51574568",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23237106/sr-analyst-ii-software-engineering-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2146,
+        "output_tokens": 261,
+        "total_tokens": 2407
+      }
+    },
+    {
+      "id": "51576160",
+      "title": "Sr Analyst II Controllership",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23237231/sr-analyst-ii-controllership-bangalore-in/",
+      "experience": "3+ years",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "CA qualified",
+      "required_skill_set": [
+        "Financial reporting",
+        "US GAAP",
+        "Shared Services",
+        "Accounting adjustments",
+        "P&L review",
+        "Balance sheet analysis",
+        "SAP knowledge",
+        "Communication skills"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51576160",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23237231/sr-analyst-ii-controllership-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2422,
+        "output_tokens": 201,
+        "total_tokens": 2623
+      }
+    },
+    {
+      "id": "51577521",
+      "title": "Analyst II Finance Operations",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23237717/analyst-ii-finance-operations-chennai-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Chennai, Tamil Nadu, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree or equivalent",
+      "required_skill_set": [
+        "Payroll processing",
+        "Statutory compliance",
+        "Payroll audit",
+        "Accounting software",
+        "Employee retirals",
+        "Internal audit",
+        "Payroll systems",
+        "Taxation",
+        "SAP GHR",
+        "Workday"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51577521",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23237717/analyst-ii-finance-operations-chennai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3086,
+        "output_tokens": 272,
+        "total_tokens": 3358
+      }
+    },
+    {
+      "id": "51577569",
+      "title": "Service Now Developer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23238971/service-now-developer-noida-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "['ServiceNow CSA (Certified System Administrator)', 'Experience in CSM or FSO']",
+      "required_skill_set": [
+        "ServiceNow CSA",
+        "ServiceNow Development",
+        "Customer Service Management",
+        "Financial Services Operations",
+        "Playbooks",
+        "Flow Designer",
+        "Now Assist / AI",
+        "Platform Analytics",
+        "Predictive Intelligence",
+        "Service Portal",
+        "Catalog Items",
+        "Automated Test Framework"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51577569",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23238971/service-now-developer-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2431,
+        "output_tokens": 286,
+        "total_tokens": 2717
+      }
+    },
+    {
+      "id": "51540937",
+      "title": "AMS Project Manager",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22665784/ams-project-manager-noida-in/",
+      "experience": "18+ years in software engineering, 7+ years in managerial roles",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "A master’s degree in a related field is a plus",
+      "required_skill_set": [
+        "Micro Focus tools",
+        "COBOL",
+        "JCL",
+        "CICS",
+        "DB2 for z/OS",
+        "Assembler",
+        "PL/I",
+        "Rexx",
+        "cloud migration",
+        "conversion projects",
+        "team leadership",
+        "project management",
+        "agile processes",
+        "software development"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51540937",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22665784/ams-project-manager-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3535,
+        "output_tokens": 300,
+        "total_tokens": 3835
+      }
+    },
+    {
+      "id": "51569878",
+      "title": "AWS Full Stack Developer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23236820/aws-full-stack-developer-indore-in/",
+      "experience": "2+ years of relevant software engineering experience",
+      "locations": [
+        "Indore, Madhya Pradesh, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree in a relevant field",
+      "required_skill_set": [
+        "Software development",
+        "Coding and debugging",
+        "Team collaboration",
+        "Documentation",
+        "Emerging technologies"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51569878",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23236820/aws-full-stack-developer-indore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2381,
+        "output_tokens": 192,
+        "total_tokens": 2573
+      }
+    },
+    {
+      "id": "51566944",
+      "title": "Manager Business Process Transactions / RR-0308913",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23236817/manager-business-process-transactions-rr-0308913-noida-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Graduate/Post-Graduate",
+      "required_skill_set": [
+        "Transition project leadership",
+        "Analytical skills",
+        "Communication skills",
+        "Transition management tools",
+        "Business acumen",
+        "Strategic thinking",
+        "Teamwork"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51566944",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23236817/manager-business-process-transactions-rr-0308913-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 4130,
+        "output_tokens": 297,
+        "total_tokens": 4427
+      }
+    },
+    {
+      "id": "51564395",
+      "title": "AWS Devops Terraforms",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22671198/aws-devops-terraforms-bangalore-in/",
+      "experience": "8+ years in IT, 5+ years as Sr DevOps, 7+ years CI/CD, 1+ years in leadership",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "AWS provisioning",
+        "Terraform",
+        "CloudFormation",
+        "GitHub",
+        "GitHub actions",
+        "Kibana",
+        "DataDog",
+        "Dynatrace",
+        "Akamai",
+        "Elastic Cache",
+        "DynamoDB",
+        "DocumentDB",
+        "AuroraDB",
+        "Route 53"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51564395",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22671198/aws-devops-terraforms-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2758,
+        "output_tokens": 249,
+        "total_tokens": 3007
+      }
+    },
+    {
+      "id": "51565665",
+      "title": "Manager Business Process Solutions / RR-0302620",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23236815/manager-business-process-solutions-rr-0302620-noida-in/",
+      "experience": "8–12 years of experience in Quality Management, PMO, or Operations Excellence, with at least 3–5 years in a managerial role.",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Graduate/Post-Graduate",
+      "required_skill_set": [
+        "ISO 9001, CMMI, Six Sigma",
+        "Project Management methodologies",
+        "Risk monitoring and CAPA",
+        "Error tracking and RCA",
+        "Stakeholder management",
+        "Communication skills",
+        "Analytical and problem-solving",
+        "Process improvement"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51565665",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23236815/manager-business-process-solutions-rr-0302620-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2945,
+        "output_tokens": 275,
+        "total_tokens": 3220
+      }
+    },
+    {
+      "id": "51575930",
+      "title": "Workday Integration/Studio Consultant",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23237667/workday-integration-studio-consultant-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Workday Integration",
+        "Workday Studio",
+        "Custom Reports",
+        "EIBs",
+        "Connectors",
+        "XSLT",
+        "Prototyping",
+        "Debugging",
+        "Customer Service",
+        "Communication Skills"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51575930",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23237667/workday-integration-studio-consultant-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2134,
+        "output_tokens": 240,
+        "total_tokens": 2374
+      }
+    },
+    {
+      "id": "51575874",
+      "title": "Analyst I Software Engineering / RR-0301450",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23237112/analyst-i-software-engineering-rr-0301450-noida-in/",
+      "experience": "2+ years of relevant software engineering experience",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree in a relevant field",
+      "required_skill_set": [
+        "Proficiency in software languages",
+        "Development methodologies",
+        "Coding and debugging"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-08",
+      "job_id": "51575874",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23237112/analyst-i-software-engineering-rr-0301450-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2386,
+        "output_tokens": 201,
+        "total_tokens": 2587
+      }
+    },
+    {
+      "id": "51565632",
+      "title": "Analyst I Business Process Transactions",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23231613/analyst-i-business-process-transactions-noida-in/",
+      "experience": "2+ years",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree",
+      "required_skill_set": [
+        "business process transactions",
+        "process management",
+        "data analysis",
+        "quality assurance",
+        "documentation"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-07",
+      "job_id": "51565632",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23231613/analyst-i-business-process-transactions-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2326,
+        "output_tokens": 185,
+        "total_tokens": 2511
+      }
+    },
+    {
+      "id": "51571149",
+      "title": "Microsoft Dynamics CRM Tech Architect",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22941468/microsoft-dynamics-crm-tech-architect-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "Degree in Computer Science or Information Technology-related field",
+      "required_skill_set": [
+        "Customization",
+        "Configuration",
+        "Plugin",
+        "Workflow",
+        "JavaScript",
+        "C#",
+        "API integration",
+        "Power App",
+        "SSIS",
+        "Reporting technology",
+        "Portal management",
+        "Unit testing",
+        "DevOps",
+        "Agile",
+        "Waterfall"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-07",
+      "job_id": "51571149",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22941468/microsoft-dynamics-crm-tech-architect-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2389,
+        "output_tokens": 270,
+        "total_tokens": 2659
+      }
+    },
+    {
+      "id": "51570209",
+      "title": "Senior Database Administrator (MySQL, AWS RDS,)",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22857716/senior-database-administrator-mysql-aws-rds-chennai-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Chennai, Tamil Nadu, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "MySQL",
+        "AWS RDS",
+        "CloudWatch",
+        "Redshift",
+        "SQL",
+        "performance tuning",
+        "indexing",
+        "query optimization",
+        "Amazon Redshift",
+        "AWS CloudWatch",
+        "production support",
+        "backup strategies",
+        "ETL/ELT",
+        "infrastructure-as-code",
+        "CI/CD pipelines"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-06",
+      "job_id": "51570209",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22857716/senior-database-administrator-mysql-aws-rds-chennai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2434,
+        "output_tokens": 272,
+        "total_tokens": 2706
+      }
+    },
+    {
+      "id": "51572278",
+      "title": "Cloud - Intelligent Ops - Automation - 20012026",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23221270/cloud-intelligent-ops-automation-20012026-bangalore-in/",
+      "experience": "3+ years in software/cloud engineering (or related)",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "Bachelors degree or equivalent",
+      "required_skill_set": [
+        "Azure Functions",
+        "Logic Apps",
+        "Automation Accounts",
+        "PowerShell",
+        "Python scripting",
+        "Azure resource management",
+        "AI/ML pipelines",
+        "cloud optimization techniques",
+        "AI/ML models integration",
+        "Cognitive Services"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-03",
+      "job_id": "51572278",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23221270/cloud-intelligent-ops-automation-20012026-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2959,
+        "output_tokens": 250,
+        "total_tokens": 3209
+      }
+    },
+    {
+      "id": "51571043",
+      "title": "SAP Hana FICO Consultant",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22935834/sap-hana-fico-consultant-bangalore-in/",
+      "experience": "['@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "51571043",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22935834/sap-hana-fico-consultant-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2898,
+        "output_tokens": 179,
+        "total_tokens": 3077
+      }
+    },
+    {
+      "id": "51564507",
+      "title": "SAP ABAP WORKFLOW",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22671214/sap-abap-workflow-hyderabad-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Hyderabad, Telangana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP ABAP",
+        "Workflow",
+        "S4HANA",
+        "ABAP Webdynpro",
+        "ALV reports",
+        "SAP Fiori",
+        "SAP ECC",
+        "SAP S/4HANA",
+        "EDI standards",
+        "IDOC data mapping"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "51564507",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22671214/sap-abap-workflow-hyderabad-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2629,
+        "output_tokens": 279,
+        "total_tokens": 2908
+      }
+    },
+    {
+      "id": "51567141",
+      "title": "SAP MM ARIBA",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23019014/sap-mm-ariba-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP MM ARIBA experience",
+        "SAP S/4HANA",
+        "Procurement Processes",
+        "Pricing & Valuation",
+        "Inventory Functions",
+        "Integration with SAP modules",
+        "Supply Chain Collaboration"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "51567141",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23019014/sap-mm-ariba-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2246,
+        "output_tokens": 257,
+        "total_tokens": 2503
+      }
+    },
+    {
+      "id": "51572866",
+      "title": "SAP Solution Manager and SAP Cloud ALM Expert",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23191435/sap-solution-manager-and-sap-cloud-alm-expert-bangalore-in/",
+      "experience": "3+ years of hands‑on experience in SAP Solution Manager and SAP Cloud ALM.",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP Solution Manager",
+        "SAP Cloud ALM",
+        "ChaRM",
+        "Focused Build",
+        "SolDoc",
+        "Project Management",
+        "Test Management"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "51572866",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23191435/sap-solution-manager-and-sap-cloud-alm-expert-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2598,
+        "output_tokens": 195,
+        "total_tokens": 2793
+      }
+    },
+    {
+      "id": "51575977",
+      "title": ".Net & React.JS Developer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23216325/-net-react-js-developer-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "C#",
+        "ASP.NET",
+        "React.js",
+        "JavaScript (ES6+)",
+        "HTML5",
+        "CSS3",
+        "REST APIs",
+        "JSON",
+        "Redux",
+        "SQL Server",
+        "Git",
+        "Responsive design"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "51575977",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23216325/-net-react-js-developer-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2632,
+        "output_tokens": 333,
+        "total_tokens": 2965
+      }
+    },
+    {
+      "id": "51554359",
+      "title": "RR-0220901-AssociateManager-Ingenium",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23216312/rr-0220901-associatemanager-ingenium-noida-in/",
+      "experience": "6+ years of relevant work experience, 2+ years in a similar role",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree in a relevant field",
+      "required_skill_set": [
+        "Software engineering",
+        "Leadership",
+        "Mentoring",
+        "Project management",
+        "Software development methodologies",
+        "Programming skills",
+        "Debugging skills",
+        "Communication skills",
+        "Teamwork"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-02",
+      "job_id": "51554359",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23216312/rr-0220901-associatemanager-ingenium-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2854,
+        "output_tokens": 233,
+        "total_tokens": 3087
+      }
+    },
+    {
+      "id": "51568495",
+      "title": "SAP ABAP & BTP Developer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22947990/sap-abap-btp-developer-chennai-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Chennai, Tamil Nadu, IN"
+      ],
+      "educational_qualifications": "['Certification in ABAP for SAP HANA', 'BTP Developer', 'Extensibility']",
+      "required_skill_set": [
+        "ABAP, OO-ABAP, CDS, OData, RAP/RESTful ABAP",
+        "SAP BTP services, CAP/RAP, cloud integration",
+        "Fiori/UI5 development",
+        "S/4HANA data models, CDS annotations",
+        "Security, OAuth, JWT, principal propagation"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-01",
+      "job_id": "51568495",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22947990/sap-abap-btp-developer-chennai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3226,
+        "output_tokens": 304,
+        "total_tokens": 3530
+      }
+    },
+    {
+      "id": "51576447",
+      "title": "Manager Pricing",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23210194/manager-pricing-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 7.0, 'maxValue': 8.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "CA/ CPA/ CMA or MBA in finance",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-04-01",
+      "job_id": "51576447",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23210194/manager-pricing-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3486,
+        "output_tokens": 229,
+        "total_tokens": 3715
+      }
+    },
+    {
+      "id": "51576709",
+      "title": "Senior Snowflake IDMC Developer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23211066/senior-snowflake-idmc-developer-bangalore-in/",
+      "experience": "6+ Years",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Informatica IDMC / IICS",
+        "Snowflake",
+        "dbt",
+        "ETL/ELT workflows",
+        "Data integration pipelines"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-01",
+      "job_id": "51576709",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23211066/senior-snowflake-idmc-developer-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2786,
+        "output_tokens": 176,
+        "total_tokens": 2962
+      }
+    },
+    {
+      "id": "51576688",
+      "title": "Lead Snowflake IDMC Engineer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23211038/lead-snowflake-idmc-engineer-bangalore-in/",
+      "experience": "11+ Years",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Snowflake",
+        "IDMC / IICS",
+        "dbt",
+        "ETL/ELT workflows",
+        "Data integration pipelines"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-01",
+      "job_id": "51576688",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23211038/lead-snowflake-idmc-engineer-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2771,
+        "output_tokens": 171,
+        "total_tokens": 2942
+      }
+    },
+    {
+      "id": "51576711",
+      "title": "Lead Snowflake IDMC Architect",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23211065/lead-snowflake-idmc-architect-bangalore-in/",
+      "experience": "11+ Years",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Snowflake",
+        "IDMC / IICS",
+        "Informatica",
+        "dbt",
+        "ETL/ELT workflows",
+        "Data integration",
+        "Performance optimization",
+        "Troubleshooting",
+        "Data governance"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-04-01",
+      "job_id": "51576711",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23211065/lead-snowflake-idmc-architect-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2801,
+        "output_tokens": 190,
+        "total_tokens": 2991
+      }
+    },
+    {
+      "id": "51568464",
+      "title": "SAP GTS Functional Consultant",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23018990/sap-gts-functional-consultant-bangalore-in/",
+      "experience": "10+ Years of Relevant experience, Minimum 4 Years in SAP GTS",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP GTS",
+        "GTS implementation",
+        "Compliance management",
+        "Customs management",
+        "Risk management",
+        "SAP GTS E4H",
+        "SPL Screening",
+        "Legal regulations",
+        "SAP-GTS integration",
+        "ECC",
+        "S/4HANA",
+        "OTC SAP-SD",
+        "Trade reporting"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-31",
+      "job_id": "51568464",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23018990/sap-gts-functional-consultant-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2345,
+        "output_tokens": 221,
+        "total_tokens": 2566
+      }
+    },
+    {
+      "id": "51571710",
+      "title": "RR-0327794 - Sr Analyst III Software Engineering",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23204310/rr-0327794-sr-analyst-iii-software-engineering-noida-in/",
+      "experience": "3+ years",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree in a relevant field",
+      "required_skill_set": [
+        "Software development",
+        "Testing and debugging",
+        "Team collaboration",
+        "Troubleshooting",
+        "Documentation",
+        "Emerging technologies",
+        "Knowledge sharing"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-31",
+      "job_id": "51571710",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23204310/rr-0327794-sr-analyst-iii-software-engineering-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2577,
+        "output_tokens": 188,
+        "total_tokens": 2765
+      }
+    },
+    {
+      "id": "51576009",
+      "title": "Senior Azure Data Engineer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23204028/senior-azure-data-engineer-bangalore-in/",
+      "experience": "7+ years",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Azure Data Factory",
+        "Azure Databricks",
+        "Azure Blob Storage",
+        "Azure Data Lake",
+        "Azure Power Apps",
+        "Azure Functions",
+        "Azure Data Explorer",
+        "Python",
+        "Spark",
+        "Unix",
+        "SQL",
+        "Terraform",
+        "GitHub",
+        "MQ"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-30",
+      "job_id": "51576009",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23204028/senior-azure-data-engineer-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2488,
+        "output_tokens": 240,
+        "total_tokens": 2728
+      }
+    },
+    {
+      "id": "51575448",
+      "title": "Devops Engineer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23204101/devops-engineer-chennai-in/",
+      "experience": "6–10+ years in DevOps, SRE, or cloud engineering roles.",
+      "locations": [
+        "Chennai, Tamil Nadu, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Azure infrastructure",
+        "AKS cluster architecture",
+        "Terraform",
+        "Ansible",
+        "Azure DevOps pipelines",
+        "GitHub Actions",
+        "PowerShell",
+        "Bash",
+        "Python",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "Kustomize",
+        "AI/automation tools"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-31",
+      "job_id": "51575448",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23204101/devops-engineer-chennai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 4170,
+        "output_tokens": 238,
+        "total_tokens": 4408
+      }
+    },
+    {
+      "id": "51571594",
+      "title": "SAP S4 HANA EWM",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23018959/sap-s4-hana-ewm-pune-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Pune, Maharashtra, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP EWM configuration",
+        "Warehouse management",
+        "SAP modules integration",
+        "Testing and support",
+        "Training and documentation",
+        "Process improvement",
+        "System analysis",
+        "Stakeholder collaboration"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-31",
+      "job_id": "51571594",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23018959/sap-s4-hana-ewm-pune-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2701,
+        "output_tokens": 240,
+        "total_tokens": 2941
+      }
+    },
+    {
+      "id": "51571676",
+      "title": "Cloud - FinOps - Global - 16012026",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23197112/cloud-finops-global-16012026-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "['FinOps Certified Practitioner', 'Azure or AWS Cloud Certifications', 'multi-cloud cost management platforms']",
+      "required_skill_set": [
+        "FinOps principles",
+        "cloud cost governance",
+        "AWS, Azure, multi-cloud tools",
+        "client-facing delivery",
+        "cloud infrastructure",
+        "RFPs, solutioning",
+        "stakeholder management",
+        "cross-functional collaboration"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-30",
+      "job_id": "51571676",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23197112/cloud-finops-global-16012026-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3268,
+        "output_tokens": 290,
+        "total_tokens": 3558
+      }
+    },
+    {
+      "id": "51576701",
+      "title": "Data Engineer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23198117/data-engineer-bangalore-in/",
+      "experience": "5+ years of relevant work experience, minimum 2 years in a similar role",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree in a relevant field or equivalent",
+      "required_skill_set": [
+        "Data processing",
+        "Data integration",
+        "Data pipelines",
+        "Data quality",
+        "Data standards",
+        "Data analysis",
+        "Data engineering tools",
+        "Data trends",
+        "Data best practices"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-30",
+      "job_id": "51576701",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23198117/data-engineer-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2378,
+        "output_tokens": 212,
+        "total_tokens": 2590
+      }
+    },
+    {
+      "id": "51572617",
+      "title": "RR-0330742",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23196635/rr-0330742-gurgaon-in/",
+      "experience": "7+ years in industry, with a minimum of 3 years in a similar role",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree in a relevant field",
+      "required_skill_set": [
+        "Software development",
+        "Project management",
+        "Team leadership",
+        "Quality control",
+        "Coding standards",
+        "Resource allocation",
+        "Technical guidance",
+        "Software languages",
+        "Development methodologies",
+        "Package applications",
+        "Communication skills",
+        "Leadership skills"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-29",
+      "job_id": "51572617",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23196635/rr-0330742-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2386,
+        "output_tokens": 267,
+        "total_tokens": 2653
+      }
+    },
+    {
+      "id": "51564403",
+      "title": "Sr Analyst I Software Engineering",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22671200/sr-analyst-i-software-engineering-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "AWS hands-on experience",
+        "CI/CD experience",
+        "Terraform",
+        "CloudFormation",
+        "GitHub",
+        "DataDog",
+        "Dynatrace",
+        "ECS Fargate",
+        "OpenSearch",
+        "DynamoDB",
+        "DocumentDB",
+        "AuroraDB",
+        "Route 53",
+        "Elastic Cache Redis"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-27",
+      "job_id": "51564403",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22671200/sr-analyst-i-software-engineering-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2769,
+        "output_tokens": 315,
+        "total_tokens": 3084
+      }
+    },
+    {
+      "id": "51576683",
+      "title": "RR-0342851 - Onsite Manager",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23191432/rr-0342851-onsite-manager-bangalore-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree in a relevant field or equivalent",
+      "required_skill_set": [
+        "IT infrastructure management",
+        "Team leadership",
+        "Project management",
+        "Cybersecurity",
+        "Vendor management",
+        "Technical support",
+        "Training"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-27",
+      "job_id": "51576683",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23191432/rr-0342851-onsite-manager-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3746,
+        "output_tokens": 276,
+        "total_tokens": 4022
+      }
+    },
+    {
+      "id": "51575610",
+      "title": "RR-0352558 - Analyst II Infrastructure Services - LOREAL India",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23186631/rr-0352558-analyst-ii-infrastructure-services-loreal-india-mumbai-in/",
+      "experience": "3 to 5 years of deskside support experience (MNC support experience and VIP support experience preferred)",
+      "locations": [
+        "Mumbai, Maharashtra, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Deskside support",
+        "ServiceNow",
+        "Infrastructure knowledge",
+        "Communication skills",
+        "Coordination skills",
+        "English fluency",
+        "Polite and helpful",
+        "Service mindset",
+        "Adaptability",
+        "Overtime willingness"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-26",
+      "job_id": "51575610",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23186631/rr-0352558-analyst-ii-infrastructure-services-loreal-india-mumbai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2881,
+        "output_tokens": 219,
+        "total_tokens": 3100
+      }
+    },
+    {
+      "id": "51575986",
+      "title": "Analyst II Finance Operations",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23187090/analyst-ii-finance-operations-chennai-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Chennai, Tamil Nadu, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree in business administration, finance, accounting or related field preferred",
+      "required_skill_set": [
+        "Payroll support",
+        "Flexi reimbursement policies",
+        "Income Tax Act",
+        "SAP",
+        "Workday",
+        "Excel",
+        "Communication skills",
+        "Interpersonal skills",
+        "Organizational skills",
+        "Presentation skills",
+        "Problem-solving skills",
+        "Teamwork"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-26",
+      "job_id": "51575986",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23187090/analyst-ii-finance-operations-chennai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2680,
+        "output_tokens": 300,
+        "total_tokens": 2980
+      }
+    },
+    {
+      "id": "51558484",
+      "title": "Sr Analyst I Information Security",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22947987/sr-analyst-i-information-security-chennai-in/",
+      "experience": "5+ years of relevant work experience in industry, with a minimum of 2 years in a similar role",
+      "locations": [
+        "Chennai, Tamil Nadu, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree in a relevant field or equivalent",
+      "required_skill_set": [
+        "security assessments",
+        "audits",
+        "vulnerability scans",
+        "security policies",
+        "security documentation",
+        "incident response",
+        "security strategy",
+        "risk management",
+        "security trends",
+        "security awareness",
+        "security technologies",
+        "risk assessment",
+        "industry knowledge",
+        "technology"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-26",
+      "job_id": "51558484",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22947987/sr-analyst-i-information-security-chennai-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2356,
+        "output_tokens": 261,
+        "total_tokens": 2617
+      }
+    },
+    {
+      "id": "51557705",
+      "title": "Operations Manager in US Life & Annuities",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22935899/operations-manager-in-us-life-annuities-noida-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Noida, Uttar Pradesh, IN"
+      ],
+      "educational_qualifications": "Graduate in any stream",
+      "required_skill_set": [
+        "Leadership in US Insurance",
+        "People management",
+        "Communication skills",
+        "Data-driven decision making",
+        "Client relationship management",
+        "Operational metrics understanding",
+        "Proficiency in Excel, Power BI, PowerPoint"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-26",
+      "job_id": "51557705",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22935899/operations-manager-in-us-life-annuities-noida-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3183,
+        "output_tokens": 279,
+        "total_tokens": 3462
+      }
+    },
+    {
+      "id": "51576216",
+      "title": "Associate Manager Infrastructure Services",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23188100/associate-manager-infrastructure-services-bangalore-in/",
+      "experience": "6+ years of relevant work experience, 2+ years in a similar role",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree or equivalent",
+      "required_skill_set": [
+        "Infrastructure management",
+        "Teamwork",
+        "Troubleshooting",
+        "Documentation",
+        "Resource optimization"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-26",
+      "job_id": "51576216",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23188100/associate-manager-infrastructure-services-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2418,
+        "output_tokens": 180,
+        "total_tokens": 2598
+      }
+    },
+    {
+      "id": "51576215",
+      "title": "Analyst I Infrastructure Services",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23187071/analyst-i-infrastructure-services-bangalore-in/",
+      "experience": "2+ years",
+      "locations": [
+        "Bangalore, Karnataka, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree",
+      "required_skill_set": [
+        "Data analysis",
+        "Problem-solving",
+        "Infrastructure support"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-26",
+      "job_id": "51576215",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23187071/analyst-i-infrastructure-services-bangalore-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2357,
+        "output_tokens": 172,
+        "total_tokens": 2529
+      }
+    }
+  ]
+}

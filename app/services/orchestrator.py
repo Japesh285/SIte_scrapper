@@ -286,8 +286,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     confidence = classification["confidence"]
 
     # ── STRATEGY LOCKING ──────────────────────────────────────────
-    # If selected source contains "API" → strategy = "api", else "dom"
-    selected_source = site_type  # e.g. WORKDAY_API, SIMPLE_API, DOM_BROWSER
+    selected_source = site_type
     strategy = "api" if "API" in selected_source else "dom"
     logger.info("[STRATEGY LOCK] site_type=%s → strategy=%s", site_type, strategy)
 
@@ -321,14 +320,6 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         }
 
     # ── STRATEGY PIPELINE ──────────────────────────────────────────
-    # ORDER: simple_api → dom_scraper → dynamic_api → interactive_dom
-    # dom_scraper is the MAIN strategy. dynamic_api only runs if DOM fails.
-    # interactive_dom is STRICT LAST RESORT.
-    # Early exit thresholds:
-    #   - dom_scraper >= 5 jobs → STOP (no dynamic_api, no interactive_dom)
-    #   - simple_api >= 3 jobs → STOP
-    #   - dynamic_api >= 5 jobs → STOP
-    #   - interactive_dom runs only if dom < 3 AND dynamic_api failed/< 3
 
     jobs: list[dict] = []
     api_url = ""
@@ -359,11 +350,50 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             logger.info("[PIPELINE] simple_api found %d jobs (continuing pipeline)", len(jobs))
         return False
 
+    async def _try_dynamic_api() -> bool:
+        """Run the FULL dynamic.py pipeline: capture → score → paginate → AI enrichment.
+
+        If any step fails, return False and let the pipeline fall through to DOM.
+        """
+        nonlocal jobs, api_url, final_site_type, final_strategy
+        logger.info("[PIPELINE] Trying dynamic_api (full pipeline)")
+
+        try:
+            # Run the complete scraper — it does detection + pagination + AI enrichment internally
+            jobs_result = await scrape_dynamic_api(normalized_url)
+
+            if len(jobs_result) >= 5:
+                jobs = jobs_result
+                api_url = ""
+                final_site_type = "DYNAMIC_API"
+                final_strategy = "api"
+                logger.info("[PIPELINE] dynamic_api SUCCESS (jobs=%d ≥ 5, AI-enriched) → exiting", len(jobs))
+                return True
+            elif len(jobs_result) >= 3:
+                jobs = jobs_result
+                api_url = ""
+                final_site_type = "DYNAMIC_API"
+                final_strategy = "api"
+                logger.info("[PIPELINE] dynamic_api found %d jobs (AI-enriched, acceptable)", len(jobs))
+                return True
+            elif len(jobs_result) > 0:
+                jobs = jobs_result
+                api_url = ""
+                final_site_type = "DYNAMIC_API"
+                final_strategy = "api"
+                logger.info("[PIPELINE] dynamic_api found %d jobs (AI-enriched, < 3, continuing)", len(jobs))
+            else:
+                logger.info("[PIPELINE] dynamic_api found 0 jobs")
+        except Exception as exc:
+            logger.warning("[PIPELINE] dynamic_api full pipeline failed: %s", exc)
+            return False
+
+        return len(jobs) > 0
+
     async def _try_dom_scraper() -> bool:
-        """DOM is the MAIN strategy. Run EARLY. Exit at >= 5 jobs."""
+        """DOM scraper. Exit at >= 5 jobs."""
         nonlocal jobs, api_url, final_site_type, final_strategy, dom_jobs_count
         logger.info("[PIPELINE] Trying dom_scraper")
-        # Try the DOM variant that was classified
         if site_type == "DOM_BROWSER":
             jobs_result = await scrape_dom_browser(normalized_url)
             dom_type = "DOM_BROWSER"
@@ -374,90 +404,37 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             jobs_result = await scrape_dom_infinite_scroll(normalized_url)
             dom_type = "DOM_INFINITE_SCROLL"
         else:
-            # Default to browser mode
             jobs_result = await scrape_dom_browser(normalized_url)
             dom_type = "DOM_BROWSER"
 
         dom_jobs_count = len(jobs_result)
 
         if len(jobs_result) >= 5:
-            # DOM found plenty → STOP. No dynamic_api, no interactive_dom.
             jobs = jobs_result
             api_url = ""
             final_site_type = dom_type
             final_strategy = "dom"
-            logger.info("[PIPELINE] dom_scraper SUCCESS (jobs=%d ≥ 5) → stopping pipeline", len(jobs))
+            logger.info("[PIPELINE] dom_scraper SUCCESS (jobs=%d ≥ 5) → stopping", len(jobs))
             return True
         elif len(jobs_result) >= 3:
-            # DOM found enough → exit but allow dynamic_api as backup if needed
             jobs = jobs_result
             api_url = ""
             final_site_type = dom_type
             final_strategy = "dom"
-            logger.info("[PIPELINE] dom_scraper found %d jobs (continuing to verify)", len(jobs))
+            logger.info("[PIPELINE] dom_scraper found %d jobs (acceptable)", len(jobs))
             return True
         elif len(jobs_result) > 0:
             jobs = jobs_result
             api_url = ""
             final_site_type = dom_type
             final_strategy = "dom"
-            logger.info("[PIPELINE] dom_scraper found %d jobs (< 3, will try dynamic_api)", len(jobs))
+            logger.info("[PIPELINE] dom_scraper found %d jobs (< 3)", len(jobs))
         else:
             logger.info("[PIPELINE] dom_scraper found 0 jobs")
         return False
 
-    async def _try_dynamic_api() -> bool:
-        """Only runs if DOM failed or returned very few jobs."""
-        nonlocal jobs, api_url, final_site_type, final_strategy
-        logger.info("[PIPELINE] Trying dynamic_api (DOM was insufficient)")
-
-        # NEVER launch browser for dynamic_api detection — only use pre-detected API
-        if dynamic_api_result.get("matched") and dynamic_api_result.get("api_usable"):
-            # Validate the detected API URL is actually a job API
-            api_url_detected = dynamic_api_result.get("api_url", "")
-            if not _is_valid_job_api_url(api_url_detected):
-                logger.info("[PIPELINE] dynamic_api REJECTED — non-job API URL: %s", api_url_detected)
-                return False
-
-            logger.info("[PIPELINE] dynamic_api direct (no browser): %s", api_url_detected)
-            jobs_result = await scrape_dynamic_api_direct(
-                api_url=api_url_detected,
-                method=dynamic_api_result.get("method", "GET"),
-                payload=dynamic_api_result.get("payload"),
-                headers=dynamic_api_result.get("headers", {}),
-                base_url=normalized_url,
-            )
-        else:
-            # No valid pre-detected API → skip dynamic_api entirely (no browser)
-            logger.info("[PIPELINE] dynamic_api SKIPPED — no valid API detected (no browser fallback)")
-            return False
-
-        if len(jobs_result) >= 5:
-            jobs = jobs_result
-            api_url = ""
-            final_site_type = "DYNAMIC_API"
-            final_strategy = "api"
-            logger.info("[PIPELINE] dynamic_api SUCCESS (jobs=%d ≥ 5) → exiting", len(jobs))
-            return True
-        elif len(jobs_result) >= 3:
-            jobs = jobs_result
-            api_url = ""
-            final_site_type = "DYNAMIC_API"
-            final_strategy = "api"
-            logger.info("[PIPELINE] dynamic_api found %d jobs (acceptable)", len(jobs))
-            return True
-        elif len(jobs_result) > 0:
-            jobs = jobs_result
-            api_url = ""
-            final_site_type = "DYNAMIC_API"
-            final_strategy = "api"
-            logger.info("[PIPELINE] dynamic_api found %d jobs (< 3, continuing)", len(jobs))
-        else:
-            logger.info("[PIPELINE] dynamic_api found 0 jobs")
-        return False
-
     async def _try_interactive_dom() -> bool:
-        """STRICT LAST RESORT. Only if dom < 3 AND dynamic_api failed."""
+        """STRICT LAST RESORT."""
         nonlocal jobs, api_url, final_site_type, final_strategy
         logger.info("[PIPELINE] Falling back to interactive_dom (LAST RESORT)")
         jobs_result = await scrape_interactive_dom(normalized_url)
@@ -490,26 +467,17 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             final_strategy = "api"
             logger.info("[PIPELINE] GREENHOUSE_API → %d jobs", len(jobs))
         else:
-            # NEW ORDER: simple_api → dom_scraper → dynamic_api → interactive_dom
+            # ORDER: simple_api → dynamic_api (full pipeline) → dom_scraper → interactive_dom
             if not await _try_simple_api():
-                # DOM is main strategy — always run it
-                if not await _try_dom_scraper():
-                    # DOM found 0 jobs → try dynamic_api
-                    if not await _try_dynamic_api():
-                        # Both failed → LAST RESORT
+                if not await _try_dynamic_api():
+                    if not await _try_dom_scraper():
                         await _try_interactive_dom()
-                elif dom_jobs_count < 3:
-                    # DOM found 1-2 jobs → try dynamic_api for more
-                    if not await _try_dynamic_api():
-                        # Still < 3 → last resort
+                    elif dom_jobs_count < 3:
                         await _try_interactive_dom()
             # If simple_api succeeded, pipeline already exited
 
-    # ── For API sites: enrich jobs with full raw API data ─────────
-    # This ensures detail extraction can use the complete API response
-    # without needing to fetch HTML pages
+    # ── Workday: enrich with raw detail API ─────────────────────
     if strategy == "api" and site_type == "WORKDAY_API":
-        # Re-fetch with raw data preservation
         jobs = await _fetch_workday_with_raw_data(
             normalized_url, client=None, html=page_html,
             discovered_urls=discovered_urls, api_url=api_url,
@@ -550,7 +518,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
 
     # Save raw JSON to folder
     saved_path = None
-    if jobs:  # Only save if we found jobs (successful run)
+    if jobs:
         metadata = {
             "url": normalized_url,
             "confidence": confidence,
@@ -562,7 +530,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         if saved_path:
             logger.info(f"Raw JSON saved to: {saved_path}")
 
-    # ── Workday: Send POST to local FastAPI worker for processing ──
+    # ── Workday: Send POST to local FastAPI worker ──
     if final_site_type == "WORKDAY_API" and saved_path:
         await _notify_workday_processor(saved_path)
 
@@ -578,11 +546,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
 
 
 async def _notify_workday_processor(file_path: str) -> None:
-    """Send POST request to local FastAPI worker to process Workday jobs.
-
-    Only sends the file path and limit=50. Does NOT send raw HTML or JSON data.
-    Logs the response and does NOT retry on failure.
-    """
+    """Send POST request to local FastAPI worker to process Workday jobs."""
     import httpx
 
     url = "http://localhost:8001/process"
@@ -624,7 +588,6 @@ async def _fetch_workday_with_raw_data(
     )
     from app.core.logger import logger
 
-    # ── Fallback to normal fetch ─────────────────────────────
     if not api_url:
         _, jobs = await fetch_workday_jobs(
             url,
@@ -666,12 +629,10 @@ async def _fetch_workday_with_raw_data(
                     },
                 )
 
-                # Validate status code
                 if response.status_code != 200:
                     logger.warning("[WORKDAY] Listing fetch failed status=%d", response.status_code)
                     break
 
-                # Validate content-type before .json()
                 content_type = response.headers.get("content-type", "")
                 if "application/json" not in content_type:
                     logger.warning("[WORKDAY] Non-JSON response (content-type=%s)", content_type)
@@ -699,10 +660,8 @@ async def _fetch_workday_with_raw_data(
                         continue
                     seen_urls.add(job_url)
 
-                    # ✅ attach raw listing
                     normalized["_raw_api"] = posting
 
-                    # ── DETAIL FETCH via API ONLY ──────────────────
                     detail = None
                     if config:
                         try:

@@ -1,0 +1,541 @@
+{
+  "domain": "careers.dxc.com",
+  "site_type": "DYNAMIC_API",
+  "listing_jobs_found": 9,
+  "listing_status": "success",
+  "saved_at": "2026-04-09T11:38:53.241152",
+  "jobs_count": 9,
+  "jobs": [
+    {
+      "id": "23204314",
+      "title": "Senior Analyst I ERP Package Applications",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23204314/rr-288040-sr-analyst-i-erp-package-applications-gurgaon-in/",
+      "experience": "",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "SAP FICO",
+        "SAP FI Modules",
+        "SAP CO Modules",
+        "General Ledger",
+        "Accounts Receivable",
+        "Accounts Payable",
+        "Asset Accounting",
+        "Taxation (GST, TDS, TCS)",
+        "Cost Center Accounting",
+        "COPA",
+        "Product Cost Controlling",
+        "Internal order management",
+        "Profit center accounting",
+        "Month End and fiscal Year End Closing",
+        "SAP troubleshooting",
+        "System configuration",
+        "Cross-module interface setup",
+        "AP",
+        "AR",
+        "Asset Management",
+        "Integration with 3rd party software",
+        "Profitability Analysis",
+        "Cost flow",
+        "Revenue flow",
+        "Cost roll-up",
+        "Allocation Price Variance",
+        "CO summarization",
+        "Plan Layout",
+        "Product Cost Planning",
+        "Result Analysis",
+        "Revenue recognition",
+        "Planning & budgeting"
+      ],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "23204314",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description",
+          "content": "Job description (SAP FICO) The candidate must have worked on at least 2 full implementation projects and 1 support project. Excellent verbal and written communication skills to coordinate with the key business stakeholders, colleagues as well as OEM support partners in an appropriate/mature manner. Understanding the organization's business requirements thoroughly for smooth execution. Excellent understanding with Finance, Enterprise Structure, Global setting of organization level, Account payable and Account receivables, Automatic payment program, Banking reconciliation process, Vendor/customer master data, Asset accounting. Complete understanding of FICO integration with logistics, procurement, inventory and production, General Controlling. SAP FI Core Modules: General Ledger, Accounts Receivable, Accounts Payable, Asset Accounting, taxation (GST, TDS, TCS). SAP CO Modules: Cost Center Accounting, COPA, Product Cost Controlling, Internal order management, profit center accounting. Month End and fiscal Year End Closing activities Accounting principles, financial compliance, and process analysis. Advanced SAP troubleshooting, system configuration, and cross-module interface setup Must be able to independently handle Key uses & Finance Manager, take requirements and independently provide SAP solution in terms of configuration, testing, UT & IT and support issues after go-live. Preparation of Blueprint as well as implementation of the projects. Validate the reports requirements, validate any changes in customize. Provide training to end-user. Should be an expert in AP, AR and Asset Management. Expertise on an integration with 3rd party software through like; PO, BW, SD, BâOne, CRM etc. Important organizational Elements of CO. Profitability Analysis (co-pa). Cost flow and revenue flow related to the profit center. Cost roll-up in product costing, Allocation Price Variance, Summarization in CO, Plan Layout, Product Cost Planning. Result Analysis /Revenue recognition with different methods like; percentage of completion. Planning & budgeting forÂ costÂ objects."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23204314/rr-288040-sr-analyst-i-erp-package-applications-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 1455,
+        "output_tokens": 859,
+        "total_tokens": 2314
+      }
+    },
+    {
+      "id": "23196635",
+      "title": "Software Development Manager",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23196635/rr-0330742-gurgaon-in/",
+      "experience": "7+ years",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[\"Bachelor's degree in a relevant field\"]",
+      "required_skill_set": [
+        "software development",
+        "project management",
+        "software languages",
+        "development methodologies",
+        "package applications",
+        "technical guidance",
+        "quality control",
+        "cloud certifications",
+        "PMP",
+        "CTO",
+        "MBA"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "23196635",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description Summary",
+          "content": "Manage a team responsible for package software application development. Coordinate project execution and allocate resources efficiently. Collaborate with senior management to define departmental goals. Ensure the timely delivery of software solutions. Provide technical guidance to team members. Oversee quality control and ensure adherence to coding standards. Facilitate collaboration with other departments and teams. Identify and address project risks and issues."
+        },
+        {
+          "section_title": "Key Responsibilities",
+          "content": "Manage a team responsible for package software application development. Coordinate project execution and allocate resources efficiently. Collaborate with senior management to define departmental goals. Ensure the timely delivery of software solutions. Provide technical guidance to team members. Oversee quality control and ensure adherence to coding standards. Facilitate collaboration with other departments and teams. Identify and address project risks and issues."
+        },
+        {
+          "section_title": "Benefits",
+          "content": "At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23196635/rr-0330742-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "Software Development",
+        "qualifications": [
+          "Bachelor's degree in a relevant field"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 1299,
+        "output_tokens": 574,
+        "total_tokens": 1873
+      }
+    },
+    {
+      "id": "23123606",
+      "title": "Senior Analyst I Infrastructure Services",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23123606/rr-0329892-sr-analyst-i-infrastructure-services-gurgaon-in/",
+      "experience": "",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Active Directory",
+        "Domain Controllers",
+        "OU management",
+        "Group Policy (GPO)",
+        "DNS",
+        "DHCP",
+        "Kerberos",
+        "NTLM",
+        "LDAP",
+        "Single Sign-On (SSO)",
+        "ADFS",
+        "SAML",
+        "federation technologies",
+        "Azure Active Directory (Azure AD / Entra ID)",
+        "PowerShell",
+        "Windows Server",
+        "Windows client operating systems",
+        "identity and access management"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "23123606",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description Summary",
+          "content": "Key Responsibilities: Administer and support Active Directory infrastructure, manage authentication mechanisms, implement SSO solutions, manage Azure AD services, develop PowerShell scripts, troubleshoot identity issues, collaborate with security teams, ensure security compliance."
+        },
+        {
+          "section_title": "Key Responsibilities",
+          "content": "Administer and support Active Directory infrastructure, manage authentication mechanisms, implement SSO solutions, manage Azure AD services, develop PowerShell scripts, troubleshoot identity issues, collaborate with security teams, ensure security compliance."
+        },
+        {
+          "section_title": "Benefits",
+          "content": "Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We foster an inclusive environment."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23123606/rr-0329892-sr-analyst-i-infrastructure-services-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "Information Technology",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 1247,
+        "output_tokens": 546,
+        "total_tokens": 1793
+      }
+    },
+    {
+      "id": "23079040",
+      "title": "Senior Infrastructure Services Analyst",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23079040/sr-analyst-i-infrastructure-services-gurgaon-in/",
+      "experience": "5+ years",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[\"Bachelor's degree in a relevant field\"]",
+      "required_skill_set": [
+        "Infrastructure support",
+        "Troubleshooting",
+        "Infrastructure project implementation",
+        "Documentation",
+        "Technical support",
+        "Data analysis",
+        "Problem-solving",
+        "Certifications (Cisco CCNA, AWS, CompTIA Security+)"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "23079040",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description Summary",
+          "content": "Provide expert technical support in infrastructure services, respond to complex issues, assist in infrastructure project implementation, monitor and troubleshoot systems, collaborate to improve efficiency, develop documentation, apply deep technical knowledge, follow best practices, and apply critical thinking."
+        },
+        {
+          "section_title": "Key Responsibilities",
+          "content": "Support infrastructure systems, troubleshoot issues, implement projects, develop documentation, collaborate with team, apply technical knowledge, follow standards."
+        },
+        {
+          "section_title": "Qualifications",
+          "content": "Bachelor's degree or equivalent, 5+ years relevant experience, certifications preferred."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23079040/sr-analyst-i-infrastructure-services-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "Information Technology",
+        "qualifications": [
+          "Bachelor's degree in a relevant field"
+        ]
+      },
+      "ai_usage": {
+        "input_tokens": 1319,
+        "output_tokens": 468,
+        "total_tokens": 1787
+      }
+    },
+    {
+      "id": "23071944",
+      "title": "Associate Manager Scrum Master",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23071944/associate-manager-scrum-master-gurgaon-in/",
+      "experience": "",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Scrum",
+        "Agile",
+        "Project Management",
+        "Team Leadership"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "23071944",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description",
+          "content": "Assosiate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum MasterAssociate Manager Scrum Master..."
+        },
+        {
+          "section_title": "About DXC Technology",
+          "content": "At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive."
+        },
+        {
+          "section_title": "Recruitment Fraud Warning",
+          "content": "Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23071944/associate-manager-scrum-master-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 2125,
+        "output_tokens": 521,
+        "total_tokens": 2646
+      }
+    },
+    {
+      "id": "23049516",
+      "title": "EPS Senior Technical Engineer",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23049516/eps-senior-technical-engineer-gurgaon-in/",
+      "experience": "5+ years",
+      "locations": [
+        "IN, Bangalore"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Switch systems",
+        "Base24 EPS",
+        "configuration",
+        "scripting",
+        "SDK",
+        "Australian and scheme compliance",
+        "card schemes",
+        "interfacing",
+        "programming",
+        "C++",
+        "Java",
+        "Linux",
+        "VMware",
+        "cloud systems (Azure, AWS)",
+        "ISO 8583",
+        "XML",
+        "VISA",
+        "MasterCard",
+        "Amex",
+        "JCB"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "23049516",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description",
+          "content": "Senior Technical engineer BASE24 EPS Job Location: Bangalore Job Details: To develop, test, and deploy fit-for-purpose software solutions. This includes CSMs on BASE 24 EPS. To configure the BASE24 EPS modules as per the requirements. To prepare migration scripts. To configure the interchange specifications like VISA, MasterCard, AMEX, JCB. This includes the periodical mandates, updates, test. To customise, configure the interfaces. This includes testing, fixing the issues. To configure terminals, ATMs and interfaces. To configure, test various host systems. To configure various security keys for the interchanges, terminals, cards and PVKs. To configure and integrate BASE24 EPS with HSMs. To generate required MIS/reports as per business requirements."
+        },
+        {
+          "section_title": "Key Responsibilities",
+          "content": ""
+        },
+        {
+          "section_title": "Benefits",
+          "content": ""
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23049516/eps-senior-technical-engineer-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 1504,
+        "output_tokens": 569,
+        "total_tokens": 2073
+      }
+    },
+    {
+      "id": "22666501",
+      "title": "Senior BASE24 EPS Support",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/22666501/senior-base24-eps-support-gurgaon-in/",
+      "experience": "4-8 years",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Base24-eps",
+        "ACI Base24-eps",
+        "ISO 8583",
+        "payment systems",
+        "application support",
+        "troubleshooting",
+        "diagnosing transaction failures",
+        "system outages",
+        "payment networks",
+        "ATM/POS/Ecom systems",
+        "support",
+        "integration processes"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "22666501",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description",
+          "content": "Experience 4 to 8 years of hands-on support experience with ACI Base24-eps applications. Proven track record in application support roles within the cards and payments domain. Key Responsibilities Monitor, troubleshoot, and resolve issues in Base24-eps payment systems. Act as the first responder for production issues, ensuring minimal downtime. Diagnose and resolve transaction failures, ISO 8583 message issues, and system outages. Handle transaction failures, outages, and performance issues with a structured problem-solving approach. Support integration of Base24-eps with other bank systems and external card schemes. Collaborate across teams, clearly explaining technical issues to stakeholders. Maintain and support payment networks, ATM/POS/Ecom systems, and settlement processes."
+        },
+        {
+          "section_title": "Skills & Competencies",
+          "content": "In-depth knowledge of ISO 8583 messaging systems. Strong analytical, debugging, and problem-solving skills. Experience with Base24-eps modules and integration processes. Good understanding of payment networks, ATM/POS/Ecom systems, and settlement workflows. Ability to work effectively in a 24x7 support model."
+        },
+        {
+          "section_title": "Additional Information",
+          "content": "At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive. Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf. More information on employment scams is available here."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22666501/senior-base24-eps-support-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 1270,
+        "output_tokens": 761,
+        "total_tokens": 2031
+      }
+    },
+    {
+      "id": "23024388",
+      "title": "Manager Solution Architecture",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/23024388/manager-solution-architecture-gurgaon-in/",
+      "experience": "",
+      "locations": [
+        "IN, Gurgaon"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Microsoft Power Platform",
+        "Power Apps",
+        "Power Automate",
+        "Power BI",
+        "Copilot Studio",
+        "Google AppSheet",
+        "ServiceNow",
+        "AI technologies",
+        "Solution Design",
+        "Event Hosting",
+        "Project Management",
+        "Pre-sales",
+        "Communication Skills"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "23024388",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description Summary",
+          "content": "The Solution Architect will be responsible for designing and delivering scalable, innovative solutions using Microsoft Power Platform, Google AppSheet, ServiceNow, and AI technologies. Working closely with L'Oreal platform CoE team and enterprise architect team for the technical direction and governance."
+        },
+        {
+          "section_title": "Key Responsibilities",
+          "content": "Solution Design & Architecture, Design integrations, Analyze business needs, translate requirements, create presentations, event hosting, stakeholder engagement, project management, change management, drive citizen development culture."
+        },
+        {
+          "section_title": "Benefits",
+          "content": "Flexible work model, inclusive environment, community focus."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23024388/manager-solution-architecture-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 1549,
+        "output_tokens": 465,
+        "total_tokens": 2014
+      }
+    },
+    {
+      "id": "22666467",
+      "title": "Base 24 Quality Engineer/Lead",
+      "company_name": "Capgemini",
+      "job_link": "https://careers.dxc.com/job/22666467/base-24-quality-engineer-lead-gurgaon-in/",
+      "experience": "5+ years",
+      "locations": [
+        "IN, Bangalore"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "test case creation",
+        "test management tools",
+        "quality assurance",
+        "Switch testing",
+        "payment systems",
+        "transaction switch",
+        "e-commerce",
+        "certifications (VISA, MasterCard, Amex, JCB)",
+        "simulators",
+        "automated testing tools",
+        "JIRA"
+      ],
+      "remote_type": "On-site",
+      "posted_on": "",
+      "job_id": "22666467",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [
+        {
+          "section_title": "Job Description Summary",
+          "content": "Base 24 Quality Engineer/Lead Job Location: Bangalore. 5+ years of experience in developing, creating, prioritizing, and organizing test cases for web/mobile applications. Familiarity with defect tracking systems and test management tools. Experience in quality assurance of issuing business payments and cards. Specific experience in Switch testing (BASE24, BAE24 EPS, ACI UPF) is desirable. Domain understanding of payments, issuing, transaction switch, latest payment systems, e-commerce. Experience in QA on issuing products, certifications of interchanges like VISA, MasterCard, Amex, JCB. Conducting QA testing through simulators and mock environments. Understanding of automated testing tools and management tools like JIRA."
+        }
+      ],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22666467/base-24-quality-engineer-lead-gurgaon-in/",
+        "strategy": "html",
+        "site_type": "CUSTOM_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 1302,
+        "output_tokens": 490,
+        "total_tokens": 1792
+      }
+    }
+  ]
+}

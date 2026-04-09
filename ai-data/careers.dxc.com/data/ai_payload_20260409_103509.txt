@@ -1,0 +1,643 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application Cloud - Intelligent Ops - Automation - 20012026 in Bangalore, Karnataka, IN | Software Engineering at DXC Technology
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Skip to content
+
+
+
+
+
+
+
+
+Toggle Navigation
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+Join Our Talent Community
+Saved Jobs  
+(
+)
+
+
+Toggle Navigation
+Careers
+About Us
+About DXC
+Inclusion and Belonging
+Awards and Recognition
+Environmental, Social and Governance
+Insights
+My Applications
+Search Jobs
+Join our Talent Community
+Saved Jobs  
+(
+)
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Job Details
+2026-03-30T05:06:32+00:00
+ 
+
+
+
+
+51572278
+
+
+
+
+
+
+Cloud – Intelligent Ops – Automation – 20012026
+ 
+ 
+ 
+Job ID:
+ 51572278
+ 
+Category:
+ 
+Software Engineering
+ 
+Employment Type:
+ 
+Full time
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+ 
+Location:
+ Bangalore, India 
+ 
+ 
+Job Description:
+ 
+Key Responsibilities
+ 
+Azure Automation & Cloud Engineering
+ 
+ 
+ 
+Develop and deploy automation solutions using Azure Functions, Logic Apps, Automation Accounts, Event Grid, and other Azure services.
+ 
+ 
+ 
+Implement scalable automation frameworks to streamline operational processes and reduce manual activities.
+ 
+ 
+ 
+Build and optimize cloud workflows that enhance compliance, governance, and cost efficiency.
+ 
+ 
+ 
+AI/ML Integration
+ 
+ 
+ 
+Integrate AI/ML models with Azure automation solutions to enable intelligent decisioning and self-healing capabilities.
+ 
+ 
+ 
+Contribute to DXC’s AI-driven automation initiatives, creating next-generation cloud operations capabilities.
+ 
+ 
+ 
+Develop solutions using Azure AI services (Azure OpenAI, Cognitive Services, ML models, etc.) as required.
+ 
+ 
+ 
+Cloud Optimization
+ 
+ 
+ 
+Implement optimizations that reduce operational costs and improve cloud resource efficiency.
+ 
+ 
+ 
+Monitor system behavior and automate corrective actions to ensure stability and reliability.
+ 
+ 
+ 
+Collaborate with senior engineers to enhance cloud operational maturity for client accounts.
+ 
+ 
+ 
+Delivery Support for High-Priority Accounts
+ 
+ 
+ 
+Provide hands-on engineering support for high-priority and short-term customer engagements.
+ 
+ 
+ 
+Troubleshoot automation issues and enhance solution reliability.
+ 
+ 
+ 
+Deliver high-quality outputs under tight timelines and rapid iteration cycles.
+ 
+ 
+ 
+Required Skills & Experience
+ 
+Technical Skills
+ 
+ 
+ 
+Hands-on development experience with Azure automation services such as: Azure Functions Logic Apps Automation Runbooks PowerShell or Python scripting
+ 
+ 
+ 
+Strong understanding of Azure resource management, governance, AI/ML pipelines, and cloud optimization techniques.
+ 
+ 
+ 
+Experience integrating AI/ML models or cognitive services into cloud workflows is a strong advantage.
+ 
+ 
+ 
+Professional Skills
+ 
+ 
+ 
+Ability to work efficiently in high-dependency, rapid-delivery environments.
+ 
+ 
+ 
+Strong analytical, debugging, and automation problem-solving skills.
+ 
+ 
+ 
+Effective communication and documentation capabilities for cross-functional teams.
+ 
+ 
+ 
+Innovative mindset with a strong focus on quality, stability, and measurable improvements.
+ 
+ 
+ 
+Education Qualification:
+ 
+ 
+ 
+Bachelors degree or equivalent combination of education and experience
+ 
+ 
+ 
+Experience: 3+ years in software/cloud engineering (or related).
+ 
+ 
+ 
+Cloud certifications (AWS, Azure) 
+ 
+ 
+ 
+ 
+At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive.
+ 
+ 
+Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf. More information on employment scams is available
+ 
+here
+.
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+Share this job:
+Similar Jobs
+SAP BASIS HANA
+ 
+  	Bangalore, Karnataka, IN    		  
+Sr Analyst II Software Engineering
+ 
+  	Bangalore, Karnataka, IN    		  
+AWS Devops Terraforms
+ 
+  	Bangalore, Karnataka, IN    		  
+Join our Talent Community
+Join our Talent Community to get job alerts from DXC Technology delivered to your inbox.
+ 
+Sign up for job alerts
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+Careers
+Home
+Search Jobs
+Join Our Talent Community
+Others
+Customer Stories
+Newsroom
+H-1B LCAs
+Follow us
+Cookies
+Privacy
+Legal
+© Copyright 2026 | DXC Technology Company | All Rights Reserved
+ 
+
+
+×
+Confirmation de la langue
+Nous avons remarqué que la langue de votre navigateur est le français. Souhaitez-vous consulter notre site carrières en français ou continuer en anglais ?
+ 
+Français
+Anglais
+×
+Sprachbestätigung
+Wir haben festgestellt, dass Ihr Browser auf Deutsch eingestellt ist. Möchten Sie unsere Karriereseite auf Deutsch anzeigen oder auf Englisch fortfahren?
+ 
+Deutsch
+Englisch
+×
+Conferma della lingua
+Abbiamo notato che il tuo browser è impostato su italiano. Vuoi visitare il nostro sito delle carriere in italiano o continuare in inglese?
+ 
+Italiano
+Inglese
+×
+言語の確認
+お使いのブラウザは日本語を優先する設定になっています。キャリアサイトを日本語で表示しますか？それとも英語のまま続けますか？
+ 
+日本語
+英語
+×
+Confirmação de idioma
+Percebemos que o seu navegador está configurado para o idioma português. Gostaria de visualizar o nosso site de carreiras em português ou continuar em inglês?
+ 
+Português
+Inglês
+×
+Confirmación de idioma
+Hemos detectado que su navegador está configurado en español. ¿Desea ver nuestro sitio de carreras en español o continuar en inglés?
+ 
+Español
+Inglés
+×
+Xác nhận ngôn ngữ
+Chúng tôi nhận thấy trình duyệt của bạn được đặt ưu tiên cho ngôn ngữ tiếng Việt. Bạn có muốn xem trang nghề nghiệp của chúng tôi bằng tiếng Việt hay tiếp tục bằng tiếng Anh?
+ 
+Tiếng Việt
+Tiếng Anh
+ 
+ 
+
+
+
+
+ 
+
+
+ 
+
+
+Page load link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+Go to Top
+
+
+
+
+
+
+
+
+

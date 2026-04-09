@@ -1,0 +1,619 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application SAP ABAP & BTP Developer in Chennai, Tamil Nadu, IN | Software Engineering at DXC Technology
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Skip to content
+
+
+
+
+
+
+
+
+Toggle Navigation
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+Join Our Talent Community
+Saved Jobs  
+(
+)
+
+
+Toggle Navigation
+Careers
+About Us
+About DXC
+Inclusion and Belonging
+Awards and Recognition
+Environmental, Social and Governance
+Insights
+My Applications
+Search Jobs
+Join our Talent Community
+Saved Jobs  
+(
+)
+English
+Deutsch
+ (
+German
+)
+Español
+ (
+Spanish
+)
+Français
+ (
+French
+)
+Italiano
+ (
+Italian
+)
+日本語
+ (
+Japanese
+)
+Português
+ (
+Portuguese (Portugal)
+)
+Tiếng Việt
+ (
+Vietnamese
+)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Job Details
+2026-03-30T05:06:32+00:00
+ 
+
+
+
+
+51568495
+
+
+
+
+
+
+SAP ABAP & BTP Developer
+ 
+ 
+ 
+Job ID:
+ 51568495
+ 
+Category:
+ 
+Software Engineering
+ 
+Employment Type:
+ 
+Full time
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+ 
+Location:
+ Chennai, India 
+ 
+ 
+Job Description:
+ 
+Role Overview
+ 
+We are looking for an SAP ABAP Consultant with strong experience across SAP ERP (ECC or S/4HANA) and SAP Business Technology Platform (BTP). The candidate will be responsible for designing, developing, and optimizing custom solutions, integrations, and extensions that span both on-premise and cloud landscapes.
+ 
+ 
+Key Responsibilities
+ 
+1. 
+ABAP Development (ECC & S/4HANA)
+ 
+ 
+Develop and enhance ABAP objects: Reports, Interfaces, Conversions, Enhancements, Forms (RICEFW).
+ 
+Expertise in OO-ABAP, AMDP, CDS Views, OData services, and BOPF.
+ 
+Performance optimization for ABAP code, SQL traces, dumps, and runtime analysis.
+ 
+Work on Proxy, IDoc, and integration objects with middleware.
+ 
+Work on SmartForms, Adobe Forms, Workflow enhancements.
+ 
+ 
+2
+. SAP BTP Development
+ 
+ 
+Build and manage cloud extensions using ABAP RESTful (RAP), Node.js/java etc
+ 
+Develop OData V4 services, CDS-based data models, and API consumption.
+ 
+Integrate BTP applications with SAP S/4HANA via BTP Destination Service, Connectivity Service, Event Mesh, API Management, or Integration Suite.
+ 
+ 
+3. 
+Integration & Architecture
+ 
+ 
+Design extension architecture for hybrid systems (on-prem ERP + BTP).
+ 
+Work with SAP API Business Hub, S/4HANA APIs, and event-driven patterns.
+ 
+Support SAP Cloud ALM or Solution Manager for transport and monitoring.
+ 
+ 
+4
+. DevOps, Quality, and Lifecycle
+ 
+ 
+Use gCTS, CI/CD pipelines in BTP or Git-based repositories.
+ 
+Follow coding standards, documentation, and secure development practices.
+ 
+Participate in code reviews, testing cycles, and production deployments.
+ 
+ 
+ 
+Required Skills
+ 
+ 
+Strong knowledge of ABAP, OO-ABAP, CDS, OData, RAP/RESTful ABAP.
+ 
+Hands-on with SAP BTP services, CAP/RAP, and cloud integration concepts.
+ 
+Experience with Fiori/UI5 development and extending standard apps.
+ 
+Practical experience in S/4HANA data models, CDS annotations, and HANA optimization.
+ 
+Good understanding of security, destinations, OAuth, JWT, and principal propagation.
+ 
+ 
+ 
+Preferred Skills
+ 
+ 
+Knowledge of SAP Event Mesh, BTP Workflow, Automation Pilot, or Build Apps.
+ 
+Certification in ABAP for SAP HANA, BTP Developer, or Extensibility.
+ 
+Experience in agile delivery, Jira, GitHub/GitLab, and transport management.
+ 
+Working Knowledge with SAP Integration Suite (CPI). CAP (Cloud Application Programming Model)
+ 
+ 
+ 
+Experience Level
+ 
+ 
+With skills of Deep ABAP + solutioning skills –
+10+ years:
+ 
+ 
+ 
+BTP Hands on  & architecture exposure –
+3-4 + years
+ 
+ 
+ 
+At DXC Technology, we believe strong connections and community are key to our success. Our work model prioritizes in-person collaboration while offering flexibility to support wellbeing, productivity, individual work styles, and life circumstances. We’re committed to fostering an inclusive environment where everyone can thrive.
+ 
+ 
+Recruitment fraud is a scheme in which fictitious job opportunities are offered to job seekers typically through online services, such as false websites, or through unsolicited emails claiming to be from the company. These emails may request recipients to provide personal information or to make payments as part of their illegitimate recruiting process. DXC does not make offers of employment via social media networks and DXC never asks for any money or payments from applicants at any point in the recruitment process, nor ask a job seeker to purchase IT or other equipment on our behalf. More information on employment scams is available
+ 
+here
+.
+ 
+ 
+ 
+ 
+Apply 
+ 
+ 
+Save Job
+ 
+ 
+Share this job:
+Similar Jobs
+SAP BASIS HANA
+ 
+  	Bangalore, Karnataka, IN    		  
+Sr Analyst II Software Engineering
+ 
+  	Bangalore, Karnataka, IN    		  
+AWS Devops Terraforms
+ 
+  	Bangalore, Karnataka, IN    		  
+Join our Talent Community
+Join our Talent Community to get job alerts from DXC Technology delivered to your inbox.
+ 
+Sign up for job alerts
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+Careers
+Home
+Search Jobs
+Join Our Talent Community
+Others
+Customer Stories
+Newsroom
+H-1B LCAs
+Follow us
+Cookies
+Privacy
+Legal
+© Copyright 2026 | DXC Technology Company | All Rights Reserved
+ 
+
+
+×
+Confirmation de la langue
+Nous avons remarqué que la langue de votre navigateur est le français. Souhaitez-vous consulter notre site carrières en français ou continuer en anglais ?
+ 
+Français
+Anglais
+×
+Sprachbestätigung
+Wir haben festgestellt, dass Ihr Browser auf Deutsch eingestellt ist. Möchten Sie unsere Karriereseite auf Deutsch anzeigen oder auf Englisch fortfahren?
+ 
+Deutsch
+Englisch
+×
+Conferma della lingua
+Abbiamo notato che il tuo browser è impostato su italiano. Vuoi visitare il nostro sito delle carriere in italiano o continuare in inglese?
+ 
+Italiano
+Inglese
+×
+言語の確認
+お使いのブラウザは日本語を優先する設定になっています。キャリアサイトを日本語で表示しますか？それとも英語のまま続けますか？
+ 
+日本語
+英語
+×
+Confirmação de idioma
+Percebemos que o seu navegador está configurado para o idioma português. Gostaria de visualizar o nosso site de carreiras em português ou continuar em inglês?
+ 
+Português
+Inglês
+×
+Confirmación de idioma
+Hemos detectado que su navegador está configurado en español. ¿Desea ver nuestro sitio de carreras en español o continuar en inglés?
+ 
+Español
+Inglés
+×
+Xác nhận ngôn ngữ
+Chúng tôi nhận thấy trình duyệt của bạn được đặt ưu tiên cho ngôn ngữ tiếng Việt. Bạn có muốn xem trang nghề nghiệp của chúng tôi bằng tiếng Việt hay tiếp tục bằng tiếng Anh?
+ 
+Tiếng Việt
+Tiếng Anh
+ 
+ 
+
+
+
+
+ 
+
+
+ 
+
+
+Page load link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+Go to Top
+
+
+
+
+
+
+
+
+

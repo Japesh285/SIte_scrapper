@@ -1,0 +1,310 @@
+{
+  "domain": "careers.dxc.com",
+  "site_type": "DYNAMIC_API",
+  "listing_jobs_found": 60,
+  "listing_status": "success",
+  "saved_at": "2026-04-09T11:10:08.304780",
+  "jobs_count": 10,
+  "jobs": [
+    {
+      "id": "",
+      "title": "Project Manager",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "TransAmerica Associate Manager",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "Senior Analyst I Software Engineering",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "SAP Senior ABAP Consultant",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "Analyst I Software Engineering",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "Analyst II Software Engineering",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "Senior Analyst I - Zurich",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "SAP BASIS HANA",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "Analyst III Infrastructure Services",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "",
+      "title": "Senior Analyst II Software Engineering",
+      "company_name": "",
+      "job_link": "",
+      "experience": "",
+      "locations": [],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "",
+      "job_id": "",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "",
+        "strategy": "api",
+        "site_type": "DYNAMIC_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+{
+  "domain": "careers.dxc.com",
+  "site_type": "DOM_BROWSER",
+  "listing_jobs_found": 8,
+  "listing_status": "success",
+  "saved_at": "2026-04-09T10:31:09.401954",
+  "jobs_count": 8,
+  "jobs": [
+    {
+      "id": "51572617",
+      "title": "RR-0330742",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23196635/rr-0330742-gurgaon-in/",
+      "experience": "7+ years in industry, with a minimum of 3 years in a similar role",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "Bachelor’s degree in a relevant field",
+      "required_skill_set": [
+        "Software application development",
+        "Project coordination",
+        "Team management",
+        "Resource allocation",
+        "Software languages",
+        "Development methodologies",
+        "Quality control",
+        "Leadership skills",
+        "Communication skills",
+        "Package applications"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-29",
+      "job_id": "51572617",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23196635/rr-0330742-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2386,
+        "output_tokens": 259,
+        "total_tokens": 2645
+      }
+    },
+    {
+      "id": "51572849",
+      "title": "RR-0329892-Sr Analyst I Infrastructure Services",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23123606/rr-0329892-sr-analyst-i-infrastructure-services-gurgaon-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Active Directory",
+        "Domain Controllers",
+        "OU management",
+        "Group Policy",
+        "DNS",
+        "DHCP",
+        "Kerberos",
+        "NTLM",
+        "LDAP",
+        "SSO",
+        "ADFS",
+        "SAML",
+        "federation",
+        "Azure AD",
+        "Entra ID"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-11",
+      "job_id": "51572849",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23123606/rr-0329892-sr-analyst-i-infrastructure-services-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2342,
+        "output_tokens": 226,
+        "total_tokens": 2568
+      }
+    },
+    {
+      "id": "51559991",
+      "title": "Sr Analyst I Infrastructure Services",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23079040/sr-analyst-i-infrastructure-services-gurgaon-in/",
+      "experience": "5+ years of relevant work experience, minimum 2 years in a similar role",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "Bachelor's degree or equivalent",
+      "required_skill_set": [
+        "Infrastructure support",
+        "Technical troubleshooting",
+        "Infrastructure documentation",
+        "Data analysis",
+        "Problem-solving",
+        "Industry knowledge"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-03-02",
+      "job_id": "51559991",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23079040/sr-analyst-i-infrastructure-services-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2414,
+        "output_tokens": 207,
+        "total_tokens": 2621
+      }
+    },
+    {
+      "id": "51560535",
+      "title": "Associate Manager Scrum Master",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23071944/associate-manager-scrum-master-gurgaon-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "2026-02-27",
+      "job_id": "51560535",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23071944/associate-manager-scrum-master-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3988,
+        "output_tokens": 206,
+        "total_tokens": 4194
+      }
+    },
+    {
+      "id": "51573229",
+      "title": "EPS Senior Technical Engineer",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23049516/eps-senior-technical-engineer-gurgaon-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Base24 eps",
+        "configuration, scripting, SDK",
+        "Australian scheme compliance",
+        "card schemes and formats",
+        "bank system integration",
+        "C++, Java",
+        "Linux, VMware",
+        "cloud systems (Azure, AWS)",
+        "ISO 8583, XML",
+        "VISA, MasterCard, Amex, JCB certifications"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-02-23",
+      "job_id": "51573229",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23049516/eps-senior-technical-engineer-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3085,
+        "output_tokens": 287,
+        "total_tokens": 3372
+      }
+    },
+    {
+      "id": "51560523",
+      "title": "Senior BASE24 EPS Support",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22666501/senior-base24-eps-support-gurgaon-in/",
+      "experience": "4 to 8 years of hands-on support experience with ACI Base24-eps applications.",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "ISO 8583 messaging systems",
+        "Base24-eps modules",
+        "payment networks",
+        "ATM/POS/Ecom systems",
+        "support in 24x7 model"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-02-23",
+      "job_id": "51560523",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22666501/senior-base24-eps-support-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2428,
+        "output_tokens": 210,
+        "total_tokens": 2638
+      }
+    },
+    {
+      "id": "51564799",
+      "title": "Manager Solution Architecture",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/23024388/manager-solution-architecture-gurgaon-in/",
+      "experience": "{'@type': 'MonetaryAmount', 'currency': 'USD', 'value': {'@type': 'QuantitativeValue', 'minValue': 1.0, 'maxValue': 1000000.0, 'unitText': 'YEAR'}}",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Power Apps",
+        "Power Automate",
+        "Power BI",
+        "Google AppSheet",
+        "ServiceNow",
+        "AI technologies",
+        "Project management",
+        "Communication skills",
+        "Event hosting",
+        "Stakeholder engagement",
+        "Presales experience"
+      ],
+      "remote_type": "",
+      "posted_on": "2026-02-17",
+      "job_id": "51564799",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/23024388/manager-solution-architecture-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 3040,
+        "output_tokens": 250,
+        "total_tokens": 3290
+      }
+    },
+    {
+      "id": "51560512",
+      "title": "Base 24 Quality Engineer/Lead",
+      "company_name": "DXC Technology",
+      "job_link": "https://careers.dxc.com/job/22666467/base-24-quality-engineer-lead-gurgaon-in/",
+      "experience": "5+ years",
+      "locations": [
+        "Gurgaon, Haryana, IN"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [
+        "Test case development",
+        "Defect tracking systems",
+        "Test management tools",
+        "Quality assurance",
+        "Switch testing (BASE24, BAE24 EPS, ACI UPF)",
+        "Payments domain",
+        "Transaction switch",
+        "Payment systems",
+        "E-commerce",
+        "QA on issuing products",
+        "Interchange certifications (VISA, MasterCard, Amex, JCB)",
+        "Testing with simulators and mock environments",
+        "Automated testing tools",
+        "JIRA"
+      ],
+      "remote_type": "",
+      "posted_on": "2025-11-18",
+      "job_id": "51560512",
+      "salary": "USD 1.0-1000000.0",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://careers.dxc.com/job/22666467/base-24-quality-engineer-lead-gurgaon-in/",
+        "strategy": "dom",
+        "parser_used": "json_ld",
+        "confidence": 7,
+        "ai_forced": true,
+        "preferred_skills": [],
+        "tools_and_technologies": [],
+        "certifications": [],
+        "soft_skills": [],
+        "inferred_skills": [],
+        "benefits": []
+      },
+      "ai_usage": {
+        "input_tokens": 2496,
+        "output_tokens": 265,
+        "total_tokens": 2761
+      }
+    }
+  ]
+}

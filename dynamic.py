@@ -1,22 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Universal Career Scraper - Final Version
-✅ Works with Capgemini, DXC, Greenhouse, Lever, Workday, and most custom portals
-✅ Captures description, requirements, contract_type directly from API
-✅ Decodes Unicode-escaped HTML (e.g., \u003Cdiv\u003E → <div>)
-✅ No syntax errors, production-ready
+Universal Career Scraper + GPT-4.1 Nano AI Enrichment
+✅ Extracts jobs from any career portal
+✅ Sends each job to OpenAI GPT-4.1 nano for structured normalization
+✅ Outputs exact schema format with token tracking
+✅ Processes jobs sequentially (one-by-one) with error handling
 """
 
 # ============================
 # CONFIG — CHANGE ONLY THIS
 # ============================
-TARGET_URL = "https://www.capgemini.com/in-en/careers/join-capgemini/job-search/?page=1&size=11&country_code=in-en"
-MAX_TOTAL_JOBS = 100           # Safety limit
-MAX_PAGES = 50                 # Max pagination attempts
-REQUEST_DELAY = 1.0            # Seconds between requests
-OUTPUT_FILE = "capgemini_jobs_final.json"
-FETCH_DETAIL_PAGES = False     # Set True if API lacks description; False = use API data only
+TARGET_URL = "https://careers.dxc.com/job-search-results/?compliment[]=India&primary_city[]=Gurgaon"
+MAX_TOTAL_JOBS = 50            # Safety limit (AI processing is slower)
+MAX_PAGES = 20                 # Max pagination attempts
+REQUEST_DELAY = 1.0            # Seconds between API requests
+OPENAI_DELAY = 2.0             # Seconds between OpenAI API calls (rate limit safety)
+OUTPUT_FILE = "jobs_ai_enriched.json"
+FETCH_DETAIL_PAGES = False     # Set True if API lacks description
+
+# === OPENAI CONFIG ===
+OPENAI_API_KEY = ""
+OPENAI_MODEL = "gpt-4.1-nano"  # or "gpt-4o-mini", "gpt-3.5-turbo"
+OPENAI_MAX_TOKENS = 2048
+OPENAI_TEMPERATURE = 0.1       # Low temp for consistent structured output
 
 # ============================
 # IMPORTS
@@ -25,16 +32,26 @@ import json
 import re
 import time
 import html
+import os
 import requests
 from copy import deepcopy
 from urllib.parse import urlparse, parse_qs, quote_plus
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+
+try:
+    from openai import OpenAI
+except ImportError:
+    print("❌ openai package not installed. Run: pip install openai")
+    exit(1)
 
 try:
     from playwright.sync_api import sync_playwright
 except ImportError:
     print("❌ playwright not installed. Run: pip install playwright && playwright install chromium")
     exit(1)
+
+load_dotenv()
 
 # ============================
 # GLOBALS & HEADERS
@@ -43,20 +60,16 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json, text/html, */*",
     "Accept-Language": "en-US,en;q=0.9",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Connection": "keep-alive",
 }
 
-BAD_DOMAINS = ["analytics", "tracking", "cookie", "consent", "demdex", "doubleclick", "nr-data", "facebook", "twitter", "linkedin"]
+BAD_DOMAINS = ["analytics", "tracking", "cookie", "consent", "demdex", "doubleclick", "nr-data"]
 
-# === EXPANDED SIGNALS TO CAPTURE RICH FIELDS ===
 JOB_SIGNALS = {
     "title": ["title", "jobTitle", "positionTitle", "job_title", "PositionTitle", "name", "job_name"],
     "location": ["location", "locations", "locationName", "primary_location", "workLocation", "city", "country", "office"],
     "id": ["id", "jobId", "requisitionId", "postingId", "job_id", "reqId", "requisition_id", "ref", "reference"],
     "url": ["applyUrl", "applyURL", "jobUrl", "jobURL", "url", "link", "canonicalUrl", "apply_job_url", "apply_url", "job_url", "detailUrl", "careerSiteUrl"],
     "date": ["postedDate", "datePosted", "publishDate", "publicationDate", "posted_date", "createdDate", "indexed_at", "updated_at"],
-    # === RICH FIELDS (Capgemini & others) ===
     "description": ["description", "jobDescription", "job_description", "details", "summary", "content", "body", "description_stripped"],
     "requirements": ["requirements", "qualifications", "skills", "requiredSkills", "jobRequirements", "essentialCriteria"],
     "responsibilities": ["responsibilities", "duties", "roleResponsibilities", "keyResponsibilities"],
@@ -66,37 +79,34 @@ JOB_SIGNALS = {
 }
 
 # ============================
-# HTML CLEANER FOR CAPEGEMINI
+# OPENAI CLIENT SETUP
+# ============================
+def get_openai_client():
+    """Initialize OpenAI client with API key from config or env."""
+    api_key = os.getenv("OPENAI_API_KEY") or OPENAI_API_KEY
+    if not api_key:
+        raise ValueError("❌ OpenAI API key not set. Add OPENAI_API_KEY to .env or environment.")
+    return OpenAI(api_key=api_key)
+
+
+# ============================
+# HTML CLEANER
 # ============================
 def clean_html_description(raw_text: str) -> str:
-    """
-    Decode Unicode-escaped HTML and strip tags to get clean text.
-    Handles: \u003Cdiv\u003E → <div>, &rsquo; → ', &euro; → €, etc.
-    """
+    """Decode Unicode-escaped HTML and strip tags to get clean text."""
     if not raw_text or not isinstance(raw_text, str):
         return ""
-    
-    # Step 1: Decode Unicode escapes (\u003C → <)
     try:
         decoded = raw_text.encode('utf-8').decode('unicode_escape')
     except:
         decoded = raw_text
-    
-    # Step 2: Unescape HTML entities (&rsquo; → ', &euro; → €, etc.)
     decoded = html.unescape(decoded)
-    
-    # Step 3: Remove HTML tags but keep structure with line breaks
     soup = BeautifulSoup(decoded, 'html.parser')
-    
-    # Add newlines before block elements for readability
     for tag in soup.find_all(['br', 'p', 'div', 'li', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol']):
         tag.insert_before('\n')
-    
-    # Get text and clean up whitespace
     text = soup.get_text(separator=' ', strip=True)
-    text = re.sub(r'\s+', ' ', text)  # Collapse multiple spaces
-    text = re.sub(r'\n\s*\n', '\n\n', text)  # Keep paragraph breaks
-    
+    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r'\n\s*\n', '\n\n', text)
     return text.strip()
 
 
@@ -104,7 +114,6 @@ def clean_html_description(raw_text: str) -> str:
 # UNIVERSAL PARSING
 # ============================
 def parse_any_json(text):
-    """Robustly parse JSON or JSONP formatted text."""
     if not text or not isinstance(text, str):
         return None
     text = text.strip()
@@ -131,7 +140,6 @@ def parse_any_json(text):
 
 
 def is_valid_job(obj):
-    """Heuristic to validate if an object is a genuine job posting."""
     if not isinstance(obj, dict):
         return False
     title = None
@@ -153,19 +161,16 @@ def is_valid_job(obj):
 
 
 def extract_jobs_any(data):
-    """Extract all valid jobs from any JSON structure recursively."""
     jobs = []
     seen_ids = set()
     
     def normalize(obj):
-        """Map API fields to our standard schema."""
         return {
             "title": next((obj[k] for k in JOB_SIGNALS["title"] if k in obj and obj[k]), None),
             "location": next((obj[k] for k in JOB_SIGNALS["location"] if k in obj and obj[k]), None),
             "id": next((str(obj[k]) for k in JOB_SIGNALS["id"] if k in obj and obj[k]), None),
             "url": next((obj[k] for k in JOB_SIGNALS["url"] if k in obj and obj[k]), None),
             "posted_date": next((obj[k] for k in JOB_SIGNALS["date"] if k in obj and obj[k]), None),
-            # === RICH FIELDS ===
             "description_raw": next((obj[k] for k in JOB_SIGNALS["description"] if k in obj and obj[k]), None),
             "requirements_raw": next((obj[k] for k in JOB_SIGNALS["requirements"] if k in obj and obj[k]), None),
             "responsibilities_raw": next((obj[k] for k in JOB_SIGNALS["responsibilities"] if k in obj and obj[k]), None),
@@ -178,7 +183,6 @@ def extract_jobs_any(data):
         if not isinstance(obj, dict) and not isinstance(obj, list):
             return
         if isinstance(obj, dict):
-            # Check for job list containers
             for container in ["jobs", "results", "items", "positions", "data", "records", "listings", "posts", "ads"]:
                 if container in obj and isinstance(obj[container], list):
                     for item in obj[container]:
@@ -189,14 +193,12 @@ def extract_jobs_any(data):
                                 seen_ids.add(job_id)
                                 jobs.append(job)
                     return
-            # Check if this object itself is a job
             if is_valid_job(obj):
                 job = normalize(obj)
                 job_id = job.get("id")
                 if job_id and job_id not in seen_ids:
                     seen_ids.add(job_id)
                     jobs.append(job)
-            # Recurse into values
             for v in obj.values():
                 recurse(v)
         else:
@@ -208,30 +210,23 @@ def extract_jobs_any(data):
 
 
 def score_api_universal(api):
-    """Score an API based on job quality and field richness."""
     url = api["url"].lower()
     all_jobs = api.get("jobs", [])
     valid_jobs = [j for j in all_jobs if is_valid_job(j)]
-    
     score = 0
     if any(k in url for k in ["job", "career", "position", "vacancy"]): score += 5
     if any(k in url for k in ["search", "api", "query", "graphql", "jobstream"]): score += 3
-    
     valid_count = len(valid_jobs)
     if valid_count >= 20: score += 20
     elif valid_count >= 10: score += 15
     elif valid_count > 0: score += valid_count * 2
     else: score -= 50
-    
     if api.get("method") == "POST" and api.get("payload"): score += 12
-    
     if valid_jobs:
         score += sum(1 for j in valid_jobs[:5] if j.get("location"))
         score += sum(1 for j in valid_jobs[:5] if j.get("id"))
         score += sum(1 for j in valid_jobs[:5] if j.get("url"))
-        # Bonus for APIs that include description
         score += sum(2 for j in valid_jobs[:5] if j.get("description_raw"))
-    
     return score
 
 
@@ -239,7 +234,6 @@ def score_api_universal(api):
 # API CAPTURE ENGINE
 # ============================
 def capture_apis_universal(url):
-    """Capture JSON APIs triggered during page load."""
     results = []
     seen_urls = set()
     
@@ -314,7 +308,6 @@ def capture_apis_universal(url):
 
 
 def build_url_preserve_params(base_url, params_dict):
-    """Rebuild URL preserving bracket notation."""
     parsed = urlparse(base_url)
     parts = []
     for key, values in params_dict.items():
@@ -330,7 +323,6 @@ def build_url_preserve_params(base_url, params_dict):
 
 
 def paginate_universal(api, max_pages=MAX_PAGES):
-    """Universal pagination using brute-force parameter testing."""
     url = api["url"]
     method = api["method"]
     base_headers = api.get("headers", {})
@@ -448,58 +440,273 @@ def paginate_universal(api, max_pages=MAX_PAGES):
 
 
 # ============================
-# OPTIONAL: Fetch Detail Pages (if API lacks data)
+# 🤖 AI ENRICHMENT WITH GPT-4.1 NANO
 # ============================
-def fetch_job_details_fallback(job_url, session=None):
-    """Fallback parser for detail pages (only used if FETCH_DETAIL_PAGES=True)."""
-    if session is None:
-        session = requests.Session()
-        session.headers.update(HEADERS)
+def prepare_job_for_ai(job: dict) -> dict:
+    """Prepare job data for AI processing - clean and structure input."""
+    # Decode description if raw HTML present
+    description = job.get("description")
+    if not description and job.get("description_raw"):
+        description = clean_html_description(job["description_raw"])
     
-    details = {"source_url": job_url, "description": None, "requirements": []}
+    # Decode requirements if present
+    requirements = job.get("requirements")
+    if not requirements and job.get("requirements_raw"):
+        requirements = clean_html_description(job["requirements_raw"])
+    
+    # Build clean input for AI
+    return {
+        "title": job.get("title") or "",
+        "company": "Capgemini",  # Can be extracted from domain if needed
+        "location": job.get("location") or job.get("location_text") or "",
+        "job_id": job.get("id") or "",
+        "url": job.get("url") or "",
+        "description": description or "",
+        "requirements": requirements or "",
+        "responsibilities": job.get("responsibilities") or "",
+        "employment_type": job.get("employment_type") or "",
+        "category": job.get("category") or "",
+        "experience": job.get("experience") or "",
+        "posted_date": job.get("posted_date") or "",
+        "contract_type": job.get("contract_type") or "",
+    }
+
+
+def format_ai_prompt(job_data: dict) -> str:
+    """Format the prompt for GPT-4.1 nano with clear instructions."""
+    return f"""You are a job data normalization expert. Extract and structure the following job posting into the exact schema format specified.
+
+## INPUT JOB DATA:
+{json.dumps(job_data, indent=2, ensure_ascii=False)}
+
+## OUTPUT SCHEMA REQUIREMENTS:
+Return ONLY valid JSON matching this exact structure. Do not include explanations, markdown, or extra text.
+
+{{
+  "id": "string (use job_id from input)",
+  "title": "string (clean job title)",
+  "company_name": "string (extract from input or use 'Capgemini')",
+  "job_link": "string (the apply URL)",
+  "experience": "string (extract experience requirement, e.g., '4-12 years')",
+  "locations": ["string array of location strings, e.g., ['IN, PUNE']"],
+  "educational_qualifications": "string (JSON array as string, e.g., '[\"Bachelor's degree\"]' or '[]')",
+  "required_skill_set": ["string array of skills/technologies"],
+  "remote_type": "string ('On-site', 'Remote', 'Hybrid', or '')",
+  "posted_on": "string (format: 'Posted X Days Ago' or date)",
+  "job_id": "string (same as id)",
+  "salary": "string (extract if present, else '')",
+  "is_active": true,
+  "first_seen": "string (ISO date or '')",
+  "last_seen": "string (ISO date or '')",
+  "additional_sections": [
+    {{"section_title": "string", "content": "string"}}
+  ],
+  "Scrap_json": {{
+    "url": "string (original job URL)",
+    "strategy": "string ('api' or 'html')",
+    "site_type": "string (e.g., 'CUSTOM_API', 'WORKDAY_API', 'GREENHOUSE')",
+    "department": "string (extract category/department)",
+    "qualifications": ["string array"]
+  }},
+  "ai_usage": {{
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  }}
+}}
+
+## EXTRACTION RULES:
+1. locations: Convert to format "COUNTRY, CITY" (e.g., "IN, PUNE", "US, NEW YORK")
+2. experience: Extract numeric range if present (e.g., "4 to 12 years" → "4-12 years")
+3. required_skill_set: Extract technical skills, tools, frameworks from description/requirements
+4. remote_type: Infer from keywords: "remote", "work from home" → "Remote"; "hybrid", "flexible" → "Hybrid"; "on-site", "office" → "On-site"
+5. educational_qualifications: Return as JSON string: '["Bachelor's degree in CS"]' or '[]'
+6. additional_sections: Include useful metadata like "Job Description Summary", "Key Responsibilities", "Benefits"
+7. Scrap_json.site_type: Detect from URL: "capgemini.com" → "CUSTOM_API", "myworkdayjobs.com" → "WORKDAY_API", "greenhouse.io" → "GREENHOUSE", "lever.co" → "LEVER"
+8. ai_usage: You MUST fill these with actual token counts from the API response
+
+## IMPORTANT:
+- Return ONLY the JSON object, no markdown, no code blocks, no explanations
+- All string fields should be trimmed and clean
+- Empty fields should be "" or [] as appropriate
+- is_active should always be true for valid jobs
+"""
+
+
+def call_openai_with_retry(prompt: str, max_retries: int = 3) -> tuple[dict, dict]:
+    """
+    Call OpenAI API with retry logic and token tracking.
+    Returns: (parsed_json_response, usage_dict)
+    """
+    client = get_openai_client()
+    
+    for attempt in range(max_retries):
+        try:
+            response = client.chat.completions.create(
+                model=OPENAI_MODEL,
+                messages=[
+                    {"role": "system", "content": "You are a precise JSON output engine. Return ONLY valid JSON, no explanations."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=OPENAI_TEMPERATURE,
+                max_tokens=OPENAI_MAX_TOKENS,
+                response_format={"type": "json_object"}  # Force JSON output
+            )
+            
+            # Extract usage stats
+            usage = response.usage
+            token_info = {
+                "input_tokens": usage.prompt_tokens if usage else 0,
+                "output_tokens": usage.completion_tokens if usage else 0,
+                "total_tokens": usage.total_tokens if usage else 0
+            }
+            
+            # Parse response
+            content = response.choices[0].message.content.strip()
+            # Remove markdown code blocks if present
+            if content.startswith("```json"):
+                content = re.sub(r'^```json\n?', '', content)
+                content = re.sub(r'\n?```$', '', content)
+            elif content.startswith("```"):
+                content = re.sub(r'^```\n?', '', content)
+                content = re.sub(r'\n?```$', '', content)
+            
+            parsed = json.loads(content)
+            return parsed, token_info
+            
+        except json.JSONDecodeError as e:
+            print(f"⚠️ JSON parse error (attempt {attempt+1}/{max_retries}): {e}")
+            if attempt == max_retries - 1:
+                raise
+            time.sleep(OPENAI_DELAY * (attempt + 1))
+        except Exception as e:
+            print(f"⚠️ OpenAI API error (attempt {attempt+1}/{max_retries}): {e}")
+            if attempt == max_retries - 1:
+                raise
+            time.sleep(OPENAI_DELAY * (attempt + 1))
+    
+    # Fallback return if all retries fail
+    return None, {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}
+
+
+def enrich_job_with_ai(job: dict) -> dict:
+    """
+    Send job to GPT-4.1 nano and return structured output in target schema.
+    Processes one job at a time with error handling.
+    """
+    # Prepare input
+    job_input = prepare_job_for_ai(job)
+    prompt = format_ai_prompt(job_input)
     
     try:
-        resp = session.get(job_url, timeout=30)
-        resp.raise_for_status()
-        soup = BeautifulSoup(resp.text, 'html.parser')
+        # Call OpenAI
+        ai_output, token_usage = call_openai_with_retry(prompt)
         
-        # Try JSON-LD first
-        json_ld = soup.find('script', type='application/ld+json')
-        if json_ld:
-            try:
-                ld_data = json.loads(json_ld.string)
-                if isinstance(ld_data, list):
-                    ld_data = ld_data[0]
-                if ld_data.get("@type") == "JobPosting":
-                    details["description"] = ld_data.get("description")
-            except:
-                pass
+        if not ai_output:
+            print(f"   ❌ AI processing failed for job: {job.get('title', 'Untitled')}")
+            # Return fallback structure
+            return create_fallback_output(job)
         
-        # Fallback: extract from common containers
-        if not details["description"]:
-            for selector in [".job-description", "#description", ".content", "article"]:
-                el = soup.select_one(selector)
-                if el:
-                    text = el.get_text(separator=' ', strip=True)
-                    if text and len(text) > 100:
-                        details["description"] = text
-                        break
+        # Merge token usage into output
+        ai_output["ai_usage"] = token_usage
         
-        return details
+        # Ensure required fields exist
+        ai_output.setdefault("id", job.get("id") or "")
+        ai_output.setdefault("job_id", job.get("id") or "")
+        ai_output.setdefault("job_link", job.get("url") or "")
+        ai_output.setdefault("is_active", True)
+        ai_output.setdefault("additional_sections", [])
+        ai_output.setdefault("Scrap_json", {
+            "url": job.get("url", ""),
+            "strategy": "api",
+            "site_type": detect_site_type(job.get("url", "")),
+            "department": job.get("category") or "",
+            "qualifications": []
+        })
+        
+        return ai_output
+        
     except Exception as e:
-        print(f"⚠️ Detail fetch error: {e}")
-        return None
+        print(f"❌ Error enriching job: {e}")
+        return create_fallback_output(job)
+
+
+def create_fallback_output(job: dict) -> dict:
+    """Create minimal valid output when AI processing fails."""
+    return {
+        "id": job.get("id") or "",
+        "title": job.get("title") or "Untitled",
+        "company_name": "Capgemini",
+        "job_link": job.get("url") or "",
+        "experience": job.get("experience") or "",
+        "locations": [job.get("location")] if job.get("location") else [],
+        "educational_qualifications": "[]",
+        "required_skill_set": [],
+        "remote_type": "",
+        "posted_on": job.get("posted_date") or "",
+        "job_id": job.get("id") or "",
+        "salary": "",
+        "is_active": True,
+        "first_seen": "",
+        "last_seen": "",
+        "additional_sections": [],
+        "Scrap_json": {
+            "url": job.get("url", ""),
+            "strategy": "api",
+            "site_type": detect_site_type(job.get("url", "")),
+            "department": job.get("category") or "",
+            "qualifications": []
+        },
+        "ai_usage": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "total_tokens": 0
+        }
+    }
+
+
+def detect_site_type(url: str) -> str:
+    """Detect career platform type from URL."""
+    if not url:
+        return "UNKNOWN"
+    url_lower = url.lower()
+    if "myworkdayjobs.com" in url_lower:
+        return "WORKDAY_API"
+    elif "greenhouse.io" in url_lower or "boards.api.greenhouse.io" in url_lower:
+        return "GREENHOUSE"
+    elif "lever.co" in url_lower or "api.lever.co" in url_lower:
+        return "LEVER"
+    elif "icims.com" in url_lower or "job-iframe" in url_lower:
+        return "ICIMS"
+    elif "smartrecruiters.com" in url_lower:
+        return "SMARTRECRUITERS"
+    elif "capgemini.com" in url_lower or "cg-jobstream" in url_lower:
+        return "CUSTOM_API"
+    elif "dxc.com" in url_lower:
+        return "CUSTOM_API"
+    else:
+        return "CUSTOM_API"
 
 
 # ============================
 # MAIN EXECUTION
 # ============================
 def main():
-    print(f"🚀 Universal Career Scraper (Final)")
+    print(f"🚀 Universal Career Scraper + GPT-4.1 Nano AI")
     print(f"   Target: {TARGET_URL}")
     print(f"   Max jobs: {MAX_TOTAL_JOBS}, Max pages: {MAX_PAGES}")
     print(f"   Output: {OUTPUT_FILE}")
-    print(f"   Fetch detail pages: {FETCH_DETAIL_PAGES}\n")
+    print(f"   Model: {OPENAI_MODEL}")
+    print(f"   AI Delay: {OPENAI_DELAY}s between calls\n")
+    
+    # Verify OpenAI key
+    try:
+        _ = get_openai_client()
+        print("✅ OpenAI client initialized")
+    except ValueError as e:
+        print(f"❌ {e}")
+        print("💡 Set your key: export OPENAI_API_KEY='sk-...' or edit script config")
+        return
     
     # Step 1: Capture APIs
     print("🔍 Step 1: Capturing dynamic APIs...")
@@ -527,63 +734,50 @@ def main():
         print("❌ No jobs found.")
         return
     
-    # Step 4: Enrich jobs (decode descriptions, merge fields)
-    print(f"\n🔧 Step 4: Processing {len(all_jobs)} jobs...")
+    # Step 4: 🤖 AI Enrichment (ONE-BY-ONE PROCESSING)
+    print(f"\n🤖 Step 4: AI enrichment with {OPENAI_MODEL} (processing one-by-one)...")
     enriched_jobs = []
+    total_tokens = 0
     
     for i, job in enumerate(all_jobs, 1):
-        # === Decode description if present ===
-        if job.get("description_raw"):
-            job["description"] = clean_html_description(job["description_raw"])
-            # Also clean requirements if present
-            if job.get("requirements_raw"):
-                job["requirements"] = clean_html_description(job["requirements_raw"])
-            if job.get("responsibilities_raw"):
-                job["responsibilities"] = clean_html_description(job["responsibilities_raw"])
+        print(f"\n[{i}/{len(all_jobs)}] Processing: {job.get('title', 'Untitled')[:60]}...")
         
-        # === Optional: Fetch detail page if API lacked description ===
-        if FETCH_DETAIL_PAGES and not job.get("description") and job.get("url"):
-            print(f"[{i}/{len(all_jobs)}] Fetching detail: {job['url'][:60]}...")
-            details = fetch_job_details_fallback(job["url"])
-            if details and details.get("description"):
-                job["description"] = details["description"]
-                if details.get("requirements"):
-                    job["requirements"] = details["requirements"]
-            time.sleep(REQUEST_DELAY)
+        # Enrich with AI
+        enriched = enrich_job_with_ai(job)
+        enriched_jobs.append(enriched)
         
-        # === Remove raw fields to keep output clean ===
-        job.pop("description_raw", None)
-        job.pop("requirements_raw", None)
-        job.pop("responsibilities_raw", None)
+        # Track tokens
+        usage = enriched.get("ai_usage", {})
+        job_tokens = usage.get("total_tokens", 0)
+        total_tokens += job_tokens
         
-        enriched_jobs.append(job)
+        print(f"   ✅ Enriched | Tokens: {job_tokens} | Total: {total_tokens}")
         
-        if i % 10 == 0:
-            print(f"   ✅ Processed {i}/{len(all_jobs)} jobs")
+        # Save incrementally (in case of interruption)
+        if i % 5 == 0 or i == len(all_jobs):
+            with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+                json.dump(enriched_jobs, f, indent=2, default=str, ensure_ascii=False)
+            print(f"   💾 Checkpoint saved: {len(enriched_jobs)} jobs")
+        
+        # Rate limit for OpenAI API
+        if i < len(all_jobs):
+            time.sleep(OPENAI_DELAY)
     
-    # Summary & Save
-    print(f"\n✅ Processing complete: {len(enriched_jobs)} jobs enriched")
+    # Final save
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(enriched_jobs, f, indent=2, default=str, ensure_ascii=False)
     
+    # Summary
+    print(f"\n🎉 AI Enrichment Complete!")
+    print(f"   ✅ Processed: {len(enriched_jobs)}/{len(all_jobs)} jobs")
+    print(f"   🪙 Total tokens used: {total_tokens:,}")
+    print(f"   💾 Saved to: {OUTPUT_FILE}")
+    
+    # Sample output
     if enriched_jobs:
-        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(enriched_jobs, f, indent=2, default=str, ensure_ascii=False)
-        print(f"💾 Saved to {OUTPUT_FILE}")
-        
-        # Sample output
-        print(f"\n📋 Sample (first 2 jobs):")
-        for idx, job in enumerate(enriched_jobs[:2], 1):
-            print(f"\n{idx}. {job.get('title', 'Untitled')}")
-            print(f"   ID: {job.get('id')}")
-            print(f"   Location: {job.get('location') or 'N/A'}")
-            print(f"   Type: {job.get('employment_type') or 'N/A'} | Category: {job.get('category') or 'N/A'}")
-            print(f"   Experience: {job.get('experience') or 'N/A'}")
-            desc_preview = (job.get('description') or '')[:200]
-            print(f"   Description preview: {desc_preview}...")
-            if job.get('requirements'):
-                req_preview = (job['requirements'] if isinstance(job['requirements'], str) else str(job['requirements'][:2]))[:150]
-                print(f"   Requirements preview: {req_preview}...")
-    else:
-        print("⚠️ No jobs to save")
+        print(f"\n📋 Sample Output (first job):")
+        sample = enriched_jobs[0]
+        print(json.dumps({k: v for k, v in sample.items() if k != "Scrap_json"}, indent=2, default=str)[:1500] + "...")
     
     print(f"\n✨ Done!")
 
