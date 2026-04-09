@@ -1223,7 +1223,7 @@ async def scrape_details_batch(
             "error": "master_xlsx_not_created",
         }
 
-    def _cleanup_batch_outputs(paths: list[str], master_xlsx_path: str, master_json_path: str):
+    def _cleanup_batch_outputs(paths: list[str], master_json_path: str):
         for raw_path in paths:
             try:
                 file_path = Path(raw_path)
@@ -1232,18 +1232,16 @@ async def scrape_details_batch(
             except Exception as exc:
                 logger.warning("[BatchScrape] Cleanup failed for %s: %s", raw_path, exc)
 
-        for raw_path in (master_xlsx_path, master_json_path):
-            try:
-                file_path = Path(raw_path)
-                if file_path.exists():
-                    file_path.unlink()
-            except Exception as exc:
-                logger.warning("[BatchScrape] Cleanup failed for %s: %s", raw_path, exc)
+        try:
+            file_path = Path(master_json_path)
+            if file_path.exists():
+                file_path.unlink()
+        except Exception as exc:
+            logger.warning("[BatchScrape] Cleanup failed for %s: %s", master_json_path, exc)
 
     background_tasks.add_task(
         _cleanup_batch_outputs,
         sorted(files_to_cleanup),
-        str(master_xlsx),
         str(master_json),
     )
 
