@@ -7530,5 +7530,3030 @@
       "output_tokens": 0,
       "total_tokens": 0
     }
+  },
+  {
+    "id": "careers",
+    "title": "Job Search | IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/en_US/careers",
+    "experience": "",
+    "locations": [],
+    "educational_qualifications": "[]",
+    "required_skill_set": [],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "Package Consultant - HRIS/SAP | Apply by 4/20",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/en_US/careers",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 3,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 1180,
+      "output_tokens": 101,
+      "total_tokens": 1281
+    }
+  },
+  {
+    "id": "careers?source=WEB_Search_INDIA",
+    "title": "Define your career with IBM",
+    "company_name": "IBM",
+    "job_link": "https://www.ibm.com/careers?source=WEB_Search_INDIA",
+    "experience": "",
+    "locations": [],
+    "educational_qualifications": "[]",
+    "required_skill_set": [
+      "Agile",
+      "DevOps",
+      "Linux",
+      "Machine Learning",
+      "Scrum"
+    ],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://www.ibm.com/careers?source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 5,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 5709,
+      "output_tokens": 182,
+      "total_tokens": 5891
+    }
+  },
+  {
+    "id": "search",
+    "title": "Search jobs - IBM Careers",
+    "company_name": "IBM",
+    "job_link": "https://www.ibm.com/careers/search",
+    "experience": "Entry Level",
+    "locations": [
+      "India"
+    ],
+    "educational_qualifications": "[]",
+    "required_skill_set": [
+      "AWS",
+      "Agile",
+      "Azure",
+      "Java",
+      "JavaScript"
+    ],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "Package Consultant-Commerce Transformation",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://www.ibm.com/careers/search",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2602,
+      "output_tokens": 112,
+      "total_tokens": 2714
+    }
+  },
+  {
+    "id": "mailto:?subject=Direct%20Procurement%20%26%20Research%20Sourcing%20-%20Healthcare%20%26%20Life%20Sciences%20-%20Careers&amp;body=https%3A%2F%2Fcareers.ibm.com%2Fen_US%2Fcareers%2FJobDetail%2FDirect-Procurement-Research-Sourcing-Healthcare-Life-Sciences%2F103326",
+    "title": "",
+    "company_name": "",
+    "job_link": "mailto:?subject=Direct%20Procurement%20%26%20Research%20Sourcing%20-%20Healthcare%20%26%20Life%20Sciences%20-%20Careers&amp;body=https%3A%2F%2Fcareers.ibm.com%2Fen_US%2Fcareers%2FJobDetail%2FDirect-Procurement-Research-Sourcing-Healthcare-Life-Sciences%2F103326",
+    "experience": "",
+    "locations": [],
+    "educational_qualifications": "[]",
+    "required_skill_set": [],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "mailto:?subject=Direct%20Procurement%20%26%20Research%20Sourcing%20-%20Healthcare%20%26%20Life%20Sciences%20-%20Careers&amp;body=https%3A%2F%2Fcareers.ibm.com%2Fen_US%2Fcareers%2FJobDetail%2FDirect-Procurement-Research-Sourcing-Healthcare-Life-Sciences%2F103326",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "",
+      "confidence": 0,
+      "ai_forced": false,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
+    }
+  },
+  {
+    "id": "_linkedinApiv2?portalUrl=https%3A%2F%2Fcareers.ibm.com%2F&amp;action=INIT_SHARE&amp;shareUrl=https%3A%2F%2Fcareers.ibm.com%2Fen_US%2Fcareers%2FJobDetail%2FDirect-Procurement-Research-Sourcing-Healthcare-Life-Sciences%2F103326",
+    "title": "",
+    "company_name": "",
+    "job_link": "https://careers.ibm.com/_linkedinApiv2?portalUrl=https%3A%2F%2Fcareers.ibm.com%2F&amp;action=INIT_SHARE&amp;shareUrl=https%3A%2F%2Fcareers.ibm.com%2Fen_US%2Fcareers%2FJobDetail%2FDirect-Procurement-Research-Sourcing-Healthcare-Life-Sciences%2F103326",
+    "experience": "",
+    "locations": [],
+    "educational_qualifications": "[]",
+    "required_skill_set": [],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/_linkedinApiv2?portalUrl=https%3A%2F%2Fcareers.ibm.com%2F&amp;action=INIT_SHARE&amp;shareUrl=https%3A%2F%2Fcareers.ibm.com%2Fen_US%2Fcareers%2FJobDetail%2FDirect-Procurement-Research-Sourcing-Healthcare-Life-Sciences%2F103326",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 0,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 224,
+      "output_tokens": 76,
+      "total_tokens": 300
+    }
+  },
+  {
+    "id": "application-process",
+    "title": "About our Application Process - IBM Careers",
+    "company_name": "IBM",
+    "job_link": "http://ibm.com/careers/application-process",
+    "experience": "100 years",
+    "locations": [],
+    "educational_qualifications": "[]",
+    "required_skill_set": [],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "http://ibm.com/careers/application-process",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 5,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2632,
+      "output_tokens": 161,
+      "total_tokens": 2793
+    }
+  },
+  {
+    "id": "phishing-scams",
+    "title": "Be aware: Recruitment Scams | IBM",
+    "company_name": "IBM",
+    "job_link": "https://www.ibm.com/careers/phishing-scams",
+    "experience": "",
+    "locations": [],
+    "educational_qualifications": "[]",
+    "required_skill_set": [],
+    "remote_type": "",
+    "posted_on": "",
+    "job_id": "",
+    "salary": "payments (nor do any organisations that recruit on behalf of IBM) from applicants during any stage of t",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://www.ibm.com/careers/phishing-scams",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 5,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 1753,
+      "output_tokens": 162,
+      "total_tokens": 1915
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/en_US/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "10-15",
+    "locations": [
+      "Life Sciences\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+    ],
+    "educational_qualifications": "Bachelor's Degree",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "Contract Negotiation",
+      "ERP Systems",
+      "Data Analysis",
+      "Risk Management"
+    ],
+    "remote_type": "Hybrid",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/en_US/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 4,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2426,
+      "output_tokens": 198,
+      "total_tokens": 2624
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/es_ES/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "15 years",
+    "locations": [
+      "Life Sciences\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+    ],
+    "educational_qualifications": "Licenciatura",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "Contract Negotiation",
+      "ERP Systems (SAP, Ariba)",
+      "Cost Optimization",
+      "Risk Management",
+      "Cross-Functional Collaboration",
+      "Data Analysis",
+      "Supply Chain Knowledge",
+      "Technical Data Interpretation",
+      "Stakeholder Management",
+      "Problem Solving"
+    ],
+    "remote_type": "H\u00edbrido",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/es_ES/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 4,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2496,
+      "output_tokens": 279,
+      "total_tokens": 2775
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/fr_FR/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "10-15 years",
+    "locations": [
+      "Life Sciences\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+    ],
+    "educational_qualifications": "Bachelor\u2019s degree in Supply Chain, Life Sciences, Engineering",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "Contract Negotiation",
+      "ERP Systems (SAP, Ariba)",
+      "Cost Optimization",
+      "Risk Management",
+      "Cross-Functional Collaboration",
+      "Data Analysis",
+      "Research Material Sourcing",
+      "Stakeholder Management",
+      "Analytical Skills",
+      "Problem Solving"
+    ],
+    "remote_type": "hybrid",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "eur",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/fr_FR/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 5,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2541,
+      "output_tokens": 277,
+      "total_tokens": 2818
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "Expertise professionnelle et technique requise",
+    "job_link": "https://careers.ibm.com/fr_CA/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "10-15 years",
+    "locations": [
+      "Life Sciences\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+    ],
+    "educational_qualifications": "Baccalaur\u00e9at",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "Contract Negotiation",
+      "ERP Systems",
+      "Data Analysis",
+      "Risk Management"
+    ],
+    "remote_type": "hybrid",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "eur",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/fr_CA/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 5,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2566,
+      "output_tokens": 198,
+      "total_tokens": 2764
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/pt_BR/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "15 years",
+    "locations": [
+      "Life Sciences\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+    ],
+    "educational_qualifications": "Bacharelado",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "Contract Negotiation",
+      "ERP Systems (SAP, Ariba)",
+      "Cost Optimization",
+      "Risk Management",
+      "Cross-Functional Collaboration",
+      "Data Analysis",
+      "Supply Chain Knowledge",
+      "Research Material Sourcing",
+      "Stakeholder Management",
+      "Analytical Skills"
+    ],
+    "remote_type": "H\u00edbrido",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/pt_BR/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 4,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2512,
+      "output_tokens": 249,
+      "total_tokens": 2761
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/sl_SI/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "15 years",
+    "locations": [
+      "Life Sciences\n                \n\n\n\n\n\n\nBangalore, Karnataka"
+    ],
+    "educational_qualifications": "Diploma prve stopnje",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "ERP systems",
+      "Contract Negotiation",
+      "Cost Optimization",
+      "Risk Management",
+      "Cross-Functional Collaboration",
+      "Data Analysis"
+    ],
+    "remote_type": "hybrid",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/sl_SI/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 4,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2647,
+      "output_tokens": 228,
+      "total_tokens": 2875
+    }
+  },
+  {
+    "id": "103326",
+    "title": "Direct Procurement & Research Sourcing - Healthcare & Life Sciences - 103326 - IBM",
+    "company_name": "IBM",
+    "job_link": "https://careers.ibm.com/ja_JP/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+    "experience": "15 years",
+    "locations": [
+      "Bangalore",
+      "\u30ab\u30eb\u30ca\u30fc\u30bf\u30ab\u5dde",
+      "\u30a4\u30f3\u30c9"
+    ],
+    "educational_qualifications": "\u5b66\u58eb\u53f7",
+    "required_skill_set": [
+      "Strategic Sourcing",
+      "Market Analysis",
+      "Supplier Management",
+      "Regulatory Compliance",
+      "ERP Systems",
+      "Contract Negotiation",
+      "Cost Optimization",
+      "Risk Management",
+      "Cross-Functional Collaboration",
+      "Data Analysis"
+    ],
+    "remote_type": "\u30cf\u30a4\u30d6\u30ea\u30c3\u30c9",
+    "posted_on": "",
+    "job_id": "103326",
+    "salary": "",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://careers.ibm.com/ja_JP/careers/JobDetail?jobId=103326&amp;source=WEB_Search_INDIA",
+      "strategy": "INTERACTIVE_DOM",
+      "parser_used": "html_basic",
+      "confidence": 4,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2653,
+      "output_tokens": 218,
+      "total_tokens": 2871
+    }
+  },
+  {
+    "id": "41654",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Business-Analyst/41654-en_GB",
+    "experience": "7-8 years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s degree in engineering, Math, Statistics, Economics, Computer science or related field",
+    "required_skill_set": [
+      "SQL",
+      "Postgres",
+      "Kafka",
+      "Agile",
+      "Python",
+      "Excel"
+    ],
+    "remote_type": "",
+    "posted_on": "29/01/2026",
+    "job_id": "41654",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Business-Analyst/41654-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3275,
+      "output_tokens": 244,
+      "total_tokens": 3519
+    }
+  },
+  {
+    "id": "43704",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43704-en_GB",
+    "experience": "5+ years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "Bachelor's degree in computer science, Information Technology, or related field",
+    "required_skill_set": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Python",
+      "Bash",
+      "Ansible",
+      "Docker",
+      "Kubernetes",
+      "Splunk",
+      "Prometheus",
+      "Grafana",
+      "CI/CD",
+      "Linux",
+      "Networking fundamentals",
+      "Security fundamentals"
+    ],
+    "remote_type": "",
+    "posted_on": "18/02/2026",
+    "job_id": "43704",
+    "salary": "Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43704-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 4524,
+      "output_tokens": 317,
+      "total_tokens": 4841
+    }
+  },
+  {
+    "id": "43705",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43705-en_GB",
+    "experience": "5+ years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor's degree in computer science, Information Technology, or related field",
+    "required_skill_set": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Python",
+      "Bash",
+      "Ansible",
+      "Docker",
+      "Kubernetes",
+      "Monitoring tools",
+      "Log analysis",
+      "CI/CD practices",
+      "Security and compliance",
+      "Networking fundamentals",
+      "Linux/Unix systems"
+    ],
+    "remote_type": "hybrid",
+    "posted_on": "13/02/2026",
+    "job_id": "43705",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Assoc%2C-Technical-Service-Eng%2C-WRB-Tech/43705-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 4533,
+      "output_tokens": 335,
+      "total_tokens": 4868
+    }
+  },
+  {
+    "id": "51912",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Associate-Director-Relationship-Manager-SME-ME/51912-en_GB",
+    "experience": "4-6 years",
+    "locations": [
+      "Mumbai, IND"
+    ],
+    "educational_qualifications": "['Substantial experience in banking', 'Experience in SME/Mid Corporate lending']",
+    "required_skill_set": [
+      "Relationship Management",
+      "Financial Analysis",
+      "Portfolio management"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "51912",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Associate-Director-Relationship-Manager-SME-ME/51912-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3084,
+      "output_tokens": 160,
+      "total_tokens": 3244
+    }
+  },
+  {
+    "id": "51913",
+    "title": "Job Details",
+    "company_name": "The Engineering Excellence & DevOps team sitting in CCIB organization",
+    "job_link": "https://jobs.standardchartered.com/job/Full-Stack-UI-Developer/51913-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "[]",
+    "required_skill_set": [
+      "CI/CD Tools",
+      "Openshift/EKS",
+      "Helm Charts",
+      "Unix Shell Scripts",
+      "JavaScript",
+      "Azure",
+      "AWS",
+      "SQL"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "51913",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Full-Stack-UI-Developer/51913-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2822,
+      "output_tokens": 186,
+      "total_tokens": 3008
+    }
+  },
+  {
+    "id": "51917",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/VP-Ops-Excellence/51917-en_GB",
+    "experience": "12-15+ years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "MBA, Master's in Finance, or equivalent",
+    "required_skill_set": [
+      "Process mapping",
+      "Data analysis",
+      "Automation solutions",
+      "Regulatory compliance",
+      "Leadership",
+      "Change management",
+      "Stakeholder engagement"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "51917",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/VP-Ops-Excellence/51917-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3509,
+      "output_tokens": 240,
+      "total_tokens": 3749
+    }
+  },
+  {
+    "id": "49875",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Manager-Process-Management-&amp;-Projects/49875-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Mumbai, IND"
+    ],
+    "educational_qualifications": "[]",
+    "required_skill_set": [
+      "Process improvement",
+      "Complaint management",
+      "Analytical skills",
+      "Interpersonal skills",
+      "Audit handling",
+      "Cross-geography experience",
+      "Communication skills",
+      "Stakeholder management"
+    ],
+    "remote_type": "",
+    "posted_on": "10/03/2026",
+    "job_id": "49875",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Manager-Process-Management-&amp;-Projects/49875-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2930,
+      "output_tokens": 174,
+      "total_tokens": 3104
+    }
+  },
+  {
+    "id": "49909",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49909-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "CSS",
+      "Frontend architecture",
+      "Design patterns",
+      "Code quality",
+      "Security tools",
+      "CI/CD toolchain",
+      "API integration",
+      "JSON handling",
+      "Blockchain frameworks",
+      "Cryptography",
+      "DevOps",
+      "Kubernetes"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49909",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49909-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3687,
+      "output_tokens": 250,
+      "total_tokens": 3937
+    }
+  },
+  {
+    "id": "49910",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49910-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "CI/CD",
+      "Terraform",
+      "Git-ops",
+      "Jenkins",
+      "Linux",
+      "Python",
+      "Kubernetes",
+      "Docker",
+      "Hyperledger",
+      "Corda"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49910",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49910-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2833,
+      "output_tokens": 195,
+      "total_tokens": 3028
+    }
+  },
+  {
+    "id": "49911",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49911-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Blockchain frameworks",
+      "Permissioned blockchain",
+      "DLT applications",
+      "Backend development",
+      "Python",
+      "Golang",
+      "Solidity",
+      "RESTful API",
+      "Microservices",
+      "Docker",
+      "Kubernetes",
+      "Helm",
+      "AWS",
+      "Azure",
+      "Cryptography"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49911",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49911-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3686,
+      "output_tokens": 336,
+      "total_tokens": 4022
+    }
+  },
+  {
+    "id": "49913",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49913-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Blockchain frameworks",
+      "Permissioned blockchain",
+      "DLT applications",
+      "Backend development",
+      "Python",
+      "Golang",
+      "Solidity",
+      "RESTful API",
+      "Microservice architectures",
+      "Containerization",
+      "Kubernetes",
+      "Helm",
+      "AWS EKS",
+      "Azure AKS",
+      "Cryptography"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49913",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49913-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3611,
+      "output_tokens": 253,
+      "total_tokens": 3864
+    }
+  },
+  {
+    "id": "49914",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49914-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Blockchain frameworks",
+      "Permissioned blockchain",
+      "DLT applications",
+      "Backend development",
+      "Python",
+      "Golang",
+      "Solidity",
+      "RESTful API",
+      "Microservice architectures",
+      "Containerization",
+      "Kubernetes",
+      "Helm",
+      "AWS EKS",
+      "Azure AKS",
+      "Cryptography"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49914",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49914-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3611,
+      "output_tokens": 251,
+      "total_tokens": 3862
+    }
+  },
+  {
+    "id": "49923",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49923-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Project Management",
+      "Agile experience",
+      "Planning tools",
+      "JIRA",
+      "Confluence",
+      "Trello",
+      "MS Office Suite"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49923",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49923-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3550,
+      "output_tokens": 197,
+      "total_tokens": 3747
+    }
+  },
+  {
+    "id": "49928",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49928-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Blockchain frameworks",
+      "Permissioned blockchain",
+      "DLT applications",
+      "Backend development",
+      "Python",
+      "Golang",
+      "Solidity",
+      "RESTful API",
+      "Microservices",
+      "Docker",
+      "Kubernetes",
+      "Helm",
+      "Cryptography",
+      "System integration",
+      "Cloud infrastructure"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49928",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49928-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3650,
+      "output_tokens": 256,
+      "total_tokens": 3906
+    }
+  },
+  {
+    "id": "49929",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49929-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Blockchain frameworks",
+      "Permissioned blockchain",
+      "DLT applications",
+      "Backend development",
+      "Python",
+      "Golang",
+      "Solidity",
+      "RESTful API",
+      "Microservice architectures",
+      "Containerization",
+      "Kubernetes",
+      "Helm",
+      "AWS EKS",
+      "Azure AKS",
+      "Cryptography"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49929",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49929-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3628,
+      "output_tokens": 243,
+      "total_tokens": 3871
+    }
+  },
+  {
+    "id": "49931",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49931-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Relevant degree in Computer Science/Technology",
+    "required_skill_set": [
+      "SRE",
+      "Monitoring Tools",
+      "Automation Scripts",
+      "Micro Services",
+      "Kubernetes",
+      "AWS"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49931",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49931-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3611,
+      "output_tokens": 228,
+      "total_tokens": 3839
+    }
+  },
+  {
+    "id": "49933",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49933-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Project Management",
+      "Agile experience",
+      "Clarity PPM",
+      "JIRA",
+      "ADO",
+      "Confluence",
+      "Trello",
+      "MS Office Suite"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49933",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-App-Development/49933-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3564,
+      "output_tokens": 233,
+      "total_tokens": 3797
+    }
+  },
+  {
+    "id": "49935",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49935-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Agile",
+      "Scrum",
+      "Data analysis",
+      "API design",
+      "Blockchain",
+      "Requirement analysis",
+      "Security best practices"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49935",
+    "salary": "payments, account statements, and compliance. Knowledge of API design, implementation, and security bes",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49935-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3792,
+      "output_tokens": 196,
+      "total_tokens": 3988
+    }
+  },
+  {
+    "id": "49938",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49938-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Project Management",
+      "Agile",
+      "DevOps",
+      "JIRA",
+      "Confluence",
+      "PowerPoint",
+      "MS Office"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49938",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Mgr%2C-Tech-Solutions/49938-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3564,
+      "output_tokens": 200,
+      "total_tokens": 3764
+    }
+  },
+  {
+    "id": "49939",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-App-Development/49939-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "Python",
+      "Golang",
+      "Solidity",
+      "RESTful API",
+      "Microservice architectures",
+      "Docker",
+      "Kubernetes",
+      "Helm",
+      "AWS EKS",
+      "Azure AKS",
+      "Cryptography",
+      "Blockchain frameworks"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49939",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-App-Development/49939-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3611,
+      "output_tokens": 222,
+      "total_tokens": 3833
+    }
+  },
+  {
+    "id": "49940",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49940-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s Degree in Computer Science",
+    "required_skill_set": [
+      "Test automation tools",
+      "Selenium",
+      "Cucumber",
+      "API testing",
+      "JIRA",
+      "SQL",
+      "Blockchain",
+      "Smart contracts",
+      "AI/ML workflows",
+      "DevOps"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49940",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49940-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3992,
+      "output_tokens": 238,
+      "total_tokens": 4230
+    }
+  },
+  {
+    "id": "45845",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Director-Affluent-Relations/45845-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Mumbai, IND"
+    ],
+    "educational_qualifications": "Preferably a Master\u2019s Degree",
+    "required_skill_set": [
+      "Retail banking products",
+      "Customer handling",
+      "Analytical skills",
+      "Leadership",
+      "Communication skills"
+    ],
+    "remote_type": "",
+    "posted_on": "23/03/2026",
+    "job_id": "45845",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Director-Affluent-Relations/45845-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 4043,
+      "output_tokens": 176,
+      "total_tokens": 4219
+    }
+  },
+  {
+    "id": "49941",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49941-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s Degree in Computer Science or related",
+    "required_skill_set": [
+      "Test automation tools",
+      "Selenium",
+      "Cucumber",
+      "API testing",
+      "SQL",
+      "JIRA",
+      "DevOps",
+      "Blockchain",
+      "Smart contracts",
+      "AI/ML",
+      "Performance testing",
+      "Manual testing",
+      "CI/CD",
+      "Rest Assured",
+      "BDD frameworks"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49941",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49941-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3992,
+      "output_tokens": 235,
+      "total_tokens": 4227
+    }
+  },
+  {
+    "id": "49942",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49942-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s Degree in Computer Science or related",
+    "required_skill_set": [
+      "Test automation tools",
+      "Selenium",
+      "Cucumber",
+      "API testing",
+      "JIRA",
+      "SQL",
+      "Blockchain",
+      "Smart contracts",
+      "AI/ML workflows",
+      "DevOps",
+      "Performance testing",
+      "Manual testing",
+      "CI/CD",
+      "Rest Assured"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49942",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49942-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3992,
+      "output_tokens": 231,
+      "total_tokens": 4223
+    }
+  },
+  {
+    "id": "49943",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49943-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s Degree in Computer Science",
+    "required_skill_set": [
+      "Test automation tools",
+      "Selenium",
+      "Cucumber",
+      "API testing",
+      "JIRA",
+      "SQL",
+      "Blockchain",
+      "Smart contracts",
+      "AI/ML workflows",
+      "DevOps",
+      "Performance testing",
+      "Manual testing",
+      "CI/CD",
+      "Rest Assured",
+      "BDD frameworks"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49943",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49943-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3992,
+      "output_tokens": 282,
+      "total_tokens": 4274
+    }
+  },
+  {
+    "id": "49944",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49944-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s Degree in Computer Science or related",
+    "required_skill_set": [
+      "Test automation tools",
+      "Selenium",
+      "Cucumber",
+      "API testing",
+      "JIRA",
+      "SQL",
+      "DevOps",
+      "Blockchain",
+      "Smart contracts",
+      "AI/ML",
+      "Performance testing",
+      "Manual testing",
+      "CI/CD",
+      "Rest Assured",
+      "BDD frameworks"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49944",
+    "salary": "Payments, Decentralized Identity (DID), and smart contract-based financial products.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Automated-Testing/49944-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3990,
+      "output_tokens": 236,
+      "total_tokens": 4226
+    }
+  },
+  {
+    "id": "49945",
+    "title": "Job Details",
+    "company_name": "Spl'st, Tech Solutions",
+    "job_link": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Tech-Solutions/49945-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Masters or Engineering background",
+    "required_skill_set": [
+      "JSON",
+      "XML",
+      "SQL",
+      "Payments",
+      "API Design",
+      "Agile",
+      "Scrum",
+      "Blockchain"
+    ],
+    "remote_type": "",
+    "posted_on": "18/03/2026",
+    "job_id": "49945",
+    "salary": "payments, account statements, and compliance. Knowledge of API design, implementation, and security bes",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Spl&apos;st%2C-Tech-Solutions/49945-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3803,
+      "output_tokens": 196,
+      "total_tokens": 3999
+    }
+  },
+  {
+    "id": "51995",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Associate_Manager/51995-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Gurgaon, IND"
+    ],
+    "educational_qualifications": "Graduation/PG",
+    "required_skill_set": [
+      "MS Office/Excel",
+      "Business-Market Knowledge",
+      "Business \u2013 Product and Processes",
+      "Regulatory Guidelines"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "51995",
+    "salary": "payments duly met.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Associate_Manager/51995-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3105,
+      "output_tokens": 163,
+      "total_tokens": 3268
+    }
+  },
+  {
+    "id": "43806",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Snr-Manager%2C-Data-modelling-Liquidiity/43806-en_GB",
+    "experience": "5+ years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "[]",
+    "required_skill_set": [
+      "SQL",
+      "Data Solution & Design",
+      "Analytics and Reporting",
+      "Technical Business Analyst",
+      "Application Design"
+    ],
+    "remote_type": "",
+    "posted_on": "06/01/2026",
+    "job_id": "43806",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Snr-Manager%2C-Data-modelling-Liquidiity/43806-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3321,
+      "output_tokens": 196,
+      "total_tokens": 3517
+    }
+  },
+  {
+    "id": "52008",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Premier-Service-Associate-Manager/52008-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Graduate / Postgraduate",
+    "required_skill_set": [
+      "Client service",
+      "Product advice",
+      "Relationship building",
+      "Data analysis",
+      "Communication skills",
+      "Problem-solving",
+      "Risk management",
+      "Stakeholder management"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "52008",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Premier-Service-Associate-Manager/52008-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3669,
+      "output_tokens": 189,
+      "total_tokens": 3858
+    }
+  },
+  {
+    "id": "52009",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Senior-Officer/52009-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "University educated",
+    "required_skill_set": [
+      "Basic Banking knowledge",
+      "Communication Skill set"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "52009",
+    "salary": "Payment and Clearing) and Static Data Unit (set up, maintenance, pricing and billing, CoE, LM) in ensur",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Senior-Officer/52009-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2839,
+      "output_tokens": 134,
+      "total_tokens": 2973
+    }
+  },
+  {
+    "id": "49965",
+    "title": "Job Details",
+    "company_name": "We are looking for a highly motivated individual who",
+    "job_link": "https://jobs.standardchartered.com/job/Sr_-Assoc%2C-Prod-Specialist-TAP%2C-WRB-Tech/49965-en_GB",
+    "experience": "6 to 12 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor's degree in computer science or related degree",
+    "required_skill_set": [
+      "Triple A Plus",
+      "Java",
+      "API",
+      "WTX",
+      "Azure DevOps",
+      "Agile",
+      "Shell scripting",
+      "GIT",
+      "Jenkins",
+      "Unix commands",
+      "Problem solving",
+      "Team spirit"
+    ],
+    "remote_type": "",
+    "posted_on": "24/03/2026",
+    "job_id": "49965",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Sr_-Assoc%2C-Prod-Specialist-TAP%2C-WRB-Tech/49965-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3054,
+      "output_tokens": 278,
+      "total_tokens": 3332
+    }
+  },
+  {
+    "id": "49988",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Engineering-Lead%2C-Digital-Currencies%2C-Stablecoins/49988-en_GB",
+    "experience": "8+ years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s degree in computer science, Engineering, Business, or a related field",
+    "required_skill_set": [
+      "Agile",
+      "CI/CD",
+      "Go",
+      "Scrum"
+    ],
+    "remote_type": "",
+    "posted_on": "03/03/2026",
+    "job_id": "49988",
+    "salary": "payments systems, stablecoins, and blockchain technologies to effectively coordinate and align teams.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Engineering-Lead%2C-Digital-Currencies%2C-Stablecoins/49988-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3465,
+      "output_tokens": 278,
+      "total_tokens": 3743
+    }
+  },
+  {
+    "id": "52043",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Manager-Co-creation/52043-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "University educated",
+    "required_skill_set": [
+      "Go",
+      "Manage Conduct",
+      "Manage Risk",
+      "Manage People",
+      "Business Facilitation",
+      "Manage Change",
+      "Business Governance & Support",
+      "Management of Frontline Risk",
+      "Strategy & Business Model",
+      "Service Delivery & Operations"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "52043",
+    "salary": "Payments as a Service) and VAM (Virtual Account Management) deals, with hands on ownership of lower env",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Manager-Co-creation/52043-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 4115,
+      "output_tokens": 222,
+      "total_tokens": 4337
+    }
+  },
+  {
+    "id": "37709",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Senior-Manager-WRB-Analytics/37709-en_GB",
+    "experience": "5-7+ years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "['Experience in SQL/HQL', 'Experience in Python', 'Experience in PySpark', 'Knowledge of Dataiku', 'Knowledge of AI tools', 'Banking and financial sector knowledge']",
+    "required_skill_set": [
+      "SQL/HQL",
+      "Python",
+      "PySpark",
+      "Dataiku",
+      "Excel VBA",
+      "BI tools",
+      "AI tools"
+    ],
+    "remote_type": "",
+    "posted_on": "26/08/2025",
+    "job_id": "37709",
+    "salary": "Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Senior-Manager-WRB-Analytics/37709-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2969,
+      "output_tokens": 257,
+      "total_tokens": 3226
+    }
+  },
+  {
+    "id": "43855",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Business-Analyst/43855-en_GB",
+    "experience": "12 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s degree in Information Technology or Computer Engineering or Similar",
+    "required_skill_set": [
+      "Agile",
+      "Business analysis",
+      "Stakeholder management",
+      "Change management",
+      "Process documentation",
+      "Risk management",
+      "SDLC",
+      "Ado dashboards"
+    ],
+    "remote_type": "",
+    "posted_on": "16/02/2026",
+    "job_id": "43855",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Business-Analyst/43855-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2940,
+      "output_tokens": 198,
+      "total_tokens": 3138
+    }
+  },
+  {
+    "id": "52056",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Director%2C-Process-Design/52056-en_GB",
+    "experience": "10+ years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s degree in business administration, organizational development, or a related field",
+    "required_skill_set": [
+      "Process Design",
+      "Business Architecture",
+      "Change Management",
+      "Client Lifecycle Management",
+      "System Changes",
+      "Stakeholder Engagement",
+      "Project Management",
+      "Lean Six Sigma",
+      "Data Analysis",
+      "Workshop Facilitation"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "52056",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Director%2C-Process-Design/52056-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3477,
+      "output_tokens": 234,
+      "total_tokens": 3711
+    }
+  },
+  {
+    "id": "50017",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/VP%2C-Business-Continuity-&amp;-Resilience%2C-TB/50017-en_GB",
+    "experience": "8+ years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "['8+ years of Transaction Banking experience', 'Hands-on risk management experience', 'Understanding of ERMF', 'Project Management experience']",
+    "required_skill_set": [
+      "Risk management frameworks",
+      "Transaction Banking",
+      "Resilience, OCIR requirements",
+      "Communication & Governance skills"
+    ],
+    "remote_type": "",
+    "posted_on": "27/03/2026",
+    "job_id": "50017",
+    "salary": "Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/VP%2C-Business-Continuity-&amp;-Resilience%2C-TB/50017-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 4245,
+      "output_tokens": 192,
+      "total_tokens": 4437
+    }
+  },
+  {
+    "id": "52071",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Credit-Analyst-SME-ME/52071-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Coimbatore, IND"
+    ],
+    "educational_qualifications": "Bachelor's or Master's degree in Finance, Accounting, or a related field",
+    "required_skill_set": [
+      "Credit Analysis",
+      "Ratio Analysis",
+      "Deal Structuring",
+      "Risk Identification",
+      "Customer Delight",
+      "Policy and Compliance"
+    ],
+    "remote_type": "",
+    "posted_on": "06/04/2026",
+    "job_id": "52071",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Credit-Analyst-SME-ME/52071-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2944,
+      "output_tokens": 238,
+      "total_tokens": 3182
+    }
+  },
+  {
+    "id": "41837",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Senior-Business-Relationship-Manager-Priority-Acquisition/41837-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Gurgaon, IND"
+    ],
+    "educational_qualifications": "[]",
+    "required_skill_set": [
+      "AMFI certified",
+      "IRDA certified",
+      "MS Office"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "41837",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Senior-Business-Relationship-Manager-Priority-Acquisition/41837-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2428,
+      "output_tokens": 165,
+      "total_tokens": 2593
+    }
+  },
+  {
+    "id": "52082",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Associate-Director%2C-People-Capability/52082-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "Bachelor\u2019s degree or higher",
+    "required_skill_set": [
+      "Programme or curriculum design",
+      "Early Careers or Development",
+      "Digital development tools",
+      "Content creation",
+      "English language"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "52082",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Associate-Director%2C-People-Capability/52082-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3281,
+      "output_tokens": 217,
+      "total_tokens": 3498
+    }
+  },
+  {
+    "id": "43897",
+    "title": "Job Details",
+    "company_name": "Intelligence and Analysis",
+    "job_link": "https://jobs.standardchartered.com/job/VP%2C-Technology-&amp;-Cyber-Risk%2C-International-Coverage/43897-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "Degree in Cyber Security or Technology or equivalent",
+    "required_skill_set": [
+      "ICS and Technology Risk Assessment",
+      "Security frameworks & standards",
+      "Risk Management Methodologies",
+      "Threat Intelligence and Analysis",
+      "Emerging Technologies",
+      "Communication & Reporting",
+      "Cyber Security Principles",
+      "Information Security",
+      "Stakeholder Management",
+      "Risk Analysis",
+      "Regulatory Engagement",
+      "Risk Frameworks",
+      "Technical Knowledge",
+      "Leadership Skills"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "43897",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/VP%2C-Technology-&amp;-Cyber-Risk%2C-International-Coverage/43897-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3268,
+      "output_tokens": 309,
+      "total_tokens": 3577
+    }
+  },
+  {
+    "id": "39812",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Manager-Business-Analyst/39812-en_GB",
+    "experience": "8 yrs",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "['Minimum 8 yrs of experience in BA role', 'Experience as BA lead is an advantage', 'Knowledge in SWIFT/ISO 20022', 'Payment background']",
+    "required_skill_set": [
+      "Java",
+      "Spring Boot",
+      "Kafka Streams",
+      "REST",
+      "JSON",
+      "SWIFT/ISO 20022",
+      "Stakeholder Management",
+      "Microservices",
+      "JIRA",
+      "Confluence"
+    ],
+    "remote_type": "office",
+    "posted_on": "26/03/2026",
+    "job_id": "39812",
+    "salary": "payment and clearing applications.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Manager-Business-Analyst/39812-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3321,
+      "output_tokens": 251,
+      "total_tokens": 3572
+    }
+  },
+  {
+    "id": "50055",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Assoc%2C-Quality-Eng%2C-WRB-Tech/50055-en_GB",
+    "experience": "7+ years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor's degree in Computer Science, Software Engineering, or a related field",
+    "required_skill_set": [
+      "Core Java Programming",
+      "Database Fundamentals",
+      "Test automation tools",
+      "Load Runner",
+      "Unix",
+      "CI / CD",
+      "Service virtualization",
+      "Agile Methodologies",
+      "Java",
+      "Python",
+      "JavaScript",
+      "Selenium",
+      "Cucumber",
+      "Appium",
+      "JMeter"
+    ],
+    "remote_type": "",
+    "posted_on": "06/03/2026",
+    "job_id": "50055",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Assoc%2C-Quality-Eng%2C-WRB-Tech/50055-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3260,
+      "output_tokens": 358,
+      "total_tokens": 3618
+    }
+  },
+  {
+    "id": "39816",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Manager-Business-Analyst/39816-en_GB",
+    "experience": "8 yrs",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "['Minimum 8 yrs of experience in BA role', 'Knowledge in SWIFT/ISO 20022', 'Payment background']",
+    "required_skill_set": [
+      "Java",
+      "Spring Boot",
+      "Kafka Streams",
+      "REST",
+      "JSON",
+      "SWIFT/ISO 20022",
+      "Stakeholder Management",
+      "Microservices",
+      "JIRA",
+      "Confluence"
+    ],
+    "remote_type": "",
+    "posted_on": "10/10/2025",
+    "job_id": "39816",
+    "salary": "payment and clearing applications.",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Manager-Business-Analyst/39816-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3320,
+      "output_tokens": 243,
+      "total_tokens": 3563
+    }
+  },
+  {
+    "id": "50059",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Portfolio-Manager-Branch/50059-en_GB",
+    "experience": "5-8 years",
+    "locations": [
+      "Chennai, IND"
+    ],
+    "educational_qualifications": "Graduate/ Postgraduate",
+    "required_skill_set": [
+      "Banking knowledge",
+      "Leadership skills",
+      "Strong Communication Skills",
+      "Customer Orientation",
+      "Sales Focus",
+      "Systems/ Microsoft Office"
+    ],
+    "remote_type": "",
+    "posted_on": "02/04/2026",
+    "job_id": "50059",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Portfolio-Manager-Branch/50059-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3360,
+      "output_tokens": 168,
+      "total_tokens": 3528
+    }
+  },
+  {
+    "id": "29581",
+    "title": "Job Details",
+    "company_name": "Job Summary\nThis world class leading Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Analyst-Analytics-and-Data-Science%2C-GIAI/29581-en_GB",
+    "experience": "5 years",
+    "locations": [
+      "Bangalore, IND"
+    ],
+    "educational_qualifications": "Bachelor's Degree in Computer Science, Management Information Systems or Business",
+    "required_skill_set": [
+      "Data analysis techniques",
+      "Programming fundamentals",
+      "Dashboard Design using Tableau",
+      "Project management",
+      "Analytical problem-solving",
+      "Change management",
+      "Stakeholder management"
+    ],
+    "remote_type": "",
+    "posted_on": "27/05/2025",
+    "job_id": "29581",
+    "salary": "Pay Charter,",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Analyst-Analytics-and-Data-Science%2C-GIAI/29581-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 8,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 3186,
+      "output_tokens": 278,
+      "total_tokens": 3464
+    }
+  },
+  {
+    "id": "52137",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Credit-Initiation-Approver/52137-en_GB",
+    "experience": "170 years",
+    "locations": [
+      "Mumbai, IND"
+    ],
+    "educational_qualifications": "MBA (Finance) / Chartered Accountant",
+    "required_skill_set": [
+      "Underwriting skills",
+      "PD skills",
+      "Stakeholder Management",
+      "Training skills",
+      "Maintaining TAT",
+      "Vendor Management"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "52137",
+    "salary": "Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Credit-Initiation-Approver/52137-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2822,
+      "output_tokens": 193,
+      "total_tokens": 3015
+    }
+  },
+  {
+    "id": "52138",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Analyst-Manager/52138-en_GB",
+    "experience": "10 years",
+    "locations": [
+      "Mumbai, IND"
+    ],
+    "educational_qualifications": "MBA Finance or a CA Qualified",
+    "required_skill_set": [
+      "Underwriting Skills",
+      "Stakeholder Management",
+      "Vendor Management",
+      "Negotiation Skills",
+      "Team Management Skills"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "52138",
+    "salary": "Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Analyst-Manager/52138-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2729,
+      "output_tokens": 164,
+      "total_tokens": 2893
+    }
+  },
+  {
+    "id": "52140",
+    "title": "Job Details",
+    "company_name": "Standard Chartered Bank",
+    "job_link": "https://jobs.standardchartered.com/job/Credit-Approver/52140-en_GB",
+    "experience": "10 Years",
+    "locations": [
+      "Mumbai, IND"
+    ],
+    "educational_qualifications": "MBA Finance or CA Qualified",
+    "required_skill_set": [
+      "Underwriting Skills",
+      "Stakeholder Management",
+      "Vendor Management",
+      "Negotiation Skills",
+      "Team Management Skills"
+    ],
+    "remote_type": "",
+    "posted_on": "07/04/2026",
+    "job_id": "52140",
+    "salary": "In line with our Fair Pay Charter",
+    "is_active": true,
+    "first_seen": "",
+    "last_seen": "",
+    "additional_sections": [],
+    "Scrap_json": {
+      "url": "https://jobs.standardchartered.com/job/Credit-Approver/52140-en_GB",
+      "strategy": "dom",
+      "parser_used": "html_basic",
+      "confidence": 7,
+      "ai_forced": true,
+      "preferred_skills": [],
+      "tools_and_technologies": [],
+      "certifications": [],
+      "soft_skills": [],
+      "inferred_skills": [],
+      "benefits": []
+    },
+    "ai_usage": {
+      "input_tokens": 2728,
+      "output_tokens": 252,
+      "total_tokens": 2980
+    }
   }
 ]
