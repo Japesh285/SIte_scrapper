@@ -1,270 +1,318 @@
 # ============================
-# UNIVERSAL TALEO SCRAPER (ANTI-BOT + REPLAY)
+# SMARTRECRUITERS AI SCRAPER (FINAL STABLE + FIXED JSON)
 # ============================
 
-from playwright.sync_api import sync_playwright
 import requests
 import json
 import time
+import re
+import os
+from urllib.parse import urlparse, parse_qs
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+from openai import OpenAI
 
 # ============================
 # CONFIG
 # ============================
-START_URL = "https://genpact.taleo.net/careersection/sgy/jobsearch.ftl?lang=en"
-MAX_PAGES = 50
-DELAY = 0.5
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-captured_request = None
+HEADERS = {
+    "User-Agent": "Mozilla/5.0"
+}
+
+LIST_API = "https://api.smartrecruiters.com/v1/companies/{company}/postings"
+AI_DELAY = 0.5
 
 
 # ============================
-# STEP 1 — CAPTURE REQUEST
+# EXTRACT COMPANY + FILTER
 # ============================
-def capture_taleo_request():
-    global captured_request
+def extract_company_and_filter(url):
+    parsed = urlparse(url)
+    parts = [p for p in parsed.path.split("/") if p]
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+    company = parts[-1] if parts else None
 
-        context = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
-            viewport={"width": 1280, "height": 800},
-            java_script_enabled=True
+    query = parse_qs(parsed.query)
+
+    location_filter = None
+    for key in query:
+        if "location" in key.lower():
+            location_filter = query[key][0]
+
+    return company, location_filter
+
+
+# ============================
+# FETCH JOB LIST
+# ============================
+def fetch_jobs(company, location_filter=None):
+    jobs = []
+    offset = 0
+    limit = 100
+
+    print(f"\n🔍 Fetching jobs for: {company}")
+    print(f"🎯 Location filter: {location_filter}\n")
+
+    while True:
+        res = requests.get(
+            LIST_API.format(company=company),
+            headers=HEADERS,
+            params={"offset": offset, "limit": limit}
         )
 
-        page = context.new_page()
+        if res.status_code != 200:
+            print("❌ List API failed")
+            break
 
-        # 🔥 Hide automation
-        page.add_init_script("""
-        Object.defineProperty(navigator, 'webdriver', {
-            get: () => undefined
-        });
-        """)
+        data = res.json()
+        postings = data.get("content", [])
 
-        def handle_response(response):
-            global captured_request
+        if not postings:
+            break
 
-            try:
-                url = response.url.lower()
+        for job in postings:
+            city = job.get("location", {}).get("city", "")
 
-                # ❌ Ignore static files
-                if any(x in url for x in [".css", ".js", ".png", ".jpg"]):
-                    return
+            if location_filter:
+                if location_filter.lower() not in city.lower():
+                    continue
 
-                # ✅ Strict Taleo API detection
-                if "searchjobs" in url and response.request.method == "POST":
-                    req = response.request
+            jobs.append(job)
 
-                    captured_request = {
-                        "url": response.url,
-                        "method": req.method,
-                        "headers": dict(req.headers),
-                        "payload": req.post_data,
-                        "cookies": context.cookies()
-                    }
+        print(f"[Page] collected: {len(jobs)}")
 
-                    print(f"✅ Captured API: {response.url}")
+        offset += limit
+        time.sleep(0.2)
 
-            except:
-                pass
-
-        page.on("response", handle_response)
-
-        print(f"🌐 Building session...")
-
-        # 🔥 Step 1: Visit root (important for cookies)
-        page.goto("https://genpact.taleo.net", timeout=60000)
-        page.wait_for_timeout(3000)
-
-        # 🔥 Step 2: Go to job page
-        print(f"🌐 Loading: {START_URL}")
-        page.goto(START_URL, timeout=60000)
-        page.wait_for_timeout(5000)
-
-        # 🔥 Accept cookies if present
-        try:
-            btn = page.query_selector("button:has-text('Accept')")
-            if btn:
-                btn.click()
-                page.wait_for_timeout(2000)
-        except:
-            pass
-
-        # 🔥 Force search trigger
-        try:
-            btn = page.query_selector("button[type='submit'], input[type='submit']")
-            if btn:
-                print("🖱 Clicking search button...")
-                btn.click()
-                page.wait_for_timeout(4000)
-        except:
-            pass
-
-        # 🔥 Press Enter fallback
-        try:
-            search_box = page.query_selector("input[type='text']")
-            if search_box:
-                search_box.click()
-                search_box.press("Enter")
-                page.wait_for_timeout(3000)
-        except:
-            pass
-
-        # 🔥 JS fallback trigger
-        try:
-            page.evaluate("""
-            document.querySelectorAll('button').forEach(b => {
-                if (b.innerText.toLowerCase().includes('search')) {
-                    b.click();
-                }
-            });
-            """)
-            page.wait_for_timeout(3000)
-        except:
-            pass
-
-        # 🔥 Scroll to trigger network
-        for _ in range(10):
-            page.mouse.wheel(0, 5000)
-            page.wait_for_timeout(1500)
-
-        # final wait
-        page.wait_for_timeout(5000)
-
-        browser.close()
-
-    return captured_request
+    return jobs
 
 
 # ============================
-# STEP 2 — PAGINATION HANDLER
+# FETCH HTML
 # ============================
-def update_payload(payload_str, page):
+def fetch_html(job_id, company):
+    url = f"https://jobs.smartrecruiters.com/{company}/{job_id}"
+
     try:
-        data = json.loads(payload_str)
-
-        if "paging" in data:
-            data["paging"]["pageNo"] = page
-
-        elif "pageNo" in data:
-            data["pageNo"] = page
-
-        elif "start" in data:
-            data["start"] = page * 20
-
-        elif "offset" in data:
-            data["offset"] = page * 20
-
-        return json.dumps(data)
-
+        res = requests.get(url, headers=HEADERS)
+        if res.status_code == 200:
+            return res.text
     except:
-        return payload_str
+        pass
+
+    return None
 
 
 # ============================
-# STEP 3 — REPLAY REQUEST
+# UNIVERSAL DATA EXTRACTION
 # ============================
-def replay_and_paginate(captured):
-    print("\n⬇️ Starting pagination...\n")
-
-    session = requests.Session()
-
-    # Attach cookies
-    for c in captured.get("cookies", []):
-        session.cookies.set(c["name"], c["value"], domain=c.get("domain"))
-
-    # Clean headers
-    headers = {
-        k: v for k, v in captured["headers"].items()
-        if k.lower() not in ["content-length", "host"]
-    }
-
-    session.headers.update(headers)
-
-    all_jobs = []
-    seen_ids = set()
-
-    for page in range(0, MAX_PAGES):
-
-        payload = captured["payload"]
-
-        if payload:
-            payload = update_payload(payload, page)
-
+def extract_job_data(html):
+    # OLD method
+    match = re.search(r'window\.__INITIAL_STATE__\s*=\s*(\{.*\});', html)
+    if match:
         try:
-            if captured["method"] == "POST":
-                res = session.post(captured["url"], data=payload, timeout=30)
-            else:
-                res = session.get(captured["url"], timeout=30)
+            return json.loads(match.group(1))
+        except:
+            pass
 
-            data = res.json()
+    # NEW method (JSON-LD)
+    soup = BeautifulSoup(html, "html.parser")
 
-        except Exception as e:
-            print(f"❌ Failed page {page}: {e}")
-            break
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string)
 
-        jobs = (
-            data.get("requisitionList")
-            or data.get("jobs")
-            or data.get("items")
-            or []
+            if isinstance(data, dict) and data.get("@type") == "JobPosting":
+                return {
+                    "jobAd": {
+                        "title": data.get("title"),
+                        "sections": {
+                            "description": {"text": data.get("description")}
+                        }
+                    }
+                }
+        except:
+            continue
+
+    # fallback
+    return {"raw_html": html}
+
+
+# ============================
+# CLEAN HTML
+# ============================
+def clean_html(raw_html):
+    if not raw_html:
+        return ""
+
+    soup = BeautifulSoup(raw_html, "html.parser")
+
+    for tag in soup(["script", "style", "header", "footer", "nav"]):
+        tag.decompose()
+
+    text = soup.get_text(separator="\n")
+    text = re.sub(r"\n\s*\n+", "\n\n", text)
+
+    return text.strip()
+
+
+# ============================
+# BUILD AI INPUT
+# ============================
+def build_ai_input(state):
+    if "jobAd" in state:
+        job = state.get("jobAd", {})
+        sections = job.get("sections", {})
+
+        parts = []
+
+        if job.get("title"):
+            parts.append(f"TITLE:\n{job['title']}")
+
+        for section in sections.values():
+            text = section.get("text")
+            if text:
+                parts.append(clean_html(text))
+
+        return "\n\n".join(parts)
+
+    if "raw_html" in state:
+        return clean_html(state["raw_html"])
+
+    return ""
+
+
+# ============================
+# AI EXTRACTION (FIXED)
+# ============================
+def extract_with_ai(text, job, company):
+    prompt = f"""
+Extract structured job data.
+
+Return ONLY valid JSON.
+NO explanations.
+NO markdown.
+NO comments.
+
+Schema:
+{{
+"id": "",
+"title": "",
+"company_name": "",
+"job_link": "",
+"experience": "",
+"locations": [],
+"educational_qualifications": "",
+"required_skill_set": [],
+"remote_type": "",
+"posted_on": "",
+"job_id": "",
+"salary": "",
+"is_active": true,
+"first_seen": "",
+"last_seen": "",
+"additional_sections": [],
+"Scrap_json": {{
+"preferred_skills": [],
+"tools_and_technologies": [],
+"certifications": [],
+"soft_skills": [],
+"inferred_skills": [],
+"benefits": []
+}}
+}}
+
+Job Text:
+{text}
+"""
+
+    try:
+        time.sleep(AI_DELAY)
+
+        response = client.responses.create(
+            model="gpt-4.1-nano",
+            input=prompt
         )
 
-        if not jobs:
-            print(f"⏹️ No more jobs at page {page}")
-            break
+        raw_output = response.output[0].content[0].text.strip()
 
-        new_count = 0
+        # CLEAN OUTPUT
+        cleaned = re.sub(r"```.*?```", "", raw_output, flags=re.DOTALL)
 
-        for job in jobs:
-            job_id = str(job.get("jobId") or job.get("id") or "")
+        match = re.search(r"\{.*\}", cleaned, re.DOTALL)
+        if match:
+            cleaned = match.group(0)
 
-            if job_id and job_id in seen_ids:
-                continue
+        cleaned = re.sub(r",\s*}", "}", cleaned)
+        cleaned = re.sub(r",\s*]", "]", cleaned)
 
-            if job_id:
-                seen_ids.add(job_id)
+        data = json.loads(cleaned)
 
-            all_jobs.append({
-                "title": job.get("title") or job.get("jobTitle"),
-                "location": job.get("location"),
-                "id": job_id,
-                "date": job.get("postedDate")
-            })
+        data["id"] = job.get("id")
+        data["job_id"] = job.get("id")
+        data["company_name"] = company
+        data["job_link"] = f"https://jobs.smartrecruiters.com/{company}/{job.get('id')}"
 
-            new_count += 1
+        return data
 
-        print(f"[Page {page}] +{new_count} jobs (Total: {len(all_jobs)})")
+    except Exception as e:
+        print("   ❌ AI parse failed")
 
-        if new_count == 0:
-            print("⏹️ No new jobs — stopping")
-            break
+        with open("ai_error_dump.txt", "a", encoding="utf-8") as f:
+            f.write("\n\n====================\n")
+            f.write(raw_output)
 
-        time.sleep(DELAY)
-
-    return all_jobs
+        return None
 
 
 # ============================
 # MAIN
 # ============================
 def main():
-    print("🚀 UNIVERSAL TALEO SCRAPER (ANTI-BOT)\n")
+    print("🚀 SMARTRECRUITERS AI SCRAPER (FINAL)\n")
 
-    captured = capture_taleo_request()
+    career_url = input("Enter SmartRecruiters URL: ").strip()
 
-    if not captured:
-        print("❌ Failed to capture Taleo API (likely blocked or no trigger)")
+    company, location_filter = extract_company_and_filter(career_url)
+
+    if not company:
+        print("❌ Could not detect company")
         return
 
-    jobs = replay_and_paginate(captured)
+    print(f"✅ Company: {company}")
 
-    print(f"\n✅ FINAL: {len(jobs)} jobs")
+    jobs = fetch_jobs(company, location_filter)
 
-    with open("taleo_jobs.json", "w", encoding="utf-8") as f:
-        json.dump(jobs, f, indent=2, ensure_ascii=False)
+    print(f"\n📦 Jobs collected: {len(jobs)}\n")
 
-    print("💾 Saved to taleo_jobs.json")
+    results = []
+
+    for i, job in enumerate(jobs, 1):
+        print(f"[{i}/{len(jobs)}] {job.get('name')}")
+
+        html = fetch_html(job.get("id"), company)
+        if not html:
+            continue
+
+        state = extract_job_data(html)
+        ai_input = build_ai_input(state)
+
+        if not ai_input.strip():
+            print("   ❌ Empty content")
+            continue
+
+        result = extract_with_ai(ai_input, job, company)
+
+        if result:
+            results.append(result)
+
+    with open("final_jobs.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+
+    print(f"\n✅ DONE: {len(results)} jobs saved")
 
 
 if __name__ == "__main__":
