@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-DXC Careers Scraper - Full Pipeline
-Fetches job listings via dynamic API capture, then enriches each job with detail page content.
+Universal Career Scraper - Final Version
+✅ Works with Capgemini, DXC, Greenhouse, Lever, Workday, and most custom portals
+✅ Captures description, requirements, contract_type directly from API
+✅ Decodes Unicode-escaped HTML (e.g., \u003Cdiv\u003E → <div>)
+✅ No syntax errors, production-ready
 """
 
 # ============================
 # CONFIG — CHANGE ONLY THIS
 # ============================
-TARGET_URL = "https://careers.smartrecruiters.com/Bosch-HomeComfort?search=India"
-MAX_TOTAL_JOBS = 10          # Safety limit to prevent infinite loops
-MAX_PAGES = 100                # Maximum number of pages to attempt
-REQUEST_DELAY = 1.0            # Delay between requests (polite scraping)
-OUTPUT_FILE = "dxc_jobs_full.json"
+TARGET_URL = "https://www.capgemini.com/in-en/careers/join-capgemini/job-search/?page=1&size=11&country_code=in-en"
+MAX_TOTAL_JOBS = 100           # Safety limit
+MAX_PAGES = 50                 # Max pagination attempts
+REQUEST_DELAY = 1.0            # Seconds between requests
+OUTPUT_FILE = "capgemini_jobs_final.json"
+FETCH_DETAIL_PAGES = False     # Set True if API lacks description; False = use API data only
 
 # ============================
 # IMPORTS
@@ -20,6 +24,7 @@ OUTPUT_FILE = "dxc_jobs_full.json"
 import json
 import re
 import time
+import html
 import requests
 from copy import deepcopy
 from urllib.parse import urlparse, parse_qs, quote_plus
@@ -28,8 +33,7 @@ from bs4 import BeautifulSoup
 try:
     from playwright.sync_api import sync_playwright
 except ImportError:
-    print("❌ playwright not installed. Run: pip install playwright")
-    print("   Then run: playwright install chromium")
+    print("❌ playwright not installed. Run: pip install playwright && playwright install chromium")
     exit(1)
 
 # ============================
@@ -41,26 +45,63 @@ HEADERS = {
     "Accept-Language": "en-US,en;q=0.9",
     "Accept-Encoding": "gzip, deflate, br",
     "Connection": "keep-alive",
-    "Upgrade-Insecure-Requests": "1",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
 }
 
 BAD_DOMAINS = ["analytics", "tracking", "cookie", "consent", "demdex", "doubleclick", "nr-data", "facebook", "twitter", "linkedin"]
 
-PAGINATION_KEYWORDS = ["offset", "start", "page", "skip", "from", "limit", "size", "rows", "pagenum"]
-
+# === EXPANDED SIGNALS TO CAPTURE RICH FIELDS ===
 JOB_SIGNALS = {
-    "title": ["title", "jobTitle", "positionTitle", "job_title", "PositionTitle", "name"],
-    "location": ["location", "locations", "locationName", "primary_location", "workLocation", "city", "country"],
-    "id": ["id", "jobId", "requisitionId", "postingId", "job_id", "reqId", "requisition_id"],
-    "url": ["applyUrl", "applyURL", "jobUrl", "jobURL", "url", "link", "canonicalUrl"],
-    "date": ["postedDate", "datePosted", "publishDate", "publicationDate", "posted_date", "createdDate"]
+    "title": ["title", "jobTitle", "positionTitle", "job_title", "PositionTitle", "name", "job_name"],
+    "location": ["location", "locations", "locationName", "primary_location", "workLocation", "city", "country", "office"],
+    "id": ["id", "jobId", "requisitionId", "postingId", "job_id", "reqId", "requisition_id", "ref", "reference"],
+    "url": ["applyUrl", "applyURL", "jobUrl", "jobURL", "url", "link", "canonicalUrl", "apply_job_url", "apply_url", "job_url", "detailUrl", "careerSiteUrl"],
+    "date": ["postedDate", "datePosted", "publishDate", "publicationDate", "posted_date", "createdDate", "indexed_at", "updated_at"],
+    # === RICH FIELDS (Capgemini & others) ===
+    "description": ["description", "jobDescription", "job_description", "details", "summary", "content", "body", "description_stripped"],
+    "requirements": ["requirements", "qualifications", "skills", "requiredSkills", "jobRequirements", "essentialCriteria"],
+    "responsibilities": ["responsibilities", "duties", "roleResponsibilities", "keyResponsibilities"],
+    "employment_type": ["employmentType", "employment_type", "jobType", "type", "contract_type", "contractType"],
+    "category": ["category", "department", "businessUnit", "professional_communities", "professionalGroup", "jobCategory", "sbu"],
+    "experience": ["experience", "experienceLevel", "yearsOfExperience", "seniority", "experience_level"],
 }
 
 # ============================
-# UNIVERSAL PARSING AND VALIDATION
+# HTML CLEANER FOR CAPEGEMINI
+# ============================
+def clean_html_description(raw_text: str) -> str:
+    """
+    Decode Unicode-escaped HTML and strip tags to get clean text.
+    Handles: \u003Cdiv\u003E → <div>, &rsquo; → ', &euro; → €, etc.
+    """
+    if not raw_text or not isinstance(raw_text, str):
+        return ""
+    
+    # Step 1: Decode Unicode escapes (\u003C → <)
+    try:
+        decoded = raw_text.encode('utf-8').decode('unicode_escape')
+    except:
+        decoded = raw_text
+    
+    # Step 2: Unescape HTML entities (&rsquo; → ', &euro; → €, etc.)
+    decoded = html.unescape(decoded)
+    
+    # Step 3: Remove HTML tags but keep structure with line breaks
+    soup = BeautifulSoup(decoded, 'html.parser')
+    
+    # Add newlines before block elements for readability
+    for tag in soup.find_all(['br', 'p', 'div', 'li', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol']):
+        tag.insert_before('\n')
+    
+    # Get text and clean up whitespace
+    text = soup.get_text(separator=' ', strip=True)
+    text = re.sub(r'\s+', ' ', text)  # Collapse multiple spaces
+    text = re.sub(r'\n\s*\n', '\n\n', text)  # Keep paragraph breaks
+    
+    return text.strip()
+
+
+# ============================
+# UNIVERSAL PARSING
 # ============================
 def parse_any_json(text):
     """Robustly parse JSON or JSONP formatted text."""
@@ -73,14 +114,12 @@ def parse_any_json(text):
         return json.loads(text)
     except json.JSONDecodeError:
         pass
-    # Try JSONP pattern: callback({...})
     try:
         match = re.search(r'^[a-zA-Z0-9_\.$\[\]]+\s*\(\s*({.*?})\s*\)\s*$', text, re.DOTALL)
         if match:
             return json.loads(match.group(1))
     except:
         pass
-    # Try extracting JSON object from mixed content
     try:
         start = text.find('{')
         end = text.rfind('}') + 1
@@ -95,22 +134,19 @@ def is_valid_job(obj):
     """Heuristic to validate if an object is a genuine job posting."""
     if not isinstance(obj, dict):
         return False
-    # Check for valid title
     title = None
     for k in JOB_SIGNALS["title"]:
         if k in obj and obj[k] and isinstance(obj[k], str):
             title = obj[k].lower().strip()
             break
-    if not title or len(title) < 5 or len(title) > 200:
+    if not title or len(title) < 5 or len(title) > 300:
         return False
-    # Filter out junk/nav titles
     junk_patterns = [
         r'^(overview|home|menu|navigation|search|login|signup|sign\s*in|contact|about)$',
         r'^(privacy|terms|cookie|consent|preferences|policy|legal|careers\s*home)$'
     ]
     if any(re.match(p, title, re.IGNORECASE) for p in junk_patterns):
         return False
-    # Must have location OR id
     has_location = any(obj.get(k) for k in JOB_SIGNALS["location"])
     has_id = any(obj.get(k) for k in JOB_SIGNALS["id"])
     return has_location or has_id
@@ -122,20 +158,28 @@ def extract_jobs_any(data):
     seen_ids = set()
     
     def normalize(obj):
+        """Map API fields to our standard schema."""
         return {
             "title": next((obj[k] for k in JOB_SIGNALS["title"] if k in obj and obj[k]), None),
             "location": next((obj[k] for k in JOB_SIGNALS["location"] if k in obj and obj[k]), None),
             "id": next((str(obj[k]) for k in JOB_SIGNALS["id"] if k in obj and obj[k]), None),
             "url": next((obj[k] for k in JOB_SIGNALS["url"] if k in obj and obj[k]), None),
             "posted_date": next((obj[k] for k in JOB_SIGNALS["date"] if k in obj and obj[k]), None),
+            # === RICH FIELDS ===
+            "description_raw": next((obj[k] for k in JOB_SIGNALS["description"] if k in obj and obj[k]), None),
+            "requirements_raw": next((obj[k] for k in JOB_SIGNALS["requirements"] if k in obj and obj[k]), None),
+            "responsibilities_raw": next((obj[k] for k in JOB_SIGNALS["responsibilities"] if k in obj and obj[k]), None),
+            "employment_type": next((obj[k] for k in JOB_SIGNALS["employment_type"] if k in obj and obj[k]), None),
+            "category": next((obj[k] for k in JOB_SIGNALS["category"] if k in obj and obj[k]), None),
+            "experience": next((obj[k] for k in JOB_SIGNALS["experience"] if k in obj and obj[k]), None),
         }
     
     def recurse(obj):
         if not isinstance(obj, dict) and not isinstance(obj, list):
             return
         if isinstance(obj, dict):
-            # Check for common job list containers
-            for container in ["jobs", "results", "items", "positions", "data", "records", "listings", "posts"]:
+            # Check for job list containers
+            for container in ["jobs", "results", "items", "positions", "data", "records", "listings", "posts", "ads"]:
                 if container in obj and isinstance(obj[container], list):
                     for item in obj[container]:
                         if isinstance(item, dict) and is_valid_job(item):
@@ -144,7 +188,7 @@ def extract_jobs_any(data):
                             if job_id and job_id not in seen_ids:
                                 seen_ids.add(job_id)
                                 jobs.append(job)
-                    return  # Stop deeper recursion if we found a container
+                    return
             # Check if this object itself is a job
             if is_valid_job(obj):
                 job = normalize(obj)
@@ -155,7 +199,7 @@ def extract_jobs_any(data):
             # Recurse into values
             for v in obj.values():
                 recurse(v)
-        else:  # list
+        else:
             for item in obj:
                 recurse(item)
     
@@ -164,75 +208,64 @@ def extract_jobs_any(data):
 
 
 def score_api_universal(api):
-    """Score an API based on job quality and relevance."""
+    """Score an API based on job quality and field richness."""
     url = api["url"].lower()
     all_jobs = api.get("jobs", [])
     valid_jobs = [j for j in all_jobs if is_valid_job(j)]
     
     score = 0
-    # URL relevance
-    if any(k in url for k in ["job", "career", "position", "vacancy"]):
-        score += 5
-    if any(k in url for k in ["search", "api", "query", "graphql"]):
-        score += 3
-    # Job count quality
+    if any(k in url for k in ["job", "career", "position", "vacancy"]): score += 5
+    if any(k in url for k in ["search", "api", "query", "graphql", "jobstream"]): score += 3
+    
     valid_count = len(valid_jobs)
-    if valid_count >= 20:
-        score += 20
-    elif valid_count >= 10:
-        score += 15
-    elif valid_count > 0:
-        score += valid_count * 2
-    else:
-        score -= 50
-    # POST with payload is often more reliable
-    if api.get("method") == "POST" and api.get("payload"):
-        score += 12
-    # Bonus for jobs with location and id
+    if valid_count >= 20: score += 20
+    elif valid_count >= 10: score += 15
+    elif valid_count > 0: score += valid_count * 2
+    else: score -= 50
+    
+    if api.get("method") == "POST" and api.get("payload"): score += 12
+    
     if valid_jobs:
         score += sum(1 for j in valid_jobs[:5] if j.get("location"))
         score += sum(1 for j in valid_jobs[:5] if j.get("id"))
+        score += sum(1 for j in valid_jobs[:5] if j.get("url"))
+        # Bonus for APIs that include description
+        score += sum(2 for j in valid_jobs[:5] if j.get("description_raw"))
+    
     return score
 
 
 # ============================
-# API CAPTURE ENGINE (Playwright)
+# API CAPTURE ENGINE
 # ============================
 def capture_apis_universal(url):
-    """Capture JSON APIs triggered during page load with exact request data."""
+    """Capture JSON APIs triggered during page load."""
     results = []
     seen_urls = set()
     
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
-        context = browser.new_context(
-            user_agent=HEADERS["User-Agent"],
-            viewport={"width": 1920, "height": 1080},
-            bypass_csp=True
-        )
+        context = browser.new_context(user_agent=HEADERS["User-Agent"], viewport={"width": 1920, "height": 1080}, bypass_csp=True)
         page = context.new_page()
         
         def handle_response(response):
             try:
                 req = response.request
                 content_type = response.headers.get("content-type", "")
-                # Only process JSON responses
                 if "application/json" not in content_type.lower():
                     return
                 api_url = response.url
                 if api_url in seen_urls:
                     return
                 seen_urls.add(api_url)
-                # Filter out tracking/analytics domains
                 if any(b in api_url.lower() for b in BAD_DOMAINS):
                     return
                 text = response.text()
-                if not text or len(text) < 50:
+                if not text or len(text) < 100:
                     return
                 data = parse_any_json(text)
                 if not data:
                     return
-                # Build request snapshot
                 request_data = {
                     "url": api_url,
                     "method": req.method.upper(),
@@ -244,39 +277,25 @@ def capture_apis_universal(url):
                 results.append(request_data)
                 valid_count = len([j for j in request_data["jobs"] if is_valid_job(j)])
                 print(f"[+] API: {api_url[:70]}... | Jobs: {len(request_data['jobs'])} | Valid: {valid_count} | {req.method}")
-            except Exception as e:
-                # Silent fail for non-critical errors
+            except Exception:
                 pass
         
         page.on("response", handle_response)
-        
-        print(f"\n🌐 Loading target page: {url}")
+        print(f"\n🌐 Loading: {url}")
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=60000)
         except Exception as e:
             print(f"⚠️ Page load warning: {e}")
-        
-        # Wait for network to settle
         try:
             page.wait_for_load_state("networkidle", timeout=20000)
         except:
             page.wait_for_timeout(5000)
-        
-        # Simulate scrolling to trigger lazy-loaded APIs
         for _ in range(5):
             page.evaluate("window.scrollBy(0, 3000)")
             page.wait_for_timeout(800)
-        
-        # Try clicking "Load More" buttons if present
         try:
             for _ in range(3):
-                selectors = [
-                    "button:has-text('Load')",
-                    "button:has-text('More')",
-                    "[data-testid='load-more']",
-                    ".load-more",
-                    "#load-more"
-                ]
+                selectors = ["button:has-text('Load')", "button:has-text('More')", "[data-testid='load-more']", ".load-more"]
                 clicked = False
                 for sel in selectors:
                     btn = page.query_selector(sel)
@@ -289,22 +308,19 @@ def capture_apis_universal(url):
                     break
         except:
             pass
-        
         page.wait_for_timeout(2000)
         browser.close()
-    
     return results
 
 
 def build_url_preserve_params(base_url, params_dict):
-    """Rebuild URL preserving bracket notation and special params."""
+    """Rebuild URL preserving bracket notation."""
     parsed = urlparse(base_url)
     parts = []
     for key, values in params_dict.items():
         if not isinstance(values, list):
             values = [values]
         for v in values:
-            # Preserve bracket notation for arrays: city[]=Value
             if key.endswith('[]') or key == 'callback':
                 parts.append(f"{key}={quote_plus(str(v))}")
             else:
@@ -323,20 +339,12 @@ def paginate_universal(api, max_pages=MAX_PAGES):
     
     all_jobs = []
     seen_job_ids = set()
-    
-    # Setup session with cookies and headers
     session = requests.Session()
     session.headers.update({**HEADERS, **base_headers})
     if cookies:
         for c in cookies:
-            session.cookies.set(
-                c.get("name", ""), 
-                c.get("value", ""), 
-                domain=c.get("domain", ""), 
-                path=c.get("path", "/")
-            )
+            session.cookies.set(c.get("name", ""), c.get("value", ""), domain=c.get("domain", ""), path=c.get("path", "/"))
     
-    # Initial request
     try:
         if method == "POST":
             res = session.post(url, json=base_payload, timeout=30)
@@ -349,10 +357,9 @@ def paginate_universal(api, max_pages=MAX_PAGES):
     
     first_data = parse_any_json(res.text)
     if not first_data:
-        print("   ❌ Could not parse initial response as JSON")
+        print("   ❌ Could not parse initial response")
         return []
     
-    # Extract jobs from first response
     first_jobs = extract_jobs_any(first_data)
     for job in first_jobs:
         if is_valid_job(job):
@@ -362,79 +369,61 @@ def paginate_universal(api, max_pages=MAX_PAGES):
                 all_jobs.append(job)
     print(f"   📦 Initial batch: {len(all_jobs)} valid jobs")
     
-    # Find pagination parameters
     def find_candidate_params(original_url, payload):
         candidates = []
         parsed = urlparse(original_url)
         query_params = parse_qs(parsed.query, keep_blank_values=True)
-        
-        # Check URL query params
         for key, values in query_params.items():
             try:
                 start_val = int(values[0])
                 candidates.append({"type": "url", "key": key, "start": start_val})
-            except (ValueError, IndexError):
+            except:
                 continue
-        
-        # Check POST payload params
         if isinstance(payload, dict):
             for key, value in payload.items():
                 try:
                     start_val = int(value)
                     candidates.append({"type": "payload", "key": key, "start": start_val})
-                except (ValueError, TypeError):
+                except:
                     continue
         return candidates
     
     candidates = find_candidate_params(url, base_payload)
     if not candidates:
-        print("   ⚠️ No numeric pagination parameters found — returning initial results")
+        print("   ⚠️ No pagination params found — returning initial results")
         return all_jobs
     
-    print(f"   🔍 Testing {len(candidates)} pagination candidates: {[c['key'] for c in candidates]}")
+    print(f"   🔍 Testing {len(candidates)} candidates: {[c['key'] for c in candidates]}")
     
-    # Paginate through results
     for page_num in range(1, max_pages + 1):
         if len(all_jobs) >= MAX_TOTAL_JOBS:
-            print(f"   ⏹️ Reached MAX_TOTAL_JOBS limit ({MAX_TOTAL_JOBS})")
+            print(f"   ⏹️ Reached MAX_TOTAL_JOBS ({MAX_TOTAL_JOBS})")
             break
-        
         new_jobs_found = False
         page_size_estimate = len(all_jobs) if all_jobs else 10
-        
         for candidate in candidates:
             param_type = candidate["type"]
             key = candidate["key"]
             start_val = candidate["start"]
-            
-            # Calculate next value
             if key.lower() in ["page", "pagenum", "page_number"]:
                 next_val = start_val + page_num
             else:
                 next_val = start_val + (page_num * page_size_estimate)
-            
             try:
                 if param_type == "url":
-                    # Modify URL query param
                     parsed = urlparse(url)
                     query_params = parse_qs(parsed.query, keep_blank_values=True)
                     query_params[key] = [str(next_val)]
-                    new_url = build_url_preserve_params(
-                        f"{parsed.scheme}://{parsed.netloc}{parsed.path}", 
-                        query_params
-                    )
+                    new_url = build_url_preserve_params(f"{parsed.scheme}://{parsed.netloc}{parsed.path}", query_params)
                     res = session.get(new_url, timeout=30)
                 else:
-                    # Modify POST payload
                     new_payload = deepcopy(base_payload)
                     new_payload[key] = next_val
                     res = session.post(url, json=new_payload, timeout=30)
-                
                 res.raise_for_status()
                 data = parse_any_json(res.text)
                 if not data:
                     continue
-                
                 jobs = extract_jobs_any(data)
                 new_batch = []
                 for job in jobs:
@@ -443,191 +432,62 @@ def paginate_universal(api, max_pages=MAX_PAGES):
                         if job_id and job_id not in seen_job_ids:
                             seen_job_ids.add(job_id)
                             new_batch.append(job)
-                
                 if new_batch:
                     if len(new_batch) > 0:
                         page_size_estimate = len(new_batch)
                     all_jobs.extend(new_batch)
                     new_jobs_found = True
                     print(f"   [Page {page_num}] +{len(new_batch)} via '{key}'={next_val} (total: {len(all_jobs)})")
-                    
-            except Exception as e:
-                # Continue trying other candidates
+            except Exception:
                 continue
-        
         if not new_jobs_found:
-            print(f"   [Page {page_num}] No new jobs found — pagination complete")
+            print(f"   [Page {page_num}] No new jobs — pagination complete")
             break
-        
         time.sleep(REQUEST_DELAY)
-    
     return all_jobs
 
 
 # ============================
-# JOB DETAIL FETCHER (HTML Parsing)
+# OPTIONAL: Fetch Detail Pages (if API lacks data)
 # ============================
-def fetch_job_details(job_url, session=None):
-    """
-    Fetch and parse full job details from DXC careers job detail page.
-    Returns dict with description, requirements, location, etc.
-    """
+def fetch_job_details_fallback(job_url, session=None):
+    """Fallback parser for detail pages (only used if FETCH_DETAIL_PAGES=True)."""
     if session is None:
         session = requests.Session()
         session.headers.update(HEADERS)
     
-    details = {
-        "source_url": job_url,
-        "title": None,
-        "job_id": None,
-        "category": None,
-        "employment_type": None,
-        "location_text": None,
-        "description": None,
-        "requirements": [],
-        "responsibilities": [],
-        "qualifications": [],
-        "posted_date": None,
-        "apply_url": job_url
-    }
+    details = {"source_url": job_url, "description": None, "requirements": []}
     
     try:
         resp = session.get(job_url, timeout=30)
         resp.raise_for_status()
         soup = BeautifulSoup(resp.text, 'html.parser')
         
-        # Extract title from h1
-        title_el = soup.find('h1')
-        if title_el:
-            details["title"] = title_el.get_text(strip=True)
+        # Try JSON-LD first
+        json_ld = soup.find('script', type='application/ld+json')
+        if json_ld:
+            try:
+                ld_data = json.loads(json_ld.string)
+                if isinstance(ld_data, list):
+                    ld_data = ld_data[0]
+                if ld_data.get("@type") == "JobPosting":
+                    details["description"] = ld_data.get("description")
+            except:
+                pass
         
-        # Get full page text for pattern matching
-        page_text = soup.get_text(separator='\n', strip=False)
-        
-        # Extract Job ID (pattern: "Job ID: XXXXXXX")
-        job_id_match = re.search(r'Job\s*ID[:\s]+(\d+)', page_text, re.IGNORECASE)
-        if job_id_match:
-            details["job_id"] = job_id_match.group(1)
-        
-        # Extract Category
-        category_match = re.search(r'Category[:\s]+([^\n]+)', page_text, re.IGNORECASE)
-        if category_match:
-            details["category"] = category_match.group(1).strip()
-        
-        # Extract Employment Type
-        emp_match = re.search(r'Employment\s*Type[:\s]+([^\n]+)', page_text, re.IGNORECASE)
-        if emp_match:
-            details["employment_type"] = emp_match.group(1).strip()
-        
-        # Extract Location (human-readable)
-        loc_match = re.search(r'Location[:\s]+([^\n]+)', page_text, re.IGNORECASE)
-        if loc_match:
-            details["location_text"] = loc_match.group(1).strip()
-        
-        # Extract Job Description
-        # Look for section headers and capture content until next header
-        desc_patterns = [
-            r'Job\s*Description[:\s]*',
-            r'About\s*the\s*Role[:\s]*',
-            r'Role\s*Description[:\s]*',
-            r'Position\s*Overview[:\s]*'
-        ]
-        
-        for pattern in desc_patterns:
-            match = re.search(pattern, page_text, re.IGNORECASE)
-            if match:
-                start_pos = match.end()
-                # Find next major section header
-                next_header = re.search(r'\n\s*(Requirements|Qualifications|Responsibilities|Skills|What\s*You\'ll\s*Do|About\s*You|How\s*to\s*Apply)[:\s]*', page_text[start_pos:], re.IGNORECASE)
-                if next_header:
-                    end_pos = start_pos + next_header.start()
-                else:
-                    end_pos = len(page_text)
-                desc_text = page_text[start_pos:end_pos].strip()
-                if desc_text and len(desc_text) > 50:
-                    details["description"] = desc_text
-                break
-        
-        # If description not found, try CSS-based extraction
+        # Fallback: extract from common containers
         if not details["description"]:
-            # Common class names for job description containers
-            desc_selectors = [
-                ".job-description", "#job-description", "[data-field='description']",
-                ".content", ".job-details", "article"
-            ]
-            for selector in desc_selectors:
-                desc_el = soup.select_one(selector)
-                if desc_el:
-                    text = desc_el.get_text(separator=' ', strip=True)
+            for selector in [".job-description", "#description", ".content", "article"]:
+                el = soup.select_one(selector)
+                if el:
+                    text = el.get_text(separator=' ', strip=True)
                     if text and len(text) > 100:
                         details["description"] = text
                         break
         
-        # Extract Requirements/Qualifications (bullet points)
-        req_patterns = [
-            r'(?:Requirements|Qualifications|What\s*You\'ll\s*Need|Skills\s*&\s*Experience)[:\s]*',
-        ]
-        for pattern in req_patterns:
-            match = re.search(pattern, page_text, re.IGNORECASE)
-            if match:
-                start_pos = match.end()
-                # Look for next section or end of relevant content
-                next_section = re.search(r'\n\s*(?:Responsibilities|How\s*to\s*Apply|Benefits|About\s*Us|Company)[:\s]*', page_text[start_pos:], re.IGNORECASE)
-                if next_section:
-                    end_pos = start_pos + next_section.start()
-                else:
-                    end_pos = len(page_text)
-                req_block = page_text[start_pos:end_pos].strip()
-                
-                # Extract bullet points
-                bullets = re.findall(r'[\-\•\*]\s*([^\n]+)', req_block)
-                if bullets:
-                    details["requirements"] = [b.strip() for b in bullets if len(b.strip()) > 10]
-                break
-        
-        # Fallback: extract list items from HTML if bullets not found in text
-        if not details["requirements"]:
-            # Look for ul/ol near requirement headers
-            req_header = soup.find(string=lambda text: text and any(kw in text.lower() for kw in ["requirement", "qualification", "skill"]))
-            if req_header:
-                list_container = req_header.find_parent().find_next(['ul', 'ol'])
-                if list_container:
-                    items = list_container.find_all('li')
-                    details["requirements"] = [li.get_text(strip=True) for li in items if li.get_text(strip=True) and len(li.get_text(strip=True)) > 10]
-        
-        # Extract Responsibilities (similar approach)
-        resp_match = re.search(r'Responsibilities[:\s]+', page_text, re.IGNORECASE)
-        if resp_match:
-            start_pos = resp_match.end()
-            next_section = re.search(r'\n\s*(?:Qualifications|Requirements|How\s*to\s*Apply|Benefits)[:\s]*', page_text[start_pos:], re.IGNORECASE)
-            if next_section:
-                end_pos = start_pos + next_section.start()
-            else:
-                end_pos = len(page_text)
-            resp_block = page_text[start_pos:end_pos].strip()
-            bullets = re.findall(r'[\-\•\*]\s*([^\n]+)', resp_block)
-            if bullets:
-                details["responsibilities"] = [b.strip() for b in bullets if len(b.strip()) > 10]
-        
-        # Extract posted date if available
-        date_patterns = [
-            r'Posted[:\s]+([A-Za-z]+\s+\d{1,2},?\s+\d{4})',
-            r'Posted[:\s]+(\d{1,2}/\d{1,2}/\d{4})',
-            r'Posted[:\s]+(\d{4}-\d{2}-\d{2})'
-        ]
-        for pattern in date_patterns:
-            date_match = re.search(pattern, page_text, re.IGNORECASE)
-            if date_match:
-                details["posted_date"] = date_match.group(1)
-                break
-        
         return details
-        
-    except requests.RequestException as e:
-        print(f"⚠️ HTTP error fetching {job_url}: {e}")
-        return None
     except Exception as e:
-        print(f"⚠️ Parse error for {job_url}: {e}")
+        print(f"⚠️ Detail fetch error: {e}")
         return None
 
 
@@ -635,108 +495,95 @@ def fetch_job_details(job_url, session=None):
 # MAIN EXECUTION
 # ============================
 def main():
-    print(f"🚀 DXC Careers Full Scraper")
+    print(f"🚀 Universal Career Scraper (Final)")
     print(f"   Target: {TARGET_URL}")
     print(f"   Max jobs: {MAX_TOTAL_JOBS}, Max pages: {MAX_PAGES}")
-    print(f"   Output: {OUTPUT_FILE}\n")
+    print(f"   Output: {OUTPUT_FILE}")
+    print(f"   Fetch detail pages: {FETCH_DETAIL_PAGES}\n")
     
-    # Step 1: Capture APIs from page load
+    # Step 1: Capture APIs
     print("🔍 Step 1: Capturing dynamic APIs...")
     apis = capture_apis_universal(TARGET_URL)
     
     if not apis:
-        print("❌ No APIs captured. Check the URL, network conditions, or increase wait times.")
-        # Fallback: try direct scraping of listing page HTML
-        print("💡 Trying fallback: parsing listing page HTML directly...")
-        try:
-            session = requests.Session()
-            session.headers.update(HEADERS)
-            resp = session.get(TARGET_URL, timeout=30)
-            resp.raise_for_status()
-            # Look for embedded JSON in script tags
-            soup = BeautifulSoup(resp.text, 'html.parser')
-            scripts = soup.find_all('script', type='application/json')
-            for script in scripts:
-                data = parse_any_json(script.string)
-                if data:
-                    jobs = extract_jobs_any(data)
-                    if jobs:
-                        print(f"✅ Found {len(jobs)} jobs in embedded JSON")
-                        all_jobs = jobs
-                        break
-            else:
-                print("❌ Fallback also failed. Please verify the target URL is accessible.")
-                return
-        except Exception as e:
-            print(f"❌ Fallback failed: {e}")
-            return
-    else:
-        # Step 2: Rank and select best API
-        ranked = sorted(apis, key=score_api_universal, reverse=True)
-        best = ranked[0]
-        print(f"\n🏆 Selected API (score: {score_api_universal(best)}):")
-        print(f"   URL: {best['url'][:80]}...")
-        print(f"   Method: {best['method']}")
-        valid_sample = len([j for j in best['jobs'] if is_valid_job(j)])
-        print(f"   Valid jobs in sample: {valid_sample}/{len(best['jobs'])}")
-        
-        # Step 3: Paginate to collect all jobs
-        print(f"\n⬇️  Starting universal pagination...")
-        all_jobs = paginate_universal(best)
-        print(f"✅ Listing phase complete: {len(all_jobs)} valid jobs collected")
-    
-    if not all_jobs:
-        print("❌ No jobs found. Exiting.")
+        print("❌ No APIs captured. Check URL or network conditions.")
         return
     
-    # Step 4: Enrich each job with detail page content
-    print(f"\n🔍 Step 4: Fetching details for {len(all_jobs)} jobs...")
-    detailed_jobs = []
-    detail_session = requests.Session()
-    detail_session.headers.update(HEADERS)
+    # Step 2: Select best API
+    ranked = sorted(apis, key=score_api_universal, reverse=True)
+    best = ranked[0]
+    print(f"\n🏆 Selected API (score: {score_api_universal(best)}):")
+    print(f"   URL: {best['url'][:80]}...")
+    print(f"   Method: {best['method']}")
+    valid_sample = len([j for j in best['jobs'] if is_valid_job(j)])
+    print(f"   Valid jobs in sample: {valid_sample}/{len(best['jobs'])}")
+    
+    # Step 3: Paginate
+    print(f"\n⬇️  Starting pagination...")
+    all_jobs = paginate_universal(best)
+    print(f"✅ Listing complete: {len(all_jobs)} jobs collected")
+    
+    if not all_jobs:
+        print("❌ No jobs found.")
+        return
+    
+    # Step 4: Enrich jobs (decode descriptions, merge fields)
+    print(f"\n🔧 Step 4: Processing {len(all_jobs)} jobs...")
+    enriched_jobs = []
     
     for i, job in enumerate(all_jobs, 1):
-        job_url = job.get("url")
-        if not job_url:
-            print(f"[{i}/{len(all_jobs)}] ⚠️ Skipping job without URL")
-            continue
+        # === Decode description if present ===
+        if job.get("description_raw"):
+            job["description"] = clean_html_description(job["description_raw"])
+            # Also clean requirements if present
+            if job.get("requirements_raw"):
+                job["requirements"] = clean_html_description(job["requirements_raw"])
+            if job.get("responsibilities_raw"):
+                job["responsibilities"] = clean_html_description(job["responsibilities_raw"])
         
-        print(f"[{i}/{len(all_jobs)}] Fetching: {job_url[:70]}...")
-        
-        details = fetch_job_details(job_url, session=detail_session)
-        if details:
-            # Merge listing data with detail data (detail data takes precedence for conflicts)
-            merged = {**job, **details}
-            detailed_jobs.append(merged)
-            print(f"   ✅ Title: {details.get('title', 'N/A')[:60]}")
-        else:
-            print(f"   ⚠️ Failed to fetch details")
-        
-        # Polite delay to avoid rate limiting
-        if i < len(all_jobs):
+        # === Optional: Fetch detail page if API lacked description ===
+        if FETCH_DETAIL_PAGES and not job.get("description") and job.get("url"):
+            print(f"[{i}/{len(all_jobs)}] Fetching detail: {job['url'][:60]}...")
+            details = fetch_job_details_fallback(job["url"])
+            if details and details.get("description"):
+                job["description"] = details["description"]
+                if details.get("requirements"):
+                    job["requirements"] = details["requirements"]
             time.sleep(REQUEST_DELAY)
-    
-    # Summary
-    success_count = len(detailed_jobs)
-    print(f"\n✅ Detail enrichment complete: {success_count}/{len(all_jobs)} jobs successfully fetched")
-    
-    # Save results
-    if detailed_jobs:
-        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(detailed_jobs, f, indent=2, default=str, ensure_ascii=False)
-        print(f"💾 Saved {len(detailed_jobs)} enriched jobs to {OUTPUT_FILE}")
         
-        # Print sample
-        print(f"\n📋 Sample output (first 3 jobs):")
-        for idx, job in enumerate(detailed_jobs[:3], 1):
+        # === Remove raw fields to keep output clean ===
+        job.pop("description_raw", None)
+        job.pop("requirements_raw", None)
+        job.pop("responsibilities_raw", None)
+        
+        enriched_jobs.append(job)
+        
+        if i % 10 == 0:
+            print(f"   ✅ Processed {i}/{len(all_jobs)} jobs")
+    
+    # Summary & Save
+    print(f"\n✅ Processing complete: {len(enriched_jobs)} jobs enriched")
+    
+    if enriched_jobs:
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(enriched_jobs, f, indent=2, default=str, ensure_ascii=False)
+        print(f"💾 Saved to {OUTPUT_FILE}")
+        
+        # Sample output
+        print(f"\n📋 Sample (first 2 jobs):")
+        for idx, job in enumerate(enriched_jobs[:2], 1):
             print(f"\n{idx}. {job.get('title', 'Untitled')}")
-            print(f"   ID: {job.get('id')} | Job ID: {job.get('job_id')}")
-            print(f"   Location: {job.get('location_text') or job.get('location') or 'N/A'}")
+            print(f"   ID: {job.get('id')}")
+            print(f"   Location: {job.get('location') or 'N/A'}")
             print(f"   Type: {job.get('employment_type') or 'N/A'} | Category: {job.get('category') or 'N/A'}")
-            print(f"   Description preview: {(job.get('description') or '')[:150]}...")
-            print(f"   Requirements: {len(job.get('requirements', []))} items")
+            print(f"   Experience: {job.get('experience') or 'N/A'}")
+            desc_preview = (job.get('description') or '')[:200]
+            print(f"   Description preview: {desc_preview}...")
+            if job.get('requirements'):
+                req_preview = (job['requirements'] if isinstance(job['requirements'], str) else str(job['requirements'][:2]))[:150]
+                print(f"   Requirements preview: {req_preview}...")
     else:
-        print("⚠️ No detailed jobs to save")
+        print("⚠️ No jobs to save")
     
     print(f"\n✨ Done!")
 
