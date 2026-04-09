@@ -1,0 +1,618 @@
+{
+  "domain": "availity.wd1.myworkdayjobs.com",
+  "site_type": "WORKDAY_API",
+  "listing_jobs_found": 19,
+  "listing_status": "success",
+  "saved_at": "2026-04-09T06:15:44.189672",
+  "jobs_count": 19,
+  "jobs": [
+    {
+      "id": "R0007849",
+      "title": "Software Engineer IV",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Software-Engineer-IV_R0007849",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "R0007849",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Software-Engineer-IV_R0007849",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007993",
+      "title": "Product Manager (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Product-Manager--Remote-_R0007993",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "R0007993",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Product-Manager--Remote-_R0007993",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008112",
+      "title": "Manager, Software Engineering",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Manager--Software-Engineering_R0008112",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "R0008112",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Manager--Software-Engineering_R0008112",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008127",
+      "title": "Project Manager, HP Delivery (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Project-Manager--HP-Delivery--Remote-_R0008127",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "R0008127",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Project-Manager--HP-Delivery--Remote-_R0008127",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007834",
+      "title": "Software Engineer III",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Software-Engineer-III_R0007834",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Today",
+      "job_id": "R0007834",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Software-Engineer-III_R0007834",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008045",
+      "title": "Supervisor, Quality Assurance",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Supervisor--Quality-Assurance_R0008045",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R0008045",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Supervisor--Quality-Assurance_R0008045",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007928",
+      "title": "Client Implementation Data Architect",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/PDM-Implementation-Data-Architect_R0007928",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted Yesterday",
+      "job_id": "R0007928",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/PDM-Implementation-Data-Architect_R0007928",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007854",
+      "title": "Senior Organizational Development Partner (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Senior-Organizational-Development-Partner--Remote-_R0007854",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 2 Days Ago",
+      "job_id": "R0007854",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Senior-Organizational-Development-Partner--Remote-_R0007854",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008108",
+      "title": "Chief Medical Officer (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Chief-Medical-Officer--Remote-_R0008108",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 6 Days Ago",
+      "job_id": "R0008108",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Chief-Medical-Officer--Remote-_R0008108",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008029",
+      "title": "Associate Principal, Customer Success (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Associate-Principal--Customer-Success--Remote-_R0008029",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R0008029",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Associate-Principal--Customer-Success--Remote-_R0008029",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008107",
+      "title": "Technical Account Manager (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Technical-Account-Manager--Remote-_R0008107",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 8 Days Ago",
+      "job_id": "R0008107",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Technical-Account-Manager--Remote-_R0008107",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007982",
+      "title": "Cloud Database Administrator III",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Cloud-Database-Administrator-III_R0007982",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 13 Days Ago",
+      "job_id": "R0007982",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Cloud-Database-Administrator-III_R0007982",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0008007",
+      "title": "Medical Director (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Medical-Director--Remote-_R0008007",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 23 Days Ago",
+      "job_id": "R0008007",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Medical-Director--Remote-_R0008007",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007992",
+      "title": "Product Director,  User, Org & Security (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Product-Director---User--Org---Security--Remote-_R0007992",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30 Days Ago",
+      "job_id": "R0007992",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Product-Director---User--Org---Security--Remote-_R0007992",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007961",
+      "title": "Program Manager - Prior Auth (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Program-Manager---Prior-Auth--Remote-_R0007961",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R0007961",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Program-Manager---Prior-Auth--Remote-_R0007961",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007962",
+      "title": "Solutions Engineer - Prior Auths (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Solutions-Engineer---Prior-Auths--Remote-_R0007962",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R0007962",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Solutions-Engineer---Prior-Auths--Remote-_R0007962",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007945",
+      "title": "Manager, Sales Compensation (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Manager--Sales-Compensation--Remote-_R0007945",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R0007945",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Manager--Sales-Compensation--Remote-_R0007945",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007706",
+      "title": "Product Director,  Intelligent Gateway (Remote)",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Product-Director---Intelligent-Gateway--Remote-_R0007706",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R0007706",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Product-Director---Intelligent-Gateway--Remote-_R0007706",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    {
+      "id": "R0007823",
+      "title": "Cloud Solutions Team Lead",
+      "company_name": "Availity",
+      "job_link": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Cloud-Solutions-Team-Lead_R0007823",
+      "experience": "",
+      "locations": [
+        "Remote - United States"
+      ],
+      "educational_qualifications": "[]",
+      "required_skill_set": [],
+      "remote_type": "",
+      "posted_on": "Posted 30+ Days Ago",
+      "job_id": "R0007823",
+      "salary": "",
+      "is_active": true,
+      "first_seen": "",
+      "last_seen": "",
+      "additional_sections": [],
+      "Scrap_json": {
+        "url": "https://availity.wd1.myworkdayjobs.com/job/Remote---United-States/Cloud-Solutions-Team-Lead_R0007823",
+        "strategy": "api",
+        "site_type": "WORKDAY_API",
+        "department": "",
+        "qualifications": []
+      },
+      "ai_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    }
+  ]
+}
