@@ -12,8 +12,6 @@ Universal Career Scraper + GPT-4.1 Nano AI Enrichment
 # CONFIG — CHANGE ONLY THIS
 # ============================
 TARGET_URL = "https://careers.dxc.com/job-search-results/?compliment[]=India&primary_city[]=Gurgaon"
-MAX_TOTAL_JOBS = 50            # Safety limit (AI processing is slower)
-MAX_PAGES = 20                 # Max pagination attempts
 REQUEST_DELAY = 1.0            # Seconds between API requests
 OPENAI_DELAY = 2.0             # Seconds between OpenAI API calls (rate limit safety)
 OUTPUT_FILE = "jobs_ai_enriched.json"
@@ -322,7 +320,7 @@ def build_url_preserve_params(base_url, params_dict):
     return parsed._replace(query=new_query).geturl()
 
 
-def paginate_universal(api, max_pages=MAX_PAGES):
+def paginate_universal(api, max_pages=None):
     url = api["url"]
     method = api["method"]
     base_headers = api.get("headers", {})
@@ -386,21 +384,27 @@ def paginate_universal(api, max_pages=MAX_PAGES):
         return all_jobs
     
     print(f"   🔍 Testing {len(candidates)} candidates: {[c['key'] for c in candidates]}")
-    
-    for page_num in range(1, max_pages + 1):
-        if len(all_jobs) >= MAX_TOTAL_JOBS:
-            print(f"   ⏹️ Reached MAX_TOTAL_JOBS ({MAX_TOTAL_JOBS})")
+
+    fixed_page_size = len(all_jobs) if all_jobs else 10
+    active_candidate = None
+    page_num = 1
+
+    while True:
+        if max_pages is not None and page_num > max_pages:
+            print(f"   ⏹️ Reached max_pages ({max_pages})")
             break
         new_jobs_found = False
-        page_size_estimate = len(all_jobs) if all_jobs else 10
-        for candidate in candidates:
+        candidates_to_try = [active_candidate] if active_candidate else candidates
+        for candidate in candidates_to_try:
+            if not candidate:
+                continue
             param_type = candidate["type"]
             key = candidate["key"]
             start_val = candidate["start"]
             if key.lower() in ["page", "pagenum", "page_number"]:
                 next_val = start_val + page_num
             else:
-                next_val = start_val + (page_num * page_size_estimate)
+                next_val = start_val + (page_num * fixed_page_size)
             try:
                 if param_type == "url":
                     parsed = urlparse(url)
@@ -426,7 +430,10 @@ def paginate_universal(api, max_pages=MAX_PAGES):
                             new_batch.append(job)
                 if new_batch:
                     if len(new_batch) > 0:
-                        page_size_estimate = len(new_batch)
+                        fixed_page_size = len(new_batch)
+                    if active_candidate is None:
+                        active_candidate = candidate
+                        print(f"   🔒 Locked pagination candidate: '{key}' ({param_type}) step={fixed_page_size}")
                     all_jobs.extend(new_batch)
                     new_jobs_found = True
                     print(f"   [Page {page_num}] +{len(new_batch)} via '{key}'={next_val} (total: {len(all_jobs)})")
@@ -436,6 +443,7 @@ def paginate_universal(api, max_pages=MAX_PAGES):
             print(f"   [Page {page_num}] No new jobs — pagination complete")
             break
         time.sleep(REQUEST_DELAY)
+        page_num += 1
     return all_jobs
 
 
@@ -454,10 +462,12 @@ def prepare_job_for_ai(job: dict) -> dict:
     if not requirements and job.get("requirements_raw"):
         requirements = clean_html_description(job["requirements_raw"])
     
+    company_name = derive_company_name(job)
+
     # Build clean input for AI
     return {
         "title": job.get("title") or "",
-        "company": "Capgemini",  # Can be extracted from domain if needed
+        "company": company_name,
         "location": job.get("location") or job.get("location_text") or "",
         "job_id": job.get("id") or "",
         "url": job.get("url") or "",
@@ -485,7 +495,7 @@ Return ONLY valid JSON matching this exact structure. Do not include explanation
 {{
   "id": "string (use job_id from input)",
   "title": "string (clean job title)",
-  "company_name": "string (extract from input or use 'Capgemini')",
+  "company_name": "string (extract from input company/site)",
   "job_link": "string (the apply URL)",
   "experience": "string (extract experience requirement, e.g., '4-12 years')",
   "locations": ["string array of location strings, e.g., ['IN, PUNE']"],
@@ -633,10 +643,11 @@ def enrich_job_with_ai(job: dict) -> dict:
 
 def create_fallback_output(job: dict) -> dict:
     """Create minimal valid output when AI processing fails."""
+    company_name = derive_company_name(job)
     return {
         "id": job.get("id") or "",
         "title": job.get("title") or "Untitled",
-        "company_name": "Capgemini",
+        "company_name": company_name,
         "job_link": job.get("url") or "",
         "experience": job.get("experience") or "",
         "locations": [job.get("location")] if job.get("location") else [],
@@ -663,6 +674,46 @@ def create_fallback_output(job: dict) -> dict:
             "total_tokens": 0
         }
     }
+
+
+def derive_company_name(job: dict) -> str:
+    """Infer company name from job data or URL."""
+    for key in ("company_name", "company", "companyName", "organization", "employer"):
+        value = job.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+
+    url = str(job.get("url") or job.get("apply_url") or job.get("source_url") or "").strip()
+    if not url:
+        return ""
+
+    parsed = urlparse(url)
+    host = parsed.netloc.lower()
+
+    if "boards.api.greenhouse.io" in host:
+        parts = [p for p in parsed.path.split("/") if p]
+        if len(parts) >= 3 and parts[0] == "v1" and parts[1] == "boards":
+            return parts[2].replace("-", " ").title()
+
+    if "smartrecruiters.com" in host:
+        parts = [p for p in parsed.path.split("/") if p]
+        if parts:
+            return parts[-1].replace("-", " ").title()
+
+    if "myworkdayjobs.com" in host:
+        subdomain = host.split(".")[0]
+        return subdomain.replace("-", " ").title()
+
+    if host.startswith("jobs."):
+        host = host[5:]
+    elif host.startswith("careers."):
+        host = host[8:]
+
+    labels = [label for label in host.split(".") if label and label not in {"www", "com", "io", "co", "org", "net"}]
+    if labels:
+        return labels[0].replace("-", " ").title()
+
+    return ""
 
 
 def detect_site_type(url: str) -> str:
@@ -694,7 +745,7 @@ def detect_site_type(url: str) -> str:
 def main():
     print(f"🚀 Universal Career Scraper + GPT-4.1 Nano AI")
     print(f"   Target: {TARGET_URL}")
-    print(f"   Max jobs: {MAX_TOTAL_JOBS}, Max pages: {MAX_PAGES}")
+    print("   Max jobs: unlimited, Max pages: unlimited")
     print(f"   Output: {OUTPUT_FILE}")
     print(f"   Model: {OPENAI_MODEL}")
     print(f"   AI Delay: {OPENAI_DELAY}s between calls\n")

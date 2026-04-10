@@ -17,8 +17,47 @@ venv/
 # Environment
 .env
 
-# Raw JSON output
+# Generated scrape outputs
 raw_json/
+raw_html/
+job-details/
+output/
+ai-data/
+
+# Local browser / agent state
+chrome_profile/
+session/
+.qwen/
+.agents/
+
+# Debug / scratch files
+debug_llm_output.jsonl
+debug_prompts.jsonl
+plan.txt
+workday_page.html
+final_jobs.json
+parsed_jobs.json
+parsed_jobs.xlsx
+merged_jobs.xlsx
+aig.parsed_jobs.xlsx
+jobs.json
+jobs.xlsx
+jobs_ai_enriched.json
+jobs_detailed.json
+jobs_final.json
+jobs_listings.json
+jobs_universal.json
+workday_jobs.json
+workday_jobs.xlsx
+workday_test_output_*.json
+smartrecruiters_jobs.json
+smartrecruiters_filtered.json
+smartrecruiters_detailed.json
+smartrecruiters_final.json
+capgemini_jobs_full.json
+capgemini_jobs_final.json
+dxc_jobs_full.json
+taleo_jobs.json
 
 # IDE
 .vscode/

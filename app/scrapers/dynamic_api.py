@@ -24,7 +24,7 @@ async def scrape_dynamic_api_direct(
     payload: dict | str | None,
     headers: dict,
     base_url: str,
-    max_pages: int = 20,
+    max_pages: int | None = None,
 ) -> list[dict]:
     """Run full dynamic.py pipeline: capture → paginate → AI enrich."""
     from app.detectors.dynamic_api_detector import detect_dynamic_api
