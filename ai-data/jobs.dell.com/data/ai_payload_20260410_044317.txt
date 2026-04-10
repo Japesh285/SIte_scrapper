@@ -1,0 +1,17 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements :
+Kubernetes (K8s)/  Red Hat OpenShift
+- Deep, hands-on expertise with Kubernetes internals and operations. You must be comfortable with core Kubernetes objects. Troubleshooting complex workload issues across namespaces is essential. Familiarity with Kubernetes API internals, admission controllers, resource quota management, and ClusterVersion resources for orchestrating upgrades is expected. Experience - 12+ yrs
+GitOps (ArgoCD / Declarative Configuration)
+- Strong experience implementing and operating GitOps workflows at scale. You must have hands-on proficiency with ArgoCD -- including Applications, ApplicationSets, AppProjects, sync waves, health checks, and the app-of-apps pattern. Understanding of how Git serves as the single source of truth for cluster state, with automated drift detection and reconciliation, is critical.
+Infrastructure-as-Code (IaC)
+- Proven experience building and maintaining infrastructure using declarative, version-controlled code. This includes proficiency with Helm, Meta charts, CI/CD for IAC, Policy-as-a-code. Kustomize components.
+Observability (Monitoring, Logging, Alerting)
+- Experience deploying observability stacks via ApplicationSets with phased rollout strategies to respect dependency ordering
+Automation & Scripting
+- Strong scripting and automation skills in Bash and/or Python for building operational tooling, CI/CD pipelines for platform, and custom Kubernetes controllers or operators. Experience with "GitHub Actions".
+Desirable Skills:
+MLOps & Prompt Engineering & AI Integration
+- Basic understanding of deploying and managing ML workloads on Kubernetes. How to integrate ML pipelines into GitOps-managed cluster environments. Practical experience with "prompt engineering" and AI-powered operations tooling. Familiarity with deploying or integrating MCP servers. Basic understanding of Agentic AI patterns and how to leverage tool-use patterns with Dell Provided LLM's. Ideas on developing agentic workflows.
+Knowledge of VMware Infrastructure, Basic Networking and Basic Storage administration.

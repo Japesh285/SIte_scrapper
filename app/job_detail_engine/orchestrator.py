@@ -65,7 +65,7 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
 
         # ── DOM / INTERACTIVE_DOM path: use prepare_ai_payload ──
         # ONLY removes script/style/noscript, preserves ALL content
-        payload = prepare_ai_payload(html)
+        payload = prepare_ai_payload(html, domain=domain)
         logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
 
         # Save the exact payload sent to AI

@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Expertise in directory services and authentication protocols, including Active Directory and Entra
+Proficient in automation and integration using APIs (Radiant Logic, Okta, Entra) and scripting languages like Python, Bash, and PowerShell
+Strong technical skills in AD and LDAP, including attributes, queries, GPO configuration, DNS, networking, and application-level LDAP troubleshooting
+Experienced in server and infrastructure management, covering Windows Server (2016–2025), Linux environments, PKI, and SSL certificate management
+Effective communicator and problem solver, leading identity-related troubleshooting and collaborating with stakeholders to align on technical goals
+Desirable Requirements
+Experience using tools such as Splunk to perform usage reporting, auditing and logging with Directory Services Products
+8+ years of professional experience in a Cybersecurity engineering role with a Bachelor’s degree; or 5+ years with a Master’s degree, or equivalent experience

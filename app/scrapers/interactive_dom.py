@@ -14,6 +14,10 @@ jobs behind search buttons, load-more controls, etc.
 
 from __future__ import annotations
 
+import html
+import re
+from urllib.parse import urlparse
+
 from app.core.logger import logger
 from app.core.site_utils import absolutize_url
 from app.detectors.browser_probe import run_browser_probe
@@ -29,6 +33,7 @@ _EXCLUDE_TITLE_PARTS = (
     "benefits", "culture", "diversity", "students", "internship",
     "saved jobs", "talent community", "job alert", "sign in",
     "log in", "register", "profile", "settings",
+    "your career", "recommended jobs", "job search", "help",
 )
 
 _EXCLUDE_URL_PARTS = (
@@ -36,10 +41,17 @@ _EXCLUDE_URL_PARTS = (
     "/benefits", "/culture", "/diversity", "/student", "/intern",
     "/saved-jobs", "/profile", "/login", "/register", "/settings",
     "/about", "/contact", "/help", "/faq",
+    "/dashboard", "/recommendations", "/jobs/results/jobs/results",
+    "support.google.com",
 )
 
 # Minimal job signal keywords in link text
 _JOB_SIGNALS = ["job", "career", "position", "opening", "role", "apply"]
+
+_GENERIC_TITLE_TEXTS = {
+    "jobs", "job", "job search", "recommended jobs", "your career",
+    "help", "view jobs", "search jobs", "careers", "career",
+}
 
 
 async def scrape_interactive_dom(url: str, max_rounds: int = 8) -> list[dict]:
@@ -220,18 +232,19 @@ def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
     This is a lightweight extraction that doesn't require BeautifulSoup.
     It finds anchor elements with job-related text and hrefs.
     """
-    import re
-
     jobs: list[dict] = []
     seen_urls: set[str] = set()
+    base_parsed = urlparse(base_url)
 
     # Find all <a> tags with href
     anchor_pattern = r'<a[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>'
     matches = re.findall(anchor_pattern, html, re.IGNORECASE | re.DOTALL)
 
     for href, inner_html in matches:
+        href = html.unescape(href).strip()
         # Strip inner HTML tags to get text
         text = re.sub(r'<[^>]+>', '', inner_html).strip()
+        text = html.unescape(text)
         text = re.sub(r'\s+', ' ', text).strip()
 
         if not text or len(text) < 3:
@@ -239,11 +252,32 @@ def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
 
         text_lower = text.lower()
         href_lower = href.lower()
+        normalized_text = re.sub(r'[^a-z0-9 ]+', ' ', text_lower)
+        normalized_text = re.sub(r'\s+', ' ', normalized_text).strip()
 
         # Skip excluded patterns
         if any(part in text_lower for part in _EXCLUDE_TITLE_PARTS):
             continue
         if any(part in href_lower for part in _EXCLUDE_URL_PARTS):
+            continue
+        if normalized_text in _GENERIC_TITLE_TEXTS:
+            continue
+
+        abs_url = absolutize_url(base_url, href)
+        parsed = urlparse(abs_url)
+        path_lower = parsed.path.lower()
+
+        if parsed.netloc != base_parsed.netloc:
+            continue
+        if parsed.path == base_parsed.path:
+            continue
+        if path_lower.endswith("/dashboard"):
+            continue
+        if path_lower.endswith("/jobs/results") or "/jobs/results/jobs/results" in path_lower:
+            continue
+        if path_lower.endswith("/jobs/recommendations"):
+            continue
+        if "support.google.com" in parsed.netloc.lower():
             continue
 
         # Check for job signals
@@ -257,8 +291,8 @@ def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
         generic_texts = {"apply now", "view details", "learn more", "read more", "click here"}
         if text_lower in generic_texts and not has_job_href:
             continue
-
-        abs_url = absolutize_url(base_url, href)
+        if not _looks_like_job_detail_url(abs_url):
+            continue
 
         # Try to extract location from surrounding context
         location = ""
@@ -276,3 +310,44 @@ def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
             jobs.append(job)
 
     return jobs[:200]  # Cap to avoid excessive results
+
+
+def _looks_like_job_detail_url(url: str) -> bool:
+    """Conservative check for detail-like job URLs."""
+    parsed = urlparse(url)
+    path = parsed.path.lower().strip()
+    if not path:
+        return False
+
+    generic_paths = {
+        "/about/careers/applications/jobs/results",
+        "/about/careers/applications/jobs/results/",
+    }
+    if path in generic_paths:
+        return False
+
+    # Accept clear detail-path patterns.
+    detail_patterns = (
+        "/job/",
+        "/jobs/",
+        "/position/",
+        "/opening/",
+        "/requisition/",
+        "/vacancy/",
+        "/role/",
+    )
+    if any(p in path for p in detail_patterns):
+        # But reject generic result/navigation pages that merely contain /jobs/.
+        bad_subpaths = (
+            "/jobs/results",
+            "/jobs/recommendations",
+            "/jobs/search",
+            "/jobs/filter",
+            "/jobs/category",
+        )
+        if any(p in path for p in bad_subpaths):
+            return False
+        return True
+
+    # Accept URLs carrying a likely job ID / requisition token.
+    return bool(re.search(r"(req|job|jr|requisition)[-_]?[a-z0-9]{4,}|\d{5,}", path, re.IGNORECASE))

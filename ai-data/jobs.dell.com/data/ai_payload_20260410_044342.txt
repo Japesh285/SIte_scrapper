@@ -1,0 +1,44 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table.
+Here’s
+what we are looking for with this role:
+Essential Requirements
+5
++
+years of professional
+experience securing
+or
+administering
+large enterprise
+public
+cloud
+environments (
+OCI, AWS
+,
+Azure, GCP)
+or professional equivalent
+Knowledge of Managed Kubernetes clusters (AWS, GCP, Azure), Helm charts
+Embed security into CI/CD pipelines (Infrastructure as Code, automated testing, guardrails)
+Knowledge of Cloud Networking technologies (VPC,
+DirectConnect
+, Transit Gateways)
+Hands on experience with
+CloudFormation,
+Terraform,
+Pulumi
+or
+other Infrastructure as Code
+tools and
+languages
+Desired
+Requirements
+Cloud Workload Protection Platform (CWPP) or Cloud Security Posture Management (CSPM) experienc
+e
+Cloud Security Certification(s) – e.g.,
+OC
+A,
+OCP,
+CCSP
+, CCSK, AZ-500,
+SC-300,
+Google Professional Cloud Security Engineer

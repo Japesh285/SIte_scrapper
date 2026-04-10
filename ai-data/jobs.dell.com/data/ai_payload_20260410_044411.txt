@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+2–5 years of experience in server or hardware system validation.
+Proficiency in Python scripting for validation automation (sensor polling, Redfish/IPMI, data parsing).
+Understanding of thermal architecture & thermal tables, sensor maps, and fan control behavior of servers.
+Good understanding of server architecture components (CPU, memory, storage, VRMs, fans, BMC, airflow).
+Desirable Requirements
+Bachelor’s in EE/ME/CS or related field.
+Familiarity with Redfish/IPMI interfaces for server control and sensor access.
+Exposure to thermal chamber testing

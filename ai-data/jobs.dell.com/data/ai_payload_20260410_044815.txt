@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Skills:
+8-12 Years of experience in enterprise software development experience using programming languages like C, C++, Storage API.
+Experience in DataPath, Distributed Filesystems or Virtual Filesystems, Fuse or Storage SDK.
+Experience in Multi-Threading, concurrency model, lock free or low latency.
+Experience in Data Protection, backup and recovery, snapshot or replication.
+Experience in storage API and storage subsystems.
+Desired Skill:
+Experience in Python scripting & CI-CD, Java is plus.
+Experience in Operating system Clusters, Databases clusters.
+​

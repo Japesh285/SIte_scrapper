@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+9- 14 years of experience in platform/firmware/embedded systems with deep BMC/ embedded systems & Redfish/IPMI experience. 3 to 4+ years building AI/ML (incl. GenAI) solutions in production with measurable impact. Extensive usage of AI models and proven record in showcasing the transformation results.
+Proven end‑to‑end model development and fine‑tuning for performance/memory on constrained embedded platforms. Hands‑on with ML stack and ML/DL frameworks (PyTorch/TensorFlow) and vector databases/RAG pipelines. Firmware security depth (PKI, secure boot, attestation, SBOM).
+Proficiency in C/C++ (embedded) and Python, Angular, Reactjs; Resful API’s design & development, Go development experience is an added advantage
+Strong grounding in ML/DL/NLP (Transformers, CNNs, RNNs/LSTMs), embeddings, retrieval, and prompt engineering and Specification Driven Development.
+Develop frameworks for multi-agent collaboration, agent simulation, and emergent behavior. Optimize agent performance through reinforcement learning, retrieval-augmented generation (RAG), and fine-tuning.
+Collaborate with cross-functional teams including ML researchers, software engineers, and product managers and ensure scalability, reliability, and security of agentic systems in production environments.
+Desirable Requirements
+Bachelor’s in CS/CE/EE or related; Master’s preferred.

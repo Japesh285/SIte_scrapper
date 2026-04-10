@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Experience in all phases of software development: feasibility, design, implementation, integration, test and delivery
+Expertise in Linux kernel, SCSI, SCST, Fiber Channel, Virtual Tape Libraries, I/O device drivers
+Experience in RAID development and experience in NVMe protocol implementation and firmware development related to NVMe devices
+Expertise in persistent memory, hardware assisted compression technologies
+Experience in one or more of the following languages: C, Python, Go along with knowledge of version control, bug tracking systems (Git, JIRA)
+Desirable Requirements
+Experience in Storage domain (SAN/NAS/Virtualization)
+Experience in developing software for software-defined infrastructure, including hybrid cloud/on-prem and multi-cloud environments
+13-20 Years of relevant experience

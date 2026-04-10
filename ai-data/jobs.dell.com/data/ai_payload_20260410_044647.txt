@@ -1,0 +1,19 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+12
++ years in software/hardware engineering (or equivalent) with deep
+expertise
+in one or more of the following:
+Object storage, NAS
+(Network Attached Storage),
+Linux/BSD operating systems, Networking
+and protocol stacks (SMB, NFS, etc.), Filesystems
+Analytics, observability, and data science
+5 days a week onsite work model with
+Weekend work on a rotational basis (comp days provided), occasional early/late shifts, and overtime as needed.
+Desirable Requirements
+Proficiency
+in
+Java, C, Python, and scripting
+Proven experience in developing automation frameworks and applying AI/agentic tools to drive operational efficiency and scalability

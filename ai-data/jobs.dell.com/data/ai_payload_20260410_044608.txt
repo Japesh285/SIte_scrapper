@@ -1,0 +1,13 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+8+ years of related experience with a Master’s degree or 10+ years with a bachelor’s degree
+Strong experience in designing, developing, and maintaining resilient software infrastructure
+Expertise in Storage Technologies: Filesystem internals and NFS/SMB protocols
+Hands-on coding experience in C/C++, Python
+Experience in Linux development: Debugging, performance analysis and understanding of Kernel
+Strong Object-oriented design, data structures and algorithms knowledge
+Strong problem solving and analytical skills, good communication skills and stakeholder management
+Desirable Requirements
+Experience in Storage domain (SAN/NAS/Virtualization).
+Experience in developing software for software-defined infrastructure, including hybrid cloud/on-prem and multi-cloud environments.

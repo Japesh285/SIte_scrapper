@@ -489,7 +489,7 @@ async def _extract_dom_details(job: dict) -> dict:
                 logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
 
                 # ── Prepare AI payload — ONLY remove script/style/noscript ──
-                payload = prepare_ai_payload(html)
+                payload = prepare_ai_payload(html, domain=domain)
                 logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
 
                 if len(payload) < 2000:

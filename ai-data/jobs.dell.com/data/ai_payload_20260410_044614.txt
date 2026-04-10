@@ -1,0 +1,23 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Bachelor’s degree in a technical field (Master’s preferred) with at least 5 - 13
+years of experience
+in testing, test automation, and technical leadership.
+Proven ability to qualify features in
+complex, distributed systems
+.
+Strong expertise in
+Python scripting
+across multiple operating systems (Linux, Windows).
+Understanding of
+AI/ML concepts
+and hands-on experience leveraging AI tools or frameworks to enhance developer experience, automate workflows, and drive innovation.
+Excellent analytical, problem-solving, and communication skills.
+Desirable Requirements
+Experience qualifying products and solutions in the
+storage domain
+.
+Proficiency in one or more major programming languages (C++, Java) and experience developing
+REST API-based interfaces
+.

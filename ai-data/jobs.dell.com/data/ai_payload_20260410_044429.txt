@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+13+ years of related experience. Hands-on coding experience in C/C++, Python
+Deep experiences in OS/RAID development
+Solid Understanding in distributed systems architecture, Memory management, Concurrency and synchronization
+Strong Object-oriented design, data structures and algorithms knowledge
+Agile-based development experience. Strong interpersonal and verbal communication skills
+Desirable Requirements
+Networking and Storage troubleshooting skills
+Knowledge in Kubernetes, Hypervisor and containers

@@ -1,0 +1,15 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements:
+Professional experience working with complex enterprise hardware, software, and networking solutions.
+Strong communication skills, with experience in failure analysis, escalation management, and documentation. In-depth understanding of memory, processor technology, and server power/thermals.
+Expertise in server BIOS settings, including proper use and understanding of boot sequence and key modules, interactions using UEFI/BIOS modes, and PXE Boot.
+Knowledge of major operating systems (Windows, VMware, Linux) with the ability to analyze and decipher TSR, SEL, LC logs.
+Experience with performance issue resolution and measurements tools for OS, hardware, application software, or appliances. In-depth experience with NICs and CNAs also communication device protocols
+Desirable Requirements:
+Bachelor’s degree in electrical engineering, Computer Engineering, Computer Science and/or 9+ years of related experience in the IT industry.
+Proficiency in working with third-party technical partners or geographically dispersed engineering teams
+and s
+cripting with PowerShell, Bash, or Python.
+Experience in using Protocol Analyzers, Oscilloscopes,
+teardown and re-assembly.

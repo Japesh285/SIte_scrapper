@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Bachelors (Technical)/Masters preferred, with 5-8 years of strong design, development and technical leadership experience.
+Proven ability to apply advanced software engineering concepts and design patterns in building complex, distributed systems.
+Demonstrated expertise in Java(preferably RxJava) and Vert.x with various operating systems (Linux, Windows).
+Familiarity with scripting languages in open systems i.e Python and experience in developing REST API based interfaces.
+Understanding of AI/ML concepts and practical experience in leveraging AI tools or frameworks to improve developer experience, automate workflows, and drive innovation in software development.
+Desirable Requirements
+Excellent analytical, problem solving and debugging skills

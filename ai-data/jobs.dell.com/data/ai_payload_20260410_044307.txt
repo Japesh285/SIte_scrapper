@@ -1,0 +1,13 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+• 8+  Years of experience. Ability to translate security needs into clear requirements for engineering
+• Vulnerability management system (Rapid7, Tenable). Review, prioritize, and track remediation of high-profile vulnerabilities across infrastructure,
+applications, and cloud environments.
+• Experience in pipeline security integration with Jenkins, Azure DevOps, GitHub. Experience in Integrating security into CI/CD pipelines and DevOps practices
+• Experience in Integrate container image scanning, signing, and runtime security controls. Hands-on experience with SIEM, and EDR/XDR platforms (Splunk, Carbon Black, Crowdstrke)
+• Familiarity with security compliance frameworks (NIST, ISO, CIS).Knowledge of automation concepts (APIs, JSON, PowerShell, Python basics).Experience in driving KPIs / Metrics for Patch Compliance, HPV, and Critical Vulnerability
+Desirable Requirements
+:
+• Experience defining multi-year roadmaps and managing complex cross-functional programs.
+• Familiarity with tools like Power BI, JIRA, ESM, Grafana.Certifications: CISSP, Security+, RSMPO

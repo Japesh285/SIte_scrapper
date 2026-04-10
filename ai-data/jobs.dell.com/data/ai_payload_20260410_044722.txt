@@ -1,0 +1,13 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+8–14 years of software engineering experience using languages such as C/C++, Java, and Python, with strong expertise in infrastructure solutions and a solid storage domain background.
+Proven people leadership, atleast 2 years of experience managing diverse, cross‑functional teams, nurturing talent, and building high‑performance engineering culture.
+Exceptional communication and influence skills to act as the bridge between leadership and teams, enabling clarity, alignment, and transparency of goals, strategy, and expectations.
+Strong execution leadership, driving clear goal‑setting, effective prioritization, operational discipline, and seamless stakeholder alignment to ensure predictable delivery through any Agile methodologies & particpating in required Scrum ceremonies and guide teams
+Deep experience in performance management, including leading performance reviews, promotions, talent calibrations, and creating actionable improvement plans when needed.
+Desirable Requirements
+Systems & Performance Engineering:
+Expertise in kernel subsystems, device drivers, firmware; RDMA/verbs; SPDK/DPDK; JVM tuning and GC; async/reactive patterns; lock-free/concurrent data structures; filesystem internals (NFS/SMB, S3 object store, erasure coding); observability stacks, performance profiling at scale, and chaos/failure injection.
+Security & Cloud Platforms:
+Skilled in security and cryptography (FIPS/CC compliance), secure boot, TPM, HSM integrations; experienced with private and public cloud environments including Microsoft Azure, Google Cloud Platform (GCP), and Amazon Web Services (AWS).

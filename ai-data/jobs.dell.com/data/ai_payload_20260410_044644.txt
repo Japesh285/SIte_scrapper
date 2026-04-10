@@ -1,0 +1,57 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here's what we are looking for with this role:
+Essential Requirements
+15+ years
+of experience in advanced software engineering or related technical roles.
+Strong programming
+expertise
+in
+C/C++ and Python
+.
+Foundational knowledge of
+networking
+(debugging,
+virtual,
+and physical interfaces).
+Solid understanding of
+multi-
+threading
+and IPC
+mechanisms.
+Deep experience with
+storage systems
+, especially in resiliency, high availability, reliability, and network block storage protocols (
+iSCSI/FC
+).
+Proficiency
+with
+Linux user-space tooling
+(
+gdb
+, journals,
+rootfs
+structure, etc.).
+Demonstrated ability to
+debug complex code
+and drive high-quality solutions independently.
+Excellent verbal and written communication skills with the ability to collaborate across global teams and time zones.
+Leadership qualities
+with proven ability to influence, mentor, and drive resolution under pressure.
+Knowledge of
+Replication/Disaster Recovery technologies.
+Understanding of
+PostgreSQL databases
+and
+psql
+Desirable Requirements
+Experience working directly with customers,
+demonstrating
+a keen sense
+of urgency and ownership during severe escalations.
+Prior
+leadership roles
+in software development or escalation engineering.
+Basic Linux Kernel knowledge.
+We believe that each of us has the power to make an impact. That's why we put our team members at the center of everything we do. If you're looking for an opportunity to grow your career with some of the best minds and most advanced tech in the industry, we're looking for you.
+Dell Technologies is a unique family of businesses that help individuals and organizations transform how they work, live, and play. Join us to build a future that works for everyone because Progress Takes All of Us.
+Application closing date: 17 April 2026

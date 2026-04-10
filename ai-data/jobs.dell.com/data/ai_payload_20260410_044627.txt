@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+5-13 years of related experience with a Master’s degree or bachelor’s degree. Hands-on coding experience in C/C++, Python
+Strong experience in Architecting / designing, developing, and maintaining resilient software infrastructure
+Expertise in NAS Storage Technologies: Filesystem internals and NFS/SMB protocols & experience in Linux development: Debugging, performance analysis and understanding of Kernel
+Strong Object-oriented design, data structures and algorithms knowledge. Agile-based development experience
+Strong problem solving and analytical skills, good communication skills and stakeholder management
+Desirable Requirements
+Familiarity with Replication and Snapshot technologies
+Ability to use AI tools for Engineering efficiency

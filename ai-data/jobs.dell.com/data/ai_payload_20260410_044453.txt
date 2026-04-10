@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+12–15 years of deep, hands-on experience in data center and enterprise networking across Dell, Cisco and SDN platforms, with expert level skills in L2/L3 including EVPN/VXLAN, SONiC OS, CLOS architecture, and large-scale fabric deployments.
+Advanced proficiency in SDN technologies including NSX, NSX‑T, SDDC, container networking (CNI), and cloud networking architectures.
+Extensive experience with AI/ML/GenAI‑focused networking, including Spectrum and InfiniBand switch deployments, along with operational tools such as Dorado, NetQ, and UFM.
+Ability to produce comprehensive HLD/LLD documents, SOPs, and runbooks, and provide mentoring to junior engineers while driving technical excellence within the team.
+Strong customer management and stakeholder collaboration skills, supported by advanced certifications such as CCIE, and Dell Data Center Networking.
+Desirable Requirements
+•Bachelor’s degree or higher
+•Dell Proven Professional Certification

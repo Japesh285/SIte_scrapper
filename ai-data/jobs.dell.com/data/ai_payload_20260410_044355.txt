@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+8-12 years of experience in software development, with a focus on distributed systems, storage/cloud or data management.
+Strong technical expertise in Go Lang with experience in Kubernetes stack.
+Experience with containerization using Docker and Kubernetes is required, with a strong understanding of how to design, build, and deploy containerized applications in a Kubernetes environment.
+Experience in Operating Systems including Linux, Unix and open source platforms.
+Experience with cloud-based data platforms, such as AWS, Azure, or GCP, and experience with containerization using Docker and Kubernetes.
+Desirable Requirements
+Own and manage the product backlog, define user stories and acceptance criteria for data platform
+Experience in technical leadership, mentoring junior engineers, leading and driving technical decisions.

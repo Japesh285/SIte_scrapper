@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Hands-on coding experience in C++, Python
+Build supportability, diagnostics frameworks, tools; maintain core dumps and debugging pipelines. Improve platform observability and debuggability.
+Networking and Storage troubleshooting skills
+Knowledge in Kubernetes, Hypervisor and containers
+Desirable Requirements
+5+ years of related experience with Bachelors
+Strong Communication and interpersonal skills

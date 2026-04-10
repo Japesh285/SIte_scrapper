@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+4- 15 years of experience in SDET, QA automation, or software engineering roles, with demonstrated technical leadership.
+Strong coding skills in Python, Go, or automation scripting languages.
+Deep experience with distributed systems, clustering, and high-availability testing. Hands-on expertise with Linux, containers (Docker/Kubernetes), and networking fundamentals.
+Proficiency in automation frameworks (PyTest, JUnit, TestNG, or similar).
+Strong experience with CI/CD pipelines (Jenkins, GitLab CI, or similar). Applied experience with AI/ML in testing or observability, such as: Intelligent test selection or prioritization,Anomaly detection on metrics, logs, or test results,Failure clustering and root-cause analysis using ML or LLM-based tools
+Desirable Requirements
+Experience testing scale-out storage systems (e.g., EMC, NetApp, Cohesity, Rubrik). Knowledge of cloud platforms (AWS, Azure, GCP).
+Exposure to chaos engineering, fault injection, and large-scale benchmarking.
+Experience integrating AI tools or platforms into engineering workflows (e.g., LLMs, predictive analytics, custom ML pipelines).

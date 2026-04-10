@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+13 years and 20 years of hands-on experience in file systems technology, with deep expertise in design, implementation, and optimization
+Strong proficiency in C++ with experience building high-performance, production-grade systems
+Deep understanding of distributed file systems, storage architectures, and performance tuning at scale and solid knowledge of NFS/SMB protocols and their practical application in enterprise environments
+Proven ability to architect complex systems that balance technical excellence with business needs and track record of influencing technical decisions and driving consensus across distributed, cross-functional teams
+Experience working in global organizations with teams across multiple geographies, comfort with ambiguity and strong communication skills - you can explain complex technical concepts clearly to both technical and non-technical audiences
+Desirable Requirements
+•Bachelor’s or master’s degree in computer science or related field

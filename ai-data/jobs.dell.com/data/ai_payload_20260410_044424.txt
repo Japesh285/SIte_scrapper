@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+· Hands-on 13 years - 25 years of coding experience in C/C++, Python
+· Deep experiences in OS internals and RAID technologies.
+· Solid Understanding in distributed systems architecture.
+· Strong foundations in system architecture and algorithms
+· Agile-based development experience
+Desirable Requirements
+Bachelor’s or master’s degree in computer science or related field
+Experience with vRealize Orchestrator, vRealize Automation, Enterprise Storage, Atlassian products (JIRA, Confluence)
+Strong interpersonal and verbal communication skills

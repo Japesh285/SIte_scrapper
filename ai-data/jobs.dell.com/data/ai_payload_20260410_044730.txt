@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+17 - 25 years of experience in systems programming and distributed systems fundamentals (concurrency, networking, storage, consistency, fault tolerance).
+Proficiency in at least one of C/C++ OR Java and Python (good to have); willingness to learn across the stack.
+Experience with Linux or BSD development and debugging (e.g., performance, strace/dtrace/eBPF, tcpdump) and ability to write clean, testable code; familiarity with unit/integration/system testing and CI/CD.
+Technical leadership expertise of building and growing high-performing engineering teams, mentoring senior engineers, and setting technical direction for critical AI data platform storage systems.
+Must have proven experience setting technical direction and cross-product architecture, delivering high-impact performance and reliability improvements, and raising the company-wide engineering bar through mentorship, clear communication, collaboration, and a bias for action.
+Desirable Requirements
+Systems & Performance Engineering: Expertise in kernel subsystems, device drivers, firmware; RDMA/verbs; SPDK/DPDK; JVM tuning and GC; async/reactive patterns; lock-free/concurrent data structures; filesystem internals (NFS/SMB, S3 object store, erasure coding); observability stacks, performance profiling at scale, and chaos/failure injection.
+Security & Cloud Platforms: Skilled in security and cryptography (FIPS/CC compliance), secure boot, TPM, HSM integrations; experienced with private and public cloud environments including Microsoft Azure, Google Cloud Platform (GCP), and Amazon Web Services (AWS) & exposure or usage of AI tools to build code/design is big plus.

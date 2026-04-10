@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+8 to 12 years of related experience, with advanced proficiency in Infrastructure Automation using Terraform, YAML and Ansible to build, extend, and maintain automation modules for Dell compute, storage, and networking; experienced in creating idempotent, reliable, and versioned IaC blueprints.
+Advanced expertise in Kubernetes and Red Hat OpenShift, including deployment and debugging of cluster components, Operators, CRDs, GPU workloads, Helm/Kustomize‑based configuration, and GitOps delivery models.
+Working to advanced proficiency in AI/ML and GPU software stacks, including GPU Operator, CUDA/NCCL validation, PyTorch/TensorFlow ecosystem, containerized model training/inference, and GPU‑aware workload deployment on Kubernetes/OpenShift.
+Working to advanced proficiency in diagnostics and observability, able to troubleshoot across compute, storage, network, and Kubernetes layers using Prometheus, Grafana, logs, events, and performance metrics to isolate root causes. Working proficiency in secure CI/CD and cluster security, including SBOM generation, image signing (Cosign), vulnerability scanning, policy‑as‑code (OPA/Conftest), RBAC/SCCs, secrets management, and secure workload deployment practices.
+Advanced ability in documentation and blueprinting, producing clear, reusable automation blueprints, solution guides, implementation specifications, and troubleshooting playbooks using docs‑as‑code approaches. Advanced proficiency in cross‑functional collaboration, effectively partnering with Engineering, DevRel, Infra, and Product teams; capable of structured triage, reproducible issue isolation, and communicating clear technical insights.
+Desirable Requirements
+Bachelor’s degree
+Contribute to the development and implementation of test strategies for complex software products and systems/for storage products and systems.
+Strong knowledge on test tools (Coverage tools / Security testing tools / Performance and stress testing techniques)

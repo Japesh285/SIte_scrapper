@@ -1,0 +1,23 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Strong hands‑on experience with Dell PowerFlex
+including deployment, scaling, lifecycle management, SDS/SDC architecture, fault domains, performance tuning, and integration with VMware workloads.
+Mandatory expertise in VMware NSX‑T
+, covering architecture, logical switching and routing, micro‑segmentation, distributed firewall policies, load balancing, and advanced NSX networking and security troubleshooting.
+Deep expertise in the VMware stack
+, including ESXi and vCenter administration, VM lifecycle management, clustering, HA/DRS, and performance monitoring and optimization.
+Hands‑on experience with Dell PowerEdge servers
+, including server provisioning, BIOS/firmware, RAID and NIC configuration, and hardware troubleshooting.
+Strong foundation in physical and virtual data‑center networking (mandatory)
+, including VLANs, VXLAN, TCP/IP, MTU/jumbo frames, LACP, high‑availability designs, and collaboration with network teams on ToR switches, cabling, optics, and connectivity troubleshooting.
+8–12 years of enterprise infrastructure experience
+, supporting large‑scale data centers with demonstrated exposure to solution design, architecture, or technical lead roles.
+Desirable Requirements
+Exposure to
+modern HCI and cloud‑native platforms
+, including
+Red Hat OpenShift
+(on‑prem or hybrid) and
+Nutanix HCI
+(AOS, Prism, AHV – hands‑on or conceptual).

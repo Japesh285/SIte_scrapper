@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+4 - 7 years of experience with Linux OS internals, driver development, and hands-on work with the kernel.
+Ability to debug and guide others to debug flexible, scalable and complex programs, using either written or verbal design specifications.
+Capable to handle responsible NPI/Sustain projects running on Linux OS, tools and hardware platforms.
+Proven expertise in working with various device drivers and experience in both Linux user space and kernel space development.
+Capable of contributing effectively across all phases of software development, including feasibility analysis, design, implementation, integration, testing, and delivery..
+Desirable Requirements
+• Bachelor’s degree

@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+8-13 years of Profound and proven experience with C++ programming language, with a focus on multithreading and inter-process communication techniques.
+Proficient in Go programming language with a strong understanding of software engineering principles. Extensive experience with Kubernetes (K8s) and specifically OpenShift Container Platform (OCP).
+Deep knowledge of authentication and authorization mechanisms within Kubernetes environments. Experience with automation and scripting with Python, Bash, and relevant automation frameworks.
+Expertise in modern software development processes, including DevOps models, continuous integration, continuous testing, and agile development using platforms like Jira, Git, Jenkins, and Confluence.
+Strong problem-solving skills with the ability to code/debug and guide others in designing and debugging flexible, scalable, and complex programs.
+A commitment to continuous learning and adaptability to new tools, languages, and operating systems with some training and on-the-job experience.Strong interpersonal and communication skills
+Desirable Requirements
+Bachelor’s or Master’s degree in computer science or related field

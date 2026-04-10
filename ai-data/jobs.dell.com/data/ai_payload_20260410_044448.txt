@@ -1,0 +1,15 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Hands-on development experience in C++, Python
+Deep experiences in performance tuning, performance analysis and instrumentation
+Strong expertise in storage workload modelling for sizing and optimization
+Extensive knowledge in SAN, Fabric, Network and Virtualization configuration
+Solid Understanding in distributed systems architecture, Memory/CPU management.
+Strong Object-oriented design, data structures and algorithms knowledge
+Agile-based development experience
+Strong interpersonal and verbal communication skills
+Desirable Requirements
+13+ years of related experience
+Bachelor’s or master’s degree in computer science or related field
+Experiences with Kubernetes, Hypervisors and containers

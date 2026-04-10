@@ -419,7 +419,7 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                         logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
 
                         # ── Prepare AI payload — ONLY remove script/style/noscript ──
-                        payload = prepare_ai_payload(html)
+                        payload = prepare_ai_payload(html, domain=domain)
                         logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
 
                         if len(payload) < 2000:
@@ -950,7 +950,7 @@ async def scrape_details_batch(
                                 logger.info("[BatchScrape] [DETAIL] url=%s html_length=%d", job_url, len(html))
 
                                 # ── Prepare AI payload — ONLY remove script/style/noscript ──
-                                payload = prepare_ai_payload(html)
+                                payload = prepare_ai_payload(html, domain=domain)
                                 logger.info("[BatchScrape] [AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
 
                                 if len(payload) < 2000:
@@ -1512,7 +1512,7 @@ async def scrape_hardcoded_job_details():
                             html = await page.content()
                             logger.info("[DETAIL] url=%s html_length=%d", job_url, len(html))
 
-                            payload = prepare_ai_payload(html)
+                            payload = prepare_ai_payload(html, domain=domain)
                             logger.info("[AI PAYLOAD] length=%d source=JOB_DETAIL", len(payload))
 
                             if len(payload) < 2000:

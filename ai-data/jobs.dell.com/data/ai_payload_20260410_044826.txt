@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+• Experience: 8-12 Years of experience in software development using VMware vSphere, hybrid deployments, multi-cloud VMware platforms and Hands-on experience with cloud-hosted VMware services (VMC, AVS, GCVE, OCVS, VMC on Dell).
+• Experience in working with Linux OS Administration and Expertise in: SUSE Enterprise Server, RHEL and Appliance-based OS environments (Evia, DM5500)
+• Strong understanding Automation & Scripting and Strong Shell scripting (bash/sh) for automation of installation and configuration; Puppet for node configuration and system state management and Java exposure for sysMgr and UpgradePackage components
+• Highly skilled in Networking & Tools: Skilled in: API gateways (Zuul, Nginx), Firewall configuration, Networking concepts (routing, DNS, ports, multi-NIC), Docker and YAML/JSON configuration structures.
+Desirable Requirements
+• Experience in enterprise-scale data protection or infrastructure products and familiarity with CI/CD pipelines for deployment and upgrade automation
+• Ability to troubleshoot complex multi-layer deployments across OS, network, and virtualization layers and Certification preferred: VMware VCP, RHCSA/RHCE, SUSE Certified Administrator (SCA)

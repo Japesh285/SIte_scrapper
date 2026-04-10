@@ -1,0 +1,21 @@
+Essential Requirements
+5+ years of experience
+in data protection engineering, backup infrastructure, and systems engineering,
+Strong architectural understanding
+of data protection systems—snapshot policies, retention logic, replication workflows, data movement pipelines—along with
+expert-level log analysis
+and problem isolation across distributed environments.
+Strong linux/unix systems and debugging background
+, including systems programming in C, multi-threading, algorithms, data structures, operating systems, file systems, and advanced troubleshooting using tools like
+GDB
+Advanced networking knowledge
+(TCP/IP) as applied to backup traffic, storage connectivity, data throughput, and replication paths.
+Expertise in Linux (primary)
+with hands-on experience across VMware, Windows, and heterogeneous workloads; proficient in scripting/programming, databases, backup agents, cloud integrations, and modern protection hardware platforms.
+Desirable Requirements
+Bachelor’s degree
+Expertise in
+Data Domain (DDOS, Boost, replication, cloud tiering)
+and
+PowerProtect Data Manager (PPDM)
+including assets, protection engines, and storage workflows.

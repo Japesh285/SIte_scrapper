@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+12+ Years of Software Development experience working in Agile SDLC, strong experience with C/C++, Win 32/Storage API, Windows/Linux/Unix Programming, Storage.
+Knowledge of CPU architecture, Multi-Threaded Environments, Databases, Storage Technologies
+Excellent code detective and root cause analysis skills on a variety of platforms and languages
+Experience in feature requirements, development and design of applications which interact closely with business
+Experience in Windows, Linux & Aix operating systems & relevant File systems, experience in Data Protection domain, Scalable Architecture, virtualization platforms like Esxi or Hyper-V
+Hands on exposure with AI technologies and proficient usage of AI copilots for all facets of SDLC, experience designing and implementing complex, scalable enterprise grade systems
+Desirable Requirements
+Experience in Python scripting & CI-CD, Java is plus.
+Experience in Storage domain will be a plus.

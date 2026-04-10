@@ -1,0 +1,17 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+You will:
+Be part of the Data Lakehouse engineering team, responsible for designing and developing scalable, efficient and reliable data platform.
+Prepare, review and evaluate software/storage specifications for products and systems
+You will work closely with cross-functional teams, including engineering and product management, to drive the development of Dell's Data Lakehouse platform.
+Essential Requirements
+5 - 8
+years of related experience
+in software development, with a focus on distributed systems, storage/cloud or data management.
+Strong technical expertise in Go Lang with experience in Kubernetes stack.
+Experience with containerization using Docker and Kubernetes is required, with a strong understanding of how to design, build, and deploy containerized applications in a Kubernetes environment.
+Operating Systems, Open Source and other lookouts, working experience with Linux is a must.
+Strong collaboration and communication skills, with experience in working with cross-functional teams, stakeholders
+Desirable Requirements
+Ability to write and automate functional tests to ensure the quality and reliability of the system, using frameworks such as Pytest, Unittest, etc.
+Experience with cloud-based data platforms, such as AWS, Azure, or GCP, and experience with containerization using Docker and Kubernetes.

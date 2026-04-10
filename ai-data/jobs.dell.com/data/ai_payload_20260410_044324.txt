@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+5+ years of experience in all phases of software development: feasibility, design, implementation, integration, test, delivery, and automation
+Strong Linux/Distributed system knowledge and hands-on experience, with experience in designing and implementing complex systems
+Proficient programming and debugging skills in C/C++ or Go, along with knowledge of version control (Git) and bug tracking systems (JIRA)
+Knowledge and expertise in Kubernetes
+Desirable Requirements
+Experience in developing software for storage appliances
+Strong problem solving, troubleshooting, diagnostic skills with knowledge of performance analysis tools and techniques for multi-threaded distributed systems

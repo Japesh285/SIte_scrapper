@@ -1,0 +1,16 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role :
+Essential Requirements
+6 to 8 years of experience in software development, with a
+strong emphasis on hardware integration and low-level driver programming
+Proficiency in
+C
+/C++, with deep expertise in systems programming and working close to the hardware and firmware
+Skilled in
+Python
+and Perl for automation and testing workflows, with hands-on experience using Docker for containerized deployment and modern DevOps practices
+Proven track record of delivering robust, high-performance, and reliable software solutions across diverse platforms
+Demonstrated ability to design, implement and debug scalable and complex software systems based on both written and verbal specifications, and the ability to adapt and learn new tools, programming languages and operating systems
+Desirable Requirements
+Bachelor’s degree
+Experience with Jira and Agile development methodologies

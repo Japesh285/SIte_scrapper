@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+8- 12 years of experience with design, implement and develop file system software using C/C++. Strong Analytical, Debugging and troubleshooting skills using tools like GDB.
+Proficiency and hands-on coding experience in C/C++. In-depth experience in Linux user-space development, multithreading and storage solutions.
+Practical expertise in troubleshooting, debugging, performance optimization, and refactoring of complex systems.
+Extensive knowledge of Object-oriented design, data structures and algorithms. Hands-on experience File systems, Distributed system and experience on AI/ML
+Desirable Requirements:
+Experience with Building and understanding of RockDB, databases, and key-value stores. Experience with Performance optimization in the filesystem.
+Hands-on experience with gdb micros, core file analysis, and makefiles, REST API .Filesystems background or storage domain background.

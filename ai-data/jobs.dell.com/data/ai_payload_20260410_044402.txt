@@ -1,0 +1,10 @@
+Take the first step towards your dream career.
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+6 to 9 years of experience in coding and scripting with Python, Ansible, Kubernetes and YAML for enterprise software development.
+Experience in Artificial Intelligence and Machine Learning tools and expertise in deploying and running AI, ML models.
+Experience in Cluster computing and various Server, Storage and Networking components and protocols involved in it.
+Expertise in the containerization on docker, Kubernetes engine.
+Experience in software design and Opensource development.
+Desirable Requirements
+Expertise in the provisioning and orchestrator tools with strong customer focus.

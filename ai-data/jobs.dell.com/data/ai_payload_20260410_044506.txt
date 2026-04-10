@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+5 to 8 years' experience with fault/error injections, chaos testing, or resilience testing.
+Experience in test design, integration, automation, and delivery of Linux-based platform software for storage subsystems.
+Strong debugging, problem-solving, and diagnostic skills, including kernel and driver-level root-cause analysis with proficiency in C or Python, with familiarity in scripting languages.
+Knowledge of Git, JIRA, and other version control or issue-tracking systems and experience with CI/CD pipelines such as Jenkins or GitLab CI.
+Solid understanding of AI/ML concepts, including hands-on experience with AI assisted and agentic AI–driven testing tools or frameworks.
+Desirable Requirements
+Experience in Storage domain (SAN/NAS/Virtualization).
+Experience in developing software for software-defined infrastructure, including hybrid cloud/on-prem and multi-cloud environments.

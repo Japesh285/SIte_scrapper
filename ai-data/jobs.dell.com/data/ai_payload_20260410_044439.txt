@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+5 to 8 years of related experience with proficiency in NLP, Machine Learning, Computer Vision, and GenAI and working experience in data visualization (e.g., Power BI, matplotlib, plotly) with hands-on experience with CNN, LSTM, YOLO, and database skills including SQL, Postgres SQL, PGVector, and ChromaDB.
+Proven experience in MLOps and LLMOps, with a strong understanding of ML lifecycle management and expertise with large language models (LLMs), prompt engineering, fine-tuning, and integrating LLMs into applications for natural language processing (NLP) tasks
+Proficiency in Python programming, with expertise in libraries such as numpy, pandas, scipy, spacy, gensim, TensorFlow, and/or Pytorch and knowledge of Multi-Modal RAG, Agentic RAG, Langchain, Hugging Face Transformers, and vector embeddings.
+Experience with CI/CD tools, containerization (Docker, Kubernetes), and version control systems (Git) along with expertise in correlation analysis and feature selection techniques to identify key drivers and relationships in data.
+Experience with advanced regression models, including linear and non-linear regression, as well as ensemble methods like Random Forest and Gradient Boosting for predictive modeling. Proficiency in feature selection and dimensionality reduction techniques. Experience with model explainability and interpretability techniques using tools like SHAP and LIME.
+Desirable Requirements
+Strong product/technology/industry knowledge and familiarity with streaming/messaging frameworks (e.g., Kafka, RabbitMQ, ZeroMQ) along with experience with cloud platforms (e.g., AWS, Azure, GCP) or with web technologies and frameworks (e.g., HTTP/REST/GraphQL, Flask, Django).
+Skilled in programming languages like Java or JavaScript.Expertise in monitoring, observability, and performance tuning using tools like Prometheus, Grafana with strong knowledge of time series forecasting techniques and statistical methods, including ARIMA, SARIMA, and exponential smoothing along with knowledge of Langfuse for building LLM-powered applications.

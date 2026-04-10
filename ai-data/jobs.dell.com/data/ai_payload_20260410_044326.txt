@@ -1,0 +1,10 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Bachelor’s degree in data science, computer science OR other IT / Engineering related field with 3+ years of professional experience in ML Engineering role
+Practical hand-on experience with Python, used in real projects or production systems
+Working knowledge of Docker, Kubernetes, Git and CI/CD pipelines
+Good understanding of how machine learning models are deployed, served, and maintained over time
+Working knowledge of LLMs and generative AI, including integrating LLMs into applications or services (e.g. prompt handling, APIs, basic orchestration, or tooling)
+Starting Salary from:
+3 000 eur Brutto  /month

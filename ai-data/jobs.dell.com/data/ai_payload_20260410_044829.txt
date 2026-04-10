@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+:
+Deep understanding of File Systems and File Protocols(CIFS/NFS). Experience in Storage(NAS) Testing for functional and Systemic Testing.
+Deep understanding of software testing methodologies and lifecycle
+Good and In-Depth Coding abilities in Python and experience in automation development processes and tools
+Proficient with difference Linux OS
+Working in Agile Development model.
+Desirable Requirements:
+Familiarity with scripting languages
+5-8 years of related experience

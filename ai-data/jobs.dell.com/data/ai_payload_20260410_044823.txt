@@ -1,0 +1,15 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Bachelor’s degree in a technical discipline (Master’s or Ph.D. preferred) with minimum 10-12 years of software engineering experience, including significant leadership in complex, distributed systems.
+Strong proficiency in one or more programming languages: Java (RxJava), C++, Python.
+Excellent analytical, problem-solving, and debugging skills.Experience with multiple operating systems (Linux, Windows).
+Exceptional communication and leadership skills to drive team collaboration.
+Hands-on experience with
+AI technologies
+, including
+AI tools, LLMs, and agentic AI frameworks
+Desirable Requirements
+Experience in the
+storage domain
+or large-scale data systems.

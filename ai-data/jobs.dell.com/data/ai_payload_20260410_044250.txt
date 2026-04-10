@@ -1,0 +1,19 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements:
+Hands-on experience with
+MLOps
+tools
+like
+MLflow, Kubeflow, or SageMaker.
+Solid understanding of
+machine learning concepts
+, model lifecycle, and deployment strategies.
+Strong experience in Big Data processing using Apache Spark,
+PySpark
+, and distributed computation frameworks.
+Experience building and managing Kafka-based streaming pipelines and event-driven architectures.
+Solid understanding of Airflow or similar workflow orchestration tools for ETL/ELT and ML pipelines.
+Desirable Requirements
+•6 to 8 years of related experience
+•Bachelor’s degree

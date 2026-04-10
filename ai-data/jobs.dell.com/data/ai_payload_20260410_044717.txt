@@ -1,0 +1,17 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Experience in all phases of software development: feasibility, design, implementation, integration, test and delivery
+.
+Design, develop, and maintain Linux kernel-level device drivers for storage subsystems
+Expertise in Linux kernel, SCSI, SCST, Fiber Channel, Virtual Tape Libraries, I/O device drivers
+.
+Expertise in persistent memory, hardware assisted compression technologies
+Debug and resolve complex kernel and driver-level issues in production environments. Strong problem solving, troubleshooting, diagnostic skills
+Experience in one or more of the following languages: C, Python, Go
+.
+Knowledge of version control, bug tracking systems (Git, JIRA)
+Strong communication skills and an ability to articulate technical design while understanding business requirements, with the ability to debate and collaborate with other team members
+Desirable Requirements
+Experience in Storage domain (SAN/NAS/Virtualization).
+Experience in developing software for software-defined infrastructure, including hybrid cloud/on-prem and multi-cloud environments.

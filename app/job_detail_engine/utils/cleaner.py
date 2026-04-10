@@ -19,8 +19,27 @@ _IRRELEVANT_SECTIONS = [
 
 _MAX_TEXT_CHARS = 4800  # ~1200 tokens
 
+_DELL_SECTION_KEYWORDS = (
+    "job description",
+    "what you will achieve",
+    "essential requirements",
+    "desirable requirements",
+    "take the first step towards your dream career",
+    "application closing date",
+)
 
-def prepare_ai_payload(html: str) -> str:
+_DELL_STOP_KEYWORDS = (
+    "benefits and perks of working at dell technologies",
+    "who we are",
+    "join us and become a part of what s next in technology",
+    "equal employment opportunity policy",
+    "job family",
+    "job id",
+    "submission deadline",
+)
+
+
+def prepare_ai_payload(html: str, domain: str = "") -> str:
     """Prepare HTML for AI input — ONLY remove noise, preserve ALL content.
 
     This is the SINGLE preprocessing function for ALL job detail pages.
@@ -46,6 +65,13 @@ def prepare_ai_payload(html: str) -> str:
         return ""
 
     try:
+        normalized_domain = (domain or "").lower().strip()
+        if normalized_domain == "jobs.dell.com":
+            payload = _prepare_dell_ai_payload(html)
+            if payload:
+                logger.info("[AI PAYLOAD] length=%d source=dell_filtered", len(payload))
+                return payload
+
         soup = BeautifulSoup(html, "html.parser")
 
         # ONLY remove noise — nothing else
@@ -69,6 +95,74 @@ def prepare_ai_payload(html: str) -> str:
     except Exception as exc:
         logger.warning("[PreparePayload] Failed, returning raw HTML: %s", exc)
         return html
+
+
+def _prepare_dell_ai_payload(html: str) -> str:
+    """Build a much tighter AI payload for Dell job pages.
+
+    Dell pages include a large amount of navigation/app-shell text, which can
+    inflate prompts into tens of thousands of tokens. For Dell only, extract a
+    compact, job-focused text payload from semantic sections and headings.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    for tag in soup(["script", "style", "noscript", "svg"]):
+        tag.decompose()
+
+    text = soup.get_text("\n", strip=True)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n{2,}", "\n", text).strip()
+    if not text:
+        return ""
+
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    selected: list[str] = []
+    collecting = False
+
+    for line in lines:
+        lowered = line.lower()
+
+        if any(keyword in lowered for keyword in _DELL_STOP_KEYWORDS):
+            if collecting:
+                break
+            continue
+
+        if any(keyword in lowered for keyword in _DELL_SECTION_KEYWORDS):
+            collecting = True
+
+        if collecting:
+            selected.append(line)
+
+    if not selected:
+        # Fallback: keep only lines that look job-specific.
+        selected = [
+            line for line in lines
+            if any(
+                keyword in line.lower()
+                for keyword in (
+                    "responsibilities",
+                    "requirements",
+                    "qualifications",
+                    "experience",
+                    "skills",
+                    "degree",
+                    "location",
+                    "job description",
+                    "you will",
+                )
+            )
+        ]
+
+    compact = "\n".join(selected).strip()
+    compact = re.sub(r"\n{3,}", "\n\n", compact)
+
+    if len(compact) > _MAX_TEXT_CHARS:
+        compact = compact[:_MAX_TEXT_CHARS]
+        last_nl = compact.rfind("\n")
+        if last_nl > _MAX_TEXT_CHARS * 0.7:
+            compact = compact[:last_nl]
+
+    return compact.strip()
 
 
 def clean_html(html: str, truncate: bool = True) -> str:

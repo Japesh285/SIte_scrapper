@@ -1,0 +1,12 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Skills:
+8-12 Years of experience in programming with C, C++, Win 32, Storage API, Windows, Linux, Unix Programming, Storage.
+Experience in DataPath or DPDK is a must.
+Experience in Windows, Linux & Aix operating systems & relevant File systems.
+Experience with AI technologies and proficient usage of AI copilots for all facets of SDLC.
+Experience in Data Protection domain, Scalable Architecture, virtualization platforms like Esxi or Hyper-V.
+Desired Skill:
+Experience in Python scripting & CI-CD, Java is plus.
+Experience in Operating system Clusters, Databases clusters.
+​

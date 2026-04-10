@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+Manages the organization’s staffing needs, guides the career development, and drives performance and pay discussions of team members
+12 to 15 years of relevant experience in across all phases of the software development lifecycle: feasibility analysis, design, implementation, integration, testing, and delivery.
+Strong technical experience in one or more of the following: Linux kernel, SCSI, SCST, Fibre Channel, Virtual Tape Libraries, or I/O device drivers.
+Strong knowledge of RAID, NVMe, persistent memory technologies and hardware-assisted compression.
+Proficiency in one or more programming languages: C, Python, or Go, along with practical experience using Git for version control and JIRA for issue tracking.
+Desirable Requirements
+4 years managerial experience & Background in the storage domain, including SAN, NAS, and virtualization technologies.
+Experience developing software for software-defined infrastructure, including hybrid cloud, on-premises, and multi-cloud environments.

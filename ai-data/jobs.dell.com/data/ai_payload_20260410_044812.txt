@@ -1,0 +1,13 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Skills:
+8-12 years of Software Development experience with programming expertise in C, C++, Win 32.
+Experience in Linux, Unix, AIX, windows operating systems and File systems.
+Experience in AI technologies and proficient usage of AI copilots for all facets of SDLC.
+Experience in control path, data path and scalable architecture, virtualization platforms like Esxi or Hyper-V.
+Experience in Data protection, enterprise storage domain and API of storage subsystems.
+Experience in development, feature implementation and design of applications which interact closely developer platforms.
+Desired Skills:
+Experience in Python, Java, CI/CD is only an added advantage.
+Experience with Device drivers, and system architecture such as SCSI, cache, and message subsystem.
+​

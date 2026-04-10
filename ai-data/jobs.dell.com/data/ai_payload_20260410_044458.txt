@@ -1,0 +1,11 @@
+Take the first step towards your dream career
+Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+7+ years with HPC or GenAI clusters, GPU based systems, AI infrastructure, or related fields
+Deep hands‑on experience with GPU deployment, configuration, and multi-node testing
+Proficiency with benchmarking tools: HPL, STREAM, NCCL, RCCL, MxP
+Red Hat certification (RHCSA/RHCE) or 7+ years of relevant RH distros experience
+Experience with GenAI/HPC networking (InfiniBand and/or RoCE)
+Desirable Requirements
+•Bachelor’s degree
+•Strong proven ability to lead sub-teams

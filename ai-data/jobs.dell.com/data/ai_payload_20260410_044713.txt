@@ -1,0 +1,12 @@
+• Contribute to the Design, development and implementation of test & debug strategies for complex software products and systems for storage Product lines. Take the first step towards your dream career Every Dell Technologies team member brings something unique to the table. Here’s what we are looking for with this role:
+Essential Requirements
+• 8-12+ years of Enterprise server Platform Experience.
+• Deep knowledge of memory/CPU/NUMA topology, DIMM population, and ECC/RAS (MCA triage, patrol scrub, mirroring/sparing) along with expertise in PCIe Gen4/Gen5/Gen6 topology, risers/slot mapping; NVMe and SAS (PERC/HBA, expanders, SES).
+• Proficient with Battery Backup & VOSS systems for write cache (BBU/Cache + NAND)and
+comfortable with iDRAC/IPMI for telemetry, firmware baselines, and compliance; correlating SEL/MCE/AER and enclosure event messages with OS signals.
+• Strong with perc-cli, nvme-cli, smartctl, ethtool, lspci, ipmitool, and Dell management tools. Able to debug production issues: PCIe link flaps, NVMe timeouts, HBA resets, and thermal/power throttling.
+• Knowledge of bug tracking systems (JIRA)and excellent written/verbal communication for support of KBAs, FCOs, CLCA, RCA/FA reports and cross team collaboration. Desirable
+Requirements
+• Storage depth: NVMe, FC HBAs, RDMA concepts; expander dual path SAS.
+• Advanced RAS (AER), QPI/UPI and exposure to QAT. Rack level thermal/power budgeting; compliance (NEBS/FCC/CE/UL), secure firmware practices.
+• Automation (BASH scripts/Python) and experience in Storage domain (SAN/NAS/Virtualization).
