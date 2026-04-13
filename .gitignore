@@ -9,7 +9,7 @@ dist/
 build/
 env/
 venv/
-
+/home/hp_jp/ai_scrapper/react_batch_ui/node_modules
 # Database
 *.db
 *.sqlite3

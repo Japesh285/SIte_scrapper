@@ -1,16 +1,21 @@
-from fastapi import APIRouter, BackgroundTasks, Depends
+import asyncio
+import json
+import re
+import shutil
+from datetime import datetime, timezone
+from pathlib import Path
+from urllib.parse import urlparse, urlunparse
+from uuid import uuid4
+
+import httpx
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from pydantic import BaseModel
-import json
-import re
-import httpx
-from pathlib import Path
-from urllib.parse import urlparse, urlunparse
 
 from app.core.site_utils import normalize_site_url, get_domain
-from app.db.database import get_session
+from app.db.database import async_session, get_session
 from app.db.models import Site
 from app.services.orchestrator import orchestrate_scrape
 from app.services.raw_json_saver import RAW_JSON_DIR
@@ -147,6 +152,7 @@ def is_valid_job_url(url: str) -> bool:
     return False
 
 router = APIRouter()
+_BATCH_JOBS: dict[str, dict] = {}
 
 
 class ScrapeRequest(BaseModel):
@@ -650,6 +656,115 @@ class SiteResult(BaseModel):
     notification_endpoint: str = ""
     notification_response: str = ""
     error: str = ""
+
+
+class BatchJobCreateResponse(BaseModel):
+    job_id: str
+    status: str
+
+
+class BatchJobStatusResponse(BaseModel):
+    job_id: str
+    status: str
+    created_at: str
+    updated_at: str
+    download_ready: bool = False
+    file_name: str = ""
+    total_sites: int = 0
+    successful: int = 0
+    failed: int = 0
+    skipped: int = 0
+    error: str = ""
+
+
+_BATCH_JOB_INTERNAL_URL = "http://localhost:8002/scrape-details-batch"
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+async def _run_batch_job(job_id: str, request: BatchScrapeRequest) -> None:
+    job = _BATCH_JOBS[job_id]
+    job["status"] = "running"
+    job["updated_at"] = _utc_now_iso()
+
+    output_dir = Path(__file__).resolve().parents[2] / "output" / "batch_jobs"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / f"{job_id}.xlsx"
+
+    try:
+        async with httpx.AsyncClient(timeout=None) as client:
+            response = await client.post(
+                _BATCH_JOB_INTERNAL_URL,
+                json=request.model_dump(),
+            )
+            response.raise_for_status()
+
+        output_path.write_bytes(response.content)
+
+        job["status"] = "completed"
+        job["updated_at"] = _utc_now_iso()
+        job["download_ready"] = True
+        job["file_path"] = str(output_path)
+        job["file_name"] = "master_jobs.xlsx"
+        job["total_sites"] = int(response.headers.get("X-Total-Sites", len(request.urls)) or 0)
+        job["successful"] = int(response.headers.get("X-Successful-Sites", 0) or 0)
+        job["failed"] = int(response.headers.get("X-Failed-Sites", 0) or 0)
+        job["skipped"] = int(response.headers.get("X-Skipped-Sites", 0) or 0)
+    except Exception as exc:
+        job["status"] = "failed"
+        job["updated_at"] = _utc_now_iso()
+        job["error"] = str(exc)
+
+
+@router.post("/scrape-details-batch/jobs", response_model=BatchJobCreateResponse)
+async def create_scrape_details_batch_job(request: BatchScrapeRequest):
+    job_id = uuid4().hex
+    now = _utc_now_iso()
+    _BATCH_JOBS[job_id] = {
+        "job_id": job_id,
+        "status": "queued",
+        "created_at": now,
+        "updated_at": now,
+        "download_ready": False,
+        "file_path": "",
+        "file_name": "",
+        "total_sites": len(request.urls),
+        "successful": 0,
+        "failed": 0,
+        "skipped": 0,
+        "error": "",
+    }
+    asyncio.create_task(_run_batch_job(job_id, request))
+    return BatchJobCreateResponse(job_id=job_id, status="queued")
+
+
+@router.get("/scrape-details-batch/jobs/{job_id}", response_model=BatchJobStatusResponse)
+async def get_scrape_details_batch_job_status(job_id: str):
+    job = _BATCH_JOBS.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job_not_found")
+    return BatchJobStatusResponse(**{k: job.get(k) for k in BatchJobStatusResponse.model_fields})
+
+
+@router.get("/scrape-details-batch/jobs/{job_id}/download")
+async def download_scrape_details_batch_job(job_id: str):
+    job = _BATCH_JOBS.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job_not_found")
+    if job.get("status") != "completed" or not job.get("download_ready"):
+        raise HTTPException(status_code=409, detail="job_not_completed")
+
+    file_path = Path(job.get("file_path", ""))
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="result_file_not_found")
+
+    return FileResponse(
+        path=str(file_path),
+        filename=job.get("file_name") or "master_jobs.xlsx",
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
 
 
 @router.post("/scrape-details-batch")
