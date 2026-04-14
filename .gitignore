@@ -20,11 +20,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 react_batch_ui/node_modules/
-react_batch_ui/package.json
-react_batch_ui/package-lock.json
 react_batch_ui/vite.config.js
-react_batch_ui/index.html
-react_batch_ui/dist/
 
 # Database
 *.db
