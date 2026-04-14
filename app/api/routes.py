@@ -196,7 +196,6 @@ class JobDetailResponse(BaseModel):
     additional_sections: list = []
     about_us: str = ""
     Scrap_json: dict = {}
-    ai_usage: dict = {}
 
 
 @router.post("/scrape", response_model=ScrapeResponse)
@@ -227,9 +226,60 @@ class JobDetailResult(BaseModel):
     is_active: bool = True
     first_seen: str = ""
     last_seen: str = ""
+    job_summary: str = ""
+    key_responsibilities: list = []
     additional_sections: list = []
+    about_us: str = ""
     Scrap_json: dict = {}
-    ai_usage: dict = {}
+
+
+def _normalize_locations_field(detail: dict) -> list:
+    locations = detail.get("locations")
+    if isinstance(locations, list):
+        return locations
+
+    location = detail.get("location")
+    if isinstance(location, list):
+        return location
+    if isinstance(location, str) and location:
+        return [location]
+    if isinstance(locations, str) and locations:
+        return [locations]
+    return []
+
+
+def _build_job_detail_result(detail: dict, job_url: str, scrap_json: dict) -> JobDetailResult:
+    return JobDetailResult(
+        id=str(detail.get("job_id") or detail.get("id") or job_url.split("/")[-1]),
+        title=str(detail.get("title") or ""),
+        company_name=str(detail.get("company_name") or ""),
+        job_link=str(detail.get("job_link") or job_url),
+        experience=str(detail.get("experience") or ""),
+        locations=_normalize_locations_field(detail),
+        educational_qualifications=str(
+            detail.get("educational_qualifications")
+            or detail.get("education")
+            or detail.get("qualifications", [])
+        ),
+        required_skill_set=(
+            detail.get("required_skill_set")
+            or detail.get("required_skills")
+            or detail.get("skills")
+            or []
+        ),
+        remote_type=str(detail.get("remote_type") or detail.get("employment_type") or ""),
+        posted_on=str(detail.get("posted_on") or ""),
+        job_id=str(detail.get("job_id") or detail.get("id") or ""),
+        salary=str(detail.get("salary") or ""),
+        is_active=bool(detail.get("is_active", True)),
+        first_seen=str(detail.get("first_seen") or ""),
+        last_seen=str(detail.get("last_seen") or ""),
+        job_summary=str(detail.get("job_summary") or detail.get("description") or ""),
+        key_responsibilities=detail.get("key_responsibilities") or [],
+        additional_sections=detail.get("additional_sections") or [],
+        about_us=str(detail.get("about_us") or detail.get("about_company") or ""),
+        Scrap_json=scrap_json or detail.get("Scrap_json") or {},
+    )
 
 
 class ScrapeDetailsResponse(BaseModel):
@@ -334,31 +384,16 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                     "additional_sections": [],
                 }
 
-            job_entry = JobDetailResult(
-                id=str(detail.get("job_id") or job_url.split("/")[-1]),
-                title=str(detail.get("title") or ""),
-                company_name=str(detail.get("company_name") or ""),
-                job_link=job_url,
-                experience=str(detail.get("experience") or ""),
-                locations=[detail["location"]] if isinstance(detail.get("location"), str) and detail.get("location") else (detail.get("location") or []),
-                educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
-                required_skill_set=detail.get("skills", detail.get("required_skills", [])),
-                remote_type=str(detail.get("remote_type") or ""),
-                posted_on=str(detail.get("posted_on") or ""),
-                job_id=str(detail.get("job_id") or ""),
-                salary=str(detail.get("salary") or ""),
-                is_active=True,
-                first_seen="",
-                last_seen="",
-                additional_sections=detail.get("additional_sections") or [],
-                Scrap_json={
+            job_entry = _build_job_detail_result(
+                detail,
+                job_url,
+                {
                     "url": job_url,
                     "strategy": "api",
                     "site_type": site_type,
                     "department": detail.get("department", ""),
                     "qualifications": detail.get("qualifications", []),
                 },
-                ai_usage=detail.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
             )
             jobs_detail.append(job_entry)
 
@@ -453,24 +488,10 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                     finally:
                         await page.close()
 
-                    job_entry = JobDetailResult(
-                        id=str(detail.get("job_id") or job_url.split("/")[-1]),
-                        title=str(detail.get("title") or ""),
-                        company_name=str(detail.get("company_name") or ""),
-                        job_link=job_url,
-                        experience=str(detail.get("experience") or ""),
-                        locations=detail.get("location") or [],
-                        educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
-                        required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
-                        remote_type=str(detail.get("remote_type") or ""),
-                        posted_on=str(detail.get("posted_on") or ""),
-                        job_id=str(detail.get("job_id") or ""),
-                        salary=str(detail.get("salary") or ""),
-                        is_active=True,
-                        first_seen="",
-                        last_seen="",
-                        additional_sections=detail.get("additional_sections") or [],
-                        Scrap_json={
+                    job_entry = _build_job_detail_result(
+                        detail,
+                        job_url,
+                        {
                             "url": job_url,
                             "strategy": "INTERACTIVE_DOM",
                             "parser_used": str(meta.get("parser_used", "")),
@@ -483,7 +504,6 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                             "inferred_skills": detail.get("inferred_skills") or [],
                             "benefits": detail.get("benefits") or [],
                         },
-                        ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
                     )
                     jobs_detail.append(job_entry)
 
@@ -578,24 +598,10 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                     logger.error(f"[ScrapeDetails] Detail extraction failed for {job_url}: {exc}")
                     continue
 
-                job_entry = JobDetailResult(
-                    id=str(detail.get("job_id") or job_url.split("/")[-1]),
-                    title=str(detail.get("title") or ""),
-                    company_name=str(detail.get("company_name") or ""),
-                    job_link=job_url,
-                    experience=str(detail.get("experience") or ""),
-                    locations=detail.get("location") or [],
-                    educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
-                    required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
-                    remote_type=str(detail.get("remote_type") or ""),
-                    posted_on=str(detail.get("posted_on") or ""),
-                    job_id=str(detail.get("job_id") or ""),
-                    salary=str(detail.get("salary") or ""),
-                    is_active=True,
-                    first_seen="",
-                    last_seen="",
-                    additional_sections=detail.get("additional_sections") or [],
-                    Scrap_json={
+                job_entry = _build_job_detail_result(
+                    detail,
+                    job_url,
+                    {
                         "url": job_url,
                         "strategy": "dom",
                         "parser_used": str(meta.get("parser_used", "")),
@@ -608,7 +614,6 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                         "inferred_skills": detail.get("inferred_skills") or [],
                         "benefits": detail.get("benefits") or [],
                     },
-                    ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
                 )
                 jobs_detail.append(job_entry)
 
@@ -691,7 +696,7 @@ async def _run_batch_job(job_id: str, request: BatchScrapeRequest) -> None:
 
     output_dir = Path(__file__).resolve().parents[2] / "output" / "batch_jobs"
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / f"{job_id}.xlsx"
+    output_path = output_dir / f"{job_id}.csv"
 
     try:
         async with httpx.AsyncClient(timeout=None) as client:
@@ -707,7 +712,7 @@ async def _run_batch_job(job_id: str, request: BatchScrapeRequest) -> None:
         job["updated_at"] = _utc_now_iso()
         job["download_ready"] = True
         job["file_path"] = str(output_path)
-        job["file_name"] = "master_jobs.xlsx"
+        job["file_name"] = "master_jobs.csv"
         job["total_sites"] = int(response.headers.get("X-Total-Sites", len(request.urls)) or 0)
         job["successful"] = int(response.headers.get("X-Successful-Sites", 0) or 0)
         job["failed"] = int(response.headers.get("X-Failed-Sites", 0) or 0)
@@ -762,8 +767,8 @@ async def download_scrape_details_batch_job(job_id: str):
 
     return FileResponse(
         path=str(file_path),
-        filename=job.get("file_name") or "master_jobs.xlsx",
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        filename=job.get("file_name") or "master_jobs.csv",
+        media_type="text/csv",
     )
 
 
@@ -773,17 +778,17 @@ async def scrape_details_batch(
     background_tasks: BackgroundTasks,
     session: AsyncSession = Depends(get_session),
 ):
-    """Scrape all jobs for all URLs, then return the fresh master Excel file."""
+    """Scrape all jobs for all URLs, then return the fresh master CSV file."""
     results = []
     successful = 0
     failed = 0
     skipped = 0
     files_to_cleanup: set[str] = set()
     project_root = Path(__file__).resolve().parents[2]
-    master_xlsx = project_root / "output" / "master_jobs.xlsx"
+    master_csv = project_root / "output" / "master_jobs.csv"
     master_json = project_root / "output" / "master_jobs.json"
 
-    for path in (master_xlsx, master_json):
+    for path in (master_csv, master_json):
         try:
             if path.exists():
                 path.unlink()
@@ -912,28 +917,13 @@ async def scrape_details_batch(
                 logger.info("[BatchScrape] [DYNAMIC_API] Jobs already enriched — passing through")
                 for i, job_data in enumerate(jobs_raw):
                     job_url = str(job_data.get("job_link") or job_data.get("url", "")).strip()
-                    job_entry = JobDetailResult(
-                        id=str(job_data.get("job_id") or job_data.get("id") or job_url.split("/")[-1]),
-                        title=str(job_data.get("title") or ""),
-                        company_name=str(job_data.get("company_name") or ""),
-                        job_link=job_url,
-                        experience=str(job_data.get("experience") or ""),
-                        locations=job_data.get("locations") if isinstance(job_data.get("locations"), list) else ([job_data.get("locations")] if job_data.get("locations") else []),
-                        educational_qualifications=str(job_data.get("educational_qualifications") or "[]"),
-                        required_skill_set=job_data.get("required_skill_set") or [],
-                        remote_type=str(job_data.get("remote_type") or ""),
-                        posted_on=str(job_data.get("posted_on") or ""),
-                        job_id=str(job_data.get("job_id") or job_data.get("id") or ""),
-                        salary=str(job_data.get("salary") or ""),
-                        is_active=job_data.get("is_active", True),
-                        first_seen=str(job_data.get("first_seen") or ""),
-                        last_seen=str(job_data.get("last_seen") or ""),
-                        additional_sections=job_data.get("additional_sections") or [],
-                        Scrap_json=job_data.get("Scrap_json") or {},
-                        ai_usage=job_data.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+                    job_entry = _build_job_detail_result(
+                        job_data,
+                        job_url,
+                        job_data.get("Scrap_json") or {},
                     )
                     jobs_detail.append(job_entry)
-                    total_ai_tokens += job_entry.ai_usage.get("total_tokens", 0)
+                    total_ai_tokens += (job_data.get("ai_usage") or {}).get("total_tokens", 0)
 
             elif strategy == "api":
                 # ── API STRATEGY: Extract details from raw API data, NO HTML ──
@@ -975,31 +965,16 @@ async def scrape_details_batch(
                             "additional_sections": [],
                         }
 
-                    job_entry = JobDetailResult(
-                        id=str(detail.get("job_id") or job_url.split("/")[-1]),
-                        title=str(detail.get("title") or ""),
-                        company_name=str(detail.get("company_name") or ""),
-                        job_link=job_url,
-                        experience=str(detail.get("experience") or ""),
-                        locations=[detail["location"]] if isinstance(detail.get("location"), str) and detail.get("location") else (detail.get("location") or []),
-                        educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
-                        required_skill_set=detail.get("skills", detail.get("required_skills", [])),
-                        remote_type=str(detail.get("remote_type") or ""),
-                        posted_on=str(detail.get("posted_on") or ""),
-                        job_id=str(detail.get("job_id") or ""),
-                        salary=str(detail.get("salary") or ""),
-                        is_active=True,
-                        first_seen="",
-                        last_seen="",
-                        additional_sections=detail.get("additional_sections") or [],
-                        Scrap_json={
+                    job_entry = _build_job_detail_result(
+                        detail,
+                        job_url,
+                        {
                             "url": job_url,
                             "strategy": "api",
                             "site_type": site_type,
                             "department": detail.get("department", ""),
                             "qualifications": detail.get("qualifications", []),
                         },
-                        ai_usage=detail.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
                     )
                     jobs_detail.append(job_entry)
 
@@ -1093,24 +1068,10 @@ async def scrape_details_batch(
                             finally:
                                 await page.close()
 
-                            job_entry = JobDetailResult(
-                                id=str(detail.get("job_id") or job_url.split("/")[-1]),
-                                title=str(detail.get("title") or ""),
-                                company_name=str(detail.get("company_name") or ""),
-                                job_link=job_url,
-                                experience=str(detail.get("experience") or ""),
-                                locations=detail.get("location") or [],
-                                educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
-                                required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
-                                remote_type=str(detail.get("remote_type") or ""),
-                                posted_on=str(detail.get("posted_on") or ""),
-                                job_id=str(detail.get("job_id") or ""),
-                                salary=str(detail.get("salary") or ""),
-                                is_active=True,
-                                first_seen="",
-                                last_seen="",
-                                additional_sections=detail.get("additional_sections") or [],
-                                Scrap_json={
+                            job_entry = _build_job_detail_result(
+                                detail,
+                                job_url,
+                                {
                                     "url": job_url,
                                     "strategy": "INTERACTIVE_DOM",
                                     "parser_used": str(meta.get("parser_used", "")),
@@ -1123,7 +1084,6 @@ async def scrape_details_batch(
                                     "inferred_skills": detail.get("inferred_skills") or [],
                                     "benefits": detail.get("benefits") or [],
                                 },
-                                ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
                             )
                             jobs_detail.append(job_entry)
 
@@ -1218,24 +1178,10 @@ async def scrape_details_batch(
                             logger.error(f"[BatchScrape] Detail extraction failed for {job_url}: {exc}")
                             continue
 
-                        job_entry = JobDetailResult(
-                            id=str(detail.get("job_id") or job_url.split("/")[-1]),
-                            title=str(detail.get("title") or ""),
-                            company_name=str(detail.get("company_name") or ""),
-                            job_link=job_url,
-                            experience=str(detail.get("experience") or ""),
-                            locations=detail.get("location") or [],
-                            educational_qualifications=str(detail.get("education") or detail.get("qualifications", [])),
-                            required_skill_set=detail.get("required_skills") or detail.get("skills") or [],
-                            remote_type=str(detail.get("remote_type") or ""),
-                            posted_on=str(detail.get("posted_on") or ""),
-                            job_id=str(detail.get("job_id") or ""),
-                            salary=str(detail.get("salary") or ""),
-                            is_active=True,
-                            first_seen="",
-                            last_seen="",
-                            additional_sections=detail.get("additional_sections") or [],
-                            Scrap_json={
+                        job_entry = _build_job_detail_result(
+                            detail,
+                            job_url,
+                            {
                                 "url": job_url,
                                 "strategy": "dom",
                                 "parser_used": str(meta.get("parser_used", "")),
@@ -1248,7 +1194,6 @@ async def scrape_details_batch(
                                 "inferred_skills": detail.get("inferred_skills") or [],
                                 "benefits": detail.get("benefits") or [],
                             },
-                            ai_usage=ai_usage or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
                         )
                         jobs_detail.append(job_entry)
 
@@ -1328,14 +1273,14 @@ async def scrape_details_batch(
         results.append(site_result)
 
     logger.info(f"[BatchScrape] Complete → total={len(request.urls)}, success={successful}, failed={failed}, skipped={skipped}")
-    if not master_xlsx.exists():
+    if not master_csv.exists():
         return {
             "total_sites": len(request.urls),
             "successful": successful,
             "failed": failed,
             "skipped": skipped,
             "results": [r.model_dump() for r in results],
-            "error": "master_xlsx_not_created",
+            "error": "master_csv_not_created",
         }
 
     def _cleanup_batch_outputs(paths: list[str], master_json_path: str):
@@ -1361,9 +1306,9 @@ async def scrape_details_batch(
     )
 
     return FileResponse(
-        path=str(master_xlsx),
-        filename="master_jobs.xlsx",
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        path=str(master_csv),
+        filename="master_jobs.csv",
+        media_type="text/csv",
         background=background_tasks,
         headers={
             "X-Total-Sites": str(len(request.urls)),
@@ -1800,13 +1745,15 @@ async def process_workday_jobs(request: ProcessRequest, session: AsyncSession = 
             "is_active": True,
             "first_seen": "",
             "last_seen": "",
+            "job_summary": str(detail.get("job_summary") or detail.get("description") or ""),
+            "key_responsibilities": detail.get("key_responsibilities") or [],
             "additional_sections": detail.get("additional_sections") or [],
+            "about_us": str(detail.get("about_us") or detail.get("about_company") or ""),
             "Scrap_json": {
                 "url": job_url,
                 "strategy": "api",
                 "site_type": site_type,
             },
-            "ai_usage": detail.get("ai_usage") or {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
         }
         jobs_detail.append(job_entry)
         ai_usage = detail.get("ai_usage") or {}

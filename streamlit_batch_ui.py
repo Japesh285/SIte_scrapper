@@ -15,18 +15,23 @@ POLL_INTERVAL_SECONDS = 5
 
 st.set_page_config(page_title="Scrape Details Batch UI", layout="centered")
 st.title("Scrape Details Batch")
-st.caption("Upload an Excel file, submit a batch scrape job, poll until it completes, then download the Excel result.")
+st.caption("Upload a CSV or Excel file, submit a batch scrape job, poll until it completes, then download the CSV result.")
 
 backend_base_url = st.text_input("Backend Base URL", value=DEFAULT_BACKEND_BASE_URL).rstrip("/")
-uploaded_file = st.file_uploader("Open Excel File", type=["xlsx", "xls"])
+uploaded_file = st.file_uploader("Open Input File", type=["csv", "xlsx", "xls"])
 
 submit_endpoint = f"{backend_base_url}/scrape-details-batch/jobs"
 status_endpoint_template = f"{backend_base_url}/scrape-details-batch/jobs/{{job_id}}"
 download_endpoint_template = f"{backend_base_url}/scrape-details-batch/jobs/{{job_id}}/download"
 
 
-def extract_urls_from_excel(file_bytes: bytes) -> list[str]:
-    df = pd.read_excel(BytesIO(file_bytes))
+def extract_urls_from_file(file_name: str, file_bytes: bytes) -> list[str]:
+    lower_name = file_name.lower()
+    if lower_name.endswith(".csv"):
+        df = pd.read_csv(BytesIO(file_bytes))
+    else:
+        df = pd.read_excel(BytesIO(file_bytes))
+
     if COLUMN_NAME not in df.columns:
         raise ValueError(f"Column `{COLUMN_NAME}` not found in uploaded file.")
 
@@ -57,7 +62,7 @@ if uploaded_file is not None:
     file_bytes = uploaded_file.getvalue()
 
     try:
-        urls = extract_urls_from_excel(file_bytes)
+        urls = extract_urls_from_file(uploaded_file.name, file_bytes)
     except Exception as exc:
         st.error(str(exc))
         st.stop()
@@ -125,16 +130,16 @@ if job_id:
             st.error(f"Failed to download result file: {exc}")
         else:
             st.session_state["result_file_bytes"] = response.content
-            st.session_state["result_file_name"] = "master_jobs.xlsx"
+            st.session_state["result_file_name"] = job_status.get("file_name") or "master_jobs.csv"
 
     if job_status.get("status") == "failed":
         st.error(job_status.get("error") or "Batch job failed.")
 
 if st.session_state.get("result_file_bytes"):
     st.download_button(
-        label="Download Result Excel",
+        label="Download Result CSV",
         data=st.session_state["result_file_bytes"],
-        file_name=st.session_state.get("result_file_name", "master_jobs.xlsx"),
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        file_name=st.session_state.get("result_file_name", "master_jobs.csv"),
+        mime="text/csv",
         use_container_width=True,
     )

@@ -508,20 +508,18 @@ Return ONLY valid JSON matching this exact structure. Do not include explanation
   "is_active": true,
   "first_seen": "string (ISO date or '')",
   "last_seen": "string (ISO date or '')",
+  "job_summary": "string (brief role summary)",
+  "key_responsibilities": ["string array of concise responsibilities"],
   "additional_sections": [
     {{"section_title": "string", "content": "string"}}
   ],
+  "about_us": "string (company/about section if clearly present, else '')",
   "Scrap_json": {{
     "url": "string (original job URL)",
     "strategy": "string ('api' or 'html')",
     "site_type": "string (e.g., 'CUSTOM_API', 'WORKDAY_API', 'GREENHOUSE')",
     "department": "string (extract category/department)",
     "qualifications": ["string array"]
-  }},
-  "ai_usage": {{
-    "input_tokens": 0,
-    "output_tokens": 0,
-    "total_tokens": 0
   }}
 }}
 
@@ -531,9 +529,9 @@ Return ONLY valid JSON matching this exact structure. Do not include explanation
 3. required_skill_set: Extract technical skills, tools, frameworks from description/requirements
 4. remote_type: Infer from keywords: "remote", "work from home" → "Remote"; "hybrid", "flexible" → "Hybrid"; "on-site", "office" → "On-site"
 5. educational_qualifications: Return as JSON string: '["Bachelor's degree in CS"]' or '[]'
-6. additional_sections: Include useful metadata like "Job Description Summary", "Key Responsibilities", "Benefits"
-7. Scrap_json.site_type: Detect from URL: "capgemini.com" → "CUSTOM_API", "myworkdayjobs.com" → "WORKDAY_API", "greenhouse.io" → "GREENHOUSE", "lever.co" → "LEVER"
-8. ai_usage: You MUST fill these with actual token counts from the API response
+6. job_summary, key_responsibilities, about_us: Extract when clearly available, else keep empty
+7. additional_sections: Include useful metadata like "Benefits", "Department", "Employment Type"
+8. Scrap_json.site_type: Detect from URL: "capgemini.com" → "CUSTOM_API", "myworkdayjobs.com" → "WORKDAY_API", "greenhouse.io" → "GREENHOUSE", "lever.co" → "LEVER"
 
 ## IMPORTANT:
 - Return ONLY the JSON object, no markdown, no code blocks, no explanations
@@ -617,15 +615,18 @@ def enrich_job_with_ai(job: dict) -> dict:
             # Return fallback structure
             return create_fallback_output(job)
         
-        # Merge token usage into output
-        ai_output["ai_usage"] = token_usage
+        # Keep token usage internal only; do not expose it in saved job schema.
+        ai_output["_ai_usage"] = token_usage
         
         # Ensure required fields exist
         ai_output.setdefault("id", job.get("id") or "")
         ai_output.setdefault("job_id", job.get("id") or "")
         ai_output.setdefault("job_link", job.get("url") or "")
         ai_output.setdefault("is_active", True)
+        ai_output.setdefault("job_summary", "")
+        ai_output.setdefault("key_responsibilities", [])
         ai_output.setdefault("additional_sections", [])
+        ai_output.setdefault("about_us", "")
         ai_output.setdefault("Scrap_json", {
             "url": job.get("url", ""),
             "strategy": "api",
@@ -660,18 +661,16 @@ def create_fallback_output(job: dict) -> dict:
         "is_active": True,
         "first_seen": "",
         "last_seen": "",
+        "job_summary": "",
+        "key_responsibilities": [],
         "additional_sections": [],
+        "about_us": "",
         "Scrap_json": {
             "url": job.get("url", ""),
             "strategy": "api",
             "site_type": detect_site_type(job.get("url", "")),
             "department": job.get("category") or "",
             "qualifications": []
-        },
-        "ai_usage": {
-            "input_tokens": 0,
-            "output_tokens": 0,
-            "total_tokens": 0
         }
     }
 
@@ -739,6 +738,11 @@ def detect_site_type(url: str) -> str:
         return "CUSTOM_API"
 
 
+def strip_internal_fields(job: dict) -> dict:
+    """Remove internal-only metadata before writing output JSON."""
+    return {k: v for k, v in job.items() if not k.startswith("_")}
+
+
 # ============================
 # MAIN EXECUTION
 # ============================
@@ -798,7 +802,7 @@ def main():
         enriched_jobs.append(enriched)
         
         # Track tokens
-        usage = enriched.get("ai_usage", {})
+        usage = enriched.get("_ai_usage", {})
         job_tokens = usage.get("total_tokens", 0)
         total_tokens += job_tokens
         
@@ -807,7 +811,13 @@ def main():
         # Save incrementally (in case of interruption)
         if i % 5 == 0 or i == len(all_jobs):
             with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-                json.dump(enriched_jobs, f, indent=2, default=str, ensure_ascii=False)
+                json.dump(
+                    [strip_internal_fields(job_item) for job_item in enriched_jobs],
+                    f,
+                    indent=2,
+                    default=str,
+                    ensure_ascii=False,
+                )
             print(f"   💾 Checkpoint saved: {len(enriched_jobs)} jobs")
         
         # Rate limit for OpenAI API
@@ -816,7 +826,13 @@ def main():
     
     # Final save
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(enriched_jobs, f, indent=2, default=str, ensure_ascii=False)
+        json.dump(
+            [strip_internal_fields(job_item) for job_item in enriched_jobs],
+            f,
+            indent=2,
+            default=str,
+            ensure_ascii=False,
+        )
     
     # Summary
     print(f"\n🎉 AI Enrichment Complete!")

@@ -7,15 +7,39 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Python virtual environments
 env/
 venv/
-/home/hp_jp/ai_scrapper/react_batch_ui/node_modules
+.venv/
+ENV/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+react_batch_ui/node_modules/
+react_batch_ui/package.json
+react_batch_ui/package-lock.json
+react_batch_ui/vite.config.js
+react_batch_ui/index.html
+react_batch_ui/dist/
+
 # Database
 *.db
 *.sqlite3
 
-# Environment
+# Environment & Config
 .env
+.env.local
+.env.*.local
+
+# Excel files (generated/test data)
+*.xlsx
+*.xls
+~$*.xlsx
+~$*.xls
 
 # Generated scrape outputs
 raw_json/
@@ -30,7 +54,23 @@ session/
 .qwen/
 .agents/
 
-# Debug / scratch files
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Debug / scratch / temp files
 debug_llm_output.jsonl
 debug_prompts.jsonl
 plan.txt
@@ -58,13 +98,5 @@ capgemini_jobs_full.json
 capgemini_jobs_final.json
 dxc_jobs_full.json
 taleo_jobs.json
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
+temp/
+tmp/

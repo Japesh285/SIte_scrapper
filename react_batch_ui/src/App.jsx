@@ -6,11 +6,78 @@ const COLUMN_NAME = "Exact India Jobs Link";
 const POLL_INTERVAL_MS = 5000;
 const STORAGE_KEY = "scrape_gignaati_session";
 
+function parseCsvLine(line) {
+  const values = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+
+    if (char === '"') {
+      if (inQuotes && line[index + 1] === '"') {
+        current += '"';
+        index += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+
+    if (char === "," && !inQuotes) {
+      values.push(current);
+      current = "";
+      continue;
+    }
+
+    current += char;
+  }
+
+  values.push(current);
+  return values.map((value) => value.trim());
+}
+
+function extractUrlsFromCsv(text) {
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (!lines.length) {
+    throw new Error("The uploaded CSV file is empty.");
+  }
+
+  const headers = parseCsvLine(lines[0]);
+  const columnIndex = headers.indexOf(COLUMN_NAME);
+  if (columnIndex === -1) {
+    throw new Error(`Column "${COLUMN_NAME}" not found in uploaded file.`);
+  }
+
+  const seen = new Set();
+  const urls = [];
+
+  for (const line of lines.slice(1)) {
+    const row = parseCsvLine(line);
+    const url = String(row[columnIndex] || "").trim();
+    if (!url || seen.has(url)) continue;
+    seen.add(url);
+    urls.push(url);
+  }
+
+  return urls;
+}
+
 function extractUrlsFromFile(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (event) => {
       try {
+        if (file.name.toLowerCase().endsWith(".csv")) {
+          const text = event.target.result;
+          resolve(extractUrlsFromCsv(String(text || "")));
+          return;
+        }
+
         const data = new Uint8Array(event.target.result);
         const workbook = XLSX.read(data, { type: "array" });
         const firstSheetName = workbook.SheetNames[0];
@@ -37,6 +104,10 @@ function extractUrlsFromFile(file) {
       }
     };
     reader.onerror = () => reject(new Error("Failed to read the uploaded file."));
+    if (file.name.toLowerCase().endsWith(".csv")) {
+      reader.readAsText(file);
+      return;
+    }
     reader.readAsArrayBuffer(file);
   });
 }
@@ -47,7 +118,7 @@ export default function App() {
   const [jobId, setJobId] = useState("");
   const [jobStatus, setJobStatus] = useState(null);
   const [resultBlob, setResultBlob] = useState(null);
-  const [resultFileName, setResultFileName] = useState("master_jobs.xlsx");
+  const [resultFileName, setResultFileName] = useState("master_jobs.csv");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isParsing, setIsParsing] = useState(false);
@@ -72,7 +143,7 @@ export default function App() {
       setUrls(Array.isArray(parsed.urls) ? parsed.urls : []);
       setJobId(parsed.jobId || "");
       setJobStatus(parsed.jobStatus || null);
-      setResultFileName(parsed.resultFileName || "master_jobs.xlsx");
+      setResultFileName(parsed.resultFileName || "master_jobs.csv");
       setShowFullJobId(Boolean(parsed.showFullJobId));
     } catch (storageError) {
       console.error("Failed to restore session", storageError);
@@ -122,7 +193,7 @@ export default function App() {
           const blob = await downloadResponse.blob();
           if (cancelled) return;
           setResultBlob(blob);
-          setResultFileName("master_jobs.xlsx");
+          setResultFileName(payload.file_name || "master_jobs.csv");
           return;
         }
 
@@ -184,7 +255,7 @@ export default function App() {
       setUrls(parsedUrls);
     } catch (parseError) {
       setUrls([]);
-      setError(parseError.message || "Could not parse the Excel file.");
+      setError(parseError.message || "Could not parse the uploaded file.");
     } finally {
       setIsParsing(false);
     }
@@ -196,7 +267,7 @@ export default function App() {
     setJobId("");
     setJobStatus(null);
     setResultBlob(null);
-    setResultFileName("master_jobs.xlsx");
+    setResultFileName("master_jobs.csv");
     setError("");
     setShowFullJobId(false);
     window.localStorage.removeItem(STORAGE_KEY);
@@ -237,7 +308,7 @@ export default function App() {
         error: ""
       });
       setResultBlob(null);
-      setResultFileName("master_jobs.xlsx");
+      setResultFileName("master_jobs.csv");
     } catch (submitError) {
       setError(submitError.message || "Submission failed.");
     } finally {
@@ -258,10 +329,10 @@ export default function App() {
             alt="GCCERA logo"
           />
           <div className="eyebrow">Scrape Gignaati</div>
-          <h1>Upload Excel. Get Scraped Results.</h1>
+          <h1>Upload CSV. Get Scraped Results.</h1>
           <p>
-            Upload your Excel file, start the scrape, and download the final
-            results once the batch is complete.
+            Upload your CSV or Excel file, start the scrape, and download the
+            final CSV once the batch is complete.
           </p>
         </section>
 
@@ -275,13 +346,13 @@ export default function App() {
 
           <div className="uploader">
             <label className="upload-button" htmlFor="excel-upload">
-              <span>Open Excel File</span>
-              <small>.xlsx or .xls</small>
+              <span>Open Input File</span>
+              <small>.csv, .xlsx or .xls</small>
             </label>
             <input
               id="excel-upload"
               type="file"
-              accept=".xlsx,.xls"
+              accept=".csv,.xlsx,.xls"
               onChange={handleFileChange}
             />
             <div className="upload-meta">
@@ -360,7 +431,7 @@ export default function App() {
                 href={downloadUrlRef.current}
                 download={resultFileName}
               >
-                Download Result Excel
+                Download Result CSV
               </a>
             ) : (
               <div className="muted">Result file will appear here after completion.</div>

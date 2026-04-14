@@ -27,8 +27,31 @@ client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-MASTER_XLSX = OUTPUT_DIR / "master_jobs.xlsx"
+MASTER_CSV = OUTPUT_DIR / "master_jobs.csv"
 MASTER_JSON = OUTPUT_DIR / "master_jobs.json"
+
+FINAL_CSV_COLUMNS = [
+    "id",
+    "title",
+    "company_name",
+    "job_link",
+    "experience",
+    "locations",
+    "educational_qualifications",
+    "required_skill_set",
+    "remote_type",
+    "posted_on",
+    "job_id",
+    "salary",
+    "is_active",
+    "first_seen",
+    "last_seen",
+    "job_summary",
+    "key_responsibilities",
+    "additional_sections",
+    "about_us",
+    "Scrap_json",
+]
 
 MAX_CONCURRENT = 5
 semaphore = asyncio.Semaphore(MAX_CONCURRENT)
@@ -63,10 +86,12 @@ def append_to_master(jobs: List[dict]):
     if not jobs:
         return
 
-    df_new = pd.DataFrame(jobs)
+    normalized_jobs = [_normalize_job_record(job) for job in jobs]
+    csv_rows = [_to_csv_row(job) for job in normalized_jobs]
+    df_new = pd.DataFrame(csv_rows, columns=FINAL_CSV_COLUMNS)
 
-    if MASTER_XLSX.exists():
-        df_existing = pd.read_excel(MASTER_XLSX)
+    if MASTER_CSV.exists():
+        df_existing = pd.read_csv(MASTER_CSV, keep_default_na=False)
         df_final = pd.concat([df_existing, df_new], ignore_index=True)
     else:
         df_final = df_new
@@ -75,25 +100,67 @@ def append_to_master(jobs: List[dict]):
     if "job_id" in df_final.columns:
         df_final.drop_duplicates(subset=["job_id"], inplace=True)
 
-    df_final.to_excel(MASTER_XLSX, index=False)
+    df_final = df_final.reindex(columns=FINAL_CSV_COLUMNS)
+    df_final.to_csv(MASTER_CSV, index=False)
 
     # JSON
     if MASTER_JSON.exists():
-        with open(MASTER_JSON, "r") as f:
+        with open(MASTER_JSON, "r", encoding="utf-8") as f:
             existing = json.load(f)
     else:
         existing = []
 
-    existing.extend(jobs)
+    existing.extend(normalized_jobs)
 
-    with open(MASTER_JSON, "w") as f:
-        json.dump(existing, f, indent=2)
+    with open(MASTER_JSON, "w", encoding="utf-8") as f:
+        json.dump(existing, f, indent=2, ensure_ascii=False)
 
     logging.info(f"✅ Appended {len(jobs)} jobs to master")
 
 
+def _normalize_job_record(job: dict) -> dict:
+    record = dict(job)
+    record.pop("ai_usage", None)
+
+    normalized = {
+        "id": str(record.get("id") or record.get("job_id") or ""),
+        "title": str(record.get("title") or ""),
+        "company_name": str(record.get("company_name") or ""),
+        "job_link": str(record.get("job_link") or record.get("url") or ""),
+        "experience": str(record.get("experience") or ""),
+        "locations": record.get("locations") or [],
+        "educational_qualifications": str(record.get("educational_qualifications") or ""),
+        "required_skill_set": record.get("required_skill_set") or [],
+        "remote_type": str(record.get("remote_type") or ""),
+        "posted_on": str(record.get("posted_on") or ""),
+        "job_id": str(record.get("job_id") or record.get("id") or ""),
+        "salary": str(record.get("salary") or ""),
+        "is_active": bool(record.get("is_active", True)),
+        "first_seen": str(record.get("first_seen") or ""),
+        "last_seen": str(record.get("last_seen") or ""),
+        "job_summary": str(record.get("job_summary") or ""),
+        "key_responsibilities": record.get("key_responsibilities") or [],
+        "additional_sections": record.get("additional_sections") or [],
+        "about_us": str(record.get("about_us") or ""),
+        "Scrap_json": record.get("Scrap_json") or {},
+    }
+    return normalized
+
+
+def _to_csv_row(job: dict) -> dict:
+    return {key: _serialize_cell(job.get(key)) for key in FINAL_CSV_COLUMNS}
+
+
+def _serialize_cell(value):
+    if isinstance(value, (list, dict)):
+        return json.dumps(value, ensure_ascii=False)
+    if value is None:
+        return ""
+    return value
+
+
 def reset_master_outputs():
-    for path in (MASTER_XLSX, MASTER_JSON):
+    for path in (MASTER_CSV, MASTER_JSON):
         try:
             if path.exists():
                 path.unlink()
@@ -130,7 +197,10 @@ Schema:
   "is_active": boolean,
   "first_seen": string,
   "last_seen": string,
+  "job_summary": string,
+  "key_responsibilities": array,
   "additional_sections": array,
+  "about_us": string,
   "Scrap_json": {
     "url": string,
     "strategy": string,
@@ -143,11 +213,6 @@ Schema:
     "soft_skills": array,
     "inferred_skills": array,
     "benefits": array
-  },
-  "ai_usage": {
-    "input_tokens": number,
-    "output_tokens": number,
-    "total_tokens": number
   }
 }
 
@@ -158,7 +223,6 @@ Rules:
 - job_id = id
 - locations must be array
 - is_active = true
-- ai_usage can be zeros
 """
 
 
@@ -177,6 +241,14 @@ async def process_job(job: dict):
             raw = response.choices[0].message.content.strip()
 
             parsed = json.loads(raw)
+            parsed.setdefault("locations", [])
+            parsed.setdefault("required_skill_set", [])
+            parsed.setdefault("job_summary", "")
+            parsed.setdefault("key_responsibilities", [])
+            parsed.setdefault("additional_sections", [])
+            parsed.setdefault("about_us", "")
+            parsed.setdefault("Scrap_json", {})
+            parsed.pop("ai_usage", None)
 
             logging.info(f"✅ {parsed.get('title')}")
 
@@ -334,7 +406,10 @@ Schema:
   "is_active": true,
   "first_seen": "",
   "last_seen": "",
+  "job_summary": "",
+  "key_responsibilities": [],
   "additional_sections": [],
+  "about_us": "",
   "Scrap_json": {
     "preferred_skills": [],
     "tools_and_technologies": [],
@@ -342,11 +417,6 @@ Schema:
     "soft_skills": [],
     "inferred_skills": [],
     "benefits": []
-  },
-  "ai_usage": {
-    "input_tokens": 0,
-    "output_tokens": 0,
-    "total_tokens": 0
   }
 }
 """
@@ -387,9 +457,12 @@ async def process_smartrecruiters_job(job: dict, company: str):
         parsed["job_link"] = f"https://jobs.smartrecruiters.com/{company}/{job.get('id', '')}"
         parsed.setdefault("locations", [])
         parsed.setdefault("required_skill_set", [])
+        parsed.setdefault("job_summary", "")
+        parsed.setdefault("key_responsibilities", [])
         parsed.setdefault("additional_sections", [])
+        parsed.setdefault("about_us", "")
         parsed.setdefault("Scrap_json", {})
-        parsed.setdefault("ai_usage", {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0})
+        parsed.pop("ai_usage", None)
 
         logging.info("✅ SmartRecruiters %s", parsed.get("title"))
         return parsed
@@ -423,7 +496,7 @@ async def process_workday(req: WorkdayRequest):
     return {
         "status": "done",
         "processed": len(parsed_jobs),
-        "output": str(MASTER_XLSX.resolve())
+        "output": str(MASTER_CSV.resolve())
     }
 
 
@@ -445,7 +518,7 @@ def ingest_json(req: IngestRequest):
     return {
         "status": "ingested",
         "count": len(jobs),
-        "output": str(MASTER_XLSX.resolve())
+        "output": str(MASTER_CSV.resolve())
     }
 
 
@@ -457,7 +530,7 @@ async def process_smartrecruiters(req: SmartRecruitersRequest):
             "status": "failed",
             "processed": 0,
             "json_file": "",
-            "output": str(MASTER_XLSX.resolve()),
+            "output": str(MASTER_CSV.resolve()),
             "error": "could_not_detect_company",
         }
 
@@ -479,7 +552,7 @@ async def process_smartrecruiters(req: SmartRecruitersRequest):
         "status": "done",
         "processed": len(parsed_jobs),
         "json_file": str(json_file.resolve()),
-        "output": str(MASTER_XLSX.resolve()),
+        "output": str(MASTER_CSV.resolve()),
     }
 
 
@@ -488,5 +561,5 @@ def reset_master():
     reset_master_outputs()
     return {
         "status": "reset",
-        "output": str(MASTER_XLSX.resolve()),
+        "output": str(MASTER_CSV.resolve()),
     }
