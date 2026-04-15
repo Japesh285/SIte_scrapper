@@ -22,6 +22,7 @@ from app.services.raw_json_saver import RAW_JSON_DIR
 from app.job_detail_engine.orchestrator import extract_job_details
 from app.services.test_scrape import run_test_scrape
 from app.core.logger import logger
+from app.scrapers.accenture import ACCENTURE_SITE_TYPE, capture_accenture_page_html
 
 # ── Job URL validation ─────────────────────────────────────────────
 
@@ -282,6 +283,100 @@ def _build_job_detail_result(detail: dict, job_url: str, scrap_json: dict) -> Jo
     )
 
 
+async def _extract_accenture_jobs_detail(
+    jobs_raw: list[dict],
+    domain: str,
+    log_prefix: str,
+) -> tuple[list[JobDetailResult], int]:
+    from app.job_detail_engine.orchestrator import extract_job_details as extract_dom_details
+
+    try:
+        from playwright.async_api import async_playwright
+    except Exception:
+        logger.warning("%s Playwright unavailable for Accenture detail extraction", log_prefix)
+        return [], 0
+
+    jobs_detail: list[JobDetailResult] = []
+    total_ai_tokens = 0
+
+    async with async_playwright() as playwright:
+        browser = await playwright.chromium.launch(
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+            ],
+        )
+
+        try:
+            for i, job_data in enumerate(jobs_raw):
+                job_url = str(job_data.get("url", "")).strip()
+                if not job_url:
+                    continue
+
+                logger.info("%s %s ACCENTURE job %d/%d: %s", log_prefix, domain, i + 1, len(jobs_raw), job_url)
+                page = await browser.new_page()
+                meta = {}
+                detail = {}
+                ai_usage = {}
+
+                try:
+                    html = await capture_accenture_page_html(page, job_url)
+                    if len(html) < 1500:
+                        logger.info("%s [ACCENTURE] Weak page skipped: %s (length=%d)", log_prefix, job_url, len(html))
+                        continue
+
+                    detail = await extract_dom_details(html, force_ai=True, domain=domain)
+                    meta = detail.pop("_meta", {})
+                    ai_usage = detail.pop("ai_usage", {})
+                    total_ai_tokens += ai_usage.get("total_tokens", 0)
+                    logger.info(
+                        "%s [Engine] %s job %d → title=%r, parser=%s, score=%s, ai_used=%s, ai_forced=%s, skills=%d, ai_tokens=%d",
+                        log_prefix,
+                        domain,
+                        i + 1,
+                        detail.get("title", ""),
+                        meta.get("parser_used", "?"),
+                        meta.get("confidence", 0),
+                        meta.get("ai_used", False),
+                        meta.get("ai_forced", False),
+                        len(detail.get("skills", [])),
+                        ai_usage.get("total_tokens", 0),
+                    )
+                except Exception as exc:
+                    logger.error("%s Accenture detail extraction failed for %s: %s", log_prefix, job_url, exc)
+                    continue
+                finally:
+                    await page.close()
+
+                jobs_detail.append(
+                    _build_job_detail_result(
+                        detail,
+                        job_url,
+                        {
+                            "url": job_url,
+                            "strategy": "dom",
+                            "site_type": ACCENTURE_SITE_TYPE,
+                            "parser_used": str(meta.get("parser_used", "")),
+                            "confidence": meta.get("confidence", 0),
+                            "ai_forced": meta.get("ai_forced", False),
+                            "preferred_skills": detail.get("preferred_skills") or [],
+                            "tools_and_technologies": detail.get("tools_and_technologies") or [],
+                            "certifications": detail.get("certifications") or [],
+                            "soft_skills": detail.get("soft_skills") or [],
+                            "inferred_skills": detail.get("inferred_skills") or [],
+                            "benefits": detail.get("benefits") or [],
+                        },
+                    )
+                )
+        finally:
+            await browser.close()
+
+    return jobs_detail, total_ai_tokens
+
+
 class ScrapeDetailsResponse(BaseModel):
     domain: str
     site_type: str
@@ -344,7 +439,14 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
     jobs_detail = []
     total_ai_tokens = 0
 
-    if strategy == "api":
+    if site_type == ACCENTURE_SITE_TYPE:
+        jobs_detail, total_ai_tokens = await _extract_accenture_jobs_detail(
+            jobs_raw,
+            domain,
+            "[ScrapeDetails]",
+        )
+
+    elif strategy == "api":
         # ── API STRATEGY: Extract details from raw API data, NO HTML ──
         from app.services.detail_extractor import extract_job_details as extract_api_details
 
@@ -912,7 +1014,14 @@ async def scrape_details_batch(
             jobs_detail = []
             total_ai_tokens = 0
 
-            if site_type == "DYNAMIC_API":
+            if site_type == ACCENTURE_SITE_TYPE:
+                jobs_detail, total_ai_tokens = await _extract_accenture_jobs_detail(
+                    jobs_raw,
+                    domain,
+                    "[BatchScrape]",
+                )
+
+            elif site_type == "DYNAMIC_API":
                 # ── DYNAMIC_API: Jobs already AI-enriched by scraper, pass through ──
                 logger.info("[BatchScrape] [DYNAMIC_API] Jobs already enriched — passing through")
                 for i, job_data in enumerate(jobs_raw):

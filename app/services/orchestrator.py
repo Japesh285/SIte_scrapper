@@ -19,7 +19,7 @@ from app.detectors import (
     run_browser_probe,
     inspect_browser_network,
 )
-from app.core.site_utils import get_domain, normalize_site_url
+from app.core.site_utils import get_domain, normalize_site_url, is_accenture_careers_url
 from app.detectors.simple_api import fetch_simple_api_jobs
 from app.detectors.workday import fetch_workday_jobs
 from app.services.ai_classifier import classify_site
@@ -28,6 +28,7 @@ from app.scrapers.dom_browser import (
     scrape_dom_infinite_scroll,
     scrape_dom_load_more,
 )
+from app.scrapers.accenture import ACCENTURE_SITE_TYPE, scrape_accenture_jobs
 from app.scrapers.simple_api import scrape_simple_api
 from app.scrapers.greenhouse import scrape_greenhouse
 from app.scrapers.dynamic_api import scrape_dynamic_api, scrape_dynamic_api_direct
@@ -72,6 +73,83 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     normalized_url = normalize_site_url(url)
     domain = get_domain(normalized_url)
     logger.info(f"Testing: {domain}")
+
+    if is_accenture_careers_url(normalized_url):
+        logger.info("[ACCENTURE] Detected Accenture careers URL → using dedicated scraper")
+        jobs = await scrape_accenture_jobs(normalized_url)
+
+        result = await session.execute(select(Site).where(Site.domain == url))
+        site = result.scalar_one_or_none()
+        if site is None:
+            result = await session.execute(select(Site).where(Site.domain == normalized_url))
+            site = result.scalar_one_or_none()
+
+        if site is None:
+            site = Site(domain=normalized_url, type=ACCENTURE_SITE_TYPE, confidence=1.0)
+            session.add(site)
+            await session.flush()
+        else:
+            site.domain = normalized_url
+            site.type = ACCENTURE_SITE_TYPE
+            site.confidence = 1.0
+
+        saved_count = 0
+        for job_data in jobs:
+            title = str(job_data.get("title", "")).strip()
+            job_url = str(job_data.get("url", "")).strip()
+            if not title or not job_url:
+                continue
+
+            existing_job = await session.execute(
+                select(Job).where(Job.site_id == site.id, Job.url == job_url)
+            )
+            job = existing_job.scalar_one_or_none()
+            if job:
+                job.title = title
+                job.location = str(job_data.get("location", "")).strip()
+                job.raw_json = job_data
+                saved_count += 1
+                continue
+
+            job = Job(
+                site_id=site.id,
+                title=title,
+                location=str(job_data.get("location", "")).strip(),
+                url=job_url,
+                raw_json=job_data,
+            )
+            session.add(job)
+            saved_count += 1
+
+        await session.commit()
+
+        saved_path = None
+        if jobs:
+            saved_path = save_scrape_result(
+                jobs,
+                domain,
+                ACCENTURE_SITE_TYPE,
+                {
+                    "url": normalized_url,
+                    "confidence": 1.0,
+                    "strategy": "dom",
+                    "api_url": "",
+                    "detection_results": {"accenture": {"matched": True, "jobs_found": len(jobs)}},
+                },
+            )
+            if saved_path:
+                logger.info("[ACCENTURE] Raw JSON saved to: %s", saved_path)
+
+        return {
+            "domain": domain,
+            "type": ACCENTURE_SITE_TYPE,
+            "confidence": 1.0,
+            "jobs_found": len(jobs),
+            "status": "success" if jobs else "failed",
+            "strategy": "dom",
+            "api_url": "",
+        }
+
     page_html = ""
     browser_probe: dict | None = None
     discovered_urls: list[str] = []

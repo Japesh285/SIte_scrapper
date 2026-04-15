@@ -25,14 +25,12 @@ Extract ONLY these fields from the job posting:
   "job_id": "",
   "required_skills": [],
   "education": "",
-  "qualifications": [],
-  "additional_sections": []
+  "qualifications": []
 }
 
 RULES:
 - Return "" for strings and [] for arrays when data is missing
 - Keep arrays short (max 15 items, each item max 50 chars)
-- additional_sections: only keep short metadata (content < 200 chars)
 - Do NOT extract job_description, key_responsibilities, about_company, benefits
 - Total output must stay under 600 tokens
 - Valid JSON only, no markdown, no explanations
@@ -57,15 +55,13 @@ Extract ALL available information into these fields:
   "job_id": "",
   "required_skills": [],
   "education": "",
-  "qualifications": [],
-  "additional_sections": []
+  "qualifications": []
 }
 
 RULES:
 - Return "" for strings and [] for arrays when data is missing
 - Keep arrays max 15 items, each item max 50 chars
 - Extract required_skills comprehensively from the FULL description
-- additional_sections: only keep short metadata (content < 200 chars)
 - Do NOT extract job_description, key_responsibilities, about_company, benefits
 - Valid JSON only, no markdown, no explanations
 
@@ -88,7 +84,6 @@ _AI_FIELDS = {
     "required_skills",
     "education",
     "qualifications",
-    "additional_sections",
 }
 
 # Fields that must always be empty in final output
@@ -98,6 +93,7 @@ _EMPTY_FIELDS = {
     "key_responsibilities": [],
     "about_company": "",
     "benefits": [],
+    "additional_sections": [],
 }
 
 

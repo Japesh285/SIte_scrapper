@@ -493,7 +493,6 @@ def format_ai_prompt(job_data: dict) -> str:
 Return ONLY valid JSON matching this exact structure. Do not include explanations, markdown, or extra text.
 
 {{
-  "id": "string (use job_id from input)",
   "title": "string (clean job title)",
   "company_name": "string (extract from input company/site)",
   "job_link": "string (the apply URL)",
@@ -503,17 +502,12 @@ Return ONLY valid JSON matching this exact structure. Do not include explanation
   "required_skill_set": ["string array of skills/technologies"],
   "remote_type": "string ('On-site', 'Remote', 'Hybrid', or '')",
   "posted_on": "string (format: 'Posted X Days Ago' or date)",
-  "job_id": "string (same as id)",
+  "job_id": "string (use job_id from input)",
   "salary": "string (extract if present, else '')",
   "is_active": true,
   "first_seen": "string (ISO date or '')",
   "last_seen": "string (ISO date or '')",
-  "job_summary": "string (brief role summary)",
   "key_responsibilities": ["string array of concise responsibilities"],
-  "additional_sections": [
-    {{"section_title": "string", "content": "string"}}
-  ],
-  "about_us": "string (company/about section if clearly present, else '')",
   "Scrap_json": {{
     "url": "string (original job URL)",
     "strategy": "string ('api' or 'html')",
@@ -529,9 +523,8 @@ Return ONLY valid JSON matching this exact structure. Do not include explanation
 3. required_skill_set: Extract technical skills, tools, frameworks from description/requirements
 4. remote_type: Infer from keywords: "remote", "work from home" → "Remote"; "hybrid", "flexible" → "Hybrid"; "on-site", "office" → "On-site"
 5. educational_qualifications: Return as JSON string: '["Bachelor's degree in CS"]' or '[]'
-6. job_summary, key_responsibilities, about_us: Extract when clearly available, else keep empty
-7. additional_sections: Include useful metadata like "Benefits", "Department", "Employment Type"
-8. Scrap_json.site_type: Detect from URL: "capgemini.com" → "CUSTOM_API", "myworkdayjobs.com" → "WORKDAY_API", "greenhouse.io" → "GREENHOUSE", "lever.co" → "LEVER"
+6. key_responsibilities: Extract concise bullets when clearly available, else keep empty
+7. Scrap_json.site_type: Detect from URL: "capgemini.com" → "CUSTOM_API", "myworkdayjobs.com" → "WORKDAY_API", "greenhouse.io" → "GREENHOUSE", "lever.co" → "LEVER"
 
 ## IMPORTANT:
 - Return ONLY the JSON object, no markdown, no code blocks, no explanations
@@ -619,13 +612,12 @@ def enrich_job_with_ai(job: dict) -> dict:
         ai_output["_ai_usage"] = token_usage
         
         # Ensure required fields exist
-        ai_output.setdefault("id", job.get("id") or "")
         ai_output.setdefault("job_id", job.get("id") or "")
         ai_output.setdefault("job_link", job.get("url") or "")
         ai_output.setdefault("is_active", True)
         ai_output.setdefault("job_summary", "")
         ai_output.setdefault("key_responsibilities", [])
-        ai_output.setdefault("additional_sections", [])
+        ai_output.setdefault("additional_sections", "")
         ai_output.setdefault("about_us", "")
         ai_output.setdefault("Scrap_json", {
             "url": job.get("url", ""),
@@ -646,7 +638,6 @@ def create_fallback_output(job: dict) -> dict:
     """Create minimal valid output when AI processing fails."""
     company_name = derive_company_name(job)
     return {
-        "id": job.get("id") or "",
         "title": job.get("title") or "Untitled",
         "company_name": company_name,
         "job_link": job.get("url") or "",
@@ -663,7 +654,7 @@ def create_fallback_output(job: dict) -> dict:
         "last_seen": "",
         "job_summary": "",
         "key_responsibilities": [],
-        "additional_sections": [],
+        "additional_sections": "",
         "about_us": "",
         "Scrap_json": {
             "url": job.get("url", ""),

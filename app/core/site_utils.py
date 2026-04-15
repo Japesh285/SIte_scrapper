@@ -24,3 +24,16 @@ def get_origin(value: str) -> str:
 
 def absolutize_url(base_url: str, candidate: str) -> str:
     return urljoin(normalize_site_url(base_url), candidate)
+
+
+def is_accenture_url(value: str) -> bool:
+    normalized = normalize_site_url(value)
+    parsed = urlparse(normalized)
+    host = parsed.netloc.lower()
+    return host.endswith("accenture.com") or host == "accenture.com"
+
+
+def is_accenture_careers_url(value: str) -> bool:
+    normalized = normalize_site_url(value)
+    parsed = urlparse(normalized)
+    return is_accenture_url(normalized) and "/careers" in parsed.path.lower()

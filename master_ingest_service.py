@@ -31,7 +31,6 @@ MASTER_CSV = OUTPUT_DIR / "master_jobs.csv"
 MASTER_JSON = OUTPUT_DIR / "master_jobs.json"
 
 FINAL_CSV_COLUMNS = [
-    "id",
     "title",
     "company_name",
     "job_link",
@@ -120,10 +119,10 @@ def append_to_master(jobs: List[dict]):
 
 def _normalize_job_record(job: dict) -> dict:
     record = dict(job)
+    record.pop("id", None)
     record.pop("ai_usage", None)
 
     normalized = {
-        "id": str(record.get("id") or record.get("job_id") or ""),
         "title": str(record.get("title") or ""),
         "company_name": str(record.get("company_name") or ""),
         "job_link": str(record.get("job_link") or record.get("url") or ""),
@@ -138,17 +137,22 @@ def _normalize_job_record(job: dict) -> dict:
         "is_active": bool(record.get("is_active", True)),
         "first_seen": str(record.get("first_seen") or ""),
         "last_seen": str(record.get("last_seen") or ""),
-        "job_summary": str(record.get("job_summary") or ""),
+        "job_summary": "",
         "key_responsibilities": record.get("key_responsibilities") or [],
-        "additional_sections": record.get("additional_sections") or [],
-        "about_us": str(record.get("about_us") or ""),
+        "additional_sections": "",
+        "about_us": "",
         "Scrap_json": record.get("Scrap_json") or {},
     }
     return normalized
 
 
 def _to_csv_row(job: dict) -> dict:
-    return {key: _serialize_cell(job.get(key)) for key in FINAL_CSV_COLUMNS}
+    row = {key: _serialize_cell(job.get(key)) for key in FINAL_CSV_COLUMNS}
+    row["job_summary"] = ""
+    row["additional_sections"] = ""
+    row["about_us"] = ""
+    row["Scrap_json"] = ""
+    return row
 
 
 def _serialize_cell(value):
@@ -182,7 +186,6 @@ Return ONLY valid JSON. No explanation.
 
 Schema:
 {
-  "id": string,
   "title": string,
   "company_name": string,
   "job_link": string,
@@ -197,10 +200,7 @@ Schema:
   "is_active": boolean,
   "first_seen": string,
   "last_seen": string,
-  "job_summary": string,
   "key_responsibilities": array,
-  "additional_sections": array,
-  "about_us": string,
   "Scrap_json": {
     "url": string,
     "strategy": string,
@@ -220,7 +220,6 @@ Rules:
 - If field missing → use "" or []
 - Extract skills from description
 - Infer experience if possible
-- job_id = id
 - locations must be array
 - is_active = true
 """
@@ -245,7 +244,7 @@ async def process_job(job: dict):
             parsed.setdefault("required_skill_set", [])
             parsed.setdefault("job_summary", "")
             parsed.setdefault("key_responsibilities", [])
-            parsed.setdefault("additional_sections", [])
+            parsed.setdefault("additional_sections", "")
             parsed.setdefault("about_us", "")
             parsed.setdefault("Scrap_json", {})
             parsed.pop("ai_usage", None)
@@ -391,7 +390,6 @@ NO comments.
 
 Schema:
 {
-  "id": "",
   "title": "",
   "company_name": "",
   "job_link": "",
@@ -406,10 +404,7 @@ Schema:
   "is_active": true,
   "first_seen": "",
   "last_seen": "",
-  "job_summary": "",
   "key_responsibilities": [],
-  "additional_sections": [],
-  "about_us": "",
   "Scrap_json": {
     "preferred_skills": [],
     "tools_and_technologies": [],
@@ -451,7 +446,6 @@ async def process_smartrecruiters_job(job: dict, company: str):
         cleaned = re.sub(r",\s*]", "]", cleaned)
 
         parsed = json.loads(cleaned)
-        parsed["id"] = job.get("id", "")
         parsed["job_id"] = job.get("id", "")
         parsed["company_name"] = company
         parsed["job_link"] = f"https://jobs.smartrecruiters.com/{company}/{job.get('id', '')}"
@@ -459,7 +453,7 @@ async def process_smartrecruiters_job(job: dict, company: str):
         parsed.setdefault("required_skill_set", [])
         parsed.setdefault("job_summary", "")
         parsed.setdefault("key_responsibilities", [])
-        parsed.setdefault("additional_sections", [])
+        parsed.setdefault("additional_sections", "")
         parsed.setdefault("about_us", "")
         parsed.setdefault("Scrap_json", {})
         parsed.pop("ai_usage", None)

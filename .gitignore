@@ -20,7 +20,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 react_batch_ui/node_modules/
-react_batch_ui/vite.config.js
+react_batch_ui/vite.config.js   
 
 # Database
 *.db

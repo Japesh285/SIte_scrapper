@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import html
 import re
-from urllib.parse import urlparse
 
 from app.core.logger import logger
 from app.core.site_utils import absolutize_url
@@ -140,7 +139,7 @@ async def _aggressive_extract_jobs(url: str, max_rounds: int = 8) -> list[dict]:
             )
             page = await context.new_page()
 
-            await page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            await page.goto(url, wait_until="networkidle", timeout=60000)
             await page.wait_for_timeout(3000)
 
             for round_idx in range(max_rounds):
@@ -234,120 +233,45 @@ def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
     """
     jobs: list[dict] = []
     seen_urls: set[str] = set()
-    base_parsed = urlparse(base_url)
 
     # Find all <a> tags with href
-    anchor_pattern = r'<a[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>'
+    anchor_pattern = r'<a\s+[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>'
     matches = re.findall(anchor_pattern, html, re.IGNORECASE | re.DOTALL)
 
     for href, inner_html in matches:
-        href = html.unescape(href).strip()
-        # Strip inner HTML tags to get text
-        text = re.sub(r'<[^>]+>', '', inner_html).strip()
-        text = html.unescape(text)
-        text = re.sub(r'\s+', ' ', text).strip()
+        try:
+            # Defensive casting for html.unescape
+            clean_href = html.unescape(str(href)).strip()
+            raw_text = re.sub(r'<[^>]+>', '', str(inner_html)).strip()
+            text = html.unescape(raw_text)
+            text = re.sub(r'\s+', ' ', text).strip()
 
-        if not text or len(text) < 3:
+            if not text or len(text) < 3 or not clean_href:
+                continue
+
+            abs_url = absolutize_url(base_url, clean_href)
+
+            # Use positive-match filter to avoid discarding valid jobs
+            if not _is_actual_job_url(abs_url):
+                continue
+
+            job = {"title": text.strip(), "location": "", "url": abs_url}
+            dedup_key = f"{text.lower()}|{abs_url}".lower()
+            if dedup_key not in seen_urls:
+                seen_urls.add(dedup_key)
+                jobs.append(job)
+        except Exception:
             continue
 
-        text_lower = text.lower()
-        href_lower = href.lower()
-        normalized_text = re.sub(r'[^a-z0-9 ]+', ' ', text_lower)
-        normalized_text = re.sub(r'\s+', ' ', normalized_text).strip()
-
-        # Skip excluded patterns
-        if any(part in text_lower for part in _EXCLUDE_TITLE_PARTS):
-            continue
-        if any(part in href_lower for part in _EXCLUDE_URL_PARTS):
-            continue
-        if normalized_text in _GENERIC_TITLE_TEXTS:
-            continue
-
-        abs_url = absolutize_url(base_url, href)
-        parsed = urlparse(abs_url)
-        path_lower = parsed.path.lower()
-
-        if parsed.netloc != base_parsed.netloc:
-            continue
-        if parsed.path == base_parsed.path:
-            continue
-        if path_lower.endswith("/dashboard"):
-            continue
-        if path_lower.endswith("/jobs/results") or "/jobs/results/jobs/results" in path_lower:
-            continue
-        if path_lower.endswith("/jobs/recommendations"):
-            continue
-        if "support.google.com" in parsed.netloc.lower():
-            continue
-
-        # Check for job signals
-        has_job_signal = any(kw in text_lower for kw in _JOB_SIGNALS)
-        has_job_href = any(kw in href_lower for kw in _JOB_SIGNALS)
-
-        if not has_job_signal and not has_job_href:
-            continue
-
-        # Skip if text is too generic
-        generic_texts = {"apply now", "view details", "learn more", "read more", "click here"}
-        if text_lower in generic_texts and not has_job_href:
-            continue
-        if not _looks_like_job_detail_url(abs_url):
-            continue
-
-        # Try to extract location from surrounding context
-        location = ""
-
-        job = {
-            "title": text.strip(),
-            "location": location,
-            "url": abs_url,
-        }
-
-        # Deduplicate
-        dedup_key = f"{text_lower}|{abs_url}".lower()
-        if dedup_key not in seen_urls:
-            seen_urls.add(dedup_key)
-            jobs.append(job)
-
-    return jobs[:200]  # Cap to avoid excessive results
+    return jobs[:200]
 
 
-def _looks_like_job_detail_url(url: str) -> bool:
-    """Conservative check for detail-like job URLs."""
-    parsed = urlparse(url)
-    path = parsed.path.lower().strip()
-    if not path:
-        return False
+def _is_actual_job_url(url: str) -> bool:
+    """Only allow URLs that contain explicit job indicators."""
+    url_lower = url.lower()
+    # If it contains these, it's a job.
+    is_job = any(kw in url_lower for kw in ["/job/", "/job-details", "/position/"])
+    # If it contains these, it's a navigation/search page, not a job.
+    is_nav = any(nav in url_lower for nav in ["/search", "/results", "/benefits", "/life-at-"])
 
-    generic_paths = {
-        "/about/careers/applications/jobs/results",
-        "/about/careers/applications/jobs/results/",
-    }
-    if path in generic_paths:
-        return False
-
-    # Accept clear detail-path patterns.
-    detail_patterns = (
-        "/job/",
-        "/jobs/",
-        "/position/",
-        "/opening/",
-        "/requisition/",
-        "/vacancy/",
-        "/role/",
-    )
-    if any(p in path for p in detail_patterns):
-        # But reject generic result/navigation pages that merely contain /jobs/.
-        bad_subpaths = (
-            "/jobs/results",
-            "/jobs/recommendations",
-            "/jobs/search",
-            "/jobs/filter",
-            "/jobs/category",
-        )
-        if any(p in path for p in bad_subpaths):
-            return False
-        return True
-
-    # Accept URLs carrying a likely job ID / requisition token.
-    return bool(re.search(r"(req|job|jr|requisition)[-_]?[a-z0-9]{4,}|\d{5,}", path, re.IGNORECASE))
+    return is_job and not is_nav
