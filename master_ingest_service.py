@@ -2,6 +2,7 @@ import json
 import asyncio
 import logging
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import List
 from urllib.parse import parse_qs, urlparse
@@ -148,6 +149,8 @@ def _normalize_job_record(job: dict) -> dict:
 
 def _to_csv_row(job: dict) -> dict:
     row = {key: _serialize_cell(job.get(key)) for key in FINAL_CSV_COLUMNS}
+    for key in ("posted_on", "first_seen", "last_seen"):
+        row[key] = _format_date_for_csv(job.get(key))
     row["job_summary"] = ""
     row["additional_sections"] = ""
     row["about_us"] = ""
@@ -161,6 +164,34 @@ def _serialize_cell(value):
     if value is None:
         return ""
     return value
+
+
+def _format_date_for_csv(value) -> str:
+    if value is None:
+        return ""
+
+    raw = str(value).strip()
+    if not raw:
+        return ""
+
+    candidates = [raw]
+    if raw.endswith("Z"):
+        candidates.append(raw[:-1] + "+00:00")
+
+    for candidate in candidates:
+        try:
+            return datetime.fromisoformat(candidate).strftime("%d-%m-%Y")
+        except ValueError:
+            pass
+
+    try:
+        parsed = pd.to_datetime(raw, errors="coerce", utc=False)
+        if pd.notna(parsed):
+            return parsed.strftime("%d-%m-%Y")
+    except Exception:
+        pass
+
+    return raw
 
 
 def reset_master_outputs():

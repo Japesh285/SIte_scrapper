@@ -22,7 +22,11 @@ from app.services.raw_json_saver import RAW_JSON_DIR
 from app.job_detail_engine.orchestrator import extract_job_details
 from app.services.test_scrape import run_test_scrape
 from app.core.logger import logger
-from app.scrapers.accenture import ACCENTURE_SITE_TYPE, capture_accenture_page_html
+from app.scrapers.accenture import (
+    ACCENTURE_SITE_TYPE,
+    AccentureRequestManager,
+    AccentureThrottle,
+)
 
 # ── Job URL validation ─────────────────────────────────────────────
 
@@ -309,6 +313,7 @@ async def _extract_accenture_jobs_detail(
                 "--disable-gpu",
             ],
         )
+        manager = AccentureRequestManager(browser, throttle=AccentureThrottle())
 
         try:
             for i, job_data in enumerate(jobs_raw):
@@ -317,13 +322,12 @@ async def _extract_accenture_jobs_detail(
                     continue
 
                 logger.info("%s %s ACCENTURE job %d/%d: %s", log_prefix, domain, i + 1, len(jobs_raw), job_url)
-                page = await browser.new_page()
                 meta = {}
                 detail = {}
                 ai_usage = {}
 
                 try:
-                    html = await capture_accenture_page_html(page, job_url)
+                    html = await manager.fetch_page(job_url, phase="job details", scroll_rounds=4)
                     if len(html) < 1500:
                         logger.info("%s [ACCENTURE] Weak page skipped: %s (length=%d)", log_prefix, job_url, len(html))
                         continue
@@ -348,8 +352,6 @@ async def _extract_accenture_jobs_detail(
                 except Exception as exc:
                     logger.error("%s Accenture detail extraction failed for %s: %s", log_prefix, job_url, exc)
                     continue
-                finally:
-                    await page.close()
 
                 jobs_detail.append(
                     _build_job_detail_result(
@@ -372,6 +374,7 @@ async def _extract_accenture_jobs_detail(
                     )
                 )
         finally:
+            await manager.close()
             await browser.close()
 
     return jobs_detail, total_ai_tokens

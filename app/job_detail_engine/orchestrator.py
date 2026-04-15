@@ -9,6 +9,7 @@ Pipeline:
 """
 
 from app.job_detail_engine.parsers.json_ld import parse_json_ld
+from app.job_detail_engine.parsers.accenture import parse_accenture_html
 from app.job_detail_engine.parsers.html_basic import parse_html_basic
 from app.job_detail_engine.scoring.confidence import score
 from app.job_detail_engine.ai.extractor import extract_with_ai, extract_with_ai_workday_full
@@ -50,11 +51,19 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
     # ── Step 2: If JSON-LD empty, try HTML parser ──────────────────
     conf = score(result)
     if conf == 0:
-        logger.info("[Engine] JSON-LD empty, falling back to HTML parser")
-        result = parse_html_basic(html)
-        parser_used = "html_basic"
-        conf = score(result)
-        logger.info("[Engine] HTML parser → title=%s, score=%d", result.get("title"), conf)
+        accenture_result = parse_accenture_html(html)
+        accenture_conf = score(accenture_result)
+        if accenture_conf > 0:
+            logger.info("[Engine] Accenture parser matched → title=%s, score=%d", accenture_result.get("title"), accenture_conf)
+            result = accenture_result
+            parser_used = "accenture_html"
+            conf = accenture_conf
+        else:
+            logger.info("[Engine] JSON-LD empty, falling back to HTML parser")
+            result = parse_html_basic(html)
+            parser_used = "html_basic"
+            conf = score(result)
+            logger.info("[Engine] HTML parser → title=%s, score=%d", result.get("title"), conf)
 
     # ── Step 3: AI enrichment (always if force_ai, otherwise low-score fallback) ─
     ai_used = False
