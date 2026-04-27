@@ -25,15 +25,16 @@ async def scrape_dynamic_api_direct(
     headers: dict,
     base_url: str,
     max_pages: int | None = None,
+    raw_jobs: list[dict] | None = None,
 ) -> list[dict]:
     """Run full dynamic.py pipeline: capture → paginate → AI enrich."""
     from app.detectors.dynamic_api_detector import detect_dynamic_api
 
     logger.info("[DynamicAPI Scraper] Starting full pipeline for %s", base_url)
 
-    detection = await detect_dynamic_api(base_url)
-
-    raw_jobs = detection.get("raw_jobs", [])
+    if raw_jobs is None:
+        detection = await detect_dynamic_api(base_url)
+        raw_jobs = detection.get("raw_jobs", [])
     if not raw_jobs:
         logger.warning("[DynamicAPI Scraper] No raw jobs from detector")
         raw_jobs = await _fetch_fallback(api_url, method, payload, headers, max_pages)
@@ -108,4 +109,5 @@ async def scrape_dynamic_api(url: str) -> list[dict]:
         payload=detection.get("payload"),
         headers=detection.get("headers", {}),
         base_url=url,
+        raw_jobs=detection.get("raw_jobs", []),
     )

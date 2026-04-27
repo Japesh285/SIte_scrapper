@@ -36,6 +36,7 @@ from app.scrapers.interactive_dom import scrape_interactive_dom
 from app.services.raw_json_saver import save_scrape_result
 from app.db.models import Site, Job
 from app.core.logger import logger
+from aonjobs import is_aon_url
 
 # ── URL filters ─────────────────────────────────────────────────────
 
@@ -72,7 +73,84 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     """Main orchestration flow: detect, classify, lock strategy, scrape, save."""
     normalized_url = normalize_site_url(url)
     domain = get_domain(normalized_url)
+    aon_matched = is_aon_url(normalized_url)
     logger.info(f"Testing: {domain}")
+
+    if aon_matched:
+        logger.info("[AON] Detected Aon URL → routing directly to dynamic_api")
+        jobs = await scrape_dynamic_api(normalized_url)
+
+        result = await session.execute(select(Site).where(Site.domain == url))
+        site = result.scalar_one_or_none()
+        if site is None:
+            result = await session.execute(select(Site).where(Site.domain == normalized_url))
+            site = result.scalar_one_or_none()
+
+        if site is None:
+            site = Site(domain=normalized_url, type="DYNAMIC_API", confidence=1.0)
+            session.add(site)
+            await session.flush()
+        else:
+            site.domain = normalized_url
+            site.type = "DYNAMIC_API"
+            site.confidence = 1.0
+
+        saved_count = 0
+        for job_data in jobs:
+            title = str(job_data.get("title", "")).strip()
+            job_url = str(job_data.get("job_link") or job_data.get("url", "")).strip()
+            if not title or not job_url:
+                continue
+
+            existing_job = await session.execute(
+                select(Job).where(Job.site_id == site.id, Job.url == job_url)
+            )
+            job = existing_job.scalar_one_or_none()
+            if job:
+                job.title = title
+                job.location = str(job_data.get("location", "")).strip()
+                job.raw_json = job_data
+                saved_count += 1
+                continue
+
+            job = Job(
+                site_id=site.id,
+                title=title,
+                location=str(job_data.get("location", "")).strip(),
+                url=job_url,
+                raw_json=job_data,
+            )
+            session.add(job)
+            saved_count += 1
+
+        await session.commit()
+
+        saved_path = None
+        if jobs:
+            saved_path = save_scrape_result(
+                jobs,
+                domain,
+                "DYNAMIC_API",
+                {
+                    "url": normalized_url,
+                    "confidence": 1.0,
+                    "strategy": "api",
+                    "api_url": "",
+                    "detection_results": {"aon": {"matched": True, "jobs_found": len(jobs)}},
+                },
+            )
+            if saved_path:
+                logger.info("[AON] Raw JSON saved to: %s", saved_path)
+
+        return {
+            "domain": domain,
+            "type": "DYNAMIC_API",
+            "confidence": 1.0,
+            "jobs_found": len(jobs),
+            "status": "success" if jobs else "failed",
+            "strategy": "api",
+            "api_url": "",
+        }
 
     if is_accenture_careers_url(normalized_url):
         logger.info("[ACCENTURE] Detected Accenture careers URL → using dedicated scraper")
@@ -239,6 +317,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 workday_result,
                 greenhouse_result,
                 simple_api_result,
+                dynamic_api_result,
                 dom_browser_result,
                 dom_load_more_result,
                 dom_infinite_scroll_result,

@@ -13,7 +13,8 @@ Universal Career Scraper + GPT-4.1 Nano AI Enrichment
 # ============================
 TARGET_URL = "https://careers.dxc.com/job-search-results/?compliment[]=India&primary_city[]=Gurgaon"
 REQUEST_DELAY = 1.0            # Seconds between API requests
-OPENAI_DELAY = 2.0             # Seconds between OpenAI API calls (rate limit safety)
+OPENAI_DELAY = 5.0             # Seconds between OpenAI API calls (rate limit safety)
+OPENAI_RETRY_BASE_DELAY = 10.0 # Base seconds for retry backoff after OpenAI failures
 OUTPUT_FILE = "jobs_ai_enriched.json"
 FETCH_DETAIL_PAGES = False     # Set True if API lacks description
 
@@ -540,6 +541,19 @@ def call_openai_with_retry(prompt: str, max_retries: int = 3) -> tuple[dict, dic
     Returns: (parsed_json_response, usage_dict)
     """
     client = get_openai_client()
+
+    def _retry_wait_seconds(error, attempt: int) -> float:
+        retry_after = None
+        response = getattr(error, "response", None)
+        headers = getattr(response, "headers", {}) or {}
+        if headers:
+            retry_after = headers.get("retry-after") or headers.get("Retry-After")
+        if retry_after is not None:
+            try:
+                return max(float(retry_after), OPENAI_RETRY_BASE_DELAY * attempt)
+            except (TypeError, ValueError):
+                pass
+        return OPENAI_RETRY_BASE_DELAY * attempt
     
     for attempt in range(max_retries):
         try:
@@ -579,12 +593,16 @@ def call_openai_with_retry(prompt: str, max_retries: int = 3) -> tuple[dict, dic
             print(f"⚠️ JSON parse error (attempt {attempt+1}/{max_retries}): {e}")
             if attempt == max_retries - 1:
                 raise
-            time.sleep(OPENAI_DELAY * (attempt + 1))
+            wait_seconds = _retry_wait_seconds(e, attempt + 1)
+            print(f"   Waiting {wait_seconds:.1f}s before retrying OpenAI call")
+            time.sleep(wait_seconds)
         except Exception as e:
+            wait_seconds = _retry_wait_seconds(e, attempt + 1)
             print(f"⚠️ OpenAI API error (attempt {attempt+1}/{max_retries}): {e}")
             if attempt == max_retries - 1:
                 raise
-            time.sleep(OPENAI_DELAY * (attempt + 1))
+            print(f"   Waiting {wait_seconds:.1f}s before retrying OpenAI call")
+            time.sleep(wait_seconds)
     
     # Fallback return if all retries fail
     return None, {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}

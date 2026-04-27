@@ -15,14 +15,37 @@ if _DYNAMIC_DIR not in sys.path:
     sys.path.insert(0, _DYNAMIC_DIR)
 
 import dynamic  # type: ignore
+from aonjobs import AON_API_URL, HEADERS as AON_HEADERS, is_aon_url, scrape_for_dynamic_api
 
 
 async def detect_dynamic_api(url: str) -> dict:
     """Detect hidden job APIs using dynamic.py's capture + pagination pipeline."""
     normalized_url = normalize_site_url(url)
+    loop = asyncio.get_event_loop()
+
+    if is_aon_url(normalized_url):
+        raw_jobs = await loop.run_in_executor(None, scrape_for_dynamic_api)
+        jobs_found = len(raw_jobs)
+        if jobs_found == 0:
+            logger.info("[DynamicAPI:AON] Aon fetch returned 0 jobs for %s", normalized_url)
+            return _empty_result()
+
+        logger.info("[DynamicAPI:AON] Fetched %d jobs from dedicated Aon API", jobs_found)
+        return {
+            "matched": True,
+            "jobs_found": jobs_found,
+            "api_usable": True,
+            "api_url": AON_API_URL,
+            "method": "GET",
+            "payload": None,
+            "headers": dict(AON_HEADERS),
+            "cookies": [],
+            "confidence": 0.95,
+            "score": 100,
+            "raw_jobs": raw_jobs,
+        }
 
     # Step 1: capture_apis_universal (sync)
-    loop = asyncio.get_event_loop()
     apis = await loop.run_in_executor(None, lambda: dynamic.capture_apis_universal(normalized_url))
     if not apis:
         logger.info("[DynamicAPI] No APIs captured for %s", normalized_url)

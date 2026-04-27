@@ -449,6 +449,18 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
             "[ScrapeDetails]",
         )
 
+    elif site_type == "DYNAMIC_API":
+        logger.info("[ScrapeDetails] [DYNAMIC_API] Jobs already enriched — passing through")
+        for job_data in jobs_raw:
+            job_url = str(job_data.get("job_link") or job_data.get("url", "")).strip()
+            job_entry = _build_job_detail_result(
+                job_data,
+                job_url,
+                job_data.get("Scrap_json") or {},
+            )
+            jobs_detail.append(job_entry)
+            total_ai_tokens += (job_data.get("ai_usage") or job_data.get("_ai_usage") or {}).get("total_tokens", 0)
+
     elif strategy == "api":
         # ── API STRATEGY: Extract details from raw API data, NO HTML ──
         from app.services.detail_extractor import extract_job_details as extract_api_details
@@ -1035,7 +1047,7 @@ async def scrape_details_batch(
                         job_data.get("Scrap_json") or {},
                     )
                     jobs_detail.append(job_entry)
-                    total_ai_tokens += (job_data.get("ai_usage") or {}).get("total_tokens", 0)
+                    total_ai_tokens += (job_data.get("ai_usage") or job_data.get("_ai_usage") or {}).get("total_tokens", 0)
 
             elif strategy == "api":
                 # ── API STRATEGY: Extract details from raw API data, NO HTML ──
