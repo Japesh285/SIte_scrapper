@@ -11,7 +11,7 @@ Pipeline:
 from app.job_detail_engine.parsers.json_ld import parse_json_ld
 from app.job_detail_engine.parsers.accenture import parse_accenture_html
 from app.job_detail_engine.parsers.html_basic import parse_html_basic
-from app.job_detail_engine.scoring.confidence import score
+from app.job_detail_engine.scoring.confidence import evaluate_job, score
 from app.job_detail_engine.ai.extractor import extract_with_ai, extract_with_ai_workday_full
 from app.job_detail_engine.utils.cleaner import prepare_ai_payload
 from app.job_detail_engine.utils.normalizer import normalize_job_data
@@ -41,7 +41,7 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
         title, company_name, location, salary,
         experience, employment_type, posted_on, skills,
         ai_usage  (token usage from AI call)
-        _meta     (debug info: parser_used, confidence, ai_used)
+        _meta     (debug info: parser_used, confidence, ai_used, field_sources)
     """
     # ── Step 1: JSON-LD ────────────────────────────────────────────
     result = parse_json_ld(html)
@@ -49,28 +49,39 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
     logger.info("[Engine] JSON-LD parser → title=%s", result.get("title"))
 
     # ── Step 2: If JSON-LD empty, try HTML parser ──────────────────
-    conf = score(result)
+    eval_result = evaluate_job(result)
+    conf = eval_result["confidence_score"]
+    
     if conf == 0:
         accenture_result = parse_accenture_html(html)
-        accenture_conf = score(accenture_result)
+        accenture_eval = evaluate_job(accenture_result)
+        accenture_conf = accenture_eval["confidence_score"]
+        
         if accenture_conf > 0:
             logger.info("[Engine] Accenture parser matched → title=%s, score=%d", accenture_result.get("title"), accenture_conf)
             result = accenture_result
             parser_used = "accenture_html"
+            eval_result = accenture_eval
             conf = accenture_conf
         else:
             logger.info("[Engine] JSON-LD empty, falling back to HTML parser")
             result = parse_html_basic(html)
             parser_used = "html_basic"
-            conf = score(result)
+            eval_result = evaluate_job(result)
+            conf = eval_result["confidence_score"]
             logger.info("[Engine] HTML parser → title=%s, score=%d", result.get("title"), conf)
+
+    _tag_provenance(result, parser_used)
 
     # ── Step 3: AI enrichment (always if force_ai, otherwise low-score fallback) ─
     ai_used = False
     ai_usage = {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}
-    should_call_ai = force_ai or conf < 4
+    
+    # Trigger AI if forced OR if the base extraction isn't considered "passing"
+    should_call_ai = force_ai or not eval_result["is_passing"]
+    
     if should_call_ai:
-        logger.info("[Engine] AI enrichment forced=%s, score=%d — calling AI", force_ai, conf)
+        logger.info("[Engine] AI enrichment forced=%s, passing=%s — calling AI", force_ai, eval_result["is_passing"])
 
         # ── DOM / INTERACTIVE_DOM path: use prepare_ai_payload ──
         # ONLY removes script/style/noscript, preserves ALL content
@@ -94,12 +105,15 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
             job_id = result.get("job_id", "unknown")
             logger.info("[AI] Enrichment applied for job_id=%s", job_id)
             ai_usage = ai_result.pop("ai_usage", ai_usage)
+            _tag_provenance(ai_result, "ai")
             result = _merge(result, ai_result)
             ai_used = True
-        conf = score(result)
-        logger.info("[Engine] After AI — score=%d", conf)
+            
+        eval_result = evaluate_job(result)
+        conf = eval_result["confidence_score"]
+        logger.info("[Engine] After AI — score=%d, passing=%s", conf, eval_result["is_passing"])
     else:
-        logger.info("[Engine] Skipping AI (score=%d, not forced)", conf)
+        logger.info("[Engine] Skipping AI (score=%d, passing=%s, not forced)", conf, eval_result["is_passing"])
 
     # ── Step 4: Normalize & clean data ─────────────────────────────
     result = normalize_job_data(result)
@@ -108,20 +122,38 @@ async def extract_job_details(html: str, force_ai: bool = False, site_type: str 
     result = _strip_large_text_fields(result)
 
     # ── Step 5: Attach metadata + ai_usage (keep for saving) ───────
-    result["_meta"] = {
+    if "_meta" not in result:
+        result["_meta"] = {}
+        
+    result["_meta"].update({
         "parser_used": parser_used,
         "confidence": conf,
         "ai_used": ai_used,
         "ai_forced": force_ai,
-    }
+        "structured_count": eval_result["structured_count"]
+    })
     result["ai_usage"] = ai_usage
 
     logger.info(
-        "[Engine] Done → parser=%s, score=%d, ai_used=%s, ai_forced=%s, "
+        "[Engine] Done → parser=%s, score=%d, passing=%s, ai_used=%s, ai_forced=%s, "
         "ai_tokens=%d",
-        parser_used, conf, ai_used, force_ai, ai_usage.get("total_tokens", 0),
+        parser_used, conf, eval_result["is_passing"], ai_used, force_ai, ai_usage.get("total_tokens", 0),
     )
     return result
+
+
+def _tag_provenance(job: dict, source: str) -> None:
+    """Tag fields with their origin parser."""
+    if "_meta" not in job:
+        job["_meta"] = {}
+    if "field_sources" not in job["_meta"]:
+        job["_meta"]["field_sources"] = {}
+        
+    for k, v in job.items():
+        if k in ("_meta", "ai_usage"):
+            continue
+        if v and k not in job["_meta"]["field_sources"]:
+            job["_meta"]["field_sources"][k] = source
 
 
 def _strip_large_text_fields(result: dict) -> dict:
@@ -158,6 +190,7 @@ def _merge(base: dict, delta: dict) -> dict:
     Strategy:
     - AI-enrichment fields always preferred (skills, qualifications, education, etc.)
     - Other fields only fill gaps (never overwrite truthy base values)
+    - Provenance tags are also merged appropriately
     """
     # Fields where AI output takes priority (more complete extraction)
     ai_priority_fields = {
@@ -178,13 +211,24 @@ def _merge(base: dict, delta: dict) -> dict:
         "remote_type",
         "job_id",
     }
+    
+    if "_meta" not in base:
+        base["_meta"] = {"field_sources": {}}
+    if "field_sources" not in base["_meta"]:
+        base["_meta"]["field_sources"] = {}
+        
+    delta_sources = delta.get("_meta", {}).get("field_sources", {})
 
     for key, value in delta.items():
         if key in ("_meta", "ai_usage"):
             continue
-        if key in ai_priority_fields and value:
+            
+        should_override = key in ai_priority_fields and value
+        should_fill = not base.get(key) and value
+        
+        if should_override or should_fill:
             base[key] = value
-        elif not base.get(key) and value:
-            base[key] = value
+            if key in delta_sources:
+                base["_meta"]["field_sources"][key] = delta_sources[key]
 
     return base

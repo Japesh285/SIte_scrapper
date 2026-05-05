@@ -136,10 +136,31 @@ def _build_workday_candidates(url: str, html: str, discovered_urls: list[str]) -
     for match in WORKDAY_API_PATTERN.finditer(html):
         _add_candidate(match.group(0), url, candidates, seen)
 
+    parsed = urlparse(normalize_site_url(url))
+    parsed_origin = get_origin(url)
+    path_segments = [segment for segment in parsed.path.split("/") if segment]
+
+    # --- NEW LOGIC: Extract tenant from subdomain if it's a direct workday url ---
+    tenant_from_domain = ""
+    if "workday" in parsed.netloc.lower():
+        tenant_from_domain = parsed.netloc.split(".")[0]
+        
+    if tenant_from_domain and path_segments:
+        site_segment = path_segments[0]
+        # Most common valid pattern: /wday/cxs/{tenant}/{site}/jobs
+        fallback_1 = f"{parsed_origin}/wday/cxs/{tenant_from_domain}/{site_segment}/jobs"
+        if fallback_1 not in seen:
+            seen.add(fallback_1)
+            candidates.append(fallback_1)
+            
+        # Fallback for tenant == site
+        fallback_2 = f"{parsed_origin}/wday/cxs/{tenant_from_domain}/{tenant_from_domain}/jobs"
+        if fallback_2 not in seen:
+            seen.add(fallback_2)
+            candidates.append(fallback_2)
+
+    # --- ORIGINAL LOGIC (Fully Preserved) ---
     if "workday" in url.lower():
-        parsed_origin = get_origin(url)
-        parsed = urlparse(normalize_site_url(url))
-        path_segments = [segment for segment in parsed.path.split("/") if segment]
         if path_segments:
             company_segment = path_segments[0]
             fallback = f"{parsed_origin}/wday/cxs/{company_segment}/{company_segment}/jobs"
@@ -147,7 +168,6 @@ def _build_workday_candidates(url: str, html: str, discovered_urls: list[str]) -
                 seen.add(fallback)
                 candidates.append(fallback)
 
-    parsed = urlparse(normalize_site_url(url))
     for token in _extract_company_tokens(html):
         fallback = f"{parsed.scheme}://{parsed.netloc}/wday/cxs/{token}/{token}/jobs"
         if fallback not in seen:

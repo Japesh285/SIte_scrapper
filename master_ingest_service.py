@@ -98,7 +98,19 @@ def append_to_master(jobs: List[dict]):
 
     # optional dedup
     if "job_id" in df_final.columns:
-        df_final.drop_duplicates(subset=["job_id"], inplace=True)
+        # Separate jobs with valid IDs from those with "unknown" or empty IDs
+        invalid_mask = df_final["job_id"].isin(["", "unknown", "None", None])
+        df_invalid = df_final[invalid_mask].copy()
+        df_valid = df_final[~invalid_mask].copy()
+
+        # Deduplicate valid jobs by job_id
+        df_valid.drop_duplicates(subset=["job_id"], keep="last", inplace=True)
+        
+        # Deduplicate invalid jobs by job_link (URL) instead
+        if "job_link" in df_invalid.columns:
+            df_invalid.drop_duplicates(subset=["job_link"], keep="last", inplace=True)
+
+        df_final = pd.concat([df_valid, df_invalid], ignore_index=True)
 
     df_final = df_final.reindex(columns=FINAL_CSV_COLUMNS)
     df_final.to_csv(MASTER_CSV, index=False)
