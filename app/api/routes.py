@@ -291,6 +291,7 @@ async def _extract_accenture_jobs_detail(
     jobs_raw: list[dict],
     domain: str,
     log_prefix: str,
+    progress_callback=None,
 ) -> tuple[list[JobDetailResult], int]:
     from app.job_detail_engine.orchestrator import extract_job_details as extract_dom_details
 
@@ -373,6 +374,8 @@ async def _extract_accenture_jobs_detail(
                         },
                     )
                 )
+                if progress_callback:
+                    progress_callback()
         finally:
             await manager.close()
             await browser.close()
@@ -765,6 +768,7 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
 
 class BatchScrapeRequest(BaseModel):
     urls: list[str]
+    job_id: str | None = None
 
 
 class SiteResult(BaseModel):
@@ -797,6 +801,14 @@ class BatchJobStatusResponse(BaseModel):
     failed: int = 0
     skipped: int = 0
     error: str = ""
+    sites_progress: dict = {}
+
+
+class BatchSiteProgressUpdate(BaseModel):
+    site_url: str
+    total_jobs: int | None = None
+    increment_extracted_by: int = 0
+    status: str | None = None
 
 
 _BATCH_JOB_INTERNAL_URL = "http://localhost:8002/scrape-details-batch"
@@ -817,9 +829,11 @@ async def _run_batch_job(job_id: str, request: BatchScrapeRequest) -> None:
 
     try:
         async with httpx.AsyncClient(timeout=None) as client:
+            payload = request.model_dump()
+            payload["job_id"] = job_id
             response = await client.post(
                 _BATCH_JOB_INTERNAL_URL,
-                json=request.model_dump(),
+                json=payload,
             )
             response.raise_for_status()
 
@@ -857,9 +871,36 @@ async def create_scrape_details_batch_job(request: BatchScrapeRequest):
         "failed": 0,
         "skipped": 0,
         "error": "",
+        "sites_progress": {},
     }
     asyncio.create_task(_run_batch_job(job_id, request))
     return BatchJobCreateResponse(job_id=job_id, status="queued")
+
+
+@router.post("/scrape-details-batch/jobs/{job_id}/site-progress")
+async def update_scrape_details_batch_job_site_progress(job_id: str, update: BatchSiteProgressUpdate):
+    job = _BATCH_JOBS.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job_not_found")
+
+    sites_progress = job.setdefault("sites_progress", {})
+    site_progress = sites_progress.setdefault(
+        update.site_url,
+        {"total_jobs": 0, "extracted_jobs": 0, "status": "processing"},
+    )
+
+    if update.total_jobs is not None:
+        site_progress["total_jobs"] = max(0, int(update.total_jobs))
+    if update.increment_extracted_by:
+        site_progress["extracted_jobs"] = max(
+            0,
+            int(site_progress.get("extracted_jobs", 0)) + int(update.increment_extracted_by),
+        )
+    if update.status:
+        site_progress["status"] = update.status
+
+    job["updated_at"] = _utc_now_iso()
+    return {"status": "ok"}
 
 
 @router.get("/scrape-details-batch/jobs/{job_id}", response_model=BatchJobStatusResponse)
@@ -926,6 +967,13 @@ async def scrape_details_batch(
             notification_sent=False,
         )
 
+        if request.job_id and request.job_id in _BATCH_JOBS:
+            _BATCH_JOBS[request.job_id]["sites_progress"][url] = {
+                "total_jobs": 0,
+                "extracted_jobs": 0,
+                "status": "processing"
+            }
+
         try:
             # Step 1: Normalize URL and scrape (same as scrape-details)
             normalized_url = normalize_site_url(url)
@@ -959,6 +1007,8 @@ async def scrape_details_batch(
                     site_result.notification_response = f"error={str(exc)}"
                     site_result.error = str(exc)
                     failed += 1
+                    if request.job_id and request.job_id in _BATCH_JOBS:
+                        _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "failed"
                     results.append(site_result)
                     continue
 
@@ -971,6 +1021,10 @@ async def scrape_details_batch(
                 site_result.notification_endpoint = notification_endpoint
                 site_result.notification_response = notification_response
                 successful += 1
+                if request.job_id and request.job_id in _BATCH_JOBS:
+                    _BATCH_JOBS[request.job_id]["sites_progress"][url]["total_jobs"] = site_result.jobs_found
+                    _BATCH_JOBS[request.job_id]["sites_progress"][url]["extracted_jobs"] = site_result.jobs_found
+                    _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "success"
                 results.append(site_result)
                 logger.info(f"[BatchScrape] {domain} SmartRecruiters complete → processed={site_result.jobs_found}")
                 continue
@@ -990,6 +1044,8 @@ async def scrape_details_batch(
             if scrape_result["jobs_found"] == 0 or scrape_result["status"] == "skipped":
                 site_result.status = "skipped"
                 skipped += 1
+                if request.job_id and request.job_id in _BATCH_JOBS:
+                    _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "skipped"
                 results.append(site_result)
                 logger.info(f"[BatchScrape] {domain} skipped (no jobs)")
                 continue
@@ -1000,6 +1056,8 @@ async def scrape_details_batch(
                 site_result.status = "failed"
                 site_result.error = "domain_dir_not_found"
                 failed += 1
+                if request.job_id and request.job_id in _BATCH_JOBS:
+                    _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "failed"
                 results.append(site_result)
                 logger.warning(f"[BatchScrape] {domain} directory not found")
                 continue
@@ -1009,6 +1067,8 @@ async def scrape_details_batch(
                 site_result.status = "failed"
                 site_result.error = "no_scrape_result_files"
                 failed += 1
+                if request.job_id and request.job_id in _BATCH_JOBS:
+                    _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "failed"
                 results.append(site_result)
                 logger.warning(f"[BatchScrape] {domain} no scrape result files")
                 continue
@@ -1016,6 +1076,9 @@ async def scrape_details_batch(
             with open(files[0], "r", encoding="utf-8") as f:
                 data = json.load(f)
                 jobs_raw = data.get("jobs", [])
+
+            if request.job_id and request.job_id in _BATCH_JOBS:
+                _BATCH_JOBS[request.job_id]["sites_progress"][url]["total_jobs"] = len(jobs_raw)
 
             logger.info(f"[BatchScrape] {domain} read {len(jobs_raw)} jobs from {files[0].name}")
 
@@ -1030,10 +1093,15 @@ async def scrape_details_batch(
             total_ai_tokens = 0
 
             if site_type == ACCENTURE_SITE_TYPE:
+                def _acc_progress():
+                    if request.job_id and request.job_id in _BATCH_JOBS:
+                        _BATCH_JOBS[request.job_id]["sites_progress"][url]["extracted_jobs"] += 1
+                
                 jobs_detail, total_ai_tokens = await _extract_accenture_jobs_detail(
                     jobs_raw,
                     domain,
                     "[BatchScrape]",
+                    progress_callback=_acc_progress
                 )
 
             elif site_type == "DYNAMIC_API":
@@ -1047,6 +1115,8 @@ async def scrape_details_batch(
                         job_data.get("Scrap_json") or {},
                     )
                     jobs_detail.append(job_entry)
+                    if request.job_id and request.job_id in _BATCH_JOBS:
+                        _BATCH_JOBS[request.job_id]["sites_progress"][url]["extracted_jobs"] += 1
                     total_ai_tokens += (job_data.get("ai_usage") or job_data.get("_ai_usage") or {}).get("total_tokens", 0)
 
             elif strategy == "api":
@@ -1101,6 +1171,12 @@ async def scrape_details_batch(
                         },
                     )
                     jobs_detail.append(job_entry)
+                    if (
+                        site_type != "WORKDAY_API"
+                        and request.job_id
+                        and request.job_id in _BATCH_JOBS
+                    ):
+                        _BATCH_JOBS[request.job_id]["sites_progress"][url]["extracted_jobs"] += 1
 
             else:
                 # ── DOM STRATEGY: Use standard detail extraction (NO browser) ──
@@ -1210,6 +1286,8 @@ async def scrape_details_batch(
                                 },
                             )
                             jobs_detail.append(job_entry)
+                            if request.job_id and request.job_id in _BATCH_JOBS:
+                                _BATCH_JOBS[request.job_id]["sites_progress"][url]["extracted_jobs"] += 1
 
                         await browser.close()
                 else:
@@ -1320,6 +1398,8 @@ async def scrape_details_batch(
                             },
                         )
                         jobs_detail.append(job_entry)
+                        if request.job_id and request.job_id in _BATCH_JOBS:
+                            _BATCH_JOBS[request.job_id]["sites_progress"][url]["extracted_jobs"] += 1
 
             logger.info(
                 f"[BatchScrape] {domain} complete → {len(jobs_detail)} jobs detailed, "
@@ -1352,6 +1432,12 @@ async def scrape_details_batch(
                     notification_endpoint = "http://localhost:8001/process-workday"
                     payload = {
                         "file_path": raw_json_path,
+                        "site_url": url,
+                        "callback_url": (
+                            f"http://localhost:8002/scrape-details-batch/jobs/{request.job_id}/site-progress"
+                            if request.job_id
+                            else ""
+                        ),
                     }
                     logger.info(f"[BatchScrape] {domain} Sending POST to {notification_endpoint} with file_path={raw_json_path}")
 
@@ -1393,6 +1479,11 @@ async def scrape_details_batch(
             site_result.status = "failed"
             site_result.error = str(exc)
             failed += 1
+            if request.job_id and request.job_id in _BATCH_JOBS:
+                _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "failed"
+
+        if site_result.status == "success" and request.job_id and request.job_id in _BATCH_JOBS:
+            _BATCH_JOBS[request.job_id]["sites_progress"][url]["status"] = "success"
 
         results.append(site_result)
 

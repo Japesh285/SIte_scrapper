@@ -9,6 +9,7 @@ from urllib.parse import parse_qs, urlparse
 
 import pandas as pd
 import requests
+import httpx
 from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import AsyncOpenAI
@@ -68,6 +69,8 @@ app = FastAPI()
 
 class WorkdayRequest(BaseModel):
     file_path: str
+    site_url: str = ""
+    callback_url: str = ""
 
 
 class IngestRequest(BaseModel):
@@ -301,6 +304,31 @@ async def process_job(job: dict):
             return None
 
 
+async def _post_workday_progress(
+    callback_url: str,
+    site_url: str,
+    *,
+    total_jobs: int | None = None,
+    increment_extracted_by: int = 0,
+    status: str | None = None,
+):
+    if not callback_url or not site_url:
+        return
+
+    payload = {
+        "site_url": site_url,
+        "total_jobs": total_jobs,
+        "increment_extracted_by": increment_extracted_by,
+        "status": status,
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            await client.post(callback_url, json=payload)
+    except Exception as exc:
+        logging.warning("⚠️ Workday progress callback failed: %s", exc)
+
+
 def extract_company_and_filter(url: str):
     parsed = urlparse(url)
     parts = [p for p in parsed.path.split("/") if p]
@@ -522,9 +550,24 @@ async def process_workday(req: WorkdayRequest):
     jobs = data.get("jobs", [])
 
     logging.info(f"🚀 Processing {len(jobs)} Workday jobs")
+    await _post_workday_progress(
+        req.callback_url,
+        req.site_url,
+        total_jobs=len(jobs),
+        status="processing",
+    )
 
-    tasks = [process_job(job) for job in jobs]
-    results = await asyncio.gather(*tasks)
+    tasks = [asyncio.create_task(process_job(job)) for job in jobs]
+    results = []
+    for task in asyncio.as_completed(tasks):
+        result = await task
+        results.append(result)
+        await _post_workday_progress(
+            req.callback_url,
+            req.site_url,
+            increment_extracted_by=1,
+            status="processing",
+        )
 
     parsed_jobs = [r for r in results if r]
 

@@ -6,6 +6,31 @@ const COLUMN_NAME = "Exact India Jobs Link";
 const POLL_INTERVAL_MS = 5000;
 const STORAGE_KEY = "scrape_gignaati_session";
 
+function getSiteProgressEntries(jobStatus) {
+  if (!jobStatus?.sites_progress) return [];
+  return Object.entries(jobStatus.sites_progress).sort(([leftUrl], [rightUrl]) =>
+    leftUrl.localeCompare(rightUrl)
+  );
+}
+
+function getPreviewProgressEntries(urls) {
+  return urls.map((url) => [
+    url,
+    {
+      total_jobs: 0,
+      extracted_jobs: 0,
+      status: "pending"
+    }
+  ]);
+}
+
+function formatPercent(extractedJobs, totalJobs, status) {
+  if (!totalJobs) {
+    return status === "success" ? 100 : 0;
+  }
+  return Math.min(100, Math.round((extractedJobs / totalJobs) * 100));
+}
+
 function parseCsvLine(line) {
   const values = [];
   let current = "";
@@ -125,6 +150,21 @@ export default function App() {
   const [showFullJobId, setShowFullJobId] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
   const downloadUrlRef = useRef(null);
+  const siteProgressEntries = useMemo(() => getSiteProgressEntries(jobStatus), [jobStatus]);
+  const previewProgressEntries = useMemo(() => getPreviewProgressEntries(urls), [urls]);
+  const visibleProgressEntries = siteProgressEntries.length > 0 ? siteProgressEntries : previewProgressEntries;
+  const totalDetailJobs = useMemo(
+    () => siteProgressEntries.reduce((sum, [, progress]) => sum + (progress.total_jobs || 0), 0),
+    [siteProgressEntries]
+  );
+  const extractedDetailJobs = useMemo(
+    () => siteProgressEntries.reduce((sum, [, progress]) => sum + (progress.extracted_jobs || 0), 0),
+    [siteProgressEntries]
+  );
+  const detailProgressPercent = useMemo(() => {
+    if (!siteProgressEntries.length) return 0;
+    return formatPercent(extractedDetailJobs, totalDetailJobs, jobStatus?.status);
+  }, [extractedDetailJobs, jobStatus?.status, siteProgressEntries.length, totalDetailJobs]);
 
   const submitEndpoint = useMemo(
     () => `${DEFAULT_BACKEND_BASE_URL}/scrape-details-batch/jobs`,
@@ -305,7 +345,8 @@ export default function App() {
         successful: 0,
         failed: 0,
         skipped: 0,
-        error: ""
+        error: "",
+        sites_progress: {}
       });
       setResultBlob(null);
       setResultFileName("master_jobs.csv");
@@ -374,17 +415,60 @@ export default function App() {
 
         <section className="card split">
           <div>
-            <div className="section-title">URL Preview</div>
-            <div className="code-box">
-              {urls.length ? (
-                urls.slice(0, 12).map((url) => <div key={url}>{url}</div>)
-              ) : (
-                <div>No URLs loaded yet.</div>
-              )}
+            <div className="section-title">
+              {visibleProgressEntries.length > 0
+                ? "Site Progress"
+                : "URL Preview"}
             </div>
-            {urls.length > 12 ? (
-              <div className="muted">Showing 12 of {urls.length} URLs</div>
-            ) : null}
+            {visibleProgressEntries.length > 0 ? (
+              <>
+                <div className="site-progress-summary">
+                  <div>
+                    <strong>
+                      {siteProgressEntries.length > 0
+                        ? `${detailProgressPercent}% detail extraction complete`
+                        : "Upload ready for per-site tracking"}
+                    </strong>
+                    <span>
+                      {siteProgressEntries.length > 0
+                        ? `${extractedDetailJobs} of ${totalDetailJobs} job details extracted`
+                        : `${urls.length} site URL(s) loaded and waiting for submission`}
+                    </span>
+                  </div>
+                  <CircularProgress
+                    percentage={siteProgressEntries.length > 0 ? detailProgressPercent : 0}
+                    size={88}
+                    strokeWidth={8}
+                    label={siteProgressEntries.length > 0 ? `${detailProgressPercent}%` : "0%"}
+                  />
+                </div>
+
+                <div className="site-progress-list">
+                  {visibleProgressEntries.map(([url, progress]) => (
+                  <SiteProgressTile 
+                    key={url} 
+                    url={url} 
+                    totalJobs={progress.total_jobs} 
+                    extractedJobs={progress.extracted_jobs} 
+                    status={progress.status} 
+                  />
+                ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="code-box">
+                  {urls.length ? (
+                    urls.slice(0, 12).map((url) => <div key={url}>{url}</div>)
+                  ) : (
+                    <div>No URLs loaded yet.</div>
+                  )}
+                </div>
+                {urls.length > 12 ? (
+                  <div className="muted">Showing 12 of {urls.length} URLs</div>
+                ) : null}
+              </>
+            )}
           </div>
 
           <div>
@@ -456,5 +540,73 @@ function StatusTile({ label, value, mono = false, clickable = false, onClick, he
       <strong className={mono ? "mono" : ""}>{String(value)}</strong>
       {helperText ? <small>{helperText}</small> : null}
     </button>
+  );
+}
+
+function CircularProgress({ percentage, size = 40, strokeWidth = 4, label }) {
+  const textLabel = label || `${Math.round(percentage)}%`;
+  const radius = (size - strokeWidth) / 2;
+  const center = size / 2;
+  const normalizedPercentage = Math.max(0, Math.min(100, percentage));
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (normalizedPercentage / 100) * circumference;
+
+  return (
+    <div className="progress-container" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="circular-progress">
+        <circle
+          className="circular-progress-bg"
+          cx={center}
+          cy={center}
+          r={radius}
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          className="circular-progress-fill"
+          cx={center}
+          cy={center}
+          r={radius}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+        />
+      </svg>
+      <span className="progress-text">{textLabel}</span>
+    </div>
+  );
+}
+
+function SiteProgressTile({ url, totalJobs, extractedJobs, status }) {
+  const percentage = formatPercent(extractedJobs, totalJobs, status);
+  let statusText = status;
+  if (status === "processing") statusText = "Processing";
+  else if (status === "success") statusText = "Done";
+  else if (status === "failed") statusText = "Failed";
+  else if (status === "skipped") statusText = "Skipped";
+  else if (status === "pending") statusText = "Queued";
+
+  return (
+    <div className="site-progress-tile">
+      <div className="site-progress-main">
+        <div className="site-progress-info">
+          <span className="site-progress-url" title={url}>{url}</span>
+          <span className="site-progress-stats">
+            {statusText}
+            {totalJobs > 0 ? ` • ${extractedJobs} / ${totalJobs} details extracted` : " • waiting for listings"}
+          </span>
+        </div>
+        {status === "processing" || status === "success" || status === "failed" || status === "skipped" ? (
+          <CircularProgress percentage={percentage} size={64} strokeWidth={6} />
+        ) : (
+          <CircularProgress percentage={0} size={64} strokeWidth={6} label="0%" />
+        )}
+      </div>
+      <div className="site-progress-bar-track" aria-hidden="true">
+        <div
+          className={`site-progress-bar-fill is-${status || "pending"}`}
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+    </div>
   );
 }

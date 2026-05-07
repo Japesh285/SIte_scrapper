@@ -518,6 +518,25 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         try:
             # Run the complete scraper — it does detection + pagination + AI enrichment internally
             jobs_result = await scrape_dynamic_api(normalized_url)
+            best_dom_candidate = max(
+                (
+                    ("DOM_BROWSER", int(dom_browser_result.get("jobs_found", 0) or 0)),
+                    ("DOM_LOAD_MORE", int(dom_load_more_result.get("jobs_found", 0) or 0)),
+                    ("DOM_INFINITE_SCROLL", int(dom_infinite_scroll_result.get("jobs_found", 0) or 0)),
+                    ("INTERACTIVE_DOM", int(interactive_dom_result.get("jobs_found", 0) or 0)),
+                ),
+                key=lambda item: item[1],
+            )
+            best_dom_type, best_dom_jobs = best_dom_candidate
+
+            if best_dom_jobs > len(jobs_result):
+                logger.info(
+                    "[PIPELINE] dynamic_api found %d jobs but %s detector found %d → preferring DOM path",
+                    len(jobs_result),
+                    best_dom_type,
+                    best_dom_jobs,
+                )
+                return False
 
             if len(jobs_result) >= 5:
                 jobs = jobs_result
@@ -551,18 +570,34 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         """DOM scraper. Exit at >= 5 jobs."""
         nonlocal jobs, api_url, final_site_type, final_strategy, dom_jobs_count
         logger.info("[PIPELINE] Trying dom_scraper")
-        if site_type == "DOM_BROWSER":
+        preferred_dom_type = max(
+            (
+                ("DOM_BROWSER", int(dom_browser_result.get("jobs_found", 0) or 0)),
+                ("DOM_LOAD_MORE", int(dom_load_more_result.get("jobs_found", 0) or 0)),
+                ("DOM_INFINITE_SCROLL", int(dom_infinite_scroll_result.get("jobs_found", 0) or 0)),
+            ),
+            key=lambda item: item[1],
+        )[0]
+
+        if preferred_dom_type == "DOM_BROWSER":
             jobs_result = await scrape_dom_browser(normalized_url)
             dom_type = "DOM_BROWSER"
-        elif site_type == "DOM_LOAD_MORE":
+        elif preferred_dom_type == "DOM_LOAD_MORE":
             jobs_result = await scrape_dom_load_more(normalized_url)
             dom_type = "DOM_LOAD_MORE"
-        elif site_type == "DOM_INFINITE_SCROLL":
+        elif preferred_dom_type == "DOM_INFINITE_SCROLL":
             jobs_result = await scrape_dom_infinite_scroll(normalized_url)
             dom_type = "DOM_INFINITE_SCROLL"
         else:
-            jobs_result = await scrape_dom_browser(normalized_url)
-            dom_type = "DOM_BROWSER"
+            if site_type == "DOM_LOAD_MORE":
+                jobs_result = await scrape_dom_load_more(normalized_url)
+                dom_type = "DOM_LOAD_MORE"
+            elif site_type == "DOM_INFINITE_SCROLL":
+                jobs_result = await scrape_dom_infinite_scroll(normalized_url)
+                dom_type = "DOM_INFINITE_SCROLL"
+            else:
+                jobs_result = await scrape_dom_browser(normalized_url)
+                dom_type = "DOM_BROWSER"
 
         dom_jobs_count = len(jobs_result)
 

@@ -52,6 +52,11 @@ _GENERIC_TITLE_TEXTS = {
     "help", "view jobs", "search jobs", "careers", "career",
 }
 
+_STRUCTURED_JOB_DETAIL_PATTERNS = (
+    re.compile(r"/careers/[^/?#]*-(?:irc|req|job|jr)\d+(?:/|$)", re.IGNORECASE),
+    re.compile(r"/careers/[^/?#]*\d{4,}(?:/|$)", re.IGNORECASE),
+)
+
 
 async def scrape_interactive_dom(url: str, max_rounds: int = 8) -> list[dict]:
     """Scrape jobs from a page requiring user interaction.
@@ -140,7 +145,7 @@ async def _aggressive_extract_jobs(url: str, max_rounds: int = 8) -> list[dict]:
             page = await context.new_page()
 
             await page.goto(url, wait_until="networkidle", timeout=60000)
-            await page.wait_for_timeout(3000)
+            await _wait_for_interactive_settle(page, initial=True)
 
             for round_idx in range(max_rounds):
                 # Extract jobs at this stage
@@ -163,13 +168,32 @@ async def _aggressive_extract_jobs(url: str, max_rounds: int = 8) -> list[dict]:
                     round_idx + 1, new_count, len(all_jobs),
                 )
 
+                if new_count == 0 and round_idx >= 1:
+                    recovered = await _recover_interactive_page(page, url, round_idx + 1)
+                    if recovered:
+                        html = await page.content()
+                        round_jobs = _extract_jobs_from_html(html, url)
+                        for job in round_jobs:
+                            key = (
+                                job.get("url")
+                                or f"{job.get('title', '')}|{job.get('location', '')}"
+                            ).lower()
+                            if key not in seen_keys:
+                                seen_keys.add(key)
+                                all_jobs.append(job)
+                                new_count += 1
+                        logger.info(
+                            "[InteractiveDOM] Recovery after round %d yielded %d extra jobs (total=%d)",
+                            round_idx + 1, new_count, len(all_jobs),
+                        )
+
                 if new_count == 0 and round_idx >= 2:
                     # No new jobs for a couple rounds — stop early
                     break
 
                 # Perform another round of interactions
                 await _interact_page(page)
-                await page.wait_for_timeout(2000)
+                await _wait_for_interactive_settle(page)
 
             await browser.close()
 
@@ -225,6 +249,68 @@ async def _interact_page(page) -> None:
             break
 
 
+async def _wait_for_interactive_settle(page, initial: bool = False) -> None:
+    try:
+        await page.wait_for_load_state("domcontentloaded", timeout=8000)
+    except Exception:
+        pass
+    try:
+        await page.wait_for_load_state("networkidle", timeout=8000)
+    except Exception:
+        pass
+
+    await page.wait_for_timeout(3200 if initial else 2200)
+
+    last_len = -1
+    stable_rounds = 0
+    for _ in range(4):
+        try:
+            html_len = len(await page.content())
+        except Exception:
+            break
+        if abs(html_len - last_len) < 80:
+            stable_rounds += 1
+        else:
+            stable_rounds = 0
+        last_len = html_len
+        if stable_rounds >= 1:
+            break
+        await page.wait_for_timeout(900)
+
+
+async def _recover_interactive_page(page, base_url: str, round_no: int) -> bool:
+    """Reload current page if interaction rounds appear to have pushed the UI into a false empty state."""
+    try:
+        stats = await page.evaluate(
+            """
+            () => {
+              const text = (document.body?.innerText || "").toLowerCase();
+              const links = Array.from(document.querySelectorAll("a[href]")).length;
+              const likelyEmpty =
+                text.includes("no jobs found") ||
+                text.includes("no results found") ||
+                text.includes("0 jobs") ||
+                text.includes("0 results");
+              return { links, likelyEmpty, textLength: text.length, href: window.location.href };
+            }
+            """
+        )
+    except Exception:
+        return False
+
+    if not (stats.get("likelyEmpty") or (stats.get("links", 0) < 8 and stats.get("textLength", 0) < 1200)):
+        return False
+
+    try:
+        logger.info("[InteractiveDOM] Reloading after suspected false empty state on round %d", round_no)
+        await page.goto(stats.get("href") or base_url, wait_until="domcontentloaded", timeout=60000)
+        await _wait_for_interactive_settle(page, initial=True)
+        return True
+    except Exception as exc:
+        logger.warning("[InteractiveDOM] Reload recovery failed on round %d: %s", round_no, exc)
+        return False
+
+
 def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
     """Extract job listings from HTML using regex-based link analysis.
 
@@ -269,9 +355,20 @@ def _extract_jobs_from_html(html: str, base_url: str) -> list[dict]:
 def _is_actual_job_url(url: str) -> bool:
     """Only allow URLs that contain explicit job indicators."""
     url_lower = url.lower()
+
+    if _is_structured_job_detail_url(url_lower):
+        return True
+
     # If it contains these, it's a job.
     is_job = any(kw in url_lower for kw in ["/job/", "/job-details", "/position/"])
     # If it contains these, it's a navigation/search page, not a job.
     is_nav = any(nav in url_lower for nav in ["/search", "/results", "/benefits", "/life-at-"])
 
     return is_job and not is_nav
+
+
+def _is_structured_job_detail_url(url: str) -> bool:
+    """Allow known careers detail URLs without weakening generic navigation filters."""
+    if any(nav in url for nav in ("/career-search", "/careers/why-", "/careers/page/")):
+        return False
+    return any(pattern.search(url) for pattern in _STRUCTURED_JOB_DETAIL_PATTERNS)

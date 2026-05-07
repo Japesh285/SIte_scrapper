@@ -1,3 +1,5 @@
+import re
+
 from app.core.logger import logger
 from app.core.site_utils import absolutize_url
 
@@ -9,7 +11,6 @@ except Exception:  # pragma: no cover
     async_playwright = None
 
 
-MAX_BROWSER_PAGES = 8
 MAX_NO_GROWTH_ROUNDS = 2
 GENERIC_TITLES = {
     "english",
@@ -108,21 +109,25 @@ JOB_ACCEPT_PARTS = (
     "job-id",
     "req-id",
 )
+STRUCTURED_JOB_DETAIL_PATTERNS = (
+    re.compile(r"/careers/[^/?#]*-(?:irc|req|job|jr)\d+(?:/|$)", re.IGNORECASE),
+    re.compile(r"/careers/[^/?#]*\d{4,}(?:/|$)", re.IGNORECASE),
+)
 
 
-async def scrape_dom_browser(url: str, max_pages: int = MAX_BROWSER_PAGES) -> list[dict]:
+async def scrape_dom_browser(url: str, max_pages: int | None = None) -> list[dict]:
     return await _scrape_dom_mode(url, mode="paged", max_pages=max_pages)
 
 
-async def scrape_dom_load_more(url: str, max_pages: int = MAX_BROWSER_PAGES) -> list[dict]:
+async def scrape_dom_load_more(url: str, max_pages: int | None = None) -> list[dict]:
     return await _scrape_dom_mode(url, mode="load_more", max_pages=max_pages)
 
 
-async def scrape_dom_infinite_scroll(url: str, max_pages: int = MAX_BROWSER_PAGES) -> list[dict]:
+async def scrape_dom_infinite_scroll(url: str, max_pages: int | None = None) -> list[dict]:
     return await _scrape_dom_mode(url, mode="infinite_scroll", max_pages=max_pages)
 
 
-async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAGES) -> list[dict]:
+async def _scrape_dom_mode(url: str, mode: str, max_pages: int | None = None) -> list[dict]:
     if async_playwright is None:
         logger.warning("[DOM] Playwright unavailable")
         return []
@@ -138,9 +143,12 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
             page = await browser.new_page()
 
             await page.goto(url, wait_until="domcontentloaded", timeout=30000)
-            await page.wait_for_timeout(2500)
+            await _wait_for_results_settle(page, initial=True)
 
-            for round_index in range(max_pages):
+            round_index = 0
+            while True:
+                if max_pages is not None and round_index >= max_pages:
+                    break
                 extracted = await _extract_jobs_from_page(page, url, relaxed=used_relaxed_selectors)
                 new_count = 0
                 for job in extracted:
@@ -162,17 +170,23 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
                 logger.info("[DOM:%s] Progressed=%s no_growth_rounds=%s", mode, progressed, no_growth_rounds)
 
                 if not progressed:
-                    break
+                    if await _reload_and_wait(page, reason=f"{mode}:no_progress"):
+                        logger.info("[DOM:%s] Reloaded page after stalled pagination", mode)
+                        progressed = True
+                    else:
+                        break
 
-                try:
-                    await page.wait_for_load_state("networkidle", timeout=5000)
-                except Exception:
-                    pass
-                await page.wait_for_timeout(1500)
+                await _wait_for_results_settle(page)
+
+                if no_growth_rounds >= 1:
+                    recovered = await _recover_if_results_look_empty(page, mode)
+                    if recovered:
+                        await _wait_for_results_settle(page)
 
                 if no_growth_rounds >= MAX_NO_GROWTH_ROUNDS:
                     logger.info("[DOM:%s] Stopping after %s rounds without new jobs", mode, no_growth_rounds)
                     break
+                round_index += 1
 
             await browser.close()
     except Exception as exc:
@@ -190,9 +204,12 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page()
                 await page.goto(url, wait_until="domcontentloaded", timeout=30000)
-                await page.wait_for_timeout(2500)
+                await _wait_for_results_settle(page, initial=True)
                 logger.info("[DOM RETRY] Using relaxed selectors")
-                for round_index in range(max_pages):
+                round_index = 0
+                while True:
+                    if max_pages is not None and round_index >= max_pages:
+                        break
                     extracted = await _extract_jobs_from_page(page, url, relaxed=True)
                     for job in extracted:
                         key = (job.get("url") or f"{job.get('title', '')}|{job.get('location', '')}").lower()
@@ -202,7 +219,8 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int = MAX_BROWSER_PAG
                     progressed = await _advance_dom_results(page, mode)
                     if not progressed:
                         break
-                    await page.wait_for_timeout(1500)
+                    await _wait_for_results_settle(page)
+                    round_index += 1
                 await browser.close()
         except Exception as exc:
             logger.error(f"[DOM RETRY] Failed: {exc}")
@@ -360,9 +378,10 @@ async def _extract_jobs_from_page(page, base_url: str, relaxed: bool = False) ->
         if any(part in lower_title for part in GENERIC_TITLE_PARTS):
             continue
         lower_href = href.lower()
+        is_structured_job_detail = _is_structured_job_detail_url(lower_href)
 
         # ── Strict detail URL rejection ──
-        if any(part in lower_href for part in DETAIL_REJECT_PARTS):
+        if any(part in lower_href for part in DETAIL_REJECT_PARTS) and not is_structured_job_detail:
             logger.info("[FILTER] Rejected non-job URL: %s", href)
             continue
 
@@ -371,17 +390,17 @@ async def _extract_jobs_from_page(page, base_url: str, relaxed: bool = False) ->
                 continue
             if item.get("isBadUrl"):
                 continue
-            if not item.get("isLikelyJobUrl") and not str(item.get("location", "")).strip():
+            if not item.get("isLikelyJobUrl") and not is_structured_job_detail and not str(item.get("location", "")).strip():
                 continue
         else:
             # Relaxed mode: still reject obvious bad URLs
             if any(part in lower_href for part in BAD_URL_PARTS):
                 continue
-            if any(part in lower_href for part in DETAIL_REJECT_PARTS):
+            if any(part in lower_href for part in DETAIL_REJECT_PARTS) and not is_structured_job_detail:
                 logger.info("[FILTER] Rejected non-job URL (relaxed): %s", href)
                 continue
             # In relaxed mode, require at least some job signal in the URL
-            if not any(p in lower_href for p in ("job", "career", "position", "opening", "req", "vacancy")):
+            if not is_structured_job_detail and not any(p in lower_href for p in ("job", "career", "position", "opening", "req", "vacancy")):
                 continue
 
         jobs.append(
@@ -545,6 +564,74 @@ async def _scroll_results(page) -> bool:
     return bool(result.get("changed"))
 
 
+async def _wait_for_results_settle(page, initial: bool = False) -> None:
+    """Give JS-heavy result pages time to re-render after pagination actions."""
+    try:
+        await page.wait_for_load_state("domcontentloaded", timeout=8000)
+    except Exception:
+        pass
+    try:
+        await page.wait_for_load_state("networkidle", timeout=8000)
+    except Exception:
+        pass
+
+    wait_ms = 2800 if initial else 2200
+    await page.wait_for_timeout(wait_ms)
+
+    last_len = -1
+    stable_rounds = 0
+    for _ in range(4):
+        try:
+            html_len = len(await page.content())
+        except Exception:
+            break
+        if abs(html_len - last_len) < 80:
+            stable_rounds += 1
+        else:
+            stable_rounds = 0
+        last_len = html_len
+        if stable_rounds >= 1:
+            break
+        await page.wait_for_timeout(900)
+
+
+async def _recover_if_results_look_empty(page, mode: str) -> bool:
+    """Reload current page if a pagination action seems to have produced an empty JS state."""
+    try:
+        stats = await page.evaluate(
+            """
+            () => {
+              const text = (document.body?.innerText || "").toLowerCase();
+              const links = Array.from(document.querySelectorAll("a[href]")).length;
+              const likelyEmpty =
+                text.includes("no jobs found") ||
+                text.includes("no results found") ||
+                text.includes("0 jobs") ||
+                text.includes("0 results");
+              return { links, likelyEmpty, textLength: text.length };
+            }
+            """
+        )
+    except Exception:
+        return False
+
+    if stats.get("likelyEmpty") or (stats.get("links", 0) < 8 and stats.get("textLength", 0) < 1200):
+        logger.info("[DOM:%s] Suspected false empty state after pagination, reloading current page", mode)
+        return await _reload_and_wait(page, reason=f"{mode}:false_empty")
+    return False
+
+
+async def _reload_and_wait(page, reason: str) -> bool:
+    try:
+        logger.info("[DOM] Reloading page (%s)", reason)
+        await page.reload(wait_until="domcontentloaded", timeout=30000)
+        await _wait_for_results_settle(page, initial=True)
+        return True
+    except Exception as exc:
+        logger.warning("[DOM] Reload failed (%s): %s", reason, exc)
+        return False
+
+
 def _dedupe_jobs(jobs: list[dict]) -> list[dict]:
     deduped: list[dict] = []
     seen: set[str] = set()
@@ -555,3 +642,10 @@ def _dedupe_jobs(jobs: list[dict]) -> list[dict]:
         seen.add(key)
         deduped.append(job)
     return deduped
+
+
+def _is_structured_job_detail_url(url: str) -> bool:
+    """Allow known careers detail URLs without admitting careers index/search pages."""
+    if any(nav in url for nav in ("/career-search", "/careers/why-", "/careers/page/")):
+        return False
+    return any(pattern.search(url) for pattern in STRUCTURED_JOB_DETAIL_PATTERNS)
