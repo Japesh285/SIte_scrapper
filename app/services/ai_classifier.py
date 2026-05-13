@@ -6,14 +6,14 @@ from app.core.logger import logger
 SYSTEM_PROMPT = """You are selecting the best scraping strategy.
 
 Choose ONE:
-WORKDAY_API, GREENHOUSE_API, TALEO_API, ICIMS_API, PHENOM, DYNAMIC_API, SIMPLE_API, WP_JOBS, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
+WORKDAY_API, GREENHOUSE_API, TALEO_API, ICIMS_API, SAP_SF, PHENOM, SMARTRECRUITERS, DYNAMIC_API, SIMPLE_API, WP_JOBS, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
 
 Rules:
 - Prefer matched = true
 - Prefer higher jobs_found
 - Prefer api_usable = true
 - Priority:
-  WORKDAY_API > GREENHOUSE_API > TALEO_API > ICIMS_API > PHENOM > DYNAMIC_API > SIMPLE_API > WP_JOBS > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
+  WORKDAY_API > GREENHOUSE_API > TALEO_API > ICIMS_API > SAP_SF > PHENOM > SMARTRECRUITERS > DYNAMIC_API > SIMPLE_API > WP_JOBS > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
 - If none match → UNKNOWN
 - Do not guess
 
@@ -25,7 +25,9 @@ ALLOWED_TYPES = {
     "GREENHOUSE_API",
     "TALEO_API",
     "ICIMS_API",
+    "SAP_SF",
     "PHENOM",
+    "SMARTRECRUITERS",
     "DYNAMIC_API",
     "SIMPLE_API",
     "WP_JOBS",
@@ -107,7 +109,9 @@ def _heuristic_classify(data: dict) -> dict:
         ("GREENHOUSE_API", tests.get("greenhouse", {})),
         ("TALEO_API", tests.get("taleo", {})),
         ("ICIMS_API", tests.get("icims", {})),
+        ("SAP_SF", tests.get("sap_sf", {})),
         ("PHENOM", tests.get("phenom", {})),
+        ("SMARTRECRUITERS", tests.get("smartrecruiters", {})),
         ("DYNAMIC_API", dynamic_api),
         ("SIMPLE_API", tests.get("simple_api", {})),
         ("WP_JOBS", tests.get("wp_jobs", {})),
@@ -142,7 +146,9 @@ def _heuristic_classify(data: dict) -> dict:
             "GREENHOUSE_API": 8,
             "TALEO_API": 7,
             "ICIMS_API": 6,
+            "SAP_SF": 6,
             "PHENOM": 5,
+            "SMARTRECRUITERS": 3,
             "DYNAMIC_API": 5,
             "SIMPLE_API": 4,
             "WP_JOBS": 3,

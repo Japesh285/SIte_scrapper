@@ -12,6 +12,8 @@ from app.detectors.taleo import detect_taleo
 from app.detectors.icims import detect_icims
 from app.detectors.wp_jobs import detect_wp_jobs
 from app.detectors.phenom import detect_phenom
+from app.detectors.smartrecruiters import detect_smartrecruiters
+from app.detectors.sap_successfactors import detect_sap_sf
 
 __all__ = [
     "inspect_browser_network",
@@ -28,4 +30,6 @@ __all__ = [
     "detect_icims",
     "detect_wp_jobs",
     "detect_phenom",
+    "detect_smartrecruiters",
+    "detect_sap_sf",
 ]

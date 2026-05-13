@@ -145,6 +145,36 @@ async def resolve_greenhouse_slug(
             "source": "fetched_html_query_param",
             "board_url": final_url,
         }
+
+    # Last resort: try common careers subpaths — handles Greenhouse boards embedded
+    # on /careers, /jobs, etc. rather than the homepage.
+    _SUBPATHS = ("/careers", "/jobs", "/company/careers", "/about/careers")
+    parsed_origin = f"{parsed.scheme}://{parsed.netloc}"
+    for subpath in _SUBPATHS:
+        subpath_url = f"{parsed_origin}{subpath}"
+        if subpath_url == normalized_url:
+            continue  # already fetched above
+        try:
+            sub_resp = await client.get(subpath_url)
+            if sub_resp.status_code != 200:
+                continue
+            match = GREENHOUSE_BOARD_PATTERN.search(sub_resp.text)
+            if match:
+                return {
+                    "slug": match.group(1),
+                    "source": "careers_subpath_html",
+                    "board_url": match.group(0),
+                }
+            query_match = GREENHOUSE_QUERY_PATTERN.search(sub_resp.text)
+            if query_match:
+                return {
+                    "slug": query_match.group(1),
+                    "source": "careers_subpath_query_param",
+                    "board_url": subpath_url,
+                }
+        except Exception:
+            continue
+
     return {
         "slug": "",
         "source": "not_found",

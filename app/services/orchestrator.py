@@ -40,6 +40,10 @@ from app.scrapers.wp_jobs import scrape_wp_jobs
 from app.detectors.wp_jobs import detect_wp_jobs
 from app.scrapers.phenom import scrape_phenom
 from app.detectors.phenom import detect_phenom
+from app.scrapers.smartrecruiters import scrape_smartrecruiters
+from app.detectors.smartrecruiters import detect_smartrecruiters
+from app.scrapers.sap_successfactors import scrape_sap_sf
+from app.detectors.sap_successfactors import detect_sap_sf
 from app.scrapers.dynamic_api import scrape_dynamic_api, scrape_dynamic_api_direct
 from app.scrapers.interactive_dom import scrape_interactive_dom
 from app.services.raw_json_saver import save_scrape_result
@@ -268,7 +272,10 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         "confidence": 0.0,
     }
 
-    async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
+    async with httpx.AsyncClient(
+            timeout=httpx.Timeout(connect=10, read=90, write=10, pool=10),
+            follow_redirects=True,
+        ) as client:
         try:
             landing_response = await client.get(normalized_url)
             landing_response.raise_for_status()
@@ -328,6 +335,26 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         wp_jobs_result = await detect_wp_jobs(normalized_url, client=client, html=page_html)
         logger.info("WP_JOBS -> matched=%s jobs=%s usable=%s", wp_jobs_result.get("matched"), wp_jobs_result.get("jobs_found"), wp_jobs_result.get("api_usable"))
 
+        # 4e. SmartRecruiters (slug from URL + public API probe)
+        smartrecruiters_result = await detect_smartrecruiters(
+            normalized_url, client=client, html=page_html
+        )
+        logger.info(
+            "SmartRecruiters -> matched=%s jobs=%s slug=%s",
+            smartrecruiters_result.get("matched"),
+            smartrecruiters_result.get("jobs_found"),
+            smartrecruiters_result.get("slug"),
+        )
+
+        # 4f. SAP SuccessFactors (static signal + browser API interception)
+        sap_sf_result = await detect_sap_sf(normalized_url, client=client)
+        logger.info(
+            "SAP_SF -> matched=%s jobs=%s usable=%s",
+            sap_sf_result.get("matched"),
+            sap_sf_result.get("jobs_found"),
+            sap_sf_result.get("api_usable"),
+        )
+
         # 5. Simple API (HTTP-only, fast)
         simple_api_result = await detect_simple_api(normalized_url, client=client)
         logger.info(f"Simple API -> {simple_api_result}")
@@ -349,6 +376,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 taleo_result,
                 icims_result,
                 phenom_result,
+                smartrecruiters_result,
+                sap_sf_result,
                 wp_jobs_result,
                 simple_api_result,
                 dynamic_api_result,
@@ -369,6 +398,10 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 }
             )
             browser_final_url = browser_probe.get("final_url", "")
+            # If the page JS-redirected to a Workday subdomain, surface that URL
+            # so the Workday detector can construct the API endpoint from it.
+            if browser_final_url and "myworkdayjobs" in browser_final_url.lower():
+                discovered_urls = sorted({*discovered_urls, browser_final_url})
             if browser_final_url:
                 normalized_url = normalize_site_url(browser_final_url)
                 domain = get_domain(normalized_url)
@@ -440,6 +473,28 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 phenom_result.get("api_usable"),
             )
 
+            smartrecruiters_result = await detect_smartrecruiters(
+                normalized_url, client=client, html=page_html, discovered_urls=discovered_urls
+            )
+            logger.info(
+                "SmartRecruiters (browser-assisted) -> matched=%s jobs=%s slug=%s",
+                smartrecruiters_result.get("matched"),
+                smartrecruiters_result.get("jobs_found"),
+                smartrecruiters_result.get("slug"),
+            )
+
+            sap_sf_result = await detect_sap_sf(
+                normalized_url,
+                client=client,
+                discovered_urls=discovered_urls,
+            )
+            logger.info(
+                "SAP_SF (browser-assisted) -> matched=%s jobs=%s usable=%s",
+                sap_sf_result.get("matched"),
+                sap_sf_result.get("jobs_found"),
+                sap_sf_result.get("api_usable"),
+            )
+
             simple_api_result = await detect_simple_api(
                 normalized_url,
                 client=client,
@@ -482,6 +537,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             "taleo": taleo_result,
             "icims": icims_result,
             "phenom": phenom_result,
+            "smartrecruiters": smartrecruiters_result,
+            "sap_sf": sap_sf_result,
             "wp_jobs": wp_jobs_result,
             "simple_api": simple_api_result,
             "dynamic_api": dynamic_api_result if "dynamic_api_result" in dir() else {},
@@ -714,7 +771,10 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             logger.info("[PIPELINE] interactive_dom result: %d jobs (kept existing %d)", len(jobs_result), len(jobs))
         return len(jobs_result) >= 3
 
-    async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
+    async with httpx.AsyncClient(
+            timeout=httpx.Timeout(connect=10, read=90, write=10, pool=10),
+            follow_redirects=True,
+        ) as client:
         # Handle special API types first (Workday, Greenhouse)
         if site_type == "WORKDAY_API":
             api_url, jobs = await fetch_workday_jobs(
@@ -754,6 +814,26 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             final_site_type = "PHENOM"
             final_strategy = "api"
             logger.info("[PIPELINE] PHENOM → %d jobs", len(jobs))
+        elif site_type == "SMARTRECRUITERS":
+            jobs = await scrape_smartrecruiters(
+                normalized_url,
+                client=client,
+                api_url=smartrecruiters_result.get("api_url", ""),
+            )
+            api_url = ""
+            final_site_type = "SMARTRECRUITERS"
+            final_strategy = "api"
+            logger.info("[PIPELINE] SMARTRECRUITERS → %d jobs", len(jobs))
+        elif site_type == "SAP_SF":
+            jobs = await scrape_sap_sf(
+                normalized_url,
+                client=client,
+                api_url=sap_sf_result.get("api_url", ""),
+            )
+            api_url = ""
+            final_site_type = "SAP_SF"
+            final_strategy = "api"
+            logger.info("[PIPELINE] SAP_SF → %d jobs", len(jobs))
         elif site_type == "WP_JOBS":
             jobs = await scrape_wp_jobs(normalized_url, client=client, api_url=wp_jobs_result.get("api_url", ""))
             api_url = ""
@@ -902,7 +982,10 @@ async def _fetch_workday_with_raw_data(
 
     close_client = client is None
     if close_client:
-        client = httpx.AsyncClient(timeout=20, follow_redirects=True)
+        client = httpx.AsyncClient(
+            timeout=httpx.Timeout(connect=10, read=90, write=10, pool=10),
+            follow_redirects=True,
+        )
 
     try:
         source_url = url
