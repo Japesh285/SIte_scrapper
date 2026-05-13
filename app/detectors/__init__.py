@@ -8,6 +8,10 @@ from app.detectors.interactive_dom_detector import detect_interactive_dom
 from app.detectors.greenhouse import detect_greenhouse
 from app.detectors.simple_api import detect_simple_api
 from app.detectors.workday import detect_workday
+from app.detectors.taleo import detect_taleo
+from app.detectors.icims import detect_icims
+from app.detectors.wp_jobs import detect_wp_jobs
+from app.detectors.phenom import detect_phenom
 
 __all__ = [
     "inspect_browser_network",
@@ -20,4 +24,8 @@ __all__ = [
     "detect_workday",
     "detect_greenhouse",
     "detect_simple_api",
+    "detect_taleo",
+    "detect_icims",
+    "detect_wp_jobs",
+    "detect_phenom",
 ]

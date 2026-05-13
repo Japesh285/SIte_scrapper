@@ -18,6 +18,8 @@ from app.detectors import (
     detect_interactive_dom,
     run_browser_probe,
     inspect_browser_network,
+    detect_taleo,
+    detect_icims,
 )
 from app.core.site_utils import get_domain, normalize_site_url, is_accenture_careers_url
 from app.detectors.simple_api import fetch_simple_api_jobs
@@ -30,7 +32,14 @@ from app.scrapers.dom_browser import (
 )
 from app.scrapers.accenture import ACCENTURE_SITE_TYPE, scrape_accenture_jobs
 from app.scrapers.simple_api import scrape_simple_api
+from app.detectors.simple_api import paginate_simple_api_jobs
 from app.scrapers.greenhouse import scrape_greenhouse
+from app.scrapers.taleo import scrape_taleo
+from app.scrapers.icims import scrape_icims
+from app.scrapers.wp_jobs import scrape_wp_jobs
+from app.detectors.wp_jobs import detect_wp_jobs
+from app.scrapers.phenom import scrape_phenom
+from app.detectors.phenom import detect_phenom
 from app.scrapers.dynamic_api import scrape_dynamic_api, scrape_dynamic_api_direct
 from app.scrapers.interactive_dom import scrape_interactive_dom
 from app.services.raw_json_saver import save_scrape_result
@@ -298,11 +307,32 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             greenhouse_result.get("board_url", ""),
         )
 
-        # 3. Simple API (HTTP-only, fast)
+        # 3. Taleo / Oracle HCM (HTTP-only, fast)
+        taleo_result = await detect_taleo(normalized_url, client=client, html=page_html)
+        logger.info("Taleo -> matched=%s jobs=%s usable=%s", taleo_result.get("matched"), taleo_result.get("jobs_found"), taleo_result.get("api_usable"))
+
+        # 4. iCIMS (HTTP-only, fast)
+        icims_result = await detect_icims(normalized_url, client=client, html=page_html)
+        logger.info("iCIMS -> matched=%s jobs=%s usable=%s", icims_result.get("matched"), icims_result.get("jobs_found"), icims_result.get("api_usable"))
+
+        # 4c. Phenom People (static signal check + browser interception if signals found)
+        phenom_result = await detect_phenom(normalized_url, client=client)
+        logger.info(
+            "Phenom -> matched=%s jobs=%s usable=%s",
+            phenom_result.get("matched"),
+            phenom_result.get("jobs_found"),
+            phenom_result.get("api_usable"),
+        )
+
+        # 4b. WordPress job_box pages (HTTP-only, static HTML)
+        wp_jobs_result = await detect_wp_jobs(normalized_url, client=client, html=page_html)
+        logger.info("WP_JOBS -> matched=%s jobs=%s usable=%s", wp_jobs_result.get("matched"), wp_jobs_result.get("jobs_found"), wp_jobs_result.get("api_usable"))
+
+        # 5. Simple API (HTTP-only, fast)
         simple_api_result = await detect_simple_api(normalized_url, client=client)
         logger.info(f"Simple API -> {simple_api_result}")
 
-        # 4. DOM detectors (static analysis, no browser)
+        # 5. DOM detectors (static analysis, no browser)
         dom_browser_result = await detect_dom_browser(normalized_url, html=page_html)
         logger.info(f"DOM Browser -> {dom_browser_result}")
         dom_load_more_result = await detect_dom_load_more(normalized_url, html=page_html)
@@ -310,12 +340,16 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         dom_infinite_scroll_result = await detect_dom_infinite_scroll(normalized_url, html=page_html)
         logger.info(f"DOM Infinite Scroll -> {dom_infinite_scroll_result}")
 
-        # 5. Browser probe — ONLY if all fast detectors failed
+        # 6. Browser probe — ONLY if all fast detectors failed
         if not any(
             result.get("api_usable")
             for result in (
                 workday_result,
                 greenhouse_result,
+                taleo_result,
+                icims_result,
+                phenom_result,
+                wp_jobs_result,
                 simple_api_result,
                 dynamic_api_result,
                 dom_browser_result,
@@ -378,6 +412,34 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 greenhouse_result.get("board_url", ""),
             )
 
+            taleo_result = await detect_taleo(
+                normalized_url,
+                client=client,
+                html=page_html,
+                discovered_urls=discovered_urls,
+            )
+            logger.info("Taleo (browser-assisted) -> matched=%s jobs=%s usable=%s", taleo_result.get("matched"), taleo_result.get("jobs_found"), taleo_result.get("api_usable"))
+
+            icims_result = await detect_icims(
+                normalized_url,
+                client=client,
+                html=page_html,
+                discovered_urls=discovered_urls,
+            )
+            logger.info("iCIMS (browser-assisted) -> matched=%s jobs=%s usable=%s", icims_result.get("matched"), icims_result.get("jobs_found"), icims_result.get("api_usable"))
+
+            phenom_result = await detect_phenom(
+                normalized_url,
+                client=client,
+                discovered_urls=discovered_urls,
+            )
+            logger.info(
+                "Phenom (browser-assisted) -> matched=%s jobs=%s usable=%s",
+                phenom_result.get("matched"),
+                phenom_result.get("jobs_found"),
+                phenom_result.get("api_usable"),
+            )
+
             simple_api_result = await detect_simple_api(
                 normalized_url,
                 client=client,
@@ -417,6 +479,10 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         "tests": {
             "workday": workday_result,
             "greenhouse": greenhouse_result,
+            "taleo": taleo_result,
+            "icims": icims_result,
+            "phenom": phenom_result,
+            "wp_jobs": wp_jobs_result,
             "simple_api": simple_api_result,
             "dynamic_api": dynamic_api_result if "dynamic_api_result" in dir() else {},
             "interactive_dom": interactive_dom_result if "interactive_dom_result" in dir() else {},
@@ -492,6 +558,13 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             client=client,
             discovered_urls=discovered_urls,
         )
+        if not selected_api_url:
+            return False
+
+        # Paginate to get full job list
+        all_jobs = await paginate_simple_api_jobs(client, selected_api_url, normalized_url)
+        jobs_result = all_jobs if len(all_jobs) >= len(jobs_result) else jobs_result
+
         if len(jobs_result) >= 3:
             jobs = jobs_result
             api_url = selected_api_url or ""
@@ -630,14 +703,15 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         nonlocal jobs, api_url, final_site_type, final_strategy
         logger.info("[PIPELINE] Falling back to interactive_dom (LAST RESORT)")
         jobs_result = await scrape_interactive_dom(normalized_url)
-        jobs = jobs_result
-        api_url = ""
-        final_site_type = "INTERACTIVE_DOM"
-        final_strategy = "dom"
+        if len(jobs_result) > len(jobs):
+            jobs = jobs_result
+            api_url = ""
+            final_site_type = "INTERACTIVE_DOM"
+            final_strategy = "dom"
         if len(jobs_result) >= 3:
-            logger.info("[PIPELINE] interactive_dom success (jobs=%d)", len(jobs))
+            logger.info("[PIPELINE] interactive_dom success (jobs=%d)", len(jobs_result))
         else:
-            logger.info("[PIPELINE] interactive_dom result: %d jobs", len(jobs))
+            logger.info("[PIPELINE] interactive_dom result: %d jobs (kept existing %d)", len(jobs_result), len(jobs))
         return len(jobs_result) >= 3
 
     async with httpx.AsyncClient(timeout=20, follow_redirects=True) as client:
@@ -658,6 +732,34 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             final_site_type = "GREENHOUSE_API"
             final_strategy = "api"
             logger.info("[PIPELINE] GREENHOUSE_API → %d jobs", len(jobs))
+        elif site_type == "TALEO_API":
+            jobs = await scrape_taleo(normalized_url, client=client, api_url=taleo_result.get("api_url", ""))
+            api_url = ""
+            final_site_type = "TALEO_API"
+            final_strategy = "api"
+            logger.info("[PIPELINE] TALEO_API → %d jobs", len(jobs))
+        elif site_type == "ICIMS_API":
+            jobs = await scrape_icims(normalized_url, client=client, api_url=icims_result.get("api_url", ""))
+            api_url = ""
+            final_site_type = "ICIMS_API"
+            final_strategy = "api"
+            logger.info("[PIPELINE] ICIMS_API → %d jobs", len(jobs))
+        elif site_type == "PHENOM":
+            jobs = await scrape_phenom(
+                normalized_url,
+                client=client,
+                api_url=phenom_result.get("api_url", ""),
+            )
+            api_url = ""
+            final_site_type = "PHENOM"
+            final_strategy = "api"
+            logger.info("[PIPELINE] PHENOM → %d jobs", len(jobs))
+        elif site_type == "WP_JOBS":
+            jobs = await scrape_wp_jobs(normalized_url, client=client, api_url=wp_jobs_result.get("api_url", ""))
+            api_url = ""
+            final_site_type = "WP_JOBS"
+            final_strategy = "dom"
+            logger.info("[PIPELINE] WP_JOBS → %d jobs", len(jobs))
         else:
             # ORDER: simple_api → dynamic_api (full pipeline) → dom_scraper → interactive_dom
             if not await _try_simple_api():
@@ -725,6 +827,15 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     # ── Workday: Send POST to local FastAPI worker ──
     if final_site_type == "WORKDAY_API" and saved_path:
         await _notify_workday_processor(saved_path)
+
+    logger.info(
+        "[FINAL] url=%-40s  ats=%-20s  jobs=%d  strategy=%s  confidence=%.2f",
+        normalized_url,
+        final_site_type,
+        len(jobs),
+        final_strategy,
+        confidence,
+    )
 
     return {
         "domain": domain,

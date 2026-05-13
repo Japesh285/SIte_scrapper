@@ -6,14 +6,14 @@ from app.core.logger import logger
 SYSTEM_PROMPT = """You are selecting the best scraping strategy.
 
 Choose ONE:
-WORKDAY_API, GREENHOUSE_API, DYNAMIC_API, SIMPLE_API, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
+WORKDAY_API, GREENHOUSE_API, TALEO_API, ICIMS_API, PHENOM, DYNAMIC_API, SIMPLE_API, WP_JOBS, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
 
 Rules:
 - Prefer matched = true
 - Prefer higher jobs_found
 - Prefer api_usable = true
 - Priority:
-  WORKDAY_API > GREENHOUSE_API > DYNAMIC_API > SIMPLE_API > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
+  WORKDAY_API > GREENHOUSE_API > TALEO_API > ICIMS_API > PHENOM > DYNAMIC_API > SIMPLE_API > WP_JOBS > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
 - If none match → UNKNOWN
 - Do not guess
 
@@ -23,8 +23,12 @@ Return JSON:
 ALLOWED_TYPES = {
     "WORKDAY_API",
     "GREENHOUSE_API",
+    "TALEO_API",
+    "ICIMS_API",
+    "PHENOM",
     "DYNAMIC_API",
     "SIMPLE_API",
+    "WP_JOBS",
     "INTERACTIVE_DOM",
     "DOM_LOAD_MORE",
     "DOM_INFINITE_SCROLL",
@@ -101,8 +105,12 @@ def _heuristic_classify(data: dict) -> dict:
     ranked_tests = [
         ("WORKDAY_API", tests.get("workday", {})),
         ("GREENHOUSE_API", tests.get("greenhouse", {})),
+        ("TALEO_API", tests.get("taleo", {})),
+        ("ICIMS_API", tests.get("icims", {})),
+        ("PHENOM", tests.get("phenom", {})),
         ("DYNAMIC_API", dynamic_api),
         ("SIMPLE_API", tests.get("simple_api", {})),
+        ("WP_JOBS", tests.get("wp_jobs", {})),
         ("INTERACTIVE_DOM", interactive_dom),
         ("DOM_LOAD_MORE", tests.get("dom_load_more", {})),
         ("DOM_INFINITE_SCROLL", tests.get("dom_infinite_scroll", {})),
@@ -130,12 +138,16 @@ def _heuristic_classify(data: dict) -> dict:
 
     if viable_tests:
         priority = {
-            "WORKDAY_API": 7,
-            "GREENHOUSE_API": 6,
+            "WORKDAY_API": 9,
+            "GREENHOUSE_API": 8,
+            "TALEO_API": 7,
+            "ICIMS_API": 6,
+            "PHENOM": 5,
             "DYNAMIC_API": 5,
             "SIMPLE_API": 4,
-            "INTERACTIVE_DOM": 3,
-            "DOM_LOAD_MORE": 2,
+            "WP_JOBS": 3,
+            "INTERACTIVE_DOM": 2,
+            "DOM_LOAD_MORE": 1,
             "DOM_INFINITE_SCROLL": 1,
             "DOM_BROWSER": 0,
         }
