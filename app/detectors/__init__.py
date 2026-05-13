@@ -14,6 +14,7 @@ from app.detectors.wp_jobs import detect_wp_jobs
 from app.detectors.phenom import detect_phenom
 from app.detectors.smartrecruiters import detect_smartrecruiters
 from app.detectors.sap_successfactors import detect_sap_sf
+from app.detectors.oracle_hcm import detect_oracle_hcm
 
 __all__ = [
     "inspect_browser_network",
@@ -32,4 +33,5 @@ __all__ = [
     "detect_phenom",
     "detect_smartrecruiters",
     "detect_sap_sf",
+    "detect_oracle_hcm",
 ]

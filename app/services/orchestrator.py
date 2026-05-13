@@ -44,6 +44,8 @@ from app.scrapers.smartrecruiters import scrape_smartrecruiters
 from app.detectors.smartrecruiters import detect_smartrecruiters
 from app.scrapers.sap_successfactors import scrape_sap_sf
 from app.detectors.sap_successfactors import detect_sap_sf
+from app.scrapers.oracle_hcm import scrape_oracle_hcm
+from app.detectors.oracle_hcm import detect_oracle_hcm
 from app.scrapers.dynamic_api import scrape_dynamic_api, scrape_dynamic_api_direct
 from app.scrapers.interactive_dom import scrape_interactive_dom
 from app.services.raw_json_saver import save_scrape_result
@@ -335,6 +337,17 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         wp_jobs_result = await detect_wp_jobs(normalized_url, client=client, html=page_html)
         logger.info("WP_JOBS -> matched=%s jobs=%s usable=%s", wp_jobs_result.get("matched"), wp_jobs_result.get("jobs_found"), wp_jobs_result.get("api_usable"))
 
+        # 4d. Oracle HCM (URL pattern match + REST API probe, HTTP-only)
+        oracle_hcm_result = await detect_oracle_hcm(
+            normalized_url, client=client, html=page_html
+        )
+        logger.info(
+            "Oracle_HCM -> matched=%s jobs=%s usable=%s",
+            oracle_hcm_result.get("matched"),
+            oracle_hcm_result.get("jobs_found"),
+            oracle_hcm_result.get("api_usable"),
+        )
+
         # 4e. SmartRecruiters (slug from URL + public API probe)
         smartrecruiters_result = await detect_smartrecruiters(
             normalized_url, client=client, html=page_html
@@ -375,6 +388,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 greenhouse_result,
                 taleo_result,
                 icims_result,
+                oracle_hcm_result,
                 phenom_result,
                 smartrecruiters_result,
                 sap_sf_result,
@@ -473,6 +487,16 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 phenom_result.get("api_usable"),
             )
 
+            oracle_hcm_result = await detect_oracle_hcm(
+                normalized_url, client=client, html=page_html, discovered_urls=discovered_urls
+            )
+            logger.info(
+                "Oracle_HCM (browser-assisted) -> matched=%s jobs=%s usable=%s",
+                oracle_hcm_result.get("matched"),
+                oracle_hcm_result.get("jobs_found"),
+                oracle_hcm_result.get("api_usable"),
+            )
+
             smartrecruiters_result = await detect_smartrecruiters(
                 normalized_url, client=client, html=page_html, discovered_urls=discovered_urls
             )
@@ -536,6 +560,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             "greenhouse": greenhouse_result,
             "taleo": taleo_result,
             "icims": icims_result,
+            "oracle_hcm": oracle_hcm_result,
             "phenom": phenom_result,
             "smartrecruiters": smartrecruiters_result,
             "sap_sf": sap_sf_result,
@@ -804,6 +829,16 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             final_site_type = "ICIMS_API"
             final_strategy = "api"
             logger.info("[PIPELINE] ICIMS_API → %d jobs", len(jobs))
+        elif site_type == "ORACLE_HCM":
+            jobs = await scrape_oracle_hcm(
+                normalized_url,
+                client=client,
+                api_url=oracle_hcm_result.get("api_url", ""),
+            )
+            api_url = ""
+            final_site_type = "ORACLE_HCM"
+            final_strategy = "api"
+            logger.info("[PIPELINE] ORACLE_HCM → %d jobs", len(jobs))
         elif site_type == "PHENOM":
             jobs = await scrape_phenom(
                 normalized_url,
