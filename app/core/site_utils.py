@@ -5,8 +5,10 @@ def normalize_site_url(value: str) -> str:
     value = (value or "").strip()
     if not value:
         return ""
-    if value.startswith(("http://", "https://")):
+    if value.startswith("https://"):
         return value
+    if value.startswith("http://"):
+        return "https://" + value[7:]  # upgrade to HTTPS — all modern career sites use it
     return f"https://{value}"
 
 

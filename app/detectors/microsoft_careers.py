@@ -28,7 +28,6 @@ async def detect_microsoft(
             return _not_matched()
 
     # Use the input URL if it's already a careers page, otherwise fall back to search
-    from app.core.site_utils import normalize_site_url
     normalized = normalize_site_url(url)
     if "apply.careers.microsoft.com" in normalized.lower():
         target = _MSFT_APPLY_URL

@@ -78,15 +78,15 @@ async def _paginate(
             if not items_outer:
                 break
             ctx = items_outer[0]
-            total = ctx.get("TotalJobsCount", 0)
             req_list = ctx.get("requisitionList", [])
             if not req_list:
                 break
+            batch_size = len(req_list)
             jobs = _extract_jobs(req_list, base_url)
             if add_batch(jobs) == 0:
                 break
-            offset += _PAGE_SIZE
-            if total and offset >= total:
+            offset += batch_size  # advance by actual items, not assumed page size
+            if batch_size < _PAGE_SIZE:  # partial page = last page
                 break
         else:
             # Legacy path: direct items list

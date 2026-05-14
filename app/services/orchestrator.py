@@ -923,10 +923,11 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             logger.info("[PIPELINE] WP_JOBS → %d jobs", len(jobs))
         else:
             # ORDER: simple_api → dynamic_api → dom_scraper → interactive_dom
-            # Skip dynamic_api when DOM already detected jobs — saves ~30s browser probe
+            # Skip dynamic_api for DOM-type sites — detection already confirmed DOM path
             _dom_jobs_detected = int(dom_browser_result.get("jobs_found", 0) or 0)
+            _is_dom_type = site_type in ("DOM_BROWSER", "DOM_LOAD_MORE", "DOM_INFINITE_SCROLL", "INTERACTIVE_DOM")
             if not await _try_simple_api():
-                skip_dynamic = _dom_jobs_detected > 0
+                skip_dynamic = _dom_jobs_detected > 0 or _is_dom_type
                 if skip_dynamic or not await _try_dynamic_api():
                     if not await _try_dom_scraper():
                         await _try_interactive_dom()
