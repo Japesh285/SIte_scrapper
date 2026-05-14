@@ -7,6 +7,7 @@ from app.core.site_utils import normalize_site_url
 
 _MSFT_SIGNALS = ("careers.microsoft.com", "apply.careers.microsoft.com")
 _MSFT_SEARCH_URL = "https://careers.microsoft.com/us/en/search"
+_MSFT_APPLY_URL = "https://apply.careers.microsoft.com"
 
 # Known search URL patterns from the Microsoft careers SPA
 _MSFT_API_RE = re.compile(
@@ -26,8 +27,13 @@ async def detect_microsoft(
         if not any(s in html.lower() for s in _MSFT_SIGNALS):
             return _not_matched()
 
-    # Always use the main search page for browser interception
-    target = _MSFT_SEARCH_URL
+    # Use the input URL if it's already a careers page, otherwise fall back to search
+    from app.core.site_utils import normalize_site_url
+    normalized = normalize_site_url(url)
+    if "apply.careers.microsoft.com" in normalized.lower():
+        target = _MSFT_APPLY_URL
+    else:
+        target = _MSFT_SEARCH_URL
     logger.info("[Microsoft] launching browser interception for %s", target)
     return await _intercept_microsoft_api(target)
 

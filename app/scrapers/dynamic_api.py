@@ -42,6 +42,11 @@ async def scrape_dynamic_api_direct(
     if not raw_jobs:
         return []
 
+    AI_ENRICH_CAP = 20
+    if len(raw_jobs) > AI_ENRICH_CAP:
+        logger.info("[DynamicAPI Scraper] Capping AI enrichment at %d/%d jobs", AI_ENRICH_CAP, len(raw_jobs))
+        raw_jobs = raw_jobs[:AI_ENRICH_CAP]
+
     logger.info("[DynamicAPI Scraper] Enriching %d jobs with AI", len(raw_jobs))
 
     enriched = []

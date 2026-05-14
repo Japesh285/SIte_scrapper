@@ -11,11 +11,15 @@ async def scrape_oracle_hcm(
     url: str,
     client: httpx.AsyncClient | None = None,
     api_url: str = "",
+    site_name: str = "",
+    location_facet: str = "",
 ) -> list[dict]:
     if not api_url:
         from app.detectors.oracle_hcm import detect_oracle_hcm
         result = await detect_oracle_hcm(url, client=client)
         api_url = result.get("api_url", "")
+        site_name = result.get("oracle_site", "")
+        location_facet = result.get("oracle_location", "")
     if not api_url:
         return []
 
@@ -25,11 +29,18 @@ async def scrape_oracle_hcm(
             timeout=httpx.Timeout(connect=10, read=90, write=10, pool=10),
             follow_redirects=True,
         ) as c:
-            return await _paginate(c, api_url, base_url)
-    return await _paginate(client, api_url, base_url)
+            return await _paginate(c, api_url, base_url, site_name, location_facet)
+    return await _paginate(client, api_url, base_url, site_name, location_facet)
 
 
-async def _paginate(client: httpx.AsyncClient, api_url: str, base_url: str) -> list[dict]:
+async def _paginate(
+    client: httpx.AsyncClient,
+    api_url: str,
+    base_url: str,
+    site_name: str = "",
+    location_facet: str = "",
+) -> list[dict]:
+    from app.detectors.oracle_hcm import _build_finder
     all_jobs: list[dict] = []
     seen: set[str] = set()
 
@@ -43,13 +54,17 @@ async def _paginate(client: httpx.AsyncClient, api_url: str, base_url: str) -> l
                 added += 1
         return added
 
+    finder = _build_finder(site_name, location_facet)
+    use_ce_api = bool(site_name)
     offset = 0
     while offset < _MAX_JOBS:
+        params: dict = {"limit": _PAGE_SIZE, "onlyData": "true", "offset": offset}
+        if use_ce_api:
+            params["expand"] = "requisitionList"
+            params["finder"] = finder
+
         try:
-            resp = await client.get(
-                api_url,
-                params={"limit": _PAGE_SIZE, "offset": offset, "onlyData": "true"},
-            )
+            resp = await client.get(api_url, params=params)
             if resp.status_code != 200 or "json" not in resp.headers.get("content-type", ""):
                 break
             data = resp.json()
@@ -57,17 +72,33 @@ async def _paginate(client: httpx.AsyncClient, api_url: str, base_url: str) -> l
             logger.warning("[Oracle_HCM] offset=%d failed: %s", offset, exc)
             break
 
-        items = data.get("items", [])
-        if not items:
-            break
-
-        jobs = _extract_jobs(items, base_url)
-        if add_batch(jobs) == 0:
-            break
-
-        if not data.get("hasMore", False):
-            break
-        offset += _PAGE_SIZE
+        if use_ce_api:
+            # CE API: items[0].requisitionList contains actual jobs
+            items_outer = data.get("items", [])
+            if not items_outer:
+                break
+            ctx = items_outer[0]
+            total = ctx.get("TotalJobsCount", 0)
+            req_list = ctx.get("requisitionList", [])
+            if not req_list:
+                break
+            jobs = _extract_jobs(req_list, base_url)
+            if add_batch(jobs) == 0:
+                break
+            offset += _PAGE_SIZE
+            if total and offset >= total:
+                break
+        else:
+            # Legacy path: direct items list
+            items = data.get("items", [])
+            if not items:
+                break
+            jobs = _extract_jobs(items, base_url)
+            if add_batch(jobs) == 0:
+                break
+            if not data.get("hasMore", False):
+                break
+            offset += _PAGE_SIZE
 
     logger.info("[Oracle_HCM] total extracted: %d", len(all_jobs))
     return all_jobs

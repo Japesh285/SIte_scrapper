@@ -16,18 +16,40 @@ async def detect_avature(
     url: str,
     client: httpx.AsyncClient | None = None,
     discovered_urls: list[str] | None = None,
+    html: str = "",
+    probe_result=None,
 ) -> dict:
     normalized = normalize_site_url(url)
     if not normalized:
         return _not_matched()
 
+    is_direct = bool(_AVATURE_HOST_RE.search(url))
+
+    # Try probe_result first for both direct and indirect paths
+    if probe_result is not None and (is_direct or _has_avature_signals(html, discovered_urls or [])):
+        for resp in getattr(probe_result, "responses", []):
+            try:
+                items = _find_job_items(resp.body)
+                if len(items) >= 3:
+                    logger.info("[Avature] API found in probe result: %s (%d jobs)", resp.url, len(items))
+                    return {
+                        "matched": True,
+                        "api_url": resp.url,
+                        "jobs_found": len(items),
+                        "api_usable": True,
+                        "confidence": 0.85,
+                    }
+            except Exception:
+                pass
+
     # Fast path: direct avature.net URL — skip HTML fetch, go straight to browser
-    if _AVATURE_HOST_RE.search(url):
+    if is_direct:
         logger.info("[Avature] direct avature.net URL — launching browser interception for %s", normalized)
         return await _intercept_avature_api(normalized)
 
     # Indirect path: check if HTML or discovered URLs reference avature
-    html = await _fetch_html(normalized, client)
+    if not html:
+        html = await _fetch_html(normalized, client)
     if not _has_avature_signals(html, discovered_urls or []):
         return _not_matched()
 

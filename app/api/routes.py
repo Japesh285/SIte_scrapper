@@ -125,14 +125,6 @@ def is_valid_job_url(url: str) -> bool:
     # Reject /careers/ navigation sub-pages
     for nav_path in _CAREERS_NAVIGATION:
         if nav_path in lowered:
-            # But allow /careers/<job-slug>/ — check if it has a job ID
-            if nav_path == "/careers/" and len(path_parts) >= 2:
-                # Could be /careers/python-genai-irc291384/ — check for job ID
-                if _JOB_ID_PATTERN.search(url):
-                    return True
-                # If no job ID but deep path, still might be valid
-                if len(path_parts) >= 3:
-                    return True
             return False
 
     # Accept: URL has a job-related path segment
@@ -656,7 +648,7 @@ async def scrape_details(request: ScrapeRequest, session: AsyncSession = Depends
                 # ── Strict URL filtering ──
                 lowered = job_url.lower()
                 reject_parts = [
-                    "/careers/", "/career-search", "/why-", "/about",
+                    "/why-", "/about",
                     "/learning", "/projects", "/contact", "/our-team",
                     "/testimonials", "/events", "/blog", "/news",
                     "/insights", "/resources", "/webinars",
@@ -1318,7 +1310,7 @@ async def scrape_details_batch(
                         # ── Strict URL filtering ──
                         lowered = job_url.lower()
                         reject_parts = [
-                            "/careers/", "/career-search", "/why-", "/about",
+                            "/why-", "/about",
                             "/learning", "/projects", "/contact", "/our-team",
                             "/testimonials", "/events", "/blog", "/news",
                             "/insights", "/resources", "/webinars",

@@ -141,18 +141,26 @@ def _build_workday_candidates(url: str, html: str, discovered_urls: list[str]) -
     path_segments = [segment for segment in parsed.path.split("/") if segment]
 
     # --- NEW LOGIC: Extract tenant from subdomain if it's a direct workday url ---
+    _LOCALE_RE = re.compile(r'^[a-z]{2}-[A-Z]{2}$')
+
+    def _pick_site_segment(segments: list[str]) -> str:
+        """Return the site name, skipping locale prefix like en-US / en-GB."""
+        if segments and _LOCALE_RE.match(segments[0]):
+            return segments[1] if len(segments) > 1 else segments[0]
+        return segments[0] if segments else ""
+
     tenant_from_domain = ""
     if "workday" in parsed.netloc.lower():
         tenant_from_domain = parsed.netloc.split(".")[0]
-        
+
     if tenant_from_domain and path_segments:
-        site_segment = path_segments[0]
+        site_segment = _pick_site_segment(path_segments)
         # Most common valid pattern: /wday/cxs/{tenant}/{site}/jobs
         fallback_1 = f"{parsed_origin}/wday/cxs/{tenant_from_domain}/{site_segment}/jobs"
         if fallback_1 not in seen:
             seen.add(fallback_1)
             candidates.append(fallback_1)
-            
+
         # Fallback for tenant == site
         fallback_2 = f"{parsed_origin}/wday/cxs/{tenant_from_domain}/{tenant_from_domain}/jobs"
         if fallback_2 not in seen:
@@ -162,7 +170,7 @@ def _build_workday_candidates(url: str, html: str, discovered_urls: list[str]) -
     # --- ORIGINAL LOGIC (Fully Preserved) ---
     if "workday" in url.lower():
         if path_segments:
-            company_segment = path_segments[0]
+            company_segment = _pick_site_segment(path_segments) if "workday" in parsed.netloc.lower() else path_segments[0]
             fallback = f"{parsed_origin}/wday/cxs/{company_segment}/{company_segment}/jobs"
             if fallback not in seen:
                 seen.add(fallback)

@@ -17,7 +17,6 @@ from app.detectors import (
     detect_dynamic_api,
     detect_interactive_dom,
     run_browser_probe,
-    inspect_browser_network,
     detect_taleo,
     detect_icims,
 )
@@ -328,15 +327,6 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         icims_result = await detect_icims(normalized_url, client=client, html=page_html)
         logger.info("iCIMS -> matched=%s jobs=%s usable=%s", icims_result.get("matched"), icims_result.get("jobs_found"), icims_result.get("api_usable"))
 
-        # 4c. Phenom People (static signal check + browser interception if signals found)
-        phenom_result = await detect_phenom(normalized_url, client=client)
-        logger.info(
-            "Phenom -> matched=%s jobs=%s usable=%s",
-            phenom_result.get("matched"),
-            phenom_result.get("jobs_found"),
-            phenom_result.get("api_usable"),
-        )
-
         # 4b. WordPress job_box pages (HTTP-only, static HTML)
         wp_jobs_result = await detect_wp_jobs(normalized_url, client=client, html=page_html)
         logger.info("WP_JOBS -> matched=%s jobs=%s usable=%s", wp_jobs_result.get("matched"), wp_jobs_result.get("jobs_found"), wp_jobs_result.get("api_usable"))
@@ -352,25 +342,7 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             oracle_hcm_result.get("api_usable"),
         )
 
-        # 4e. Avature (browser interception — avature.net portals)
-        avature_result = await detect_avature(normalized_url, client=client)
-        logger.info(
-            "Avature -> matched=%s jobs=%s usable=%s",
-            avature_result.get("matched"),
-            avature_result.get("jobs_found"),
-            avature_result.get("api_usable"),
-        )
-
-        # 4f-ms. Microsoft Careers (browser interception)
-        microsoft_result = await detect_microsoft(normalized_url, client=client)
-        logger.info(
-            "Microsoft -> matched=%s jobs=%s usable=%s",
-            microsoft_result.get("matched"),
-            microsoft_result.get("jobs_found"),
-            microsoft_result.get("api_usable"),
-        )
-
-        # 4e-sr. SmartRecruiters (slug from URL + public API probe)
+        # 4e-sr. SmartRecruiters (slug from URL + public API probe, HTTP-only)
         smartrecruiters_result = await detect_smartrecruiters(
             normalized_url, client=client, html=page_html
         )
@@ -381,14 +353,12 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             smartrecruiters_result.get("slug"),
         )
 
-        # 4f. SAP SuccessFactors (static signal + browser API interception)
-        sap_sf_result = await detect_sap_sf(normalized_url, client=client)
-        logger.info(
-            "SAP_SF -> matched=%s jobs=%s usable=%s",
-            sap_sf_result.get("matched"),
-            sap_sf_result.get("jobs_found"),
-            sap_sf_result.get("api_usable"),
-        )
+        # Browser-based detectors stubbed — run only if no fast detector matched (see browser probe block below)
+        _browser_stub = {"matched": False, "api_url": "", "jobs_found": 0, "api_usable": False, "confidence": 0.0}
+        phenom_result = dict(_browser_stub)
+        sap_sf_result = dict(_browser_stub)
+        avature_result = dict(_browser_stub)
+        microsoft_result = dict(_browser_stub)
 
         # 5. Simple API (HTTP-only, fast)
         simple_api_result = await detect_simple_api(normalized_url, client=client)
@@ -427,15 +397,11 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             # ── UNIFIED BROWSER PROBE ────────────────────────────────
             probe_result = await run_browser_probe(normalized_url)
 
-            # Also run legacy probe for backward compatibility
-            browser_probe = await inspect_browser_network(normalized_url)
+            # Use probe result directly — no second browser session needed
             discovered_urls = sorted(
-                {
-                    *browser_probe.get("json_urls", []),
-                    *browser_probe.get("request_urls", []),
-                }
+                {*probe_result.json_urls, *probe_result.request_urls}
             )
-            browser_final_url = browser_probe.get("final_url", "")
+            browser_final_url = probe_result.final_url
             # If the page JS-redirected to a Workday subdomain, surface that URL
             # so the Workday detector can construct the API endpoint from it.
             if browser_final_url and "myworkdayjobs" in browser_final_url.lower():
@@ -445,8 +411,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 domain = get_domain(normalized_url)
 
             logger.info(
-                f"Browser probe -> available={browser_probe.get('available')} "
-                f"urls={len(discovered_urls)} errors={browser_probe.get('errors', [])}"
+                "Browser probe -> available=%s urls=%d errors=%s",
+                probe_result.available, len(discovered_urls), probe_result.errors,
             )
 
             # ── DYNAMIC_API from probe ───────────────────────────────
@@ -503,6 +469,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 normalized_url,
                 client=client,
                 discovered_urls=discovered_urls,
+                html=page_html,
+                probe_result=probe_result,
             )
             logger.info(
                 "Phenom (browser-assisted) -> matched=%s jobs=%s usable=%s",
@@ -522,7 +490,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             )
 
             avature_result = await detect_avature(
-                normalized_url, client=client, discovered_urls=discovered_urls
+                normalized_url, client=client, discovered_urls=discovered_urls,
+                html=page_html, probe_result=probe_result,
             )
             logger.info(
                 "Avature (browser-assisted) -> matched=%s jobs=%s usable=%s",
@@ -555,6 +524,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 normalized_url,
                 client=client,
                 discovered_urls=discovered_urls,
+                html=page_html,
+                probe_result=probe_result,
             )
             logger.info(
                 "SAP_SF (browser-assisted) -> matched=%s jobs=%s usable=%s",
@@ -681,11 +652,18 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
     async def _try_simple_api() -> bool:
         nonlocal jobs, api_url, final_site_type, final_strategy
         logger.info("[PIPELINE] Trying simple_api")
-        jobs_result, selected_api_url, selected_api_score = await fetch_simple_api_jobs(
-            normalized_url,
-            client=client,
-            discovered_urls=discovered_urls,
+        # Use a short per-probe timeout so slow endpoints don't eat the 120s budget
+        import httpx as _httpx
+        _probe_client = _httpx.AsyncClient(
+            timeout=_httpx.Timeout(connect=5, read=8, write=5, pool=5),
+            follow_redirects=True,
         )
+        async with _probe_client:
+            jobs_result, selected_api_url, selected_api_score = await fetch_simple_api_jobs(
+                normalized_url,
+                client=_probe_client,
+                discovered_urls=discovered_urls,
+            )
         if not selected_api_url:
             return False
 
@@ -880,6 +858,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 normalized_url,
                 client=client,
                 api_url=oracle_hcm_result.get("api_url", ""),
+                site_name=oracle_hcm_result.get("oracle_site", ""),
+                location_facet=oracle_hcm_result.get("oracle_location", ""),
             )
             api_url = ""
             final_site_type = "ORACLE_HCM"
@@ -942,9 +922,12 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             final_strategy = "dom"
             logger.info("[PIPELINE] WP_JOBS → %d jobs", len(jobs))
         else:
-            # ORDER: simple_api → dynamic_api (full pipeline) → dom_scraper → interactive_dom
+            # ORDER: simple_api → dynamic_api → dom_scraper → interactive_dom
+            # Skip dynamic_api when DOM already detected jobs — saves ~30s browser probe
+            _dom_jobs_detected = int(dom_browser_result.get("jobs_found", 0) or 0)
             if not await _try_simple_api():
-                if not await _try_dynamic_api():
+                skip_dynamic = _dom_jobs_detected > 0
+                if skip_dynamic or not await _try_dynamic_api():
                     if not await _try_dom_scraper():
                         await _try_interactive_dom()
                     elif dom_jobs_count < 3:
@@ -1135,6 +1118,7 @@ async def _fetch_workday_with_raw_data(
                 break
 
             added = 0
+            _MAX_DETAILS = 25  # cap sequential detail fetches to avoid timeout
 
             for posting in postings:
                 try:
@@ -1150,7 +1134,7 @@ async def _fetch_workday_with_raw_data(
                     normalized["_raw_api"] = posting
 
                     detail = None
-                    if config:
+                    if config and len(jobs) < _MAX_DETAILS:
                         try:
                             detail = await fetch_workday_job_detail(
                                 client,

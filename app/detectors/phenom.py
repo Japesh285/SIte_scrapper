@@ -9,14 +9,34 @@ async def detect_phenom(
     url: str,
     client: httpx.AsyncClient | None = None,
     discovered_urls: list[str] | None = None,
+    html: str = "",
+    probe_result=None,
 ) -> dict:
     normalized = normalize_site_url(url)
     if not normalized:
         return _not_matched()
 
-    html = await _fetch_html(normalized, client)
+    if not html:
+        html = await _fetch_html(normalized, client)
     if not _has_phenom_signals(html, discovered_urls or []):
         return _not_matched()
+
+    # Try to extract Phenom API URL from probe result (avoids a separate browser session)
+    if probe_result is not None:
+        for resp in getattr(probe_result, "responses", []):
+            try:
+                items = _find_job_items(resp.body)
+                if len(items) >= 5:
+                    logger.info("[Phenom] API found in probe result: %s (%d jobs)", resp.url, len(items))
+                    return {
+                        "matched": True,
+                        "api_url": resp.url,
+                        "jobs_found": len(items),
+                        "api_usable": True,
+                        "confidence": 0.85,
+                    }
+            except Exception:
+                pass
 
     logger.info("[Phenom] signals found for %s — launching browser interception", normalized)
     return await _intercept_phenom_api(normalized)

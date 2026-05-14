@@ -1,4 +1,5 @@
 import json
+import re
 from urllib.parse import urlparse
 
 import httpx
@@ -98,6 +99,8 @@ def _candidate_urls(url: str, discovered_urls: list[str]) -> list[str]:
 
     for discovered_url in discovered_urls:
         lowered = discovered_url.lower()
+        if not lowered.startswith(("http://", "https://")):
+            continue  # skip relative/malformed URLs that httpx would reject
         if any(keyword in lowered for keyword in ALLOWED_URL_KEYWORDS):
             candidates.append(discovered_url)
 
@@ -209,6 +212,29 @@ def _extract_listing_jobs(payload, base_url: str) -> tuple[list[dict], dict]:
     return jobs, signals
 
 
+_ICIMS_APPLY_RE = re.compile(
+    r"https?://[a-z0-9\-]+\.icims\.com/jobs/(\d+)/(?:login|apply)",
+    re.IGNORECASE,
+)
+
+
+def _canonical_job_url(raw_url: str, base_url: str, job_id: str) -> str:
+    """Prefer the company's own job detail URL over iCIMS-hosted apply/login links."""
+    base_origin = get_origin(base_url)
+    if not raw_url:
+        if job_id and base_origin:
+            return f"{base_origin}/careers/jobs/{job_id}"
+        return ""
+
+    # Replace iCIMS hosted apply/login URL with canonical company page when possible
+    m = _ICIMS_APPLY_RE.match(raw_url)
+    if m and base_origin and "icims.com" not in base_origin:
+        extracted_id = m.group(1)
+        return f"{base_origin}/careers/jobs/{extracted_id}"
+
+    return absolutize_url(base_url, raw_url) if raw_url else ""
+
+
 def _extract_jobs_from_items(items: list, base_url: str) -> list[dict]:
     jobs: list[dict] = []
     for item in items:
@@ -216,7 +242,7 @@ def _extract_jobs_from_items(items: list, base_url: str) -> list[dict]:
             continue
         title = item.get("title") or item.get("job_title")
         location = item.get("location") or item.get("city") or item.get("country")
-        url = (
+        raw_url = (
             item.get("url")
             or item.get("link")
             or item.get("absolute_url")
@@ -225,12 +251,15 @@ def _extract_jobs_from_items(items: list, base_url: str) -> list[dict]:
             or item.get("details_url")
             or ""
         )
+        job_id = str(
+            item.get("req_id") or item.get("id") or item.get("slug") or item.get("jobId") or ""
+        )
         if isinstance(title, str) and title.strip() and location and str(location).strip():
             jobs.append(
                 {
                     "title": title.strip(),
                     "location": _normalize_location(location),
-                    "url": absolutize_url(base_url, str(url).strip()) if str(url).strip() else "",
+                    "url": _canonical_job_url(str(raw_url).strip(), base_url, job_id),
                 }
             )
     return _dedupe_jobs(jobs)
@@ -249,7 +278,7 @@ def _extract_jobs_from_json(data, base_url: str) -> list[dict]:
 
     title = data.get("title") or data.get("job_title")
     location = data.get("location") or data.get("city") or data.get("country")
-    url = (
+    raw_url = (
         data.get("url")
         or data.get("link")
         or data.get("absolute_url")
@@ -258,13 +287,16 @@ def _extract_jobs_from_json(data, base_url: str) -> list[dict]:
         or data.get("details_url")
         or ""
     )
+    job_id = str(
+        data.get("req_id") or data.get("id") or data.get("slug") or data.get("jobId") or ""
+    )
 
     if isinstance(title, str) and title.strip() and location and str(location).strip():
         jobs.append(
             {
                 "title": title.strip(),
                 "location": _normalize_location(location),
-                "url": absolutize_url(base_url, str(url).strip()) if str(url).strip() else "",
+                "url": _canonical_job_url(str(raw_url).strip(), base_url, job_id),
             }
         )
 
@@ -294,7 +326,12 @@ def _count_json_keyword_hits(payload) -> int:
 
 def _contains_ui_noise(payload) -> bool:
     json_text = json.dumps(payload, default=str).lower()
-    return sum(1 for keyword in UI_NOISE_KEYWORDS if keyword in json_text) >= 2
+    # Use word boundaries to avoid matching "nav" inside city names like "Paranavai"
+    # or "header" inside CSS class strings
+    return sum(
+        1 for keyword in UI_NOISE_KEYWORDS
+        if re.search(r'\b' + re.escape(keyword) + r'\b', json_text)
+    ) >= 2
 
 
 def _has_pagination_indicators(payload) -> bool:
@@ -321,6 +358,83 @@ def _dedupe_jobs(jobs: list[dict]) -> list[dict]:
         seen.add(key)
         deduped.append(job)
     return deduped
+
+
+async def paginate_simple_api_jobs(
+    client: httpx.AsyncClient,
+    api_url: str,
+    base_url: str,
+) -> list[dict]:
+    """Paginate through all pages of a known simple-API endpoint.
+
+    Strategy: try limit=100 first, read totalCount/total/count to know
+    how many pages exist, then fetch page=2,3,... until done.
+    Falls back to offset-based pagination if page= doesn't advance.
+    """
+    TOTAL_KEYS = ("totalCount", "total_count", "totalItems", "total_items", "total", "count")
+    MAX_PAGES = 50
+
+    all_jobs: list[dict] = []
+    seen: set[str] = set()
+
+    def _add_batch(jobs: list[dict]) -> int:
+        added = 0
+        for j in jobs:
+            key = j.get("url") or f"{j.get('title', '')}|{j.get('location', '')}"
+            if key not in seen:
+                seen.add(key)
+                all_jobs.append(j)
+                added += 1
+        return added
+
+    # First request: try limit=100 to maximise batch size
+    try:
+        resp = await client.get(api_url, params={"limit": 100, "page": 1})
+        if resp.status_code != 200 or "json" not in resp.headers.get("content-type", ""):
+            # Fall back to bare URL (some APIs don't accept unknown params)
+            resp = await client.get(api_url)
+        if resp.status_code != 200:
+            return []
+        first_data = resp.json()
+    except Exception as exc:
+        logger.debug("[SimpleAPI paginate] first request failed: %s", exc)
+        return []
+
+    first_jobs, _ = _extract_listing_jobs(first_data, base_url)
+    _add_batch(first_jobs)
+
+    # Determine total count and per-page size
+    total_count = 0
+    if isinstance(first_data, dict):
+        for key in TOTAL_KEYS:
+            val = first_data.get(key)
+            if isinstance(val, int) and val > 0:
+                total_count = val
+                break
+
+    per_page = max(len(first_jobs), 1)
+    if total_count <= per_page:
+        return all_jobs
+
+    pages_needed = min((total_count + per_page - 1) // per_page, MAX_PAGES)
+    logger.info("[SimpleAPI paginate] %s: total=%d per_page=%d pages=%d", api_url, total_count, per_page, pages_needed)
+
+    for page_num in range(2, pages_needed + 1):
+        try:
+            resp = await client.get(api_url, params={"limit": per_page, "page": page_num})
+            if resp.status_code != 200 or "json" not in resp.headers.get("content-type", ""):
+                break
+            data = resp.json()
+        except Exception as exc:
+            logger.debug("[SimpleAPI paginate] page %d failed: %s", page_num, exc)
+            break
+
+        jobs, _ = _extract_listing_jobs(data, base_url)
+        added = _add_batch(jobs)
+        if added == 0:
+            break
+
+    return all_jobs
 
 
 def _normalize_location(location) -> str:
