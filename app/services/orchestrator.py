@@ -46,6 +46,10 @@ from app.scrapers.sap_successfactors import scrape_sap_sf
 from app.detectors.sap_successfactors import detect_sap_sf
 from app.scrapers.oracle_hcm import scrape_oracle_hcm
 from app.detectors.oracle_hcm import detect_oracle_hcm
+from app.scrapers.avature import scrape_avature
+from app.detectors.avature import detect_avature
+from app.scrapers.microsoft_careers import scrape_microsoft
+from app.detectors.microsoft_careers import detect_microsoft
 from app.scrapers.dynamic_api import scrape_dynamic_api, scrape_dynamic_api_direct
 from app.scrapers.interactive_dom import scrape_interactive_dom
 from app.services.raw_json_saver import save_scrape_result
@@ -348,7 +352,25 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             oracle_hcm_result.get("api_usable"),
         )
 
-        # 4e. SmartRecruiters (slug from URL + public API probe)
+        # 4e. Avature (browser interception — avature.net portals)
+        avature_result = await detect_avature(normalized_url, client=client)
+        logger.info(
+            "Avature -> matched=%s jobs=%s usable=%s",
+            avature_result.get("matched"),
+            avature_result.get("jobs_found"),
+            avature_result.get("api_usable"),
+        )
+
+        # 4f-ms. Microsoft Careers (browser interception)
+        microsoft_result = await detect_microsoft(normalized_url, client=client)
+        logger.info(
+            "Microsoft -> matched=%s jobs=%s usable=%s",
+            microsoft_result.get("matched"),
+            microsoft_result.get("jobs_found"),
+            microsoft_result.get("api_usable"),
+        )
+
+        # 4e-sr. SmartRecruiters (slug from URL + public API probe)
         smartrecruiters_result = await detect_smartrecruiters(
             normalized_url, client=client, html=page_html
         )
@@ -390,6 +412,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 icims_result,
                 oracle_hcm_result,
                 phenom_result,
+                avature_result,
+                microsoft_result,
                 smartrecruiters_result,
                 sap_sf_result,
                 wp_jobs_result,
@@ -497,6 +521,26 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
                 oracle_hcm_result.get("api_usable"),
             )
 
+            avature_result = await detect_avature(
+                normalized_url, client=client, discovered_urls=discovered_urls
+            )
+            logger.info(
+                "Avature (browser-assisted) -> matched=%s jobs=%s usable=%s",
+                avature_result.get("matched"),
+                avature_result.get("jobs_found"),
+                avature_result.get("api_usable"),
+            )
+
+            microsoft_result = await detect_microsoft(
+                normalized_url, client=client, discovered_urls=discovered_urls
+            )
+            logger.info(
+                "Microsoft (browser-assisted) -> matched=%s jobs=%s usable=%s",
+                microsoft_result.get("matched"),
+                microsoft_result.get("jobs_found"),
+                microsoft_result.get("api_usable"),
+            )
+
             smartrecruiters_result = await detect_smartrecruiters(
                 normalized_url, client=client, html=page_html, discovered_urls=discovered_urls
             )
@@ -562,6 +606,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             "icims": icims_result,
             "oracle_hcm": oracle_hcm_result,
             "phenom": phenom_result,
+            "avature": avature_result,
+            "microsoft": microsoft_result,
             "smartrecruiters": smartrecruiters_result,
             "sap_sf": sap_sf_result,
             "wp_jobs": wp_jobs_result,
@@ -849,6 +895,26 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
             final_site_type = "PHENOM"
             final_strategy = "api"
             logger.info("[PIPELINE] PHENOM → %d jobs", len(jobs))
+        elif site_type == "AVATURE":
+            jobs = await scrape_avature(
+                normalized_url,
+                client=client,
+                api_url=avature_result.get("api_url", ""),
+            )
+            api_url = ""
+            final_site_type = "AVATURE"
+            final_strategy = "api"
+            logger.info("[PIPELINE] AVATURE → %d jobs", len(jobs))
+        elif site_type == "MICROSOFT":
+            jobs = await scrape_microsoft(
+                normalized_url,
+                client=client,
+                api_url=microsoft_result.get("api_url", ""),
+            )
+            api_url = ""
+            final_site_type = "MICROSOFT"
+            final_strategy = "api"
+            logger.info("[PIPELINE] MICROSOFT → %d jobs", len(jobs))
         elif site_type == "SMARTRECRUITERS":
             jobs = await scrape_smartrecruiters(
                 normalized_url,

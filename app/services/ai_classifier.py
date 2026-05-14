@@ -6,14 +6,14 @@ from app.core.logger import logger
 SYSTEM_PROMPT = """You are selecting the best scraping strategy.
 
 Choose ONE:
-WORKDAY_API, GREENHOUSE_API, TALEO_API, ICIMS_API, ORACLE_HCM, SAP_SF, PHENOM, SMARTRECRUITERS, DYNAMIC_API, SIMPLE_API, WP_JOBS, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
+WORKDAY_API, GREENHOUSE_API, TALEO_API, ICIMS_API, ORACLE_HCM, SAP_SF, PHENOM, AVATURE, MICROSOFT, SMARTRECRUITERS, DYNAMIC_API, SIMPLE_API, WP_JOBS, INTERACTIVE_DOM, DOM_LOAD_MORE, DOM_INFINITE_SCROLL, DOM_BROWSER, UNKNOWN
 
 Rules:
 - Prefer matched = true
 - Prefer higher jobs_found
 - Prefer api_usable = true
 - Priority:
-  WORKDAY_API > GREENHOUSE_API > TALEO_API > ICIMS_API > ORACLE_HCM > SAP_SF > PHENOM > SMARTRECRUITERS > DYNAMIC_API > SIMPLE_API > WP_JOBS > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
+  WORKDAY_API > GREENHOUSE_API > TALEO_API > ICIMS_API > ORACLE_HCM > SAP_SF > PHENOM > AVATURE > MICROSOFT > SMARTRECRUITERS > DYNAMIC_API > SIMPLE_API > WP_JOBS > INTERACTIVE_DOM > DOM_LOAD_MORE > DOM_INFINITE_SCROLL > DOM_BROWSER
 - If none match → UNKNOWN
 - Do not guess
 
@@ -28,6 +28,8 @@ ALLOWED_TYPES = {
     "ORACLE_HCM",
     "SAP_SF",
     "PHENOM",
+    "AVATURE",
+    "MICROSOFT",
     "SMARTRECRUITERS",
     "DYNAMIC_API",
     "SIMPLE_API",
@@ -113,6 +115,8 @@ def _heuristic_classify(data: dict) -> dict:
         ("ORACLE_HCM", tests.get("oracle_hcm", {})),
         ("SAP_SF", tests.get("sap_sf", {})),
         ("PHENOM", tests.get("phenom", {})),
+        ("AVATURE", tests.get("avature", {})),
+        ("MICROSOFT", tests.get("microsoft", {})),
         ("SMARTRECRUITERS", tests.get("smartrecruiters", {})),
         ("DYNAMIC_API", dynamic_api),
         ("SIMPLE_API", tests.get("simple_api", {})),
@@ -151,6 +155,8 @@ def _heuristic_classify(data: dict) -> dict:
             "ORACLE_HCM": 7,
             "SAP_SF": 6,
             "PHENOM": 5,
+            "AVATURE": 4,
+            "MICROSOFT": 4,
             "SMARTRECRUITERS": 3,
             "DYNAMIC_API": 5,
             "SIMPLE_API": 4,

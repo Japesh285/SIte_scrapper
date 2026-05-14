@@ -15,6 +15,8 @@ from app.detectors.phenom import detect_phenom
 from app.detectors.smartrecruiters import detect_smartrecruiters
 from app.detectors.sap_successfactors import detect_sap_sf
 from app.detectors.oracle_hcm import detect_oracle_hcm
+from app.detectors.avature import detect_avature
+from app.detectors.microsoft_careers import detect_microsoft
 
 __all__ = [
     "inspect_browser_network",
@@ -34,4 +36,6 @@ __all__ = [
     "detect_smartrecruiters",
     "detect_sap_sf",
     "detect_oracle_hcm",
+    "detect_avature",
+    "detect_microsoft",
 ]
