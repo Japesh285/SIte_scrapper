@@ -1,4 +1,5 @@
 import re
+import time
 
 from app.core.logger import logger
 from app.core.site_utils import absolutize_url
@@ -12,6 +13,8 @@ except Exception:  # pragma: no cover
 
 
 MAX_NO_GROWTH_ROUNDS = 2
+MAX_RELOADS = 2
+DOM_TIME_BUDGET_SECONDS = 90
 GENERIC_TITLES = {
     "english",
     "careers",
@@ -135,7 +138,9 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int | None = None) ->
     collected: list[dict] = []
     seen: set[str] = set()
     no_growth_rounds = 0
+    reload_count = 0
     used_relaxed_selectors = False
+    start_time = time.monotonic()
 
     try:
         async with async_playwright() as playwright:
@@ -147,6 +152,10 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int | None = None) ->
 
             round_index = 0
             while True:
+                elapsed = time.monotonic() - start_time
+                if elapsed >= DOM_TIME_BUDGET_SECONDS:
+                    logger.info("[DOM:%s] Time budget reached (%.1fs) — returning %d partial results", mode, elapsed, len(collected))
+                    break
                 if max_pages is not None and round_index >= max_pages:
                     break
                 extracted = await _extract_jobs_from_page(page, url, relaxed=used_relaxed_selectors)
@@ -170,10 +179,13 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int | None = None) ->
                 logger.info("[DOM:%s] Progressed=%s no_growth_rounds=%s", mode, progressed, no_growth_rounds)
 
                 if not progressed:
-                    if await _reload_and_wait(page, reason=f"{mode}:no_progress"):
-                        logger.info("[DOM:%s] Reloaded page after stalled pagination", mode)
+                    if reload_count < MAX_RELOADS and await _reload_and_wait(page, reason=f"{mode}:no_progress"):
+                        reload_count += 1
+                        logger.info("[DOM:%s] Reloaded page after stalled pagination (reload %d/%d)", mode, reload_count, MAX_RELOADS)
                         progressed = True
                     else:
+                        if reload_count >= MAX_RELOADS:
+                            logger.info("[DOM:%s] Stopping after %d reloads — pagination not making real progress", mode, reload_count)
                         break
 
                 await _wait_for_results_settle(page)
@@ -191,39 +203,42 @@ async def _scrape_dom_mode(url: str, mode: str, max_pages: int | None = None) ->
             await browser.close()
     except Exception as exc:
         logger.error(f"[DOM:{mode}] Browser scrape error: {exc}")
-        return []
+        return collected if collected else []
 
     # ── RETRY with relaxed selectors if detection found jobs but extraction returned 0 ──
     if not collected and len(seen) > 10:
-        # This shouldn't happen, but if we previously extracted many jobs that all
-        # got filtered out, retry with relaxed selectors
-        logger.info("[DOM RETRY] Previously found jobs but all filtered — retrying with relaxed selectors")
-        # Re-run extraction with relaxed mode
-        try:
-            async with async_playwright() as playwright:
-                browser = await playwright.chromium.launch(headless=True)
-                page = await browser.new_page()
-                await page.goto(url, wait_until="domcontentloaded", timeout=30000)
-                await _wait_for_results_settle(page, initial=True)
-                logger.info("[DOM RETRY] Using relaxed selectors")
-                round_index = 0
-                while True:
-                    if max_pages is not None and round_index >= max_pages:
-                        break
-                    extracted = await _extract_jobs_from_page(page, url, relaxed=True)
-                    for job in extracted:
-                        key = (job.get("url") or f"{job.get('title', '')}|{job.get('location', '')}").lower()
-                        if key not in seen:
-                            seen.add(key)
-                            collected.append(job)
-                    progressed = await _advance_dom_results(page, mode)
-                    if not progressed:
-                        break
-                    await _wait_for_results_settle(page)
-                    round_index += 1
-                await browser.close()
-        except Exception as exc:
-            logger.error(f"[DOM RETRY] Failed: {exc}")
+        retry_elapsed = time.monotonic() - start_time
+        if retry_elapsed >= DOM_TIME_BUDGET_SECONDS:
+            logger.info("[DOM RETRY] Skipping retry — time budget already exhausted (%.1fs)", retry_elapsed)
+        else:
+            logger.info("[DOM RETRY] Previously found jobs but all filtered — retrying with relaxed selectors")
+            try:
+                async with async_playwright() as playwright:
+                    browser = await playwright.chromium.launch(headless=True)
+                    page = await browser.new_page()
+                    await page.goto(url, wait_until="domcontentloaded", timeout=30000)
+                    await _wait_for_results_settle(page, initial=True)
+                    logger.info("[DOM RETRY] Using relaxed selectors")
+                    round_index = 0
+                    while True:
+                        if time.monotonic() - start_time >= DOM_TIME_BUDGET_SECONDS:
+                            break
+                        if max_pages is not None and round_index >= max_pages:
+                            break
+                        extracted = await _extract_jobs_from_page(page, url, relaxed=True)
+                        for job in extracted:
+                            key = (job.get("url") or f"{job.get('title', '')}|{job.get('location', '')}").lower()
+                            if key not in seen:
+                                seen.add(key)
+                                collected.append(job)
+                        progressed = await _advance_dom_results(page, mode)
+                        if not progressed:
+                            break
+                        await _wait_for_results_settle(page)
+                        round_index += 1
+                    await browser.close()
+            except Exception as exc:
+                logger.error(f"[DOM RETRY] Failed: {exc}")
 
     return collected
 

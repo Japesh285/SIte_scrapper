@@ -989,8 +989,8 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
         if saved_path:
             logger.info(f"Raw JSON saved to: {saved_path}")
 
-    # ── Workday: Send POST to local FastAPI worker ──
-    if final_site_type == "WORKDAY_API" and saved_path:
+    # ── Send all scraped results to master ingest for AI enrichment ──
+    if saved_path:
         await _notify_workday_processor(saved_path)
 
     logger.info(
@@ -1014,25 +1014,22 @@ async def orchestrate_scrape(url: str, session: AsyncSession) -> dict:
 
 
 async def _notify_workday_processor(file_path: str) -> None:
-    """Send POST request to local FastAPI worker to process Workday jobs."""
+    """Send POST request to local FastAPI worker to enrich jobs and append to master CSV."""
     import httpx
 
-    url = "http://localhost:8001/process"
-    payload = {
-        "file_path": file_path,
-        "limit": 50,
-    }
+    url = "http://localhost:8001/process-workday"
+    payload = {"file_path": file_path}
 
-    logger.info(f"[WORKDAY NOTIFY] Sending POST to {url} with file_path={file_path}")
+    logger.info(f"[INGEST NOTIFY] Sending POST to {url} with file_path={file_path}")
 
     try:
-        async with httpx.AsyncClient(timeout=300) as client:
+        async with httpx.AsyncClient(timeout=600) as client:
             response = await client.post(url, json=payload)
             logger.info(
-                f"[WORKDAY NOTIFY] Response: status={response.status_code} body={response.text[:500]}"
+                f"[INGEST NOTIFY] Response: status={response.status_code} body={response.text[:500]}"
             )
     except Exception as e:
-        logger.warning(f"[WORKDAY NOTIFY] Failed to notify processor: {e}")
+        logger.warning(f"[INGEST NOTIFY] Failed to notify processor: {e}")
 
 
 # ---------------------------------------------------------------------------
@@ -1119,7 +1116,7 @@ async def _fetch_workday_with_raw_data(
                 break
 
             added = 0
-            _MAX_DETAILS = 25  # cap sequential detail fetches to avoid timeout
+            _MAX_DETAILS = 100  # cap sequential detail fetches to avoid timeout
 
             for posting in postings:
                 try:

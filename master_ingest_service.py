@@ -271,14 +271,43 @@ Rules:
 """
 
 
+async def _fetch_job_page_text(url: str) -> str:
+    """Fetch job detail page and return clean text for AI enrichment."""
+    if not url:
+        return ""
+    try:
+        async with httpx.AsyncClient(
+            timeout=15,
+            follow_redirects=True,
+            headers={"User-Agent": "Mozilla/5.0"},
+        ) as c:
+            r = await c.get(url)
+            if r.status_code != 200:
+                return ""
+            return clean_html(r.text)[:6000]
+    except Exception:
+        return ""
+
+
 async def process_job(job: dict):
     async with semaphore:
         try:
+            # If no description, fetch the job page to give AI something to work with
+            ai_input = dict(job)
+            has_content = (
+                str(ai_input.get("description", "")).strip() or
+                str(ai_input.get("key_responsibilities", "")).strip() not in ("", "[]")
+            )
+            if not has_content:
+                page_text = await _fetch_job_page_text(ai_input.get("job_link") or ai_input.get("url", ""))
+                if page_text:
+                    ai_input["description"] = page_text
+
             response = await client.chat.completions.create(
                 model="gpt-4.1-nano",
                 messages=[
                     {"role": "system", "content": PROMPT},
-                    {"role": "user", "content": json.dumps(job)}
+                    {"role": "user", "content": json.dumps(ai_input)}
                 ],
                 temperature=0
             )
